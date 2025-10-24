@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator PPh 21 (Metode TER)</title>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo Web" id="logo">
+    </div>
+    <h1>Kalkulator PPh 21 Masa (Mulai Tahun 2024)</h1>
+</header>
+
+    <main>
+        <form id="kalkulatorPajak">
+            
+            <div class="container-kalkulator">
+                
+                <div class="kolom-kiri">
+                    
+                   <fieldset>
+                        <legend>Personal</legend>
+
+                        <div class="form-grup">
+                            <label for="statusPtpk">Status Kawin (PTKP)</label>
+                            <select id="statusPtkp">
+                                </select>
+                        </div>
+                        
+                        <div class="form-grup">
+                            </div>
+
+                        <div class="form-grup">
+                            <label>Status NPWP</label>
+                            <div class="radio-grup"> <input type="checkbox" id="tanpaNpwp">
+                                <label for="tanpaNpwp">Tidak Memiliki NPWP (Tarif 20% lebih tinggi)</label>
+                            </div>
+                        </div>
+                        </fieldset>
+
+                    <fieldset>
+                        <legend>A. Penghasilan</legend>
+                        
+                        <div class="form-grup">
+                            <label for="gaji">Gaji/Pensiun atau THT/JHT</label>
+                            <input type="number" id="gaji" value="0">
+                        </div>
+                        
+                        <div class="form-grup">
+                            <label for="tunjanganPph">Tunjangan PPh</label>
+                            <input type="number" id="tunjanganPph" value="0">
+                        </div>
+
+                        <div class="form-grup">
+                            <label for="tunjanganLain">Tunjangan Lainnya, Uang Lembur, dsb.</label>
+                            <input type="number" id="tunjanganLain" value="0">
+                        </div>
+
+                        <div class="form-grup">
+                            <label for="honorarium">Honorarium dan Imbalan Lainnya Sejenisnya</label>
+                            <input type="number" id="honorarium" value="0">
+                        </div>
+
+                        <div class="form-grup">
+                            <label for="premiAsuransi">Premi Asuransi yang dibayar Pemberi Kerja</label>
+                            <input type="number" id="premiAsuransi" value="0">
+                        </div>
+
+                        <div class="form-grup">
+                            <label for="natura">Natura dan Kenikmatan Lainnya</label>
+                            <input type="number" id="natura" value="0">
+                        </div>
+
+                        <div class="form-grup">
+                            <label for="bonus">Tantiem, Bonus, Gratifikasi, Jasa Produksi dan THR</label>
+                            <input type="number" id="bonus" value="0">
+                        </div>
+
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Hasil Penghasilan Bruto</legend>
+                        <div class="form-grup">
+                            <label for="penghasilanBruto">Penghasilan Bruto</label>
+                            <input type="text" id="penghasilanBruto" readonly>
+                        </div>
+                    </fieldset>
+
+                    <div class="grup-tombol">
+                        <button type="reset" class="btn-reset">Reset</button>
+                        <button type="button" id="tombolHitung" class="btn-hitung">Hitung</button>
+                    </div>
+
+                </div>
+
+                <div class="kolom-kanan">
+
+                    <fieldset>
+                        <legend>B. Penghitungan PPh Pasal 21</legend>
+                        
+                        <div class="form-grup">
+                            <label for="tarifTer">Tarif Efektif Rata-rata (TER) Bulanan</label>
+                            <input type="text" id="tarifTer" readonly>
+                        </div>
+
+                        <div class="form-grup">
+                            <label for="kategoriTer">Kategori TER</label>
+                            <input type="text" id="kategoriTer" readonly>
+                        </div>
+
+                        <div class="form-grup hasil-akhir">
+                            <label for="pph21">PPh Pasal 21 Terutang bulan ini</label>
+                            <input type="text" id="pph21" readonly>
+                        </div>
+                    </fieldset>
+
+                    <div class="iklan">
+                        <p>(Tempat untuk iklan atau info tambahan)</p>
+                    </div>
+
+                </div>
+
+            </div> </form>
+    </main>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>
