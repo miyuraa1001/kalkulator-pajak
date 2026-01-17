@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ACCUTAX - Platform Kalkulasi Pajak Profesional</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script>
         tailwind.config = {
             theme: {
@@ -117,29 +117,62 @@
             font-size: 13px;
             font-weight: 600;
         }
+
+        @media print {
+            /* Sembunyikan elemen yang tidak perlu di PDF */
+            nav, footer, .no-print, button {
+                display: none !important;
+            }
+            /* Pastikan hasil perhitungan rapi di kertas */
+            #area-pajak {
+                box-shadow: none !important;
+                border: 1px solid #ccc !important;
+                padding: 20px !important;
+            }
+        }
+        
     </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
- <body class="h-full bg-gray-50"><!-- Navigation -->
-  <nav class="fixed w-full top-0 z-50 navbar-blur border-b border-gray-200">
-   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-16">
-     <div class="flex items-center">
-      <div class="flex-shrink-0">
-       <h1 id="brand-name" class="text-2xl font-bold text-maroon-800">ACCUTAX</h1>
-      </div>
-     </div>
-     <nav class="hidden md:block">
-      <div class="ml-10 flex items-baseline space-x-8"><a href="#home" class="nav-link text-maroon-800 hover:text-maroon-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a> <a href="#kalkulator" class="nav-link text-gray-600 hover:text-maroon-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Kalkulator Pajak</a> <a href="#artikel" class="nav-link text-gray-600 hover:text-maroon-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Artikel</a> <a href="#tentang" class="nav-link text-gray-600 hover:text-maroon-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Tentang Kami</a>
-      </div>
-     </nav>
-     <div class="md:hidden"><button id="mobile-menu-btn" class="text-gray-600 hover:text-maroon-600 focus:outline-none">
-       <svg class="h-6 w-6" fill="none" viewbox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-       </svg></button>
-     </div>
+  <nav class="fixed w-full top-0 z-[100] bg-white border-b border-gray-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16 relative z-[110]">
+        <div class="flex-shrink-0">
+            <h1 class="text-2xl font-bold text-maroon-800">ACCUTAX</h1>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-6">
+            <a href="#home" class="text-maroon-800 hover:text-maroon-600 px-3 py-2 text-sm font-medium transition-all">Home</a>
+            <a href="#kalkulator" class="text-gray-600 hover:text-maroon-600 px-3 py-2 text-sm font-medium transition-all">Kalkulator Pajak</a>
+            <a href="#artikel" class="text-gray-600 hover:text-maroon-600 px-3 py-2 text-sm font-medium transition-all">Artikel</a>
+            <a href="#tentang" class="text-gray-600 hover:text-maroon-600 px-3 py-2 text-sm font-medium transition-all">Tentang Kami</a>
+            <button onclick="openAuthModal()" id="nav-login-btn" class="px-5 py-2 border-2 border-maroon-800 text-maroon-800 rounded-xl text-sm font-bold hover:bg-maroon-800 hover:text-white transition-all">
+            Login / Daftar
+            </button>
+        </div>
+
+        <div class="md:hidden flex items-center">
+            <button id="mobile-menu-btn" class="text-gray-600 p-2 focus:outline-none">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            </button>
+        </div>
+        </div>
     </div>
-   </div>
+    
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 absolute w-full left-0 z-[105] shadow-xl">
+        <div class="px-4 pt-2 pb-6 space-y-1">
+            <a href="#home" class="block px-3 py-3 text-maroon-800 hover:bg-maroon-50 rounded-lg font-bold" onclick="toggleMobileMenu()">Home</a>
+            <a href="#kalkulator" class="block px-3 py-3 text-gray-600 hover:bg-maroon-50 rounded-lg font-medium" onclick="toggleMobileMenu()">Kalkulator Pajak</a>
+            <a href="#artikel" class="block px-3 py-3 text-gray-600 hover:bg-maroon-50 rounded-lg font-medium" onclick="toggleMobileMenu()">Artikel</a>
+            <a href="#tentang" class="block px-3 py-3 text-gray-600 hover:bg-maroon-50 rounded-lg font-medium" onclick="toggleMobileMenu()">Tentang Kami</a>
+            <div class="pt-4 border-t border-gray-100">
+                <button onclick="openAuthModal(); toggleMobileMenu();" class="w-full text-center py-4 bg-maroon-800 text-white rounded-xl font-bold">Login / Daftar</button>
+            </div>
+        </div>
+    </div>
   </nav><!-- Main Content -->
   <main class="pt-16"><!-- Home Section -->
    <section id="home" class="page-section"><!-- Hero Section -->
@@ -285,14 +318,26 @@
      <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
       <h2 id="calc-title" class="text-2xl font-bold text-gray-900 mb-4">Kalkulator PPh 21 Masa</h2>
       <div id="calc-description" class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
-       <p class="text-blue-800">Gunakan kalkulator ini untuk menghitung PPh 21 bulanan pegawai tetap sesuai metode TER (PP 58/2023).</p>
+       <p class="text-blue-800">Gunakan kalkulator ini untuk menghitung PPh 21 bulanan bagi seluruh kategori penerima penghasilan (pegawai, Freelancer, maupun Tenaga Ahli), baik yang memiliki NPWP maupun tanpa NPWP sesuai metode TER (PP 58/2023).</p>
       </div>
      </div><!-- Calculator Form -->
      <form id="tax-form" class="space-y-8"><!-- Data Wajib Pajak -->
       <div class="bg-white rounded-xl shadow-lg p-6">
        <h3 class="text-lg font-semibold text-gray-900 mb-6">Data Wajib Pajak / Pegawai</h3>
-       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+       <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+        <div><label for="nama-wp" class="block text-sm font-medium text-gray-700 mb-2">Nama Wajib Pajak</label> <input type="text" id="nama-wp" class="w-full px-3 py-2 border border-gray-300 rounded-lg input-focus" placeholder="Nama Lengkap (Bisa dikosongkan)">
+        </div>
+        <div><label for="npwp-wp" class="block text-sm font-medium text-gray-700 mb-2">Nomor NPWP</label> <input type="text" id="npwp-wp" class="w-full px-3 py-2 border border-gray-300 rounded-lg input-focus" placeholder="00.000.000.0-000.000 (Bisa dikosongkan)">
+        </div>
         <div><label for="masa-penghasilan" class="block text-sm font-medium text-gray-700 mb-2">Masa Penghasilan</label> <select id="masa-penghasilan" class="w-full px-3 py-2 border border-gray-300 rounded-lg input-focus"> <option value="1">Januari</option> <option value="2">Februari</option> <option value="3">Maret</option> <option value="4">April</option> <option value="5">Mei</option> <option value="6">Juni</option> <option value="7">Juli</option> <option value="8">Agustus</option> <option value="9">September</option> <option value="10">Oktober</option> <option value="11">November</option> <option value="12">Desember</option> </select>
+        </div>
+        <div>
+            <label for="jenis-pegawai" class="block text-sm font-medium text-gray-700 mb-2">Jenis Pegawai / Penerima Penghasilan</label> 
+            <select id="jenis-pegawai" class="w-full px-3 py-2 border border-gray-300 rounded-lg input-focus"> 
+                <option value="tetap">Pegawai Tetap</option> 
+                <option value="bukan-pegawai-berkesinambungan">Bukan Pegawai (Berkesinambungan)</option> 
+                <option value="bukan-pegawai-tidak">Bukan Pegawai (Tidak Berkesinambungan)</option>
+            </select>
         </div>
         <div><label for="status-npwp" class="block text-sm font-medium text-gray-700 mb-2">Status NPWP</label> <select id="status-npwp" class="w-full px-3 py-2 border border-gray-300 rounded-lg input-focus"> <option value="ada">Memiliki NPWP</option> <option value="tidak-ada">Tidak Memiliki NPWP (+20%)</option> </select>
         </div>
@@ -375,8 +420,8 @@
       </div>
      </form><!-- Results -->
      <div id="results" class="hidden mt-8">
-      <div class="bg-white rounded-xl shadow-lg p-6">
-       <div class="flex items-center justify-between mb-6">
+      <div id="area-pajak" class="bg-white rounded-xl shadow-lg p-6">
+       <div class="flex items-center justify-between mb-6 no-print
         <h3 class="text-xl font-semibold text-gray-900">Hasil Perhitungan PPh 21</h3>
         <div class="flex space-x-3"><button onclick="printResults()" class="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
@@ -385,7 +430,7 @@
           </svg> Download Bukti Potong </button>
         </div>
        </div><!-- Results Content -->
-       <div class="space-y-6"><!-- Detailed Calculation Steps -->
+       <div id="capture-area" class="space-y-6"><!-- Detailed Calculation Steps -->
         <div class="bg-gray-50 rounded-lg p-6" id="calculation-steps">
          <h4 class="text-lg font-semibold text-gray-800 mb-4">Langkah-Langkah Perhitungan</h4>
          <div id="calculation-details" class="space-y-3 text-sm"><!-- Calculation steps will be populated here -->
@@ -463,9 +508,9 @@
          </div><!-- Right Column -->
          <div class="space-y-4">
           <h4 class="text-lg font-semibold text-gray-800 border-b border-gray-200 pb-2">Hasil Akhir</h4>
-          <div class="result-card p-6 rounded-lg bg-maroon-50 border-2 border-maroon-200">
+          <div id="status-card" class="result-card p-6 rounded-lg bg-maroon-50 border-2 border-maroon-200">
            <div class="text-center">
-            <div class="text-sm text-maroon-700 mb-2">
+            <div id="label-pph21" class="text-sm text-maroon-700 mb-2">
              PPh 21 Terutang
             </div>
             <div id="result-pph21" class="text-3xl font-bold text-maroon-600 mb-2">
@@ -505,79 +550,129 @@
      </div>
      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"><!-- Artikel 1 -->
       <article class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-       <div class="h-48 bg-gradient-to-br from-maroon-400 to-maroon-600 flex items-center justify-center">
-        <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-        </svg>
-       </div>
-       <div class="p-6">
-        <h3 class="text-xl font-semibold text-gray-900 mb-3">Panduan Lengkap PP 58/2023</h3>
-        <p class="text-gray-600 mb-4">Memahami perubahan regulasi PPh 21 dengan metode Tarif Efektif Rata-rata (TER) yang berlaku mulai 2023.</p>
-        <div class="flex items-center justify-between"><span class="text-sm text-gray-500">15 Januari 2024</span> <button class="text-maroon-600 hover:text-maroon-700 font-medium text-sm">Baca Selengkapnya →</button>
+        <div class="h-48 relative overflow-hidden bg-maroon-700">
+            <div class="absolute inset-0 bg-cover bg-center opacity-40 transition-transform duration-500 hover:scale-110" 
+                style="background-image: url('artikel\ 1.png');">
+            </div>            
+            <div class="relative h-full flex items-center justify-center">
+                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+            </div>
         </div>
-       </div>
+
+        <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Panduan Lengkap TER</h3>
+            <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                Pahami cara kerja Tarif Efektif Rata-rata (TER) untuk perhitungan PPh 21 bulanan mulai Januari 2024.
+            </p>
+            <div class="flex items-center justify-between">
+                <span class="text-xs text-gray-500 font-medium">15 Januari 2024</span> 
+                <button onclick="openArticle(1)" class="text-maroon-600 hover:text-maroon-800 font-bold text-sm transition-colors">
+                    Baca Selengkapnya →
+                </button>
+            </div>
+        </div>
       </article><!-- Artikel 2 -->
       <article class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-       <div class="h-48 bg-gradient-to-br from-maroon-400 to-maroon-600 flex items-center justify-center">
-        <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-        </svg>
-       </div>
-       <div class="p-6">
-        <h3 class="text-xl font-semibold text-gray-900 mb-3">Cara Menghitung PPh 21 TER</h3>
-        <p class="text-gray-600 mb-4">Tutorial step-by-step menghitung PPh 21 menggunakan metode TER dengan contoh kasus nyata.</p>
-        <div class="flex items-center justify-between"><span class="text-sm text-gray-500">10 Januari 2024</span> <button class="text-maroon-600 hover:text-maroon-700 font-medium text-sm">Baca Selengkapnya →</button>
+        <div class="h-48 relative overflow-hidden bg-maroon-700">
+            <div class="absolute inset-0 bg-cover bg-center opacity-50" 
+                style="background-image: url('artikel\ 2.jpg');">
+            </div>
+            <div class="relative h-full flex items-center justify-center">
+                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+            </div>
         </div>
-       </div>
+        <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Cara Menghitung PPh 21 TER</h3>
+            <p class="text-gray-600 mb-4 text-sm">Tutorial step-by-step menghitung PPh 21 menggunakan metode TER dengan contoh kasus nyata.</p>
+            <div class="flex items-center justify-between">
+                <span class="text-xs text-gray-500">10 Januari 2024</span> 
+                <button onclick="openArticle(2)" class="text-maroon-600 hover:text-maroon-700 font-medium text-sm">Baca Selengkapnya →</button>
+            </div>
+        </div>
       </article><!-- Artikel 3 -->
       <article class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-       <div class="h-48 bg-gradient-to-br from-maroon-400 to-maroon-600 flex items-center justify-center">
-        <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-       </div>
-       <div class="p-6">
-        <h3 class="text-xl font-semibold text-gray-900 mb-3">FAQ PPh 21 Terbaru</h3>
-        <p class="text-gray-600 mb-4">Kumpulan pertanyaan yang sering diajukan seputar perhitungan PPh 21 dan jawabannya.</p>
-        <div class="flex items-center justify-between"><span class="text-sm text-gray-500">5 Januari 2024</span> <button class="text-maroon-600 hover:text-maroon-700 font-medium text-sm">Baca Selengkapnya →</button>
+        <div class="h-48 relative overflow-hidden bg-maroon-700">
+            <div class="absolute inset-0 bg-cover bg-center opacity-40" 
+                style="background-image: url('artikel\ 3.png');">
+            </div>
+            <div class="relative h-full flex items-center justify-center">
+                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.443 1.103m-2.489 2c.973 0 1.762.789 1.762 1.762 0 .973-.789 1.762-1.762 1.762-1.242 0-1.762-.789-1.762-1.762 0-.973.789-1.762 1.762-1.762zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
         </div>
-       </div>
+        <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">FAQ PPh 21 Terbaru</h3>
+            <p class="text-gray-600 mb-4 text-sm">Kumpulan pertanyaan yang sering diajukan seputar metode TER dan regulasi PMK 168/2023.</p>
+            <div class="flex items-center justify-between">
+                <span class="text-xs text-gray-500">12 Januari 2024</span> 
+                <button onclick="openArticle(3)" class="text-maroon-600 hover:text-maroon-700 font-medium text-sm">Baca Selengkapnya →</button>
+            </div>
+        </div>
       </article><!-- Artikel 4 -->
       <article class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-       <div class="h-48 bg-gradient-to-br from-maroon-400 to-maroon-600 flex items-center justify-center">
-        <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-        </svg>
-       </div>
-       <div class="p-6">
-        <h3 class="text-xl font-semibold text-gray-900 mb-3">Update PMK 168/2023</h3>
-        <p class="text-gray-600 mb-4">Perubahan tarif dan kategori TER berdasarkan Peraturan Menteri Keuangan terbaru.</p>
-        <div class="flex items-center justify-between"><span class="text-sm text-gray-500">1 Januari 2024</span> <button class="text-maroon-600 hover:text-maroon-700 font-medium text-sm">Baca Selengkapnya →</button>
+        <div class="h-48 relative overflow-hidden bg-maroon-700">
+            <div class="absolute inset-0 bg-cover bg-center opacity-40" 
+                style="background-image: url('artikel 4.jpg');">
+            </div>
+            <div class="relative h-full flex items-center justify-center">
+                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+            </div>
         </div>
-       </div>
+        <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Update PMK 168/2023</h3>
+            <p class="text-gray-600 mb-4 text-sm">Perubahan tarif dan kategori TER berdasarkan Peraturan Menteri Keuangan terbaru.</p>
+            <div class="flex items-center justify-between">
+                <span class="text-xs text-gray-500">1 Januari 2024</span> 
+                <button onclick="openArticle(4)" class="text-maroon-600 hover:text-maroon-700 font-medium text-sm">Baca Selengkapnya →</button>
+            </div>
+        </div>
       </article><!-- Artikel 5 -->
       <article class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-       <div class="h-48 bg-gradient-to-br from-maroon-400 to-maroon-600 flex items-center justify-center">
-        <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-        </svg>
-       </div>
-       <div class="p-6">
-        <h3 class="text-xl font-semibold text-gray-900 mb-3">Template Bukti Potong</h3>
-        <p class="text-gray-600 mb-4">Download template bukti potong PPh 21 sesuai format terbaru dari Direktorat Jenderal Pajak.</p>
-        <div class="flex items-center justify-between"><span class="text-sm text-gray-500">28 Desember 2023</span> <button class="text-maroon-600 hover:text-maroon-700 font-medium text-sm">Baca Selengkapnya →</button>
+        <div class="h-48 relative overflow-hidden bg-maroon-700">
+            <div class="absolute inset-0 bg-cover bg-center opacity-40" 
+                style="background-image: url('artikel 5.jpg');">
+            </div>
+            <div class="relative h-full flex items-center justify-center">
+                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+            </div>
         </div>
-       </div>
+        <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Template Bukti Potong</h3>
+            <p class="text-gray-600 mb-4 text-sm">Download template bukti potong PPh 21 sesuai format terbaru dari Direktorat Jenderal Pajak.</p>
+            <div class="flex items-center justify-between">
+                <span class="text-xs text-gray-500">28 Desember 2023</span> 
+                <button onclick="openArticle(5)" class="text-maroon-600 hover:text-maroon-700 font-medium text-sm">Baca Selengkapnya →</button>
+            </div>
+        </div>
       </article><!-- Artikel 6 -->
       <article class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-       <div class="h-48 bg-gradient-to-br from-maroon-400 to-maroon-600 flex items-center justify-center">
-        <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-        </svg>
-       </div>
-       <div class="p-6">
-        <h3 class="text-xl font-semibold text-gray-900 mb-3">Studi Kasus PPh 21</h3>
-        <p class="text-gray-600 mb-4">Analisis kasus-kasus khusus dalam perhitungan PPh 21 untuk berbagai jenis pegawai.</p>
-        <div class="flex items-center justify-between"><span class="text-sm text-gray-500">25 Desember 2023</span> <button class="text-maroon-600 hover:text-maroon-700 font-medium text-sm">Baca Selengkapnya →</button>
+        <div class="h-48 relative overflow-hidden bg-maroon-700">
+            <div class="absolute inset-0 bg-cover bg-center opacity-40" 
+                style="background-image: url('artikel 6.jpg');">
+            </div>
+            <div class="relative h-full flex items-center justify-center">
+                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+            </div>
         </div>
-       </div>
-      </article>
-     </div>
-    </div>
+        <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Studi Kasus PPh 21</h3>
+            <p class="text-gray-600 mb-4 text-sm">Analisis kasus-kasus khusus dalam perhitungan PPh 21 untuk berbagai jenis pegawai.</p>
+            <div class="flex items-center justify-between">
+                <span class="text-xs text-gray-500">25 Desember 2023</span> 
+                <button onclick="openArticle(6)" class="text-maroon-600 hover:text-maroon-700 font-medium text-sm">Baca Selengkapnya →</button>
+            </div>
+        </div>
    </section><!-- Tentang Kami Section -->
    <section id="tentang" class="page-section hidden">
     <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8"><!-- Hero Section -->
@@ -642,17 +737,70 @@
           <svg class="w-12 h-12 text-maroon-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
          </div>
-         <h4 class="font-semibold text-gray-900">Tim Pajak</h4>
-         <p class="text-sm text-gray-600">Konsultan pajak bersertifikat</p>
+         <div class="text-center mb-16 px-4 py-8">
+         <h4 class="font-semibold text-gray-900 text-xl mb-3">Tim Pajak</h4>
+         <p class="text-sm text-gray-600 mb-3">Mahasiswa Program Studi Akuntansi Perpajakan</p>
+         <div class="flex flex-col items-center gap-10 max-w-4xl mx-auto">
+
+        <div class="flex flex-wrap justify-center gap-20"> <div class="w-32 flex flex-col items-center">
+                <div class="relative w-24 h-24 mb-3">
+                    <img src="Arinia Amanda.jpg" alt="Foto 1" class="w-full h-full object-cover rounded-full shadow-md border-2 border-pink-100">
+                </div>
+                <h5 class="font-bold text-gray-800 text-sm">Arinia Amanda</h5>
+            </div>
+
+            <div class="w-32 flex flex-col items-center">
+                <div class="relative w-24 h-24 mb-3">
+                    <img src="Aghata syaliza.jpg" alt="Foto 2" class="w-full h-full object-cover rounded-full shadow-md border-2 border-pink-100">
+                </div>
+                <h5 class="font-bold text-gray-800 text-sm">Aghata Syaliza</h5>
+            </div>
+
         </div>
+        <div class="flex flex-wrap justify-center gap-10">
+            
+            <div class="w-32 flex flex-col items-center">
+                <div class="relative w-24 h-24 mb-3">
+                    <img src="Aisyah Firnanda.jpg" alt="Foto 3" class="w-full h-full object-cover rounded-full shadow-md border-2 border-pink-100">
+                </div>
+                <h5 class="font-bold text-gray-800 text-sm">Aisyah Firnanda</h5>
+            </div>
+
+            <div class="w-32 flex flex-col items-center">
+                <div class="relative w-24 h-24 mb-3">
+                    <img src="Fatimah Azzarah.jpg" alt="Foto 4" class="w-full h-full object-cover rounded-full shadow-md border-2 border-pink-100">
+                </div>
+                <h5 class="font-bold text-gray-800 text-sm">Fatimah Azzhra</h5>
+            </div>
+
+            <div class="w-32 flex flex-col items-center">
+                <div class="relative w-24 h-24 mb-3">
+                    <img src="Syafira Daniela Nahuway.jpg" alt="Syafira-Daniela-Nahuway" class="w-full h-full object-cover rounded-full shadow-md border-2 border-pink-100">
+                </div>
+                <h5 class="font-bold text-gray-800 text-sm">Syafira Daniela Nahuway</h5>
+            </div>
+        </div>
+        </div>
+        </div>
+         </div>
         <div class="text-center">
          <div class="w-24 h-24 bg-maroon-100 rounded-full flex items-center justify-center mx-auto mb-4">
           <svg class="w-12 h-12 text-maroon-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
           </svg>
          </div>
-         <h4 class="font-semibold text-gray-900">Tim Developer</h4>
-         <p class="text-sm text-gray-600">Pengembang aplikasi web</p>
-        </div>
+         <div class="text-center mb-15 px-4 py-4"></div>
+         <h4 class="font-semibold text-gray-900 text-xl mb-3">Tim Developer</h4>
+         <p class="text-sm text-gray-600 mb-3">Pengembang aplikasi web</p>
+         <div class="flex justify-center">
+        <div class="w-40 flex flex-col items-center">
+            <div class="relative w-24 h-24 mb-3">
+                <img src="Syafira Daniela Nahuway.jpg" alt="Foto Developer" class="w-full h-full object-cover rounded-full shadow-md border-2 border-pink-100">
+            </div>
+            <h5 class="font-bold text-gray-800 text-sm">Syafira Daniela Nahuway</h5>
+            <span class="text-xs text-gray-500 mt-1">Fullstack Developer</span> </div>
+           </div>
+          </div>
+         </div>
        </div>
       </div>
      </div>
@@ -665,12 +813,7 @@
      <div class="col-span-2">
       <h3 class="text-2xl font-bold mb-4">ACCUTAX</h3>
       <p class="text-gray-300 mb-4 leading-relaxed">Platform kalkulasi pajak profesional yang akurat dan terpercaya untuk membantu Anda menghitung PPh 21 sesuai dengan peraturan perpajakan terbaru di Indonesia.</p>
-      <div class="flex space-x-4"><a href="#" class="text-gray-400 hover:text-white transition-colors">
-        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
-        </svg></a> <a href="#" class="text-gray-400 hover:text-white transition-colors">
-        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z" />
-        </svg></a> <a href="#" class="text-gray-400 hover:text-white transition-colors">
-        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+      <div class="flex space-x-4"><a href=" class="text-gray-400 hover:text-white transition-colors">
         </svg></a>
       </div>
      </div>
@@ -684,7 +827,7 @@
       </ul>
      </div>
      <div>
-      <h4 class="text-lg font-semibold mb-4">Kontak</h4>
+      <h4 class="text-lg font-semibold mb-4">Kontak &amp; Media Sosial</h4>
       <div class="space-y-3 text-gray-300">
        <div class="flex items-center">
         <svg class="w-5 h-5 mr-3" fill="currentColor" viewbox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
@@ -692,31 +835,994 @@
        </div>
        <div class="flex items-center">
         <svg class="w-5 h-5 mr-3" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.63" />
-        </svg><span>+6269670244070</span>
+        <li><a href="https://wa.me/6289670244070" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center"></a>
+        </svg><span>Whatsapp :089670244070</span>
        </div>
        <div class="flex items-center">
         <svg class="w-5 h-5 mr-3" fill="currentColor" viewbox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
-        </svg><span>@accutax.official</span>
+        <li><a href="https://www.instagram.com/accutax.id?igsh=MWNkc3E1d21kMXRtZw==" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center"></a>
+        </svg><span>Instagram : @accutax.id</span>
        </div>
        <div class="flex items-center">
         <svg class="w-5 h-5 mr-3" fill="currentColor" viewbox="0 0 24 24"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
-        </svg><span>@accutax.id</span>
+        <li><a href="https://www.tiktok.com/@accutax.id?_r=1&_t=ZS-929DMApx0Sn" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center"></a>
+        </svg><span>Tiktok : @accutax.id</span>
        </div>
       </div>
      </div>
     </div>
     <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-     <p id="footer-text" class="text-gray-300">© 2024 ACCUTAX. Semua hak dilindungi undang-undang.</p>
+     <p id="footer-text" class="text-gray-300">© 2026 ACCUTAX. Semua hak dilindungi undang-undang.</p>
     </div>
+
    </div>
+    <div id="modal-auth" class="fixed inset-0 z-[110] hidden overflow-y-auto bg-black bg-opacity-60 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full overflow-hidden shadow-2xl animate-fade-in">
+            <div class="flex border-b">
+                <button onclick="switchAuthTab('login')" id="tab-login" class="flex-1 py-4 text-center font-bold text-maroon-800 border-b-2 border-maroon-700 bg-maroon-50">Login</button>
+                <button onclick="switchAuthTab('register')" id="tab-register" class="flex-1 py-4 text-center font-bold text-gray-500 hover:text-maroon-700 transition-colors">Daftar</button>
+                <button onclick="closeAuthModal()" class="p-4 text-gray-400 hover:text-maroon-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <div class="p-8">
+                <div class="text-center mb-8">
+                    <h3 id="auth-title" class="text-2xl font-bold text-gray-900">Selamat Datang Kembali</h3>
+                    <p id="auth-subtitle" class="text-gray-500 text-sm mt-2">Silakan masuk ke akun ACCUTAX Anda</p>
+                </div>
+
+                <form id="form-login" class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Email / Username</label>
+                        <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-maroon-500 focus:border-maroon-500 outline-none transition-all text-gray-900" placeholder="Masukkan email Anda">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Password</label>
+                        <input type="password" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-maroon-500 focus:border-maroon-500 outline-none transition-all text-gray-900" placeholder="••••••••">
+                    </div>
+                    <button type="button" onclick="performAuth('login')" class="w-full bg-maroon-700 text-white py-3 rounded-xl font-bold hover:bg-maroon-800 transition-all shadow-lg">Masuk Sekarang</button>
+                </form>
+
+                <form id="form-register" class="space-y-5 hidden">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Lengkap</label>
+                        <input type="text" id="reg-name" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-maroon-500 focus:border-maroon-500 outline-none transition-all text-gray-900" placeholder="Contoh: Budi Santoso">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Email</label>
+                        <input type="email" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-maroon-500 focus:border-maroon-500 outline-none transition-all text-gray-900" placeholder="alamat@email.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Password Baru</label>
+                        <input type="password" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-maroon-500 focus:border-maroon-500 outline-none transition-all text-gray-900" placeholder="Minimal 8 karakter">
+                    </div>
+                    <button type="button" onclick="performAuth('register')" class="w-full bg-maroon-700 text-white py-3 rounded-xl font-bold hover:bg-maroon-800 transition-all shadow-lg">Buat Akun</button>
+                </form>
+
+                <div class="flex justify-end mt-1">
+                    <button type="button" onclick="showForgotPassword()" class="text-xs text-maroon-600 hover:underline">Lupa Password?</button>
+                </div>
+
+                <form id="form-forgot-password" class="space-y-5 hidden">
+                    <div class="text-center mb-4">
+                        <h4 class="font-bold text-gray-900">Pemulihan Akun</h4>
+                        <p class="text-xs text-gray-500">Masukkan email untuk menerima kode verifikasi</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Email Terdaftar</label>
+                        <input type="email" id="forgot-email" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-maroon-500 outline-none" placeholder="alamat@email.com">
+                    </div>
+                    <button type="button" onclick="sendVerificationCode()" class="w-full bg-maroon-700 text-white py-3 rounded-xl font-bold hover:bg-maroon-800 shadow-lg transition-all">
+                        Kirim Kode Verifikasi
+                    </div>
+                    <button type="button" onclick="switchAuthTab('login')" class="w-full text-sm text-gray-500 hover:text-maroon-700">Kembali ke Login</button>
+                </form>
+
+                <div class="mt-8 text-center">
+                    <p class="text-xs text-gray-400 italic">Dengan bergabung, Anda menyetujui ketentuan layanan dan privasi data sesuai regulasi perpajakan yang berlaku.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-artikel-1" class="fixed inset-0 z-[100] hidden overflow-y-auto bg-black bg-opacity-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div class="sticky top-0 bg-white border-b border-gray-100 p-6 flex justify-between items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-maroon-800">Bedah Tuntas PP Nomor 58 Tahun 2023</h3>
+                    <p class="text-sm text-gray-500 mt-1">Transformasi Pemotongan PPh 21 melalui Metode TER</p>
+                </div>
+                <button onclick="closeArticle(1)" class="text-gray-400 hover:text-maroon-600 transition-colors p-2">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div class="p-8 text-gray-600 leading-relaxed">
+                <p class="mb-6">Peraturan Pemerintah **(PP) Nomor 58 Tahun 2023** merupakan tonggak baru dalam simplifikasi administrasi perpajakan di Indonesia. Peraturan ini hadir untuk memberikan kemudahan bagi pemotong pajak (perusahaan) dalam menghitung PPh 21 karyawan setiap bulannya.</p>
+                
+                <h4 class="text-xl font-bold text-gray-900 mt-8 mb-3">1. Apa itu Tarif Efektif Rata-Rata (TER)?</h4>
+                <p class="mb-4">TER adalah skema penghitungan PPh 21 yang langsung dikalikan dengan **Penghasilan Bruto** bulanan. Metode ini menggantikan skema lama yang mengharuskan penghitungan biaya jabatan, iuran pensiun, dan PTKP secara manual di setiap bulan.</p>
+
+                <h4 class="text-xl font-bold text-gray-900 mt-8 mb-3">2. Pembagian 3 Kategori Tarif Bulanan</h4>
+                <p class="mb-4">Dalam PP 58/2023, tarif bulanan diklasifikasikan berdasarkan status PTKP Wajib Pajak:</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="p-4 bg-maroon-50 rounded-xl border border-maroon-100">
+                        <span class="font-bold text-maroon-800">Kategori A</span>
+                        <p class="text-xs mt-1">Status PTKP: TK/0, TK/1, K/0. Memiliki 44 lapisan tarif (0% - 34%).</p>
+                    </div>
+                    <div class="p-4 bg-maroon-50 rounded-xl border border-maroon-100">
+                        <span class="font-bold text-maroon-800">Kategori B</span>
+                        <p class="text-xs mt-1">Status PTKP: TK/2, TK/3, K/1, K/2. Memiliki 40 lapisan tarif (0% - 34%).</p>
+                    </div>
+                    <div class="p-4 bg-maroon-50 rounded-xl border border-maroon-100">
+                        <span class="font-bold text-maroon-800">Kategori C</span>
+                        <p class="text-xs mt-1">Status PTKP: K/3. Memiliki 41 lapisan tarif (0% - 34%).</p>
+                    </div>
+                </div>
+
+                <h4 class="text-xl font-bold text-gray-900 mt-8 mb-3">3. Ketentuan Tarif Harian</h4>
+                <p class="mb-4">Bagi pegawai tidak tetap yang menerima upah harian atau mingguan, PP ini mengatur tarif spesifik:</p>
+                <ul class="list-disc ml-6 mb-6 space-y-2">
+                    <li>Penghasilan bruto s.d. Rp450.000/hari: <span class="font-semibold text-maroon-700">0%</span>.</li>
+                    <li>Penghasilan bruto > Rp450.000 s.d. Rp2.500.000/hari: <span class="font-semibold text-maroon-700">0,5%</span>.</li>
+                </ul>
+
+                <h4 class="text-xl font-bold text-gray-900 mt-8 mb-3">4. Kenapa Ada Penghitungan Ulang di Desember?</h4>
+                <p class="mb-4">Meskipun menggunakan TER memudahkan operasional bulanan, keadilan pajak tetap dijaga dengan penghitungan akhir (Masa Pajak Terakhir) menggunakan **Tarif Progresif Pasal 17 UU PPh**. Hal ini bertujuan untuk memastikan total pajak setahun benar-benar sesuai dengan penghasilan neto tahunan.</p>
+
+                <div class="mt-10 bg-gradient-to-r from-maroon-800 to-maroon-600 p-6 rounded-2xl text-white shadow-inner">
+                    <div class="flex items-start">
+                        <svg class="w-10 h-10 mr-4 mt-1 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                        <div>
+                            <h4 class="text-lg font-bold">Akses Dokumen Sumber</h4>
+                            <p class="text-maroon-100 text-sm mb-4">Dapatkan naskah lengkap Peraturan Pemerintah ini untuk keperluan dokumentasi dan referensi hukum Anda.</p>
+                            <a href="2023pp058.pdf" target="_blank" class="inline-block bg-white text-maroon-800 px-6 py-2 rounded-full font-bold hover:bg-maroon-50 transition-colors">Unduh PP 58/2023 (PDF)</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 border-t pt-6 text-xs text-gray-400">Referensi: Peraturan Pemerintah Nomor 58 Tahun 2023 tentang Tarif Pemotongan Pajak Penghasilan Pasal 21 atas Penghasilan Sehubungan dengan Pekerjaan, Jasa, atau Kegiatan Wajib Pajak Orang Pribadi.</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-artikel-2" class="fixed inset-0 z-[100] hidden overflow-y-auto bg-black bg-opacity-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div class="sticky top-0 bg-white border-b border-gray-100 p-6 flex justify-between items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-maroon-800">Panduan Teknis Perhitungan PPh 21 (TER)</h3>
+                    <p class="text-sm text-gray-500 mt-1">Implementasi Praktis PP Nomor 58 Tahun 2023</p>
+                </div>
+                <button onclick="closeArticle(2)" class="text-gray-400 hover:text-maroon-600 transition-colors p-2">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <div class="p-8 text-gray-600 leading-relaxed">
+                <p class="mb-6 italic">Bagaimana cara menghitung pajak bulanan Anda dengan aturan baru? Berikut adalah rincian langkah demi langkah yang harus dilakukan oleh pemberi kerja maupun wajib pajak.</p>
+
+                <h4 class="text-xl font-bold text-gray-900 mt-8 mb-4 flex items-center">
+                    <span class="bg-maroon-100 text-maroon-800 w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm">1</span>
+                    Tentukan Kategori Berdasarkan Status PTKP
+                </h4>
+                <p class="mb-4">Langkah pertama yang sangat krusial adalah menentukan Anda masuk ke kategori mana. PP 58/2023 membaginya menjadi tiga:</p>
+                
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-50">
+                                <th class="p-3 border-b font-bold text-gray-700">Kategori</th>
+                                <th class="p-3 border-b font-bold text-gray-700">Status PTKP</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="p-3 border-b font-semibold text-maroon-700 italic">Kategori A</td>
+                                <td class="p-3 border-b text-sm">Tidak Kawin (TK/0, TK/1) & Kawin (K/0)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border-b font-semibold text-maroon-700 italic">Kategori B</td>
+                                <td class="p-3 border-b text-sm">Tidak Kawin (TK/2, TK/3) & Kawin (K/1, K/2)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border-b font-semibold text-maroon-700 italic">Kategori C</td>
+                                <td class="p-3 border-b text-sm">Kawin (K/3)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4 class="text-xl font-bold text-gray-900 mt-8 mb-4 flex items-center">
+                    <span class="bg-maroon-100 text-maroon-800 w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm">2</span>
+                    Hitung Seluruh Penghasilan Bruto
+                </h4>
+                <p class="mb-2">Berbeda dengan aturan lama, TER dikalikan langsung dari **Penghasilan Bruto**. Komponen bruto meliputi:</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                    <div class="bg-gray-50 p-3 rounded-lg text-center text-xs font-semibold">Gaji Pokok</div>
+                    <div class="bg-gray-50 p-3 rounded-lg text-center text-xs font-semibold">Tunjangan</div>
+                    <div class="bg-gray-50 p-3 rounded-lg text-center text-xs font-semibold">Uang Lembur</div>
+                    <div class="bg-gray-50 p-3 rounded-lg text-center text-xs font-semibold">Premi Asuransi</div>
+                </div>
+
+                <h4 class="text-xl font-bold text-gray-900 mt-8 mb-4 flex items-center">
+                    <span class="bg-maroon-100 text-maroon-800 w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm">3</span>
+                    Studi Kasus Nyata (Contoh Perhitungan)
+                </h4>
+                <div class="bg-maroon-50 p-6 rounded-2xl border border-maroon-100">
+                    <p class="text-sm mb-4"><strong>Profil:</strong> Budi (Status K/1), Gaji Bruto per bulan Rp 12.500.000.</p>
+                    <ol class="list-decimal ml-5 text-sm space-y-2">
+                        <li>Berdasarkan K/1, Budi masuk <strong>Kategori B</strong>.</li>
+                        <li>Melihat tabel PP 58/2023, penghasilan Rp 12.500.000 (Kategori B) dikenakan tarif efektif sebesar <strong>3%</strong>.</li>
+                        <li><strong>PPh 21 Bulanan:</strong> Rp 12.500.000 x 3% = <span class="text-lg font-bold text-maroon-700">Rp 375.000</span>.</li>
+                    </ol>
+                </div>
+
+                <h4 class="text-xl font-bold text-gray-900 mt-8 mb-4 flex items-center">
+                    <span class="bg-maroon-100 text-maroon-800 w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm">4</span>
+                    Penting: Mekanisme Masa Pajak Terakhir
+                </h4>
+                <p class="mb-4">Ingat! Penggunaan TER hanya berlaku untuk masa pajak **Januari s.d. November**. Pada masa pajak **Desember**, perhitungan dilakukan menggunakan tarif Pasal 17 ayat (1) huruf a UU PPh (Progresif) dikurangi total pajak yang sudah dibayar (Jan-Nov).</p>
+
+                <div class="mt-10 p-6 bg-gray-900 rounded-2xl text-white">
+                    <div class="flex flex-col md:flex-row items-center justify-between">
+                        <div>
+                            <h5 class="text-lg font-bold">Ingin Melihat Tabel Tarif Lengkap?</h5>
+                            <p class="text-gray-400 text-sm">Download lampiran resmi PP 58/2023 untuk melihat 44 lapisan tarif Kategori A, B, dan C.</p>
+                        </div>
+                        <a href="2023pp058.pdf" target="_blank" class="mt-4 md:mt-0 bg-maroon-600 hover:bg-maroon-700 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                            Unduh PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-artikel-3" class="fixed inset-0 z-[100] hidden overflow-y-auto bg-black bg-opacity-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div class="sticky top-0 bg-white border-b border-gray-100 p-6 flex justify-between items-center z-20">
+                <div>
+                    <h3 class="text-2xl font-bold text-maroon-800">Community Forum ACCUTAX</h3>
+                    <p class="text-sm text-gray-500 mt-1">Berbagi info dan diskusi seputar pajak</p>
+                </div>
+                <button onclick="closeArticle(3)" class="text-gray-400 hover:text-maroon-600 transition-colors p-2">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <div class="p-8">
+                <div class="mb-10 bg-white p-6 rounded-2xl border-2 border-maroon-100 shadow-sm">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-maroon-600 flex items-center justify-center text-white font-bold">U</div>
+                        <span class="font-bold text-gray-700">Wajib Pajak (Anda)</span>
+                    </div>
+                    <textarea id="forum-post-input" 
+                            class="w-full p-4 rounded-xl border border-gray-300 bg-gray-50 text-gray-900 focus:bg-white focus:ring-2 focus:ring-maroon-500 outline-none transition-all" 
+                            rows="3" 
+                            placeholder="Apa yang ingin Anda tanyakan atau bagikan hari ini?"></textarea>
+                    <div class="mt-4 flex justify-end">
+                        <button onclick="createNewPost()" class="bg-maroon-700 text-white px-8 py-2 rounded-full font-bold hover:bg-maroon-800 transition-all shadow-md">
+                            Post ke Forum
+                        </button>
+                    </div>
+                </div>
+
+                <div id="forum-feed" class="space-y-8">
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">A</div>
+                            <div>
+                                <p class="font-bold text-gray-900 text-sm">Admin ACCUTAX <span class="text-xs font-normal text-gray-500 ml-2">1 jam lalu</span></p>
+                                <p class="text-xs text-maroon-600 font-semibold">Edukasi Pajak</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-800 mb-4">Penting! Penghitungan Masa Desember tetap menggunakan Tarif Pasal 17 ayat (1) huruf a UU PPh, bukan TER. Jangan lupa kumpulkan bukti potong Jan-Nov Anda.</p>
+                        <div class="flex items-center space-x-6 border-t border-gray-200 pt-4">
+                            <button class="flex items-center text-sm text-gray-500 hover:text-maroon-600"><svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 10h4.704a1 1 0 01.94 1.355l-1.903 5.186a2 2 0 01-1.88 1.309h-5.861a2 2 0 01-2-2v-7a2 2 0 01.586-1.414l3.414-3.414a2 2 0 012.828 0L14 8.586V10zM2 10h3a1 1 0 011 1v9a1 1 0 01-1 1H2a1 1 0 01-1-1v-9a1 1 0 011-1z"/></svg> 12 Like</button>
+                            <button onclick="toggleComment('default-1')" class="flex items-center text-sm text-gray-500 hover:text-maroon-600"><svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg> Komentar</button>
+                        </div>
+                        <div id="comment-area-default-1" class="hidden mt-4 pl-8 border-l-2 border-gray-200 space-y-3">
+                            <div class="text-sm bg-white p-3 rounded-lg border border-gray-100">
+                                <span class="font-bold">Budi:</span> Sangat membantu min!
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-artikel-4" class="fixed inset-0 z-[120] hidden overflow-y-auto bg-black bg-opacity-60 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-fade-in relative">
+            
+            <div class="sticky top-0 bg-white border-b border-gray-100 p-6 flex justify-between items-center z-10">
+                <div class="flex items-center space-x-2">
+                    <div class="w-2 h-8 bg-maroon-700 rounded-full"></div>
+                    <h2 class="text-xl font-bold text-gray-900">Edukasi Pajak ACCUTAX</h2>
+                </div>
+                <button onclick="document.getElementById('modal-artikel-4').classList.add('hidden'); document.body.style.overflow = 'auto';" class="p-2 text-gray-400 hover:text-maroon-600 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="p-8">
+                <div class="text-center mb-10">
+                    <span class="bg-maroon-100 text-maroon-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Peraturan Terbaru</span>
+                    <h1 class="text-3xl font-extrabold text-gray-900 mt-4 leading-tight">Bedah Tuntas PMK Nomor 168 Tahun 2023</h1>
+                    <p class="text-gray-500 mt-2 italic">Petunjuk Pelaksanaan Pemotongan Pajak atas Penghasilan PPh Pasal 21</p>
+                </div>
+
+                <div class="prose prose-maroon max-w-none text-gray-700 leading-relaxed">
+                    <p class="mb-6">
+                        Jika PP 58/2023 mengatur tentang tarifnya, maka **PMK 168/2023** adalah panduan teknis cara menghitungnya. Peraturan ini memberikan kepastian hukum mengenai siapa saja yang terkena tarif TER dan bagaimana implementasinya di lapangan.
+                    </p>
+
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Poin Utama dalam PMK 168/2023:</h3>
+                    <ul class="list-disc pl-5 space-y-3 mb-8">
+                        <li><strong>Definisi Penghasilan Bruto:</strong> Menjelaskan secara rinci apa saja yang termasuk objek pemotongan (Gaji, Tunjangan, Lembur, Bonus, Gratifikasi).</li>
+                        <li><strong>Kategorisasi Penerima Penghasilan:</strong> Mempertegas perbedaan perlakuan pajak untuk Pegawai Tetap, Dewan Komisaris, dan Peserta Kegiatan.</li>
+                        <li><strong>Zakat/Sumbangan Keagamaan:</strong> Mengatur pengurang pajak bagi pegawai yang membayar zakat melalui pemberi kerja yang disahkan pemerintah.</li>
+                    </ul>
+
+                    <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200 mb-8">
+                        <h4 class="font-bold text-maroon-800 mb-4">Subjek Pajak & Dasar Pengenaan (TER)</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm text-left">
+                                <thead>
+                                    <tr class="text-gray-500 border-b">
+                                        <th class="pb-2">Subjek Penerima</th>
+                                        <th class="pb-2">Dasar Pengenaan Pajak</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="py-3">Pegawai Tetap</td>
+                                        <td class="py-3 italic">Penghasilan Bruto Bulanan</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3">Penerima Pensiun Berkala</td>
+                                        <td class="py-3 italic">Penghasilan Bruto Bulanan</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3">Bukan Pegawai</td>
+                                        <td class="py-3 italic">50% dari Penghasilan Bruto</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="bg-maroon-900 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-4 mb-10 shadow-lg">
+                        <div class="flex items-center space-x-4 text-white">
+                            <div class="p-3 bg-white/10 rounded-xl">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            </div>
+                            <div>
+                                <p class="font-bold">Salinan PMK 168/2023</p>
+                                <p class="text-xs text-maroon-200">Lengkap dengan lampiran contoh penghitungan.</p>
+                            </div>
+                        </div>
+                        <a href="2023pmkeuangan168.pdf" download class="bg-white text-maroon-900 px-8 py-3 rounded-xl font-bold hover:bg-maroon-50 transition-all">Download PDF</a>
+                    </div>
+
+                    <div class="border-t border-gray-100 pt-8 text-center">
+                        <p class="text-sm text-gray-500 mb-4 font-medium">Bantu kami meningkatkan platform ini!</p>
+                        <button onclick="document.getElementById('modal-artikel-4').classList.add('hidden'); document.body.style.overflow = 'auto'; document.getElementById('forum-section').scrollIntoView({behavior: 'smooth'});" 
+                                class="text-maroon-700 font-bold hover:underline">
+                            Diskusikan PMK ini di Forum
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-artikel-5" class="fixed inset-0 z-[120] hidden overflow-y-auto bg-black bg-opacity-60 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-fade-in relative">
+            
+            <div class="sticky top-0 bg-white border-b border-gray-100 p-6 flex justify-between items-center z-10">
+                <div class="flex items-center space-x-2">
+                    <div class="w-2 h-8 bg-maroon-700 rounded-full"></div>
+                    <h2 class="text-xl font-bold text-gray-900">Edukasi Pajak ACCUTAX</h2>
+                </div>
+                <button onclick="document.getElementById('modal-artikel-5').classList.add('hidden'); document.body.style.overflow = 'auto';" class="p-2 text-gray-400 hover:text-maroon-600 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <div class="p-8">
+                <div class="text-center mb-10">
+                    <span class="bg-maroon-100 text-maroon-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Administrasi Pajak</span>
+                    <h1 class="text-3xl font-extrabold text-gray-900 mt-4 leading-tight">Template Bukti Potong PPh 21 (1721-A1) Terbaru</h1>
+                    <p class="text-gray-500 mt-2 italic">Format Excel untuk kemudahan pelaporan pajak karyawan tetap</p>
+                </div>
+
+                <div class="prose prose-maroon max-w-none text-gray-700 leading-relaxed">
+                    <p class="mb-6">
+                        Bukti Pemotongan PPh Pasal 21 (Formulir 1721-A1) adalah dokumen resmi yang wajib diberikan oleh pemberi kerja kepada pegawai tetap sebagai bukti bahwa pajak penghasilannya telah dipotong. Dokumen ini sangat penting bagi karyawan untuk melaporkan SPT Tahunan Orang Pribadi.
+                    </p>
+
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Kenapa Menggunakan Template Ini?</h3>
+                    <ul class="list-disc pl-5 space-y-3 mb-8">
+                        <li><strong>Akurasi Data:</strong> Formula Excel yang disesuaikan untuk meminimalisir kesalahan input.</li>
+                        <li><strong>Sesuai Regulasi:</strong> Format kolom mengikuti standar terbaru dari Direktorat Jenderal Pajak.</li>
+                        <li><strong>Efisiensi:</strong> Mempercepat proses pembuatan bukti potong secara massal untuk banyak karyawan.</li>
+                    </ul>
+
+                    <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200 mb-8">
+                        <h4 class="font-bold text-maroon-800 mb-4 flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"></path></svg>
+                            Detail File Informasi
+                        </h4>
+                        <div class="grid grid-cols-2 gap-4 text-sm text-gray-600">
+                            <div><span class="font-bold">Format:</span> Excel (.xls / .csv)</div>
+                            <div><span class="font-bold">Nama Formulir:</span> 1721-A1</div>
+                            <div><span class="font-bold">Kategori:</span> Pegawai Tetap</div>
+                            <div><span class="font-bold">Versi:</span> Update 2024/2025</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-maroon-900 rounded-2xl p-8 flex flex-col items-center text-center shadow-xl mb-10">
+                        <div class="bg-white/10 p-4 rounded-full mb-4">
+                            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        </div>
+                        <h4 class="text-white font-bold text-xl mb-2">Siap untuk Digunakan?</h4>
+                        <p class="text-maroon-100 text-sm mb-6 max-w-md">Klik tombol di bawah untuk mengunduh template formulir Excel Bukti Potong PPh 21 Karyawan.</p>
+                        
+                        <a href="Formulir-Excel-Bukti-Potong-PPh-21-Karyawan-1.xls" download class="bg-white text-maroon-900 px-10 py-4 rounded-2xl font-extrabold text-lg hover:bg-maroon-50 transition-all shadow-lg flex items-center group">
+                            <svg class="w-6 h-6 mr-2 group-hover:bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                            Download Template
+                        </a>
+                    </div>
+
+                    <div class="border-t border-gray-100 pt-8 text-center">
+                        <p class="text-sm text-gray-500 mb-4 font-medium">Butuh bantuan mengisi formulir ini?</p>
+                        <button onclick="document.getElementById('modal-artikel-5').classList.add('hidden'); document.getElementById('forum-section').scrollIntoView({behavior: 'smooth'});" class="text-maroon-700 font-bold hover:underline">Tanyakan di Forum Komunitas</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-artikel-6" class="fixed inset-0 z-[120] hidden overflow-y-auto bg-black bg-opacity-60 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-fade-in relative text-gray-800">
+            
+            <div class="sticky top-0 bg-white border-b border-gray-100 p-6 flex justify-between items-center z-10">
+                <div class="flex items-center space-x-2">
+                    <div class="w-2 h-8 bg-maroon-700 rounded-full"></div>
+                    <h2 class="text-xl font-bold">Simulasi & Studi Kasus ACCUTAX</h2>
+                </div>
+                <button onclick="document.getElementById('modal-artikel-6').classList.add('hidden'); document.body.style.overflow = 'auto';" class="p-2 text-gray-400 hover:text-maroon-600 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <div class="p-8">
+                <div class="text-center mb-10">
+                    <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase">Case Study: Pegawai Tetap</span>
+                    <h1 class="text-3xl font-extrabold text-gray-900 mt-4 leading-tight">Analisis Perhitungan Pajak: Tuan Ahmad</h1>
+                    <p class="text-gray-500 mt-2 italic">Studi kasus komprehensif dari Januari hingga Desember</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-10">
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                        <h4 class="font-bold text-maroon-800 mb-3 uppercase text-xs tracking-widest">Profil Subjek</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex justify-between"><span>Status PTKP:</span> <span class="font-bold text-gray-900">K/1 (Kategori B)</span></li>
+                            <li class="flex justify-between"><span>Gaji Bruto Bulanan:</span> <span class="font-bold text-gray-900">Rp 10.000.000</span></li>
+                            <li class="flex justify-between"><span>Jabatan:</span> <span class="font-bold text-gray-900">Staff Senior</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-maroon-50 p-6 rounded-2xl border border-maroon-100 text-sm">
+                        <h4 class="font-bold text-maroon-800 mb-2 uppercase text-xs">Aturan Berlaku</h4>
+                        <p class="leading-relaxed text-maroon-900">Menggunakan **TER Kategori B** untuk masa pajak Jan-Nov dan **Tarif Pasal 17** untuk Desember sesuai **PP 58/2023**.</p>
+                    </div>
+                </div>
+
+                <div class="mb-10">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <span class="w-8 h-8 bg-maroon-700 text-white rounded-full flex items-center justify-center mr-3 text-sm">1</span>
+                        Masa Pajak Januari - November (TER)
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left border-collapse">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="p-3 border">Deskripsi</th>
+                                    <th class="p-3 border">Perhitungan</th>
+                                    <th class="p-3 border">Hasil</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="p-3 border">Gaji Bruto</td>
+                                    <td class="p-3 border">-</td>
+                                    <td class="p-3 border font-semibold">Rp 10.000.000</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 border">Tarif TER (B)</td>
+                                    <td class="p-3 border">Range 9.65M - 10.05M</td>
+                                    <td class="p-3 border text-maroon-700 font-bold">2%</td>
+                                </tr>
+                                <tr class="bg-maroon-50">
+                                    <td class="p-3 border font-bold">PPh 21 Bulanan</td>
+                                    <td class="p-3 border">Rp 10jt x 2%</td>
+                                    <td class="p-3 border font-bold text-maroon-800">Rp 200.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2 italic">*Total Pajak Jan-Nov: 11 bulan x Rp 200.000 = **Rp 2.200.000**</p>
+                </div>
+
+                <div class="mb-10 p-6 bg-blue-50 rounded-3xl border border-blue-100">
+                    <h3 class="text-xl font-bold mb-4 flex items-center text-blue-900">
+                        <span class="w-8 h-8 bg-blue-700 text-white rounded-full flex items-center justify-center mr-3 text-sm">2</span>
+                        Perhitungan Desember (Pasal 17)
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between p-3 border-b border-blue-200">
+                            <span>Total Gaji Bruto Setahun (Rp 10jt x 12)</span>
+                            <span class="font-bold">Rp 120.000.000</span>
+                        </div>
+                        <div class="flex justify-between p-3 border-b border-blue-200 text-red-600 font-medium">
+                            <span>Pengurang (Biaya Jabatan + PTKP K/1)</span>
+                            <span>(Rp 69.000.000)</span>
+                        </div>
+                        <div class="flex justify-between p-3 border-b border-blue-200 bg-white rounded-xl">
+                            <span class="font-bold">Penghasilan Kena Pajak (PKP)</span>
+                            <span class="font-bold">Rp 51.000.000</span>
+                        </div>
+                        <div class="flex justify-between p-3 border-b border-blue-200">
+                            <span>Pajak Terutang Setahun (5% x PKP)</span>
+                            <span class="font-bold text-blue-800">Rp 2.550.000</span>
+                        </div>
+                        <div class="flex justify-between p-4 bg-blue-700 text-white rounded-2xl shadow-lg">
+                            <span class="font-bold uppercase tracking-wide">Pajak Desember</span>
+                            <div class="text-right">
+                                <p class="text-[10px] text-blue-200">Rp 2.550.000 - Rp 2.200.000</p>
+                                <p class="text-xl font-black">Rp 350.000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-100 pt-8">
+                    <h4 class="font-bold text-gray-900 mb-3 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
+                        Kesimpulan Analisis
+                    </h4>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-6">
+                        Dari studi kasus ini, kita melihat bahwa penggunaan **TER** menyederhanakan administrasi setiap bulan, namun di akhir tahun tetap dilakukan penyesuaian (*True-up*) agar total pajak yang dibayar sesuai dengan tarif progresif UU PPh. Pajak Desember cenderung berbeda karena merupakan sisa selisih perhitungan setahun.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="document.getElementById('modal-artikel-6').classList.add('hidden'); window.location.href='#kalkulator';" class="flex-1 bg-maroon-700 text-white py-3 rounded-2xl font-bold shadow-md hover:bg-maroon-800 transition-all">Simulasikan Gaji Anda</button>
+                        <button onclick="document.getElementById('modal-artikel-6').classList.add('hidden'); document.getElementById('forum-section').scrollIntoView();" class="flex-1 border-2 border-maroon-700 text-maroon-700 py-3 rounded-2xl font-bold hover:bg-maroon-50 transition-all">Diskusi Kasus Ini</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
   </footer>
   <script>
+    // Array untuk menyimpan seluruh postingan forum
+    let forumPosts = JSON.parse(localStorage.getItem('accutax_forum_data')) || [
+        {
+            id: 'init-1',
+            username: "Admin ACCUTAX",
+            role: "developer",
+            content: "Selamat datang di forum diskusi PP 58/2023! Silakan bertanya seputar TER di sini.",
+            likes: 0,
+            likedBy: [],
+            comments: [],
+            timestamp: "17/01/2026, 03.00.00"
+        }
+    ];
+
+    // Fungsi simpan otomatis
+    function saveToLocalStorage() {
+        localStorage.setItem('accutax_forum_data', JSON.stringify(forumPosts));
+    }
+
+    // Fungsi untuk memuat ulang forum dari penyimpanan saat halaman dibuka
+    function loadForumData() {
+        const forumFeed = document.getElementById('forum-feed');
+        if (!forumFeed) return;
+        
+        forumFeed.innerHTML = ""; // Bersihkan tampilan
+        
+        forumPosts.forEach(post => {
+            renderPost(post);
+        });
+    }
+
+// Panggil fungsi muat data saat web pertama kali dibuka
+document.addEventListener('DOMContentLoaded', loadForumData);
+
+    const taxForm = document.getElementById('tax-form');
+    if (taxForm) {
+        taxForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Mencegah halaman refresh
+            calculatePPh21();   // Jalankan fungsi hitung
+        });
+    }
+
+    // --- LOGIKA AUTH & ROLE SYSTEM ---
+
+    function openAuthModal() {
+        document.getElementById('modal-auth').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeAuthModal() {
+        document.getElementById('modal-auth').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    function switchAuthTab(type) {
+        const loginForm = document.getElementById('form-login');
+        const regForm = document.getElementById('form-register');
+        const tabLogin = document.getElementById('tab-login');
+        const tabReg = document.getElementById('tab-register');
+        const title = document.getElementById('auth-title');
+        const subtitle = document.getElementById('auth-subtitle');
+
+        if (type === 'login') {
+            loginForm.classList.remove('hidden');
+            regForm.classList.add('hidden');
+            tabLogin.className = "flex-1 py-4 text-center font-bold text-maroon-800 border-b-2 border-maroon-700 bg-maroon-50";
+            tabReg.className = "flex-1 py-4 text-center font-bold text-gray-500 hover:text-maroon-700 transition-colors";
+            title.textContent = "Selamat Datang Kembali";
+            subtitle.textContent = "Silakan masuk ke akun ACCUTAX Anda";
+        } else {
+            loginForm.classList.add('hidden');
+            regForm.classList.remove('hidden');
+            tabReg.className = "flex-1 py-4 text-center font-bold text-maroon-800 border-b-2 border-maroon-700 bg-maroon-50";
+            tabLogin.className = "flex-1 py-4 text-center font-bold text-gray-500 hover:text-maroon-700 transition-colors";
+            title.textContent = "Daftar Akun Baru";
+            subtitle.textContent = "Bergabung dengan komunitas Wajib Pajak ACCUTAX";
+        }
+    }
+
+    // Fungsi Simulasi Login Sukses
+    function performAuth(type) {
+        const emailInput = document.querySelector('#form-login input[type="text"]').value;
+        const passwordInput = document.querySelector('#form-login input[type="password"]').value;
+        
+        // VALIDASI SEDERHANA
+        if (emailInput === "" || passwordInput === "") {
+            showNotification("Email dan Password wajib diisi!", "error");
+            return;
+        }
+
+        // SIMULASI VERIFIKASI (Contoh password admin: 'admin123')
+        if (emailInput.toLowerCase().includes('admin') || emailInput.toLowerCase().includes('dev')) {
+            if (passwordInput !== "admin123") { // Ganti dengan password rahasia Anda
+                showNotification("Password Admin salah!", "error");
+                return;
+            }
+            currentUser.role = "developer";
+        } else {
+            currentUser.role = "user";
+        }
+
+        currentUser.isLoggedIn = true;
+        currentUser.username = emailInput;
+
+        // Eksekusi perubahan UI
+        updateUIAfterLogin();
+        closeAuthModal();
+        showNotification("Selamat datang, " + currentUser.username, "success");
+
+
+        // UPDATE NAVBAR (Desktop)
+        const loginBtn = document.getElementById('nav-login-btn');
+        if(loginBtn) {
+            loginBtn.innerHTML = `Logout (${currentUser.username})`;
+            loginBtn.className = "ml-4 px-5 py-2 border-2 border-red-600 text-red-600 rounded-xl text-sm font-bold hover:bg-red-600 hover:text-white transition-all";
+            loginBtn.setAttribute("onclick", "handleLogout()");
+        }
+
+        // UPDATE MENU MOBILE (Baris 3)
+        const mobileLoginBtn = document.getElementById('nav-login-btn-mobile');
+        if(mobileLoginBtn) {
+            mobileLoginBtn.textContent = "Logout (" + currentUser.username + ")";
+            mobileLoginBtn.className = "w-full text-center py-3 bg-red-600 text-white rounded-xl font-bold shadow-md";
+            mobileLoginBtn.setAttribute("onclick", "handleLogout(); document.getElementById('mobile-menu').classList.add('hidden');");
+        }
+
+        closeAuthModal();
+    }
+
+    function updateUIAfterLogin() {
+        const navBtn = document.getElementById('nav-login-btn');
+        const mobileBtn = document.getElementById('nav-login-btn-mobile');
+        const label = currentUser.role === 'developer' ? "Admin" : currentUser.username;
+
+        const logoutAction = "handleLogout()";
+        const logoutStyle = "ml-4 px-5 py-2 border-2 border-red-600 text-red-600 rounded-xl text-sm font-bold hover:bg-red-600 hover:text-white transition-all";
+
+        if (navBtn) {
+            navBtn.innerHTML = `Logout (${label})`;
+            navBtn.className = logoutStyle;
+            navBtn.setAttribute("onclick", logoutAction);
+        }
+
+        if (mobileBtn) {
+            mobileBtn.textContent = `Logout (${label})`;
+            mobileBtn.className = "w-full text-center py-3 bg-red-600 text-white rounded-xl font-bold shadow-md";
+            mobileBtn.setAttribute("onclick", logoutAction + "; document.getElementById('mobile-menu').classList.add('hidden');");
+        }
+    }
+    const currentUser = {
+        isLoggedIn: true, // Ubah ke false untuk tes kondisi belum login
+        username: "Syafira (Dev)",
+        role: "developer" // Pilihan: "user" atau "developer"
+    };
+
+    function handleLogout() {
+        if (confirm("Apakah Anda yakin ingin keluar?")) {
+            // 1. Reset Data
+            currentUser.isLoggedIn = false;
+            currentUser.username = "";
+            currentUser.role = "";
+
+            // 2. Kembalikan Tombol Desktop
+            const navBtn = document.getElementById('nav-login-btn');
+            if (navBtn) {
+                navBtn.innerHTML = "Login / Daftar";
+                navBtn.setAttribute("onclick", "openAuthModal()");
+                navBtn.className = "ml-4 px-5 py-2 border-2 border-maroon-800 text-maroon-800 rounded-xl text-sm font-bold hover:bg-maroon-800 hover:text-white transition-all";
+            }
+
+            // 3. Kembalikan Tombol Mobile (Baris 3)
+            const mobileBtn = document.getElementById('nav-login-btn-mobile');
+            if (mobileBtn) {
+                mobileBtn.textContent = "Login / Daftar";
+                mobileBtn.className = "w-full text-center py-3 bg-maroon-800 text-white rounded-xl font-bold shadow-md";
+                mobileBtn.setAttribute("onclick", "openAuthModal(); document.getElementById('mobile-menu').classList.add('hidden');");
+            }
+
+            showNotification("Berhasil keluar.", "info");
+        }
+    }
+
+    // --- SISTEM FORUM INTERAKTIF ACCUTAX ---
+    function createNewPost() {
+        if (!currentUser.isLoggedIn) return showNotification("Login dulu!", "error");
+        const input = document.getElementById('forum-post-input');
+        const content = input.value.trim();
+        if (!content) return;
+
+        const newPost = {
+            id: 'post-' + Date.now(),
+            username: currentUser.username,
+            role: currentUser.role,
+            content: content,
+            likes: 0,
+            likedBy: [],
+            comments: [],
+            timestamp: new Date().toLocaleString('id-ID')
+        };
+
+        forumPosts.unshift(newPost);
+        saveToLocalStorage();
+        renderForum();
+        input.value = "";
+        showNotification("Berhasil posting!", "success");
+    }
+
+    // Fungsi simpan otomatis
+    function saveToLocalStorage() {
+        localStorage.setItem('accutax_forum_data', JSON.stringify(forumPosts));
+    }
+
+    function renderPost(post, isNew = false) {
+        const forumFeed = document.getElementById('forum-feed');
+        const badge = post.role === 'developer' ? '<span class="bg-maroon-600 text-white text-[10px] px-2 py-0.5 rounded-full ml-2">Official Dev</span>' : '';
+        
+        const postHtml = `
+            <div id="${post.id}" class="bg-white p-6 rounded-2xl border ${post.role === 'developer' ? 'border-maroon-300' : 'border-gray-200'} mb-6 relative shadow-sm">
+                <button onclick="deletePost('${post.id}')" class="absolute top-4 right-4 text-gray-300 hover:text-red-500">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="w-10 h-10 rounded-full bg-gray-400 flex items-center justify-center text-white font-bold">${post.username.charAt(0).toUpperCase()}</div>
+                    <div>
+                        <p class="font-bold text-gray-900 text-sm">${post.username} ${badge}</p>
+                        <p class="text-[10px] text-gray-400">${post.timestamp}</p>
+                    </div>
+                </div>
+                <p class="text-gray-800 mb-4">${post.content}</p>
+                <div class="flex items-center space-x-6 border-t border-gray-100 pt-4 text-sm text-gray-400">
+                    <button onclick="handleLike('${post.id}')" class="hover:text-blue-500">Like (<span id="like-count-${post.id}">${post.likes || 0}</span>)</button>
+                    <button onclick="toggleComment('${post.id}')" class="hover:text-maroon-600">Komentar (${post.comments.length})</button>
+                </div>
+                
+                <div id="comment-area-${post.id}" class="hidden mt-4 pl-4 border-l-2 border-maroon-50">
+                    <div class="flex space-x-2 mb-4">
+                        <input type="text" id="input-comment-${post.id}" class="flex-1 text-xs p-2 border rounded-lg outline-none text-gray-900 bg-white" placeholder="Balas diskusi...">
+                        <button onclick="addComment('${post.id}')" class="text-[10px] bg-maroon-600 text-white px-3 py-1 rounded-lg">Kirim</button>
+                    </div>
+                    <div id="list-comment-${post.id}" class="space-y-1">
+                        </div>
+                </div>
+            </div>
+        `;
+
+        if (isNew) {
+            forumFeed.insertAdjacentHTML('afterbegin', postHtml);
+        } else {
+            forumFeed.insertAdjacentHTML('beforeend', postHtml);
+        }
+
+        // PENTING: Muat komentar yang sudah tersimpan untuk post ini
+        if (post.comments && post.comments.length > 0) {
+            post.comments.forEach(comment => {
+                renderSingleComment(post.id, comment);
+            });
+        }
+    }
+
+    // Fungsi Hapus Post atau Komentar
+    function deletePost(postId) {
+        if (currentUser.role !== 'developer') return;
+        if (confirm("Hapus postingan?")) {
+            posts = posts.filter(p => p.id != postId); // Filter array global
+            saveToLocalStorage(); // SIMPAN PERUBAHAN
+            renderForum();
+        }
+    }
+
+    // Fungsi Like
+    function handleLike(postId) {
+        const post = posts.find(p => p.id == postId);
+        // ... logika toggle like ...
+        saveToLocalStorage(); // SIMPAN PERUBAHAN
+        renderForum();
+    }
+
+
+    function renderForum() {
+        const forumFeed = document.getElementById('forum-feed');
+        if (!forumFeed) return;
+
+        forumFeed.innerHTML = forumPosts.map(post => {
+            const isLiked = currentUser.isLoggedIn && post.likedBy && post.likedBy.includes(currentUser.username);
+            const isDev = currentUser.role === 'developer';
+            const badge = post.role === 'developer' ? '<span class="bg-maroon-700 text-white text-[9px] px-2 py-0.5 rounded-full ml-2 font-bold uppercase">Official Dev</span>' : '';
+
+            return `
+                <div class="bg-white p-6 rounded-2xl border ${post.role === 'developer' ? 'border-maroon-200' : 'border-gray-100'} mb-6 shadow-sm animate-fade-in">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-full bg-maroon-100 flex items-center justify-center text-maroon-700 font-extrabold">
+                                ${post.username.charAt(0).toUpperCase()}
+                            </div>
+                            <div>
+                                <p class="font-bold text-gray-900 text-sm">${post.username} ${badge}</p>
+                                <p class="text-[10px] text-gray-400">${post.timestamp}</p>
+                            </div>
+                        </div>
+                        ${isDev ? `<button onclick="deletePost('${post.id}')" class="text-gray-300 hover:text-red-500 transition-colors">🗑️</button>` : ''}
+                    </div>
+
+                    <p class="text-gray-800 text-sm mb-4 leading-relaxed">${post.content}</p>
+
+                    <div class="flex items-center space-x-6 border-t border-gray-50 pt-4 text-[12px]">
+                        <button onclick="handleLike('${post.id}')" class="flex items-center space-x-1 ${isLiked ? 'text-maroon-700 font-bold' : 'text-gray-400 hover:text-maroon-600'}">
+                            <span>${isLiked ? '❤️' : '🤍'} Like (${post.likes || 0})</span>
+                        </button>
+                        <span class="text-gray-400">💬 Komentar (${post.comments.length})</span>
+                    </div>
+
+                    <div class="mt-4 space-y-2">
+                        ${post.comments.map(c => `
+                            <div class="bg-gray-50 p-3 rounded-xl border border-gray-100 text-[11px]">
+                                <span class="font-bold text-maroon-800">${c.username}${c.role === 'developer' ? ' (Dev)' : ''}:</span>
+                                <span class="text-gray-700 ml-1">${c.text}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="mt-4 flex gap-2">
+                        <input type="text" id="input-${post.id}" 
+                            class="flex-1 bg-white border border-gray-200 rounded-xl px-4 py-2 text-sm text-black placeholder-gray-400 focus:ring-1 focus:ring-maroon-500 outline-none" 
+                            placeholder="Balas diskusi..." onkeypress="if(event.key === 'Enter') addComment('${post.id}')">
+                        <button onclick="addComment('${post.id}')" class="bg-maroon-700 text-white px-5 py-2 rounded-xl text-sm font-bold active:scale-95 transition-all">Kirim</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function handleLike(postId) {
+        if (!currentUser.isLoggedIn) return showNotification("Login dulu!", "info");
+        const post = forumPosts.find(p => p.id == postId);
+        if (!post.likedBy) post.likedBy = [];
+
+        const idx = post.likedBy.indexOf(currentUser.username);
+        if (idx === -1) {
+            post.likedBy.push(currentUser.username);
+            post.likes++;
+        } else {
+            post.likedBy.splice(idx, 1);
+            post.likes--;
+        }
+        saveToLocalStorage();
+        renderForum();
+    }
+
+    function addComment(postId) {
+        if (!currentUser.isLoggedIn) return showNotification("Login dulu!", "info");
+        const input = document.getElementById(`input-${postId}`);
+        const text = input.value.trim();
+        if (!text) return;
+
+        const post = forumPosts.find(p => p.id == postId);
+        post.comments.push({
+            username: currentUser.username,
+            role: currentUser.role,
+            text: text,
+            timestamp: new Date().toLocaleTimeString('id-ID')
+        });
+        
+        saveToLocalStorage();
+        renderForum();
+    }
+
+    function deletePost(postId) {
+        if (currentUser.role !== 'developer') return;
+        if (confirm("Hapus postingan ini?")) {
+            forumPosts = forumPosts.filter(p => p.id != postId);
+            saveToLocalStorage();
+            renderForum();
+        }
+    }
+
+    function renderSingleComment(postId, comment) {
+        const list = document.getElementById('list-comment-' + postId);
+        if (!list) return;
+
+        const nameStyle = comment.role === 'developer' ? 'text-maroon-700 font-extrabold' : 'text-gray-900 font-bold';
+        const devTag = comment.role === 'developer' ? ' (Dev)' : '';
+
+        const commentHtml = `
+            <div id="${comment.id}" class="group text-sm bg-gray-50 p-3 rounded-lg border border-gray-100 animate-fade-in flex justify-between items-start mb-2">
+                <div class="flex-1">
+                    <span class="${nameStyle}">${comment.username}${devTag}:</span> 
+                    <span class="text-gray-700 ml-1">${comment.text}</span>
+                    <p class="text-[9px] text-gray-400 mt-1">${comment.timestamp}</p>
+                </div>
+                ${(currentUser.username === comment.username || currentUser.role === 'developer') ? `
+                    <button onclick="deleteComment('${postId}', '${comment.id}')" class="text-gray-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity ml-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                ` : ''}
+            </div>
+        `;
+        list.insertAdjacentHTML('beforeend', commentHtml);
+    }
+
+    function openArticle(id) {
+        document.getElementById('modal-artikel-' + id).classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Mencegah scroll di latar belakang
+    }
+
+    function closeArticle(id) {
+        document.getElementById('modal-artikel-' + id).classList.add('hidden');
+        document.body.style.overflow = 'auto'; // Mengaktifkan scroll kembali
+    }
         // Configuration object for editable content
         const defaultConfig = {
             brand_name: "ACCUTAX",
             tagline: "Hitung Pajak Anda Secara Akurat, Cepat, dan Sesuai Regulasi Terbaru",
             users_count: "10,000+",
-            footer_text: "© 2025 ACCUTAX. Semua hak dilindungi undang-undang."
+            footer_text: "© 2026 ACCUTAX. Semua hak dilindungi undang-undang."
         };
 
         let currentCalculatorType = 'masa';
@@ -733,22 +1839,7 @@
             'K3': 72000000
         };
 
-        // TER rates based on PMK 168/2023
-        const terRates = {
-            'A': {
-                'TK0': 0.5, 'TK1': 0.5, 'TK2': 0.5, 'TK3': 0.5,
-                'K0': 0.5, 'K1': 0.5, 'K2': 0.5, 'K3': 0.5
-            },
-            'B': {
-                'TK0': 15, 'TK1': 10, 'TK2': 5, 'TK3': 5,
-                'K0': 10, 'K1': 5, 'K2': 5, 'K3': 5
-            },
-            'C': {
-                'TK0': 25, 'TK1': 20, 'TK2': 15, 'TK3': 15,
-                'K0': 20, 'K1': 15, 'K2': 15, 'K3': 15
-            }
-        };
-
+        
         // Tax brackets for progressive calculation (Pasal 17)
         const taxBrackets = [
             { min: 0, max: 60000000, rate: 0.05 },
@@ -801,7 +1892,7 @@
             
             if (type === 'masa') {
                 title.textContent = 'Kalkulator PPh 21 Masa';
-                description.innerHTML = '<p class="text-blue-800">Gunakan kalkulator ini untuk menghitung PPh 21 bulanan pegawai tetap sesuai metode TER (PP 58/2023).</p>';
+                description.innerHTML = '<p class="text-blue-800">Gunakan kalkulator ini untuk menghitung PPh 21 bulanan bagi seluruh kategori penerima penghasilan (pegawai, Freelancer, maupun Tenaga Ahli), baik yang memiliki NPWP maupun tanpa NPWP sesuai metode TER (PP 58/2023).</p>';
                 penghasilanSection.classList.remove('hidden');
                 penghasilanTahunanSection.classList.add('hidden');
                 pengurangSection.classList.add('hidden');
@@ -1046,8 +2137,8 @@
             const statusNPWP = document.getElementById('status-npwp').value;
             
             // Determine TER category and rate
-            const terKategori = getTERCategory(penghasilanBrutoBulanan);
-            const terTarif = terRates[terKategori][statusPTKP];
+            const terKategori = getTERCategory(statusPTKP);
+            const terTarif = findTERRate(terKategori, penghasilanBrutoBulanan);
             
             // Calculate monthly PPh 21 using TER
             let pph21Bulanan = penghasilanBrutoBulanan * (terTarif / 100);
@@ -1066,10 +2157,157 @@
             }
         }
 
-        function getTERCategory(penghasilanBruto) {
-            if (penghasilanBruto <= 4500000) return 'A';
-            if (penghasilanBruto <= 20000000) return 'B';
-            return 'C';
+        function getTERCategory(statusPTKP) {
+            const katA = ['TK0', 'TK1', 'K0'];
+            const katB = ['TK2', 'TK3', 'K1', 'K2'];
+            const katC = ['K3'];
+
+            if (katA.includes(statusPTKP)) return 'A';
+            if (katB.includes(statusPTKP)) return 'B';
+            if (katC.includes(statusPTKP)) return 'C';
+
+            return 'A'; // Default to A if not found
+        }
+
+        function findTERRate(terKategori, penghasilanBruto) {
+            const rates = {
+                'A': [
+                    {limit: 5400000, rate: 0},
+                    {limit: 5650000, rate: 0.25},
+                    {limit: 5950000, rate: 0.5},
+                    {limit: 6300000, rate: 0.75},
+                    {limit: 6750000, rate: 1},
+                    {limit: 7500000, rate: 1.25},
+                    {limit: 8550000, rate: 1.5},
+                    {limit: 9650000, rate: 1.75},
+                    {limit: 10050000, rate: 2},
+                    {limit: 10350000, rate: 2.25},
+                    {limit: 10700000, rate: 2.5},
+                    {limit: 11050000, rate: 3},
+                    {limit: 11600000, rate: 3.5},
+                    {limit: 12500000, rate: 4},
+                    {limit: 13750000, rate: 5},
+                    {limit: 15100000, rate: 6},
+                    {limit: 16950000, rate: 7},
+                    {limit: 19750000, rate: 8},
+                    {limit: 24150000, rate: 9},
+                    {limit: 26450000, rate: 10},
+                    {limit: 28000000, rate: 11},
+                    {limit: 30050000, rate: 12},
+                    {limit: 32400000, rate: 13},
+                    {limit: 35400000, rate: 14},
+                    {limit: 39100000, rate: 15},
+                    {limit: 43850000, rate: 16},
+                    {limit: 47800000, rate: 17},
+                    {limit: 51400000, rate: 18},
+                    {limit: 56300000, rate: 19},
+                    {limit: 62200000, rate: 20},
+                    {limit: 68600000, rate: 21},
+                    {limit: 77500000, rate: 22},
+                    {limit: 89000000, rate: 23},
+                    {limit: 103000000, rate: 24},
+                    {limit: 125000000, rate: 25},
+                    {limit: 157000000, rate: 26},
+                    {limit: 206000000, rate: 27},
+                    {limit: 337000000, rate: 28},
+                    {limit: 454000000, rate: 29},
+                    {limit: 550000000, rate: 30},
+                    {limit: 695000000, rate: 31},
+                    {limit: 910000000, rate: 32},
+                    {limit: 1400000000, rate: 33},
+                    {limit: Infinity, rate: 34}
+
+                ],
+                'B': [
+                    {limit: 6200000, rate: 0},
+                    {limit: 6500000, rate: 0.25},
+                    {limit: 6850000, rate: 0.5},
+                    {limit: 7300000, rate: 0.75},
+                    {limit: 9200000, rate: 1},
+                    {limit: 10750000, rate: 1.5},
+                    {limit: 11250000, rate: 2},
+                    {limit: 11600000, rate: 2.5},
+                    {limit: 12600000, rate: 3},
+                    {limit: 13600000, rate: 4},
+                    {limit: 14950000, rate: 5},
+                    {limit: 16400000, rate: 6},
+                    {limit: 18450000, rate: 7},
+                    {limit: 21850000, rate: 8},
+                    {limit: 26000000, rate: 9},
+                    {limit: 27700000, rate: 10},
+                    {limit: 29350000, rate: 11},
+                    {limit: 31450000, rate: 12},
+                    {limit: 33950000, rate: 13},
+                    {limit: 37100000, rate: 14},
+                    {limit: 41100000, rate: 15},
+                    {limit: 45800000, rate: 16},
+                    {limit: 49500000, rate: 17},
+                    {limit: 53800000, rate: 18},
+                    {limit: 58500000, rate: 19},
+                    {limit: 64000000, rate: 20},
+                    {limit: 71000000, rate: 21},
+                    {limit: 80000000, rate: 22},
+                    {limit: 93000000, rate: 23},
+                    {limit: 109000000, rate: 24},
+                    {limit: 129000000, rate: 25},
+                    {limit: 163000000, rate: 26},
+                    {limit: 211000000, rate: 27},
+                    {limit: 374000000, rate: 28},
+                    {limit: 459000000, rate: 29},
+                    {limit: 555000000, rate: 30},
+                    {limit: 704000000, rate: 31},
+                    {limit: 957000000, rate: 32},
+                    {limit: 1405000000, rate: 33},
+                    {limit: Infinity, rate: 34}
+
+                ],
+                'C': [
+                    {limit: 6600000, rate: 0},
+                    {limit: 6950000, rate: 0.25},
+                    {limit: 7350000, rate: 0.5},
+                    {limit: 7800000, rate: 0.75},
+                    {limit: 8850000, rate: 1},
+                    {limit: 9800000, rate: 1.5},
+                    {limit: 11200000, rate: 2},
+                    {limit: 12050000, rate: 2.5},
+                    {limit: 12950000, rate: 3},
+                    {limit: 14150000, rate: 4},
+                    {limit: 15550000, rate: 5},
+                    {limit: 17050000, rate: 6},
+                    {limit: 19500000, rate: 7},
+                    {limit: 22700000, rate: 8},
+                    {limit: 26600000, rate: 9},
+                    {limit: 28100000, rate: 10},
+                    {limit: 30100000, rate: 11},
+                    {limit: 32600000, rate: 12},
+                    {limit: 35400000, rate: 13},
+                    {limit: 38900000, rate: 14},
+                    {limit: 43000000, rate: 15},
+                    {limit: 47400000, rate: 16},
+                    {limit: 51200000, rate: 17},
+                    {limit: 55800000, rate: 18},
+                    {limit: 60400000, rate: 19},
+                    {limit: 66700000, rate: 20},
+                    {limit: 74500000, rate: 21},
+                    {limit: 83200000, rate: 22},
+                    {limit: 95600000, rate: 23},
+                    {limit: 110000000, rate: 24},
+                    {limit: 134000000, rate: 25},
+                    {limit: 169000000, rate: 26},
+                    {limit: 221000000, rate: 27},
+                    {limit: 390000000, rate: 28},
+                    {limit: 463000000, rate: 29},
+                    {limit: 561000000, rate: 30},
+                    {limit: 709000000, rate: 31},
+                    {limit: 965000000, rate: 32},
+                    {limit: 1419000000, rate: 33},
+                    {limit: Infinity, rate: 34}
+
+                ]
+            };
+            const selectedKategori = rates[terKategori] || rates['A'];
+            const found = selectedKategori.find(item => penghasilanBruto <= item.limit);
+            return found ? found.rate : 0;
         }
 
         function calculateTax(pkpTahunan) {
@@ -1141,227 +2379,259 @@
         }
 
         function calculatePPh21() {
-            if (!validateInputs()) {
-                return;
-            }
+            if (!validateInputs()) return;
 
             const statusNPWP = document.getElementById('status-npwp').value;
             const statusPTKP = document.getElementById('status-ptkp').value;
-            const masaPenghasilan = parseInt(document.getElementById('masa-penghasilan').value);
+            const jenisPegawai = document.getElementById('jenis-pegawai').value;
 
             let pph21Result = 0;
             let penghasilanBruto = 0;
-            let terKategori = '';
-            let terTarif = 0;
             let calculationSteps = [];
 
             if (currentCalculatorType === 'masa') {
-                // TER Calculation
+                // 1. Ambil Nilai Bruto
                 const gajiPokok = getStoredValue('gaji-pokok');
                 const tunjanganTetap = getStoredValue('tunjangan-tetap');
                 const tunjanganTidakTetap = getStoredValue('tunjangan-tidak-tetap');
                 const bonusThr = getStoredValue('bonus-thr');
                 
                 penghasilanBruto = gajiPokok + tunjanganTetap + tunjanganTidakTetap + bonusThr;
-                
-                terKategori = getTERCategory(penghasilanBruto);
-                terTarif = terRates[terKategori][statusPTKP];
-                
-                pph21Result = penghasilanBruto * (terTarif / 100);
-                
-                // Calculation steps for TER
-                calculationSteps = [
-                    `<strong>1. Menghitung Total Penghasilan Bruto:</strong>`,
-                    `   • Gaji Pokok: ${formatCurrency(gajiPokok)}`,
-                    `   • Tunjangan Tetap: ${formatCurrency(tunjanganTetap)}`,
-                    `   • Tunjangan Tidak Tetap: ${formatCurrency(tunjanganTidakTetap)}`,
-                    `   • Bonus/THR: ${formatCurrency(bonusThr)}`,
-                    `   • <strong>Total Bruto = ${formatCurrency(penghasilanBruto)}</strong>`,
-                    ``,
-                    `<strong>2. Menentukan Kategori TER:</strong>`,
-                    `   • Penghasilan ≤ Rp 4.500.000 = Kategori A`,
-                    `   • Penghasilan Rp 4.500.001 - Rp 20.000.000 = Kategori B`,
-                    `   • Penghasilan > Rp 20.000.000 = Kategori C`,
-                    `   • <strong>Kategori TER = ${terKategori}</strong>`,
-                    ``,
-                    `<strong>3. Menentukan Tarif TER:</strong>`,
-                    `   • Status PTKP: ${statusPTKP}`,
-                    `   • <strong>Tarif TER = ${terTarif}%</strong>`,
-                    ``,
-                    `<strong>4. Menghitung PPh 21:</strong>`,
-                    `   • PPh 21 = Penghasilan Bruto × Tarif TER`,
-                    `   • PPh 21 = ${formatCurrency(penghasilanBruto)} × ${terTarif}%`,
-                    `   • PPh 21 = ${formatCurrency(pph21Result)}`
-                ];
-                
-                // Apply NPWP penalty if applicable
+
+                // --- SPESIFIKASI BERDASARKAN JENIS PEGAWAI ---
+
+                if (jenisPegawai === 'tetap') {
+                    // PEGAWAI TETAP: Menggunakan Metode TER
+                    const terKategori = getTERCategory(statusPTKP);
+                    const terTarif = findTERRate(terKategori, penghasilanBruto);
+                    pph21Result = penghasilanBruto * (terTarif / 100);
+
+                    calculationSteps = [
+                        `<span class="text-maroon-800 font-bold">Langkah 1: Menghitung Penghasilan Bruto Masa</span>`,
+                        `&nbsp;&nbsp;• Total Bruto Bulanan: ${formatCurrency(penghasilanBruto)}`,
+                        `<span class="text-maroon-800 font-bold">Langkah 2: Menentukan Kategori & Tarif TER</span>`,
+                        `&nbsp;&nbsp;• Status PTKP: ${statusPTKP} (Masuk Kategori ${terKategori})`,
+                        `&nbsp;&nbsp;• Tarif TER Berlaku: ${terTarif}% <span class="text-xs text-gray-500">(Sesuai PP 58/2023)</span>`,
+                        `<span class="text-maroon-800 font-bold">Langkah 3: Perhitungan PPh 21 Bulanan</span>`,
+                        `&nbsp;&nbsp;• PPh 21: ${formatCurrency(penghasilanBruto)} x ${terTarif}%`,
+                        `&nbsp;&nbsp;• <span class="text-lg font-bold text-maroon-600 underline">PPh 21 Terutang: ${formatCurrency(pph21Result)}</span>`
+                    ];
+
+                    // Update UI TER
+                    document.getElementById('ter-info').classList.remove('hidden');
+                    document.getElementById('result-ter-kategori').textContent = `Kategori ${terKategori}`;
+                    document.getElementById('result-ter-tarif').textContent = `${terTarif}%`;
+
+                } else if (jenisPegawai === 'bukan-pegawai-berkesinambungan') {
+                    // BUKAN PEGAWAI BERKESINAMBUNGAN: DPP 50% & PTKP Bulanan
+                    const dpp = penghasilanBruto * 0.5;
+                    const ptkpBulanan = (ptkpValues[statusPTKP] || 54000000) / 12;
+                    const pkpBulanan = Math.max(0, dpp - ptkpBulanan);
+                    pph21Result = calculateTax(pkpBulanan);
+
+                    calculationSteps = [
+                        `<span class="text-maroon-800 font-bold">Langkah 1: Dasar Pengenaan Pajak (DPP)</span>`,
+                        `&nbsp;&nbsp;• DPP (50% x Bruto): ${formatCurrency(dpp)}`,
+                        `<span class="text-maroon-800 font-bold">Langkah 2: Penghasilan Kena Pajak (PKP) Bulanan</span>`,
+                        `&nbsp;&nbsp;• PTKP Bulanan (${statusPTKP}): -${formatCurrency(ptkpBulanan)}`,
+                        `&nbsp;&nbsp;• <span class="font-semibold text-gray-700">PKP: ${formatCurrency(pkpBulanan)}</span>`,
+                        `<span class="text-maroon-800 font-bold">Langkah 3: PPh 21 Pasal 17</span>`,
+                        `&nbsp;&nbsp;• <span class="text-lg font-bold text-maroon-600 underline">PPh 21 Terutang: ${formatCurrency(pph21Result)}</span>`
+                    ];
+                    document.getElementById('ter-info').classList.add('hidden');
+
+                } else if (jenisPegawai === 'bukan-pegawai-tidak') {
+                    // BUKAN PEGAWAI TIDAK BERKESINAMBUNGAN: Langsung Pasal 17 atas 50% Bruto
+                    const dpp = penghasilanBruto * 0.5;
+                    pph21Result = calculateTax(dpp);
+
+                    calculationSteps = [
+                        `<span class="text-maroon-800 font-bold">Langkah 1: Dasar Pengenaan Pajak (DPP)</span>`,
+                        `&nbsp;&nbsp;• DPP (50% x Bruto): ${formatCurrency(dpp)}`,
+                        `<span class="text-maroon-800 font-bold">Langkah 2: PPh 21 Pasal 17 (Progresif)</span>`,
+                        `&nbsp;&nbsp;• <span class="text-lg font-bold text-maroon-600 underline">PPh 21 Terutang: ${formatCurrency(pph21Result)}</span>`
+                    ];
+                    document.getElementById('ter-info').classList.add('hidden');
+                }
+
+                // Penyesuaian Penalti NPWP (+20%)
                 if (statusNPWP === 'tidak-ada') {
-                    const pph21BeforePenalty = pph21Result;
+                    const pphSebelumPenalti = pph21Result;
                     pph21Result *= 1.2;
                     calculationSteps.push(
                         ``,
-                        `<strong>5. Penalti Tidak Memiliki NPWP (+20%):</strong>`,
-                        `   • PPh 21 Sebelum Penalti = ${formatCurrency(pph21BeforePenalty)}`,
-                        `   • PPh 21 Setelah Penalti = ${formatCurrency(pph21BeforePenalty)} × 120%`,
-                        `   • <strong>PPh 21 Final = ${formatCurrency(pph21Result)}</strong>`
+                        `<span class="text-red-700 font-bold">Langkah Tambahan: Penalti Tanpa NPWP</span>`,
+                        `&nbsp;&nbsp;• Penalti: ${formatCurrency(pphSebelumPenalti)} x 120%`,
+                        `&nbsp;&nbsp;• <span class="font-bold text-red-600">Total Setelah Penalti: ${formatCurrency(pph21Result)}</span>`
                     );
                 }
 
-                // Show TER info, hide annual info
-                document.getElementById('ter-info').classList.remove('hidden');
                 document.getElementById('tahunan-info').classList.add('hidden');
                 
-                // Update TER display
-                document.getElementById('result-ter-kategori').textContent = `Kategori ${terKategori}`;
-                document.getElementById('result-ter-tarif').textContent = `${terTarif}%`;
-                document.getElementById('regulation-info').textContent = '• Perhitungan menggunakan PP 58/2023 (TER)';
-                
-                // Update bruto breakdown
-                document.getElementById('bruto-breakdown').innerHTML = `
-                    Gaji: ${formatCurrency(gajiPokok)} + Tunjangan Tetap: ${formatCurrency(tunjanganTetap)} + 
-                    Tunjangan Tidak Tetap: ${formatCurrency(tunjanganTidakTetap)} + Bonus/THR: ${formatCurrency(bonusThr)}
-                `;
-                
             } else {
-                // Progressive Tax Calculation - using monthly inputs
+                // --- LOGIKA KALKULATOR TAHUNAN (DESEMBER / BERHENTI BEKERJA) ---
                 const gajiBulanan = getStoredValue('gaji-bulanan');
                 const tunjanganBulanan = getStoredValue('tunjangan-bulanan');
                 const bonusBulanan = getStoredValue('bonus-bulanan');
                 const naturaBulanan = getStoredValue('natura-bulanan');
                 
-                // Convert to annual
+                // Konversi ke Nilai Setahun
                 const totalGaji = gajiBulanan * 12;
                 const totalTunjangan = tunjanganBulanan * 12;
-                const totalBonus = bonusBulanan; // THR sudah input tahunan
-                const natura = naturaBulanan * 12;
+                const totalBonus = bonusBulanan; 
+                const totalNatura = naturaBulanan * 12;
                 
-                penghasilanBruto = totalGaji + totalTunjangan + totalBonus + natura;
-                
-                const biayaJabatan = parseRupiah(document.getElementById('biaya-jabatan-tahunan').value) || 0;
-                const iuranPensiun = getStoredValue('iuran-pensiun-bulanan') * 12;
-                const zakat = getStoredValue('zakat-bulanan') * 12;
-                const pph21Dipotong = parseRupiah(document.getElementById('pph21-dipotong').value) || 0;
-                
-                const totalPengurang = biayaJabatan + iuranPensiun + zakat;
-                const penghasilanNeto = penghasilanBruto - totalPengurang;
-                const ptkp = ptkpValues[statusPTKP] || 0;
-                const pkp = Math.max(0, penghasilanNeto - ptkp);
-                
-                let totalPph21Tahunan = calculateTax(pkp);
-                
-                // Calculation steps for Progressive Tax
-                calculationSteps = [
-                    `<strong>1. Menghitung Total Penghasilan Bruto Setahun:</strong>`,
-                    `   • Gaji: ${formatCurrency(gajiBulanan)}/bulan × 12 = ${formatCurrency(totalGaji)}`,
-                    `   • Tunjangan: ${formatCurrency(tunjanganBulanan)}/bulan × 12 = ${formatCurrency(totalTunjangan)}`,
-                    `   • Bonus/THR: ${formatCurrency(bonusBulanan)} (setahun)`,
-                    `   • Natura: ${formatCurrency(naturaBulanan)}/bulan × 12 = ${formatCurrency(natura)}`,
-                    `   • <strong>Total Bruto = ${formatCurrency(penghasilanBruto)}</strong>`,
-                    ``,
-                    `<strong>2. Menghitung Pengurang:</strong>`,
-                    `   • Biaya Jabatan (5% bruto, maks Rp 6 juta): ${formatCurrency(biayaJabatan)}`,
-                    `   • Iuran Pensiun/JHT: ${formatCurrency(getStoredValue('iuran-pensiun-bulanan'))}/bulan × 12 = ${formatCurrency(iuranPensiun)}`,
-                    `   • Zakat: ${formatCurrency(getStoredValue('zakat-bulanan'))}/bulan × 12 = ${formatCurrency(zakat)}`,
-                    `   • <strong>Total Pengurang = ${formatCurrency(totalPengurang)}</strong>`,
-                    ``,
-                    `<strong>3. Menghitung Penghasilan Neto:</strong>`,
-                    `   • Penghasilan Neto = Bruto - Pengurang`,
-                    `   • Penghasilan Neto = ${formatCurrency(penghasilanBruto)} - ${formatCurrency(totalPengurang)}`,
-                    `   • <strong>Penghasilan Neto = ${formatCurrency(penghasilanNeto)}</strong>`,
-                    ``,
-                    `<strong>4. Menghitung PKP (Penghasilan Kena Pajak):</strong>`,
-                    `   • PTKP ${statusPTKP}: ${formatCurrency(ptkp)}`,
-                    `   • PKP = Penghasilan Neto - PTKP`,
-                    `   • PKP = ${formatCurrency(penghasilanNeto)} - ${formatCurrency(ptkp)}`,
-                    `   • <strong>PKP = ${formatCurrency(pkp)}</strong>`,
-                    ``,
-                    `<strong>5. Menghitung PPh 21 Setahun (Tarif Progresif):</strong>`
-                ];
-                
-                // Add progressive tax calculation details
-                let remainingPKP = pkp;
-                let totalTax = 0;
-                let stepNumber = 1;
-                
-                for (const bracket of taxBrackets) {
-                    if (remainingPKP <= 0) break;
+                penghasilanBruto = totalGaji + totalTunjangan + totalBonus + totalNatura;
+                let pph21Tahunan = 0;
+                let detailLapisPasal17 = [];
+
+                // Reset Biaya Jabatan secara default
+                const biayaJabatanField = document.getElementById('biaya-jabatan-tahunan');
+
+                if (jenisPegawai === 'tetap') {
+                    // --- 1. PEGAWAI TETAP TAHUNAN ---
+                    const biayaJabatan = Math.min(penghasilanBruto * 0.05, 6000000);
+                    const iuranPensiunZakat = (getStoredValue('iuran-pensiun-bulanan') + getStoredValue('zakat-bulanan')) * 12;
+                    const totalPengurang = biayaJabatan + iuranPensiunZakat;
                     
-                    const taxableInBracket = Math.min(remainingPKP, bracket.max - bracket.min);
-                    const taxInBracket = taxableInBracket * bracket.rate;
-                    totalTax += taxInBracket;
-                    
-                    if (taxableInBracket > 0) {
-                        const rangeText = bracket.max === Infinity ? 
-                            `> ${formatCurrency(bracket.min)}` : 
-                            `${formatCurrency(bracket.min)} - ${formatCurrency(bracket.max)}`;
-                        
-                        calculationSteps.push(
-                            `   • Lapisan ${stepNumber} (${rangeText}): ${formatCurrency(taxableInBracket)} × ${(bracket.rate * 100)}% = ${formatCurrency(taxInBracket)}`
-                        );
-                        stepNumber++;
+                    const penghasilanNeto = penghasilanBruto - totalPengurang;
+                    const ptkp = ptkpValues[statusPTKP] || 54000000;
+                    const pkp = Math.max(0, Math.floor((penghasilanNeto - ptkp) / 1000) * 1000);
+
+                    // Perhitungan Lapis Pasal 17 
+                    let sisaPKP = pkp;
+                    let layer = 1;
+                    for (const bracket of taxBrackets) {
+                        if (sisaPKP <= 0) break;
+                        const nominalKenaTarif = Math.min(sisaPKP, bracket.max - bracket.min);
+                        const pajakLapisIni = nominalKenaTarif * bracket.rate;
+                        detailLapisPasal17.push(`&nbsp;&nbsp;&nbsp;&nbsp;• Lapis ${layer} (${bracket.rate * 100}%): ${formatCurrency(nominalKenaTarif)} = ${formatCurrency(pajakLapisIni)}`);
+                        sisaPKP -= nominalKenaTarif;
+                        layer++;
                     }
+
+                    pph21Tahunan = calculateTax(pkp);
+                    if (statusNPWP === 'tidak-ada') pph21Tahunan *= 1.2;
+
+                    const pph21DipotongJanNov = parseRupiah(document.getElementById('pph21-dipotong').value) || 0;
+                    pph21Result = pph21Tahunan - pph21DipotongJanNov;
+
+                    calculationSteps = [
+                        `<span class="text-maroon-800 font-bold">1. Analisis Penghasilan Neto (Pegawai Tetap)</span>`,
+                        `&nbsp;&nbsp;• Total Bruto Setahun: ${formatCurrency(penghasilanBruto)}`,
+                        `&nbsp;&nbsp;• Biaya Jabatan (5%): -${formatCurrency(biayaJabatan)}`,
+                        `&nbsp;&nbsp;• Iuran & Zakat: -${formatCurrency(iuranPensiunZakat)}`,
+                        `&nbsp;&nbsp;• <span class="font-semibold text-gray-700">Neto: ${formatCurrency(penghasilanNeto)}</span>`,
+                        `<span class="text-maroon-800 font-bold">2. Dasar Pengenaan Pajak (PKP)</span>`,
+                        `&nbsp;&nbsp;• PTKP (${statusPTKP}): -${formatCurrency(ptkp)}`,
+                        `&nbsp;&nbsp;• <span class="font-semibold text-gray-700">PKP Dibulatkan: ${formatCurrency(pkp)}</span>`,
+                        `<span class="text-maroon-800 font-bold">3. Tarif Progresif Pasal 17</span>`,
+                        ...detailLapisPasal17,
+                        `&nbsp;&nbsp;• Total PPh 21 Setahun: ${formatCurrency(pph21Tahunan)}`,
+                        `<span class="text-maroon-800 font-bold">4. Hasil Akhir Masa Desember</span>`,
+                        `&nbsp;&nbsp;• Telah Dipotong Jan-Nov: -${formatCurrency(pph21DipotongJanNov)}`,
+                        `&nbsp;&nbsp;• <span class="text-lg font-bold text-maroon-600 underline">PPh 21 Desember: ${formatCurrency(pph21Result)}</span>`
+                    ];
+
+                    // Update UI Tahunan
+                    document.getElementById('result-neto').textContent = formatCurrency(penghasilanNeto);
+                    document.getElementById('result-ptkp-value').textContent = formatCurrency(ptkp);
+                    document.getElementById('result-pkp').textContent = formatCurrency(pkp);
+
+                } else if (jenisPegawai === 'bukan-pegawai-berkesinambungan') {
+                    // --- 2. BUKAN PEGAWAI BERKESINAMBUNGAN ---
+                    const dpp = penghasilanBruto * 0.5; 
+                    const ptkpSetahun = ptkpValues[statusPTKP] || 54000000;
+                    const pkpBP = Math.max(0, dpp - ptkpSetahun);
                     
-                    remainingPKP -= taxableInBracket;
+                    pph21Tahunan = calculateTax(pkpBP);
+                    if (statusNPWP === 'tidak-ada') pph21Tahunan *= 1.2;
+                    pph21Result = pph21Tahunan;
+
+                    if (biayaJabatanField) biayaJabatanField.value = 'Rp 0'; 
+
+                    calculationSteps = [
+                        `<span class="text-maroon-800 font-bold">1. Dasar Pengenaan Pajak (DPP) - Bukan Pegawai</span>`,
+                        `&nbsp;&nbsp;• Bruto Setahun: ${formatCurrency(penghasilanBruto)}`,
+                        `&nbsp;&nbsp;• DPP (50% x Bruto): <span class="font-semibold text-gray-700">${formatCurrency(dpp)}</span>`,
+                        `<span class="text-maroon-800 font-bold">2. Penghasilan Kena Pajak (PKP)</span>`,
+                        `&nbsp;&nbsp;• PTKP Setahun (${statusPTKP}): -${formatCurrency(ptkpSetahun)}`,
+                        `&nbsp;&nbsp;• <span class="font-semibold text-gray-700">PKP: ${formatCurrency(pkpBP)}</span>`,
+                        `<span class="text-maroon-800 font-bold">3. Hasil Akhir (Pasal 17)</span>`,
+                        `&nbsp;&nbsp;• <span class="text-lg font-bold text-maroon-600 underline">PPh 21 Terutang: ${formatCurrency(pph21Result)}</span>`
+                    ];
+
+                    document.getElementById('result-neto').textContent = formatCurrency(dpp);
+                    document.getElementById('result-ptkp-value').textContent = formatCurrency(ptkpSetahun);
+                    document.getElementById('result-pkp').textContent = formatCurrency(pkpBP);
+
+                } else if (jenisPegawai === 'bukan-pegawai-tidak') {
+                    // --- 3. BUKAN PEGAWAI TIDAK BERKESINAMBUNGAN ---
+                    const dppTidak = penghasilanBruto * 0.5;
+                    pph21Tahunan = calculateTax(dppTidak);
+                    if (statusNPWP === 'tidak-ada') pph21Tahunan *= 1.2;
+                    pph21Result = pph21Tahunan;
+
+                    if (biayaJabatanField) biayaJabatanField.value = 'Rp 0';
+
+                    calculationSteps = [
+                        `<span class="text-maroon-800 font-bold">1. Dasar Pengenaan Pajak (DPP)</span>`,
+                        `&nbsp;&nbsp;• DPP (50% x Bruto): <span class="font-semibold text-gray-700">${formatCurrency(dppTidak)}</span>`,
+                        `<span class="text-maroon-800 font-bold">2. Hasil Akhir (Pasal 17)</span>`,
+                        `&nbsp;&nbsp;• Pajak dihitung langsung dari DPP tanpa PTKP`,
+                        `&nbsp;&nbsp;• <span class="text-lg font-bold text-maroon-600 underline">PPh 21 Terutang: ${formatCurrency(pph21Result)}</span>`
+                    ];
+
+                    document.getElementById('result-neto').textContent = formatCurrency(dppTidak);
+                    document.getElementById('result-ptkp-value').textContent = "Rp 0 (Tanpa PTKP)";
+                    document.getElementById('result-pkp').textContent = formatCurrency(dppTidak);
                 }
-                
-                calculationSteps.push(`   • <strong>Total PPh 21 Setahun = ${formatCurrency(totalTax)}</strong>`);
-                
-                totalPph21Tahunan = totalTax;
-                
-                // Apply NPWP penalty if applicable
-                if (statusNPWP === 'tidak-ada') {
-                    const pph21BeforePenalty = totalPph21Tahunan;
-                    totalPph21Tahunan *= 1.2;
-                    calculationSteps.push(
-                        ``,
-                        `<strong>6. Penalti Tidak Memiliki NPWP (+20%):</strong>`,
-                        `   • PPh 21 Sebelum Penalti = ${formatCurrency(pph21BeforePenalty)}`,
-                        `   • PPh 21 Setelah Penalti = ${formatCurrency(pph21BeforePenalty)} × 120%`,
-                        `   • <strong>PPh 21 Setahun = ${formatCurrency(totalPph21Tahunan)}</strong>`
-                    );
-                }
-                
-                // Final PPh 21 for December = Total Annual - Already Withheld
-                pph21Result = totalPph21Tahunan - pph21Dipotong;
-                
-                calculationSteps.push(
-                    ``,
-                    `<strong>7. Menghitung PPh 21 Masa Pajak Terakhir:</strong>`,
-                    `   • PPh 21 Setahun = ${formatCurrency(totalPph21Tahunan)}`,
-                    `   • PPh 21 Telah Dipotong (Jan-Nov) = ${formatCurrency(pph21Dipotong)}`,
-                    `   • <strong>PPh 21 Desember = ${formatCurrency(totalPph21Tahunan)} - ${formatCurrency(pph21Dipotong)} = ${formatCurrency(pph21Result)}</strong>`
-                );
-                
-                // Show annual info, hide TER info
+
+                // Final UI Updates
                 document.getElementById('ter-info').classList.add('hidden');
                 document.getElementById('tahunan-info').classList.remove('hidden');
-                
-                // Update annual calculation displays
-                document.getElementById('result-neto').textContent = formatCurrency(penghasilanNeto);
-                document.getElementById('result-ptkp-value').textContent = formatCurrency(ptkp);
-                document.getElementById('result-pkp').textContent = formatCurrency(pkp);
-                document.getElementById('result-pph21-tahunan').textContent = formatCurrency(totalPph21Tahunan);
-                document.getElementById('result-pph21-terpotong').textContent = formatCurrency(pph21Dipotong);
-                document.getElementById('regulation-info').textContent = '• Perhitungan menggunakan Tarif Pasal 17 UU PPh';
-                
-                // Update bruto breakdown
-                document.getElementById('bruto-breakdown').innerHTML = `
-                    Gaji: ${formatCurrency(totalGaji)} + Tunjangan: ${formatCurrency(totalTunjangan)} + 
-                    THR: ${formatCurrency(totalBonus)} (setahun) + Natura: ${formatCurrency(natura)}
-                `;
+                document.getElementById('bruto-breakdown').innerHTML = `Gaji: ${formatCurrency(totalGaji)} | Tunjangan: ${formatCurrency(totalTunjangan)} | Bonus/THR: ${formatCurrency(totalBonus)}`;
             }
+
+            const namaWP = document.getElementById('nama-wp') ? document.getElementById('nama-wp').value : "";
+            const npwpWP = document.getElementById('npwp-wp') ? document.getElementById('npwp-wp').value : "";
+
+            let gajiDetail = 0;
+            let tunjanganDetail = 0;
+            let bonusDetail = 0;
+
+            if (currentCalculatorType === 'masa') {
+                gajiDetail = getStoredValue('gaji-pokok');
+                tunjanganDetail = getStoredValue('tunjangan-tetap') + getStoredValue('tunjangan-tidak-tetap');
+                bonusDetail = getStoredValue('bonus-thr');
+            } else {
+                gajiDetail = getStoredValue('gaji-bulanan') * 12;
+                tunjanganDetail = getStoredValue('tunjangan-bulanan') * 12;
+                bonusDetail = getStoredValue('bonus-bulanan');
+            }
+
+            const valBiayaJabatan = (typeof biayaJabatan !== 'undefined') ? biayaJabatan : 0;
+            const valIuranPensiun = (typeof iuranPensiun !== 'undefined') ? iuranPensiun : 0;
+            const valPTKP = (typeof ptkp !== 'undefined') ? ptkp : (ptkpValues[statusPTKP] || 0);
 
             // Store calculation data for PDF generation
             window.calculationData = {
                 type: currentCalculatorType,
-                statusNPWP,
-                statusPTKP,
-                masaPenghasilan,
-                penghasilanBruto,
-                pph21Result,
-                terKategori,
-                terTarif,
-                calculationSteps
+                jenisPegawai: jenisPegawai,
+                statusNPWP: statusNPWP,
+                statusPTKP: statusPTKP,
+                namaWP: namaWP,
+                npwpWP: npwpWP,
+                penghasilanBruto: penghasilanBruto,
+                pph21Result: pph21Result,
+                // Rincian rincian angka untuk generatePDFContent
+                gajiPokok: gajiDetail,
+                tunjangan: tunjanganDetail,
+                bonus: bonusDetail,
+                biayaJabatan: valBiayaJabatan,
+                iuranPensiun: valIuranPensiun,
+                ptkpValue: valPTKP,
+                calculationSteps: calculationSteps
             };
             
             // Display calculation steps
@@ -1369,9 +2639,34 @@
             
             // Display results
             document.getElementById('result-bruto').textContent = formatCurrency(penghasilanBruto);
-            document.getElementById('result-pph21').textContent = formatCurrency(Math.max(0, pph21Result));
+
+            const labelElement = document.getElementById('label-pph21');
+            const resultElement = document.getElementById('result-pph21');
+            const statusCard = document.getElementById('status-card');
+
+            if (pph21Result === 0) {
+                labelElement.textContent = "PPh 21 (Nihil)";
+                resultElement.textContent = formatCurrency(0);
+                // Mengubah warna menjadi Biru untuk Nihil
+                statusCard.className = "result-card p-6 rounded-lg bg-blue-50 border-2 border-blue-200 text-center";
+                resultElement.className = "text-3xl font-bold text-blue-600 mb-2";
+            } else if (pph21Result > 0) {
+                labelElement.textContent = "PPh 21 (Kurang Bayar)";
+                resultElement.textContent = formatCurrency(pph21Result);
+                // Mengubah warna menjadi Maroon untuk Kurang Bayar
+                statusCard.className = "result-card p-6 rounded-lg bg-maroon-50 border-2 border-maroon-200 text-center";
+                resultElement.className = "text-3xl font-bold text-maroon-600 mb-2";
+            } else {
+                labelElement.textContent = "PPh 21 (Lebih Bayar)";
+                // Menampilkan angka positif meskipun hasilnya negatif
+                resultElement.textContent = formatCurrency(Math.abs(pph21Result));
+                // Mengubah warna menjadi Hijau untuk Lebih Bayar
+                statusCard.className = "result-card p-6 rounded-lg bg-green-50 border-2 border-green-200 text-center";
+                resultElement.className = "text-3xl font-bold text-green-600 mb-2";
+            }
+
             document.getElementById('detail-npwp').textContent = statusNPWP === 'ada' ? 'Memiliki NPWP' : 'Tidak Memiliki NPWP (+20%)';
-            
+
             // Show results
             document.getElementById('results').classList.remove('hidden');
             document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
@@ -1380,149 +2675,292 @@
         }
 
         function printResults() {
-            const printWindow = window.open('', '_blank');
-            const resultsContent = document.getElementById('results').innerHTML;
-            
-            printWindow.document.write(`
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <title>Hasil Perhitungan PPh 21 - ACCUTAX</title>
-                    <style>
-                        body { font-family: Arial, sans-serif; margin: 20px; }
-                        .result-card { border: 1px solid #ddd; padding: 10px; margin: 10px 0; border-radius: 5px; }
-                        .text-maroon-600 { color: #722832; }
-                        .font-bold { font-weight: bold; }
-                        .text-3xl { font-size: 1.875rem; }
-                        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-                        @media print { .no-print { display: none; } }
-                    </style>
-                </head>
-                <body>
-                    <h1>ACCUTAX - Hasil Perhitungan PPh 21</h1>
-                    <p>Tanggal: ${new Date().toLocaleDateString('id-ID')}</p>
-                    ${resultsContent}
-                </body>
-                </html>
-            `);
-            
-            printWindow.document.close();
-            printWindow.print();
-        }
-
-        function downloadPDF() {
+            // 1. Validasi data perhitungan
             if (!window.calculationData) {
-                showNotification('Silakan lakukan perhitungan terlebih dahulu.', 'error');
+                showNotification("Silakan lakukan perhitungan pajak terlebih dahulu.", "error");
                 return;
             }
 
-            const pdfContent = generatePDFContent();
-            
-            const blob = new Blob([`
+            // 2. Buat Jendela Cetak Baru
+            const printWindow = window.open('', '_blank', 'width=900,height=800');
+
+            // 3. Ambil Konten HTML Dinamis dari generatePDFContent
+            const formHtml = generatePDFContent();
+
+            // 4. Rakit Dokumen HTML dengan Standar Ukuran A4 (210mm)
+            let htmlDocument = `
                 <!DOCTYPE html>
                 <html>
                 <head>
-                    <meta charset="UTF-8">
-                    <title>Bukti Potong PPh 21 - ACCUTAX</title>
+                    <title>Cetak Bukti Potong - ACCUTAX</title>
                     <style>
-                        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.4; }
-                        .header { text-align: center; border-bottom: 2px solid #722832; padding-bottom: 10px; margin-bottom: 20px; }
-                        .form-row { display: flex; margin-bottom: 10px; }
-                        .form-label { width: 200px; font-weight: bold; }
-                        .form-value { flex: 1; border-bottom: 1px solid #000; padding-bottom: 2px; }
-                        .calculation-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-                        .calculation-table th, .calculation-table td { border: 1px solid #000; padding: 8px; text-align: left; }
-                        .calculation-table th { background-color: #f0f0f0; }
-                        .total-row { font-weight: bold; background-color: #f9f9f9; }
-                        .signature-section { margin-top: 40px; display: flex; justify-content: space-between; }
-                        .signature-box { width: 200px; text-align: center; }
+                        @page {
+                            size: A4;
+                            margin: 10mm;
+                        }
+                        body { 
+                            margin: 0; 
+                            padding: 0; 
+                            background: #fff; 
+                            -webkit-print-color-adjust: exact !important;
+                            print-color-adjust: exact !important;
+                        }
+                        /* Kontainer utama disesuaikan dengan lebar A4 */
+                        .print-container {
+                            width: 100%;
+                            max-width: 210mm;
+                            margin: auto;
+                        }
+                        @media print {
+                            body { font-size: 10pt; }
+                            .no-print { display: none; }
+                        }
                     </style>
                 </head>
                 <body>
-                    ${pdfContent}
+                    <div class="print-container">
+                        ${formHtml}
+                    </div>
+                    <script>
+                        window.onload = function() {
+                            // Beri sedikit jeda agar gambar/logo terload sempurna
+                            setTimeout(function() {
+                                window.print();
+                                window.onafterprint = function() { window.close(); };
+                            }, 500);
+                        };
+                    <\/script>
                 </body>
                 </html>
-            `], { type: 'text/html' });
-            
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `Bukti_Potong_PPh21_${currentCalculatorType}_${new Date().toISOString().split('T')[0]}.html`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            
-            showNotification('Bukti potong berhasil diunduh!', 'success');
+            `;
+
+            // 5. Tulis ke jendela baru
+            printWindow.document.write(htmlDocument);
+            printWindow.document.close();
+        }
+
+        async function downloadPDF() {
+            // 1. Cek apakah hasil hitungan sudah ada
+            const area = document.getElementById('area-pajak');
+            if (!window.calculationData || !area) {
+                alert("Silakan hitung pajak terlebih dahulu!");
+                return;
+            }
+
+            // 2. Tampilkan notifikasi
+            showNotification("Sedang memproses PDF...", "info");
+
+            // 3. Pengaturan PDF
+            const options = {
+                margin: [0.5, 0.5],
+                filename: 'Hasil_Pajak_Accutax.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+
+            // 4. Proses konversi
+            try {
+                await html2pdf().set(options).from(area).save();
+                showNotification("Berhasil diunduh!", "success");
+            } catch (error) {
+                console.error("Gagal download:", error);
+                alert("Terjadi kesalahan teknis. Coba gunakan Ctrl + P lalu Save as PDF.");
+            }
         }
 
         function generatePDFContent() {
             const data = window.calculationData;
-            const currentDate = new Date().toLocaleDateString('id-ID');
-            const formType = data.type === 'masa' ? '1721-VIII' : '1721-A1';
+            if (!data) return "";
+
+            // --- 1. Helper Functions & Data Prep ---
+            const now = new Date();
+            const currentMonthStr = String(now.getMonth() + 1).padStart(2, '0');
+            const currentYearStr = String(now.getFullYear());
             
+            // Format currency: return kosong "" jika 0, null, atau undefined
+            const fmt = (num) => {
+                if (num === 0) return "Rp 0"; // Menangani nilai nihil
+                if (!num) return ""; 
+                return "Rp " + Math.floor(num).toLocaleString('id-ID');
+            };
+            // Helper untuk mengisi field teks atau titik-titik jika kosong
+            const txt = (str) => str || "................................................................";
+            
+            // Penyesuaian Variabel Jenis Pegawai
+            const isTetap = data.jenisPegawai === 'tetap';
+            const isBerkesinambungan = data.jenisPegawai === 'bukan-pegawai-berkesinambungan';
+            const isTidakBerkesinambungan = data.jenisPegawai === 'bukan-pegawai-tidak';
+            const isMasa = data.type === 'masa';
+
+            // --- 2. Logika Dinamis (Masa & Jenis Form) ---
+            let formNumber = '1721 - A1'; // Default Tahunan Pegawai Tetap
+            let masaStart = '01';
+            let masaEnd = '12';
+            let tahunPajak = currentYearStr;
+            
+            // Checkbox Logic untuk "Kode Objek Pajak"
+            const isPensiun = data.isPensiun === true; 
+            const checkObjek01 = (isTetap && !isPensiun) ? "X" : "";
+            const checkObjek02 = (isTetap && isPensiun) ? "X" : "";
+
+            // Penentuan Nomor Formulir berdasarkan Jenis Pegawai
+            if (isBerkesinambungan || isTidakBerkesinambungan) {
+                formNumber = '1721 - VI'; // Bukan Pegawai (Bukti Potong Tidak Final)
+            } else if (isMasa) {
+                formNumber = '1721 - VIII'; // Masa Pegawai Tetap
+                masaStart = currentMonthStr;
+                masaEnd = currentMonthStr;
+            }
+
+            // --- 3. Perhitungan Nilai Rincian (Mapping Data Kalkulator ke Baris 1-20) ---
+            // Logika Pengurang (Hanya Pegawai Tetap dan Berkesinambungan tertentu yang punya pengurang)
+            const r = {
+                1: data.gajiPokok || 0,                                          // Gaji/Pensiun
+                2: 0,                                                            // Tunjangan PPh (Asumsi 0)
+                3: data.tunjangan || 0,                                          // Tunjangan Lainnya, Lembur
+                4: data.honorarium || 0,                                         // Honorarium
+                5: data.premiAsuransi || 0,                                      // Premi Asuransi dibayar Pemberi Kerja
+                6: data.natura || 0,                                             // Natura
+                7: data.bonus || 0,                                              // Bonus, THR, Tantiem
+                // Biaya Jabatan hanya untuk Pegawai Tetap 
+                9: isTetap ? (data.biayaJabatan || 0) : 0, 
+                // Iuran Pensiun hanya untuk Pegawai Tetap
+                10: isTetap ? (data.iuranPensiun || 0) : 0,
+                // PTKP untuk Pegawai Tetap atau Berkesinambungan 
+                14: (isTetap || isBerkesinambungan) ? (data.ptkpValue || 0) : 0, 
+                17: data.pph21Result || 0,                                       // PPh Pasal 21 Terutang
+                20: data.pph21Result || 0                                        // PPh Pasal 21 yang Telah Dipotong
+            };
+
+            // Hitung Total Sub-bagian
+            r[8] = r[1] + r[2] + r[3] + r[4] + r[5] + r[6] + r[7];               // Total Bruto
+            r[11] = r[9] + r[10];                                                // Total Pengurang
+            r[12] = r[8] - r[11];                                                // Neto
+            r[13] = 0;                                                           // Neto Masa Sebelumnya
+            r[15] = (r[12] > r[14]) ? (r[12] - r[14]) : 0;                       // PKP
+            r[16] = r[17]; 
+            r[18] = 0; 
+            r[19] = r[17] - r[18]; 
+
+            // CSS Inline Statis untuk konsistensi PDF A4
+            const borderStyle = 'border: 1px solid #000; border-collapse: collapse;';
+            const cellPad = 'padding: 3px 5px;';
+            const cellCenter = 'text-align: center;';
+            const cellRight = 'text-align: right;';
+            const bgHeader = 'background-color: #ddd; font-weight: bold;';
+            const bgSubTotal = 'background-color: #f0f0f0; font-weight: bold;';
+            const boxStyle = 'display:inline-block; width:25px; height:15px; border:1px solid #000; text-align:center; margin-right:5px; line-height:15px; font-weight:bold;';
+
+            // --- 4. Konstruksi HTML ---
             return `
-                <div class="header">
-                    <h2>BUKTI PEMOTONGAN PPh PASAL 21</h2>
-                    <h3>FORMULIR ${formType}</h3>
-                    <p>Dibuat dengan ACCUTAX pada ${currentDate}</p>
-                </div>
+            <div style="font-family: Arial, sans-serif; font-size: 10px; color: #000; width: 210mm; margin: 0 auto; background: #fff; box-sizing: border-box;">
                 
-                <div class="form-section">
-                    <h3>DATA WAJIB PAJAK</h3>
-                    <div class="form-row">
-                        <div class="form-label">Status NPWP:</div>
-                        <div class="form-value">${data.statusNPWP === 'ada' ? 'Memiliki NPWP' : 'Tidak Memiliki NPWP'}</div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-label">Status PTKP:</div>
-                        <div class="form-value">${data.statusPTKP}</div>
-                    </div>
-                </div>
-                
-                <table class="calculation-table">
-                    <thead>
-                        <tr>
-                            <th>URAIAN</th>
-                            <th>JUMLAH (Rp)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="total-row">
-                            <td><strong>PENGHASILAN BRUTO</strong></td>
-                            <td><strong>${formatCurrency(data.penghasilanBruto)}</strong></td>
-                        </tr>
-                        ${data.type === 'masa' ? `
-                        <tr>
-                            <td>Kategori TER: ${data.terKategori}</td>
-                            <td>Tarif: ${data.terTarif}%</td>
-                        </tr>
-                        ` : ''}
-                        <tr class="total-row">
-                            <td><strong>PPh 21 TERUTANG</strong></td>
-                            <td><strong>${formatCurrency(Math.max(0, data.pph21Result))}</strong></td>
-                        </tr>
-                    </tbody>
+                <table style="width: 100%; ${borderStyle} border-bottom: 2px solid #000; margin-bottom: 5px;">
+                    <tr>
+                        <td style="width: 20%; text-align: center; vertical-align: middle;">
+                            <img src="logo djp.png" style="width: 80px; height: auto;">
+                        </td>
+                        <td style="text-align: center; vertical-align: top;">
+                            <div style="font-weight: bold; font-size: 12px; margin-top: 5px;">BUKTI PEMOTONGAN PAJAK PENGHASILAN PASAL 21</div>
+                            <div style="font-weight: bold; font-size: 14px; margin: 5px 0;">FORMULIR ${formNumber}</div>
+                            <div style="font-size: 10px;">
+                                Masa Perolehan Penghasilan: &nbsp;
+                                <span style="${boxStyle}">${masaStart[0]}</span><span style="${boxStyle}">${masaStart[1]}</span> &nbsp;s.d&nbsp; 
+                                <span style="${boxStyle}">${masaEnd[0]}</span><span style="${boxStyle}">${masaEnd[1]}</span> &nbsp;Tahun&nbsp; 
+                                <span style="${boxStyle}">${tahunPajak[0]}</span><span style="${boxStyle}">${tahunPajak[1]}</span><span style="${boxStyle}">${tahunPajak[2]}</span><span style="${boxStyle}">${tahunPajak[3]}</span>
+                            </div>
+                        </td>
+                        <td style="width: 25%; vertical-align: top; ${cellPad}">
+                            <div style="font-size: 9px;">Nomor Bukti Pemotongan:</div>
+                            <div style="border: 1px solid #000; height: 25px; margin-top: 5px;"> </div>
+                        </td>
+                    </tr>
                 </table>
-                
-                <div class="signature-section">
-                    <div class="signature-box">
-                        <p>Wajib Pajak</p>
-                        <br><br><br>
-                        <p>(_________________)</p>
-                    </div>
-                    <div class="signature-box">
-                        <p>Pemotong Pajak</p>
-                        <br><br><br>
-                        <p>(_________________)</p>
-                    </div>
-                </div>
-                
-                <div style="margin-top: 30px; font-size: 12px; color: #666;">
-                    <p>Dokumen ini dibuat menggunakan ACCUTAX pada tanggal ${currentDate}</p>
-                    <p>Perhitungan berdasarkan ${data.type === 'masa' ? 'PP 58/2023 (TER)' : 'Pasal 17 UU PPh'}</p>
-                </div>
-            `;
+
+                <table style="width: 100%; ${borderStyle} margin-bottom: 5px;">
+                    <tr style="${bgHeader}"><td colspan="3" style="${cellPad}">A. IDENTITAS PENERIMA PENGHASILAN</td></tr>
+                    <tr>
+                        <td style="width: 25%; ${cellPad} border-right: 1px solid #000;">1. NPWP : ${txt(data.npwpWP)}</td>
+                        <td style="width: 30%; ${cellPad} border-right: 1px solid #000;">2. NIK : ${txt(data.nikWP)}</td>
+                        <td style="${cellPad}"></td>
+                    </tr>
+                    <tr><td colspan="3" style="${cellPad} border-top: 1px solid #000;">3. NAMA : ${txt(data.namaWP.toUpperCase())}</td></tr>
+                    <tr><td colspan="3" style="${cellPad} border-top: 1px solid #000;">4. ALAMAT : ${txt(data.alamatWP)}</td></tr>
+                    <tr>
+                        <td style="${cellPad} border-top: 1px solid #000; border-right: 1px solid #000;">5. Jenis Kelamin : [ ] L / [ ] P</td>
+                        <td style="${cellPad} border-top: 1px solid #000; border-right: 1px solid #000;">6. Status PTKP : ${data.statusPTKP || "...."}</td>
+                        <td style="${cellPad} border-top: 1px solid #000;">7. Nama Jabatan : ${txt(data.jabatanWP)}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="${cellPad} border-top: 1px solid #000; border-right: 1px solid #000;">8. Karyawan Asing : [ ] Ya / [X] Tidak</td>
+                        <td style="${cellPad} border-top: 1px solid #000;">9. Kode Negara Domisili : -</td>
+                    </tr>
+                </table>
+
+                <table style="width: 100%; ${borderStyle} font-size: 9px;">
+                    <tr style="${bgHeader}">
+                        <td colspan="3" style="${cellPad}">B. RINCIAN PENGHASILAN DAN PENGHITUNGAN PPh PASAL 21</td>
+                    </tr>
+                    <tr style="${bgSubTotal} ${cellCenter}">
+                        <td style="width: 5%; ${borderStyle} padding: 5px;">NO</td>
+                        <td style="${borderStyle} padding: 5px;">URAIAN</td>
+                        <td style="width: 20%; ${borderStyle} padding: 5px;">JUMLAH (Rp)</td>
+                    </tr>
+                    
+                    <tr style="${bgSubTotal}"><td colspan="3" style="${cellPad} border: 1px solid #000;">PENGHASILAN BRUTO:</td></tr>
+                    <tr><td style="${cellCenter} ${borderStyle}">1.</td><td style="${cellPad} ${borderStyle}">Gaji atau Pensiun atau Tunjangan Hari Tua</td><td style="${cellRight} ${cellPad} ${borderStyle}">${fmt(r[1])}</td></tr>
+                    <tr><td style="${cellCenter} ${borderStyle}">2.</td><td style="${cellPad} ${borderStyle}">Tunjangan PPh</td><td style="${cellRight} ${cellPad} ${borderStyle}">${fmt(r[2])}</td></tr>
+                    <tr><td style="${cellCenter} ${borderStyle}">3.</td><td style="${cellPad} ${borderStyle}">Tunjangan Lainnya, Uang Lembur dan sebagainya</td><td style="${cellRight} ${cellPad} ${borderStyle}">${fmt(r[3])}</td></tr>
+                    <tr><td style="${cellCenter} ${borderStyle}">4.</td><td style="${cellPad} ${borderStyle}">Honorarium dan Imbalan Lainnya sejenisnya</td><td style="${cellRight} ${cellPad} ${borderStyle}">${fmt(r[4])}</td></tr>
+                    <tr><td style="${cellCenter} ${borderStyle}">5.</td><td style="${cellPad} ${borderStyle}">Premi Asuransi yang dibayar Pemberi Kerja</td><td style="${cellRight} ${cellPad} ${borderStyle}">${fmt(r[5])}</td></tr>
+                    <tr><td style="${cellCenter} ${borderStyle}">6.</td><td style="${cellPad} ${borderStyle}">Penerimaan dalam bentuk Natura dan/atau Kenikmatan lainnya</td><td style="${cellRight} ${cellPad} ${borderStyle}">${fmt(r[6])}</td></tr>
+                    <tr><td style="${cellCenter} ${borderStyle}">7.</td><td style="${cellPad} ${borderStyle}">Tantiem, Bonus, Gratifikasi, Jasa Produksi dan THR</td><td style="${cellRight} ${cellPad} ${borderStyle}">${fmt(r[7])}</td></tr>
+                    <tr style="${bgSubTotal}"><td style="${cellCenter} ${borderStyle}">8.</td><td style="${cellPad} ${borderStyle}">JUMLAH PENGHASILAN BRUTO (1 s.d. 7)</td><td style="${cellRight} ${cellPad} ${borderStyle}">${fmt(r[8])}</td></tr>
+
+                    <tr style="${bgSubTotal}"><td colspan="3" style="${cellPad} border: 1px solid #000;">PENGURANG:</td></tr>
+                    <tr><td style="${cellCenter} ${borderStyle}">9.</td><td style="${cellPad} ${borderStyle}">Biaya Jabatan / Biaya Pensiun</td><td style="${cellRight} ${cellPad} ${borderStyle}">${fmt(r[9])}</td></tr>
+                    <tr><td style="${cellCenter} ${borderStyle}">10.</td><td style="${cellPad} ${borderStyle}">Iuran Pensiun atau Iuran THT/JHT</td><td style="${cellRight} ${cellPad} ${borderStyle}">${fmt(r[10])}</td></tr>
+                    <tr style="${bgSubTotal}"><td style="${cellCenter} ${borderStyle}">11.</td><td style="${cellPad} ${borderStyle}">JUMLAH PENGURANG (9 s.d. 10)</td><td style="${cellRight} ${cellPad} ${borderStyle}">${fmt(r[11])}</td></tr>
+
+                    <tr style="${bgSubTotal}"><td colspan="3" style="${cellPad} border: 1px solid #000;">PENGHITUNGAN PPh PASAL 21:</td></tr>
+                    <tr><td style="${cellCenter} ${borderStyle}">12.</td><td style="${cellPad} ${borderStyle}">JUMLAH PENGHASILAN NETO (8 - 11)</td><td style="${cellRight} ${cellPad} ${borderStyle}">${fmt(r[12])}</td></tr>
+                    <tr><td style="${cellCenter} ${borderStyle}">13.</td><td style="${cellPad} ${borderStyle}">PENGHASILAN NETO MASA SEBELUMNYA</td><td style="${cellRight} ${cellPad} ${borderStyle}">${fmt(r[13])}</td></tr>
+                    <tr><td style="${cellCenter} ${borderStyle}">14.</td><td style="${cellPad} ${borderStyle}">JUMLAH PENGHASILAN NETO UNTUK PPh Ps. 21 SETAHUN/DISETAHUNKAN</td><td style="${cellRight} ${cellPad} ${borderStyle}">${fmt(r[12])}</td></tr>
+                    <tr><td style="${cellCenter} ${borderStyle}">15.</td><td style="${cellPad} ${borderStyle}">PENGHASILAN TIDAK KENA PAJAK (PTKP)</td><td style="${cellRight} ${cellPad} ${borderStyle}">${fmt(r[14])}</td></tr>
+                    <tr><td style="${cellCenter} ${borderStyle}">16.</td><td style="${cellPad} ${borderStyle}">PENGHASILAN KENA PAJAK SETAHUN/DISETAHUNKAN (14 - 15)</td><td style="${cellRight} ${cellPad} ${borderStyle}">${fmt(r[15])}</td></tr>
+                    <tr><td style="${cellCenter} ${borderStyle}">17.</td><td style="${cellPad} ${borderStyle}">PPh PASAL 21 TERUTANG</td><td style="${cellRight} ${cellPad} ${borderStyle}">${fmt(r[17])}</td></tr>
+                    <tr><td style="${cellCenter} ${borderStyle}">18.</td><td style="${cellPad} ${borderStyle}">PPh PASAL 21 YANG TELAH DIPOTONG MASA SEBELUMNYA</td><td style="${cellRight} ${cellPad} ${borderStyle}">${fmt(r[18])}</td></tr>
+                    <tr><td style="${cellCenter} ${borderStyle}">19.</td><td style="${cellPad} ${borderStyle}">PPh PASAL 21 TERUTANG MASA INI (17 - 18)</td><td style="${cellRight} ${cellPad} ${borderStyle}">${fmt(r[19])}</td></tr>
+                    <tr style="${bgSubTotal}"><td style="${cellCenter} ${borderStyle}">20.</td><td style="${cellPad} ${borderStyle}">PPh PASAL 21 YANG TELAH DIPOTONG DAN DILUNASI MASA INI</td><td style="${cellRight} ${cellPad} ${borderStyle}">${fmt(r[20])}</td></tr>
+                </table>
+
+                <table style="width: 100%; ${borderStyle} margin-top: 5px;">
+                    <tr style="${bgHeader}"><td colspan="4" style="${cellPad}">KODE OBJEK PAJAK (Checklist yang sesuai)</td></tr>
+                    <tr>
+                        <td style="width: 5%; ${cellCenter} ${borderStyle}"><span style="${boxStyle}">${checkObjek01}</span></td>
+                        <td style="width: 35%; ${cellPad} ${borderStyle}">21-100-01 Pegawai Tetap</td>
+                        <td style="width: 5%; ${cellCenter} ${borderStyle}"><span style="${boxStyle}">${checkObjek02}</span></td>
+                        <td style="${cellPad} ${borderStyle}">21-100-02 Penerima Pensiun Berkala</td>
+                    </tr>
+                    <tr><td style="${borderStyle} height: 15px;"></td><td style="${borderStyle}"></td><td style="${borderStyle}"></td><td style="${borderStyle}"></td></tr>
+                </table>
+
+                <table style="width: 100%; ${borderStyle} margin-top: 5px; page-break-inside: avoid;">
+                    <tr style="${bgHeader}"><td colspan="2" style="${cellPad}">C. IDENTITAS PEMOTONG</td></tr>
+                    <tr>
+                        <td style="width: 60%; vertical-align: top; ${cellPad} border-right: 1px solid #000;">
+                            <div>1. NPWP : 00.000.000.0-000.000 (ACCUTAX ID)</div>
+                            <div style="margin-top: 5px;">2. NAMA : ADMIN ACCUTAX OFFICIAL</div>
+                        </td>
+                        <td style="vertical-align: top; ${cellPad} text-align: center;">
+                            <div style="margin-bottom: 30px;">Bandar Lampung, ${now.toLocaleDateString('id-ID')}</div>
+                            <div>Tanda Tangan & Cap</div>
+                            <div style="margin-top: 40px; font-weight: bold; text-decoration: underline;">ADMIN ACCUTAX OFFICIAL</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>`;
         }
 
         // Event listeners
@@ -1540,46 +2978,91 @@
                 }
             });
 
-            // Mobile menu toggle
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    let mobileMenu = document.getElementById('mobile-menu');
-                    if (!mobileMenu) {
-                        mobileMenu = document.createElement('div');
-                        mobileMenu.id = 'mobile-menu';
-                        mobileMenu.className = 'md:hidden bg-white border-t border-gray-200 shadow-lg';
-                        mobileMenu.innerHTML = `
-                            <div class="px-2 pt-2 pb-3 space-y-1">
-                                <a href="#home" class="block px-3 py-2 text-maroon-800 hover:text-maroon-600 font-medium">Home</a>
-                                <a href="#kalkulator" class="block px-3 py-2 text-gray-600 hover:text-maroon-600 font-medium">Kalkulator Pajak</a>
-                                <a href="#artikel" class="block px-3 py-2 text-gray-600 hover:text-maroon-600 font-medium">Artikel</a>
-                                <a href="#tentang" class="block px-3 py-2 text-gray-600 hover:text-maroon-600 font-medium">Tentang Kami</a>
-                            </div>
-                        `;
-                        mobileMenuBtn.parentElement.parentElement.parentElement.appendChild(mobileMenu);
-                        
-                        mobileMenu.querySelectorAll('a[href^="#"]').forEach(link => {
-                            link.addEventListener('click', function(e) {
-                                e.preventDefault();
-                                const target = this.getAttribute('href').substring(1);
-                                if (target === 'home') showHomeSection();
-                                else if (target === 'kalkulator') showKalkulatorSection();
-                                else if (target === 'artikel') showArtikelSection();
-                                else if (target === 'tentang') showTentangSection();
-                                mobileMenu.classList.add('hidden');
-                            });
-                        });
-                    }
+            // Penyesuaian tampilan & reset input berdasarkan jenis pegawai
+            const jenisPegawaiSelect = document.getElementById('jenis-pegawai');
+            const ptkpSelect = document.getElementById('status-ptkp');
+            const iuranInput = document.getElementById('iuran-pensiun-bulanan');
+            const zakatInput = document.getElementById('zakat-bulanan');
+            const biayaJabatanInput = document.getElementById('biaya-jabatan-tahunan');
+
+            if (jenisPegawaiSelect) {
+                jenisPegawaiSelect.addEventListener('change', function() {
+                    const isBukanPegawai = this.value === 'bukan-pegawai';
                     
-                    mobileMenu.classList.toggle('hidden');
+                    // 1. Tangani Status PTKP
+                    if (ptkpSelect) {
+                        const ptkpContainer = ptkpSelect.parentElement;
+                        ptkpSelect.disabled = isBukanPegawai;
+                        ptkpContainer.style.opacity = isBukanPegawai ? '0.5' : '1';
+                    }
+
+                    // 2. Tangani Input Pengurang (Pensiun & Zakat)
+                    if (isBukanPegawai) {
+                        // Reset nilai ke 0 dan simpan ke storage
+                        if (iuranInput) {
+                            iuranInput.value = ''; 
+                            window.inputStorage['iuran-pensiun-bulanan'] = '0';
+                            iuranInput.disabled = true;
+                            iuranInput.parentElement.style.opacity = '0.5';
+                        }
+                        if (zakatInput) {
+                            zakatInput.value = '';
+                            window.inputStorage['zakat-bulanan'] = '0';
+                            zakatInput.disabled = true;
+                            zakatInput.parentElement.style.opacity = '0.5';
+                        }
+                        if (biayaJabatanInput) {
+                            biayaJabatanInput.value = 'Rp 0';
+                        }
+                        
+                        // PPh 21 Telah Dipotong juga biasanya tidak berlaku TER untuk bukan pegawai harian/proyek
+                        const pph21DipotongField = document.getElementById('pph21-dipotong');
+                        if (pph21DipotongField) pph21DipotongField.value = 'Rp 0';
+
+                        // Panggil update display untuk me-reset label "Setahun: Rp 0"
+                        updateAnnualDisplays();
+                        
+                        showNotification('Info: Untuk Bukan Pegawai, pengurang (Biaya Jabatan, Pensiun, Zakat) dan PTKP tidak diperhitungkan.', 'info');
+                    } else {
+                        // Aktifkan kembali jika beralih ke Pegawai Tetap
+                        if (iuranInput) {
+                            iuranInput.disabled = false;
+                            iuranInput.parentElement.style.opacity = '1';
+                        }
+                        if (zakatInput) {
+                            zakatInput.disabled = false;
+                            zakatInput.parentElement.style.opacity = '1';
+                        }
+                        if (typeof updateAnnualDisplays === 'function') updateAnnualDisplays();
+                    }
                 });
             }
 
-            // Form submission
-            document.getElementById('tax-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                calculatePPh21();
+            // Ambil elemen hanya satu kali
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const menuContent = document.getElementById('mobile-menu');
+
+            // Fungsi untuk buka/tutup menu
+            function toggleMobileMenu() {
+                if (menuContent) {
+                    menuContent.classList.toggle('hidden');
+                }
+            }
+
+            // Event listener untuk tombol baris 3
+            if (menuBtn) {
+                menuBtn.addEventListener('click', function(e) {
+                    e.preventDefault(); // Mencegah perilaku default browser
+                    e.stopPropagation(); // Mencegah klik menembus ke elemen lain
+                    toggleMobileMenu();
+                });
+            }
+
+            // Menutup menu jika mengklik di luar menu
+            document.addEventListener('click', function(event) {
+                if (menuContent && !menuContent.contains(event.target) && !menuBtn.contains(event.target)) {
+                    menuContent.classList.add('hidden');
+                }
             });
             
             // Add event listeners for dropdown changes in annual calculator
@@ -1648,5 +3131,6 @@
         // Show home section by default
         showHomeSection();
     </script>
+ <div id="pdf-temp-container" style="position: fixed; top: 0; left: 0; width: 210mm; z-index: -50; opacity: 0; pointer-events: none; background: white;"></div>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9953dde400934082',t:'MTc2MTU4NTY1NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
