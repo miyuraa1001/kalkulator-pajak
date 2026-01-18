@@ -134,21 +134,99 @@
     </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
- </head>
-  <nav class="fixed w-full top-0 z-[100] bg-white border-b border-gray-200 shadow-sm">
+ </head> 
+
+ <body class="h-full bg-gray-50">
+    <div id="auth-overlay" class="fixed inset-0 z-[120] bg-gray-100 flex flex-col items-center justify-center transition-opacity duration-500 font-sans">
+    
+        <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md border border-gray-200 relative overflow-hidden">
+            
+            <div id="view-login" class="transition-all duration-300">
+                <div class="text-center mb-6">
+                    <div class="bg-maroon-100 text-maroon-800 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">🔐</div>
+                    <h2 class="text-2xl font-bold text-gray-800">Silakan Masuk</h2>
+                    <p class="text-gray-500 text-sm">Akses Kalkulator PPh 21 & Forum</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Username / Email</label>
+                        <input type="text" id="login-input" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon-600 focus:outline-none" placeholder="admin atau email anda">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Password</label>
+                        <input type="password" id="login-password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon-600 focus:outline-none" placeholder="••••••">
+                    </div>
+                    
+                    <p id="login-error" class="text-red-600 text-xs italic hidden text-center">Login Gagal! Cek Username/Password.</p>
+
+                    <button onclick="performLogin()" class="w-full bg-maroon-700 hover:bg-maroon-800 text-white font-bold py-3 rounded-lg transition-colors shadow-lg mt-2">
+                        MASUK SEKARANG
+                    </button>
+                </div>
+
+                <div class="mt-6 text-center text-sm border-t pt-4">
+                    <p class="text-gray-600">Pengguna baru?</p>
+                    <button onclick="switchView('register')" class="text-maroon-700 font-bold hover:underline mt-1">
+                        Buat Akun (Tanpa OTP)
+                    </button>
+                </div>
+            </div>
+
+            <div id="view-register" class="hidden transition-all duration-300">
+                <div class="text-center mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800">Daftar Akun</h2>
+                    <p class="text-gray-500 text-sm">Gratis, Data tersimpan di browser.</p>
+                </div>
+
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                        <input type="text" id="reg-name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" placeholder="Contoh: Budi Santoso">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" id="reg-email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" placeholder="budi@email.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Password</label>
+                        <input type="password" id="reg-password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" placeholder="Buat password baru">
+                    </div>
+
+                    <p id="reg-error" class="text-red-600 text-xs italic hidden text-center">Isi semua data!</p>
+                    <p id="reg-success" class="text-green-600 text-xs font-bold hidden text-center">Berhasil! Mengalihkan ke Login...</p>
+
+                    <button onclick="performRegister()" class="w-full bg-maroon-700 hover:bg-maroon-800 text-white font-bold py-3 rounded-lg transition-colors shadow-lg mt-2">
+                        DAFTAR AKUN
+                    </button>
+                </div>
+
+                <div class="mt-4 text-center text-sm">
+                    <button onclick="switchView('login')" class="text-gray-500 hover:text-gray-800">
+                        &larr; Kembali ke Login
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+  <button onclick="performLogout()" id="btn-logout" class="hidden fixed top-4 right-4 z-40 bg-red-600 hover:bg-red-700 text-white text-xs px-4 py-2 rounded-full shadow-lg font-bold transition-all">
+        Keluar
+    </button>
+  <nav class="fixed w-full top-0 z-[100] bg-white border-b border-gray-200 shadow-sm"> 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16 relative z-[110]">
         <div class="flex-shrink-0">
             <h1 class="text-2xl font-bold text-maroon-800">ACCUTAX</h1>
         </div>
-
         <div class="hidden md:flex items-center space-x-6">
             <a href="#home" class="text-maroon-800 hover:text-maroon-600 px-3 py-2 text-sm font-medium transition-all">Home</a>
             <a href="#kalkulator" class="text-gray-600 hover:text-maroon-600 px-3 py-2 text-sm font-medium transition-all">Kalkulator Pajak</a>
             <a href="#artikel" class="text-gray-600 hover:text-maroon-600 px-3 py-2 text-sm font-medium transition-all">Artikel</a>
             <a href="#tentang" class="text-gray-600 hover:text-maroon-600 px-3 py-2 text-sm font-medium transition-all">Tentang Kami</a>
-            <button onclick="openAuthModal()" id="nav-login-btn" class="px-5 py-2 border-2 border-maroon-800 text-maroon-800 rounded-xl text-sm font-bold hover:bg-maroon-800 hover:text-white transition-all">
-            Login / Daftar
+            <button id="nav-login-btn" onclick="showLoginOverlay()" class="hidden md:block px-5 py-2 border-2 border-maroon-800 text-maroon-800 rounded-xl text-sm font-bold hover:bg-maroon-800 hover:text-white transition-all">
+                Login
             </button>
         </div>
 
@@ -161,15 +239,18 @@
         </div>
         </div>
     </div>
-    
+
     <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 absolute w-full left-0 z-[105] shadow-xl">
         <div class="px-4 pt-2 pb-6 space-y-1">
             <a href="#home" class="block px-3 py-3 text-maroon-800 hover:bg-maroon-50 rounded-lg font-bold" onclick="toggleMobileMenu()">Home</a>
             <a href="#kalkulator" class="block px-3 py-3 text-gray-600 hover:bg-maroon-50 rounded-lg font-medium" onclick="toggleMobileMenu()">Kalkulator Pajak</a>
             <a href="#artikel" class="block px-3 py-3 text-gray-600 hover:bg-maroon-50 rounded-lg font-medium" onclick="toggleMobileMenu()">Artikel</a>
             <a href="#tentang" class="block px-3 py-3 text-gray-600 hover:bg-maroon-50 rounded-lg font-medium" onclick="toggleMobileMenu()">Tentang Kami</a>
-            <div class="pt-4 border-t border-gray-100">
-                <button onclick="openAuthModal(); toggleMobileMenu();" class="w-full text-center py-4 bg-maroon-800 text-white rounded-xl font-bold">Login / Daftar</button>
+            
+            <div id="mobile-auth-container" class="pt-4 border-t border-gray-200 mt-2">
+                <button id="mobile-action-btn" onclick="showLoginOverlay()" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-bold text-white bg-maroon-800 hover:bg-maroon-900 transition-colors">
+                    Login / Daftar
+                </button>
             </div>
         </div>
     </div>
@@ -425,9 +506,7 @@
         <h3 class="text-xl font-semibold text-gray-900">Hasil Perhitungan PPh 21</h3>
         <div class="flex space-x-3"><button onclick="printResults()" class="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-          </svg> Print </button> <button onclick="downloadPDF()" class="btn-maroon text-white px-4 py-2 rounded-lg font-semibold">
-          <svg class="w-4 h-4 mr-2 inline" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-          </svg> Download Bukti Potong </button>
+          </svg> Print 
         </div>
        </div><!-- Results Content -->
        <div id="capture-area" class="space-y-6"><!-- Detailed Calculation Steps -->
@@ -828,34 +907,48 @@
      </div>
      <div>
       <h4 class="text-lg font-semibold mb-4">Kontak &amp; Media Sosial</h4>
-      <div class="space-y-3 text-gray-300">
-       <div class="flex items-center">
-        <svg class="w-5 h-5 mr-3" fill="currentColor" viewbox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-        </svg><span>infoaccutax.id@gmail.com</span>
-       </div>
-       <div class="flex items-center">
-        <svg class="w-5 h-5 mr-3" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.63" />
-        <li><a href="https://wa.me/6289670244070" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center"></a>
-        </svg><span>Whatsapp :089670244070</span>
-       </div>
-       <div class="flex items-center">
-        <svg class="w-5 h-5 mr-3" fill="currentColor" viewbox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
-        <li><a href="https://www.instagram.com/accutax.id?igsh=MWNkc3E1d21kMXRtZw==" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center"></a>
-        </svg><span>Instagram : @accutax.id</span>
-       </div>
-       <div class="flex items-center">
-        <svg class="w-5 h-5 mr-3" fill="currentColor" viewbox="0 0 24 24"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
-        <li><a href="https://www.tiktok.com/@accutax.id?_r=1&_t=ZS-929DMApx0Sn" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center"></a>
-        </svg><span>Tiktok : @accutax.id</span>
-       </div>
-      </div>
-     </div>
+        <div class="space-y-3 text-gray-300">
+            <div class="flex items-center">
+                <svg class="w-5 h-5 mr-3" fill="currentColor" viewbox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                </svg>
+                <a href="mailto:infoaccutax.id@gmail.com" class="hover:text-white transition-colors">infoaccutax.id@gmail.com</a>
+            </div>
+
+            <div class="flex items-center">
+                <a href="https://wa.me/6289670244070" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center">
+                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewbox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.63" />
+                    </svg>
+                    <span>Whatsapp: 089670244070</span>
+                </a>
+            </div>
+
+            <div class="flex items-center">
+                <a href="https://www.instagram.com/accutax.id?igsh=MWNkc3E1d21kMXRtZw==" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center">
+                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewbox="0 0 24 24">
+                        <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
+                    </svg>
+                    <span>Instagram: @accutax.id</span>
+                </a>
+            </div>
+
+            <div class="flex items-center">
+                <a href="https://www.tiktok.com/@accutax.id?_r=1&_t=ZS-929DMApx0Sn" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center">
+                    <svg class="w-5 h-5 mr-3" fill="currentColor" viewbox="0 0 24 24">
+                        <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+                    </svg>
+                    <span>Tiktok: @accutax.id</span>
+                </a>
+            </div>
+        </div>
     </div>
     <div class="border-t border-gray-700 mt-8 pt-8 text-center">
      <p id="footer-text" class="text-gray-300">© 2026 ACCUTAX. Semua hak dilindungi undang-undang.</p>
     </div>
 
    </div>
+   </footer><!-- Modal Auth -->
     <div id="modal-auth" class="fixed inset-0 z-[110] hidden overflow-y-auto bg-black bg-opacity-60 flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-md w-full overflow-hidden shadow-2xl animate-fade-in">
             <div class="flex border-b">
@@ -922,6 +1015,30 @@
                 <div class="mt-8 text-center">
                     <p class="text-xs text-gray-400 italic">Dengan bergabung, Anda menyetujui ketentuan layanan dan privasi data sesuai regulasi perpajakan yang berlaku.</p>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="logout-modal" class="fixed inset-0 z-[130] hidden bg-gray-900 bg-opacity-50 flex items-center justify-center transition-opacity backdrop-blur-sm">
+        <div class="bg-white p-6 rounded-2xl shadow-2xl w-full max-w-sm text-center transform transition-all scale-100 border border-gray-100">
+            
+            <div class="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Konfirmasi Keluar</h3>
+            <p class="text-gray-500 text-sm mb-6">Apakah Anda yakin ingin keluar dari akun ACCUTAX?</p>
+
+            <div class="flex space-x-3">
+                <button onclick="closeLogoutModal()" class="flex-1 px-4 py-3 bg-gray-100 text-gray-700 rounded-xl font-bold hover:bg-gray-200 transition-colors">
+                    Batal
+                </button>
+                
+                <button onclick="confirmLogoutAction()" class="flex-1 px-4 py-3 bg-red-600 text-white rounded-xl font-bold hover:bg-red-700 transition-colors shadow-lg">
+                    Ya, Keluar
+                </button>
             </div>
         </div>
     </div>
@@ -1081,10 +1198,11 @@
 
     <div id="modal-artikel-3" class="fixed inset-0 z-[100] hidden overflow-y-auto bg-black bg-opacity-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            
             <div class="sticky top-0 bg-white border-b border-gray-100 p-6 flex justify-between items-center z-20">
                 <div>
                     <h3 class="text-2xl font-bold text-maroon-800">Community Forum ACCUTAX</h3>
-                    <p class="text-sm text-gray-500 mt-1">Berbagi info dan diskusi seputar pajak</p>
+                    <p class="text-sm text-gray-500 mt-1">Ruang diskusi pajak interaktif</p>
                 </div>
                 <button onclick="closeArticle(3)" class="text-gray-400 hover:text-maroon-600 transition-colors p-2">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -1092,15 +1210,20 @@
             </div>
 
             <div class="p-8">
+                
                 <div class="mb-10 bg-white p-6 rounded-2xl border-2 border-maroon-100 shadow-sm">
                     <div class="flex items-center space-x-4 mb-4">
-                        <div class="w-10 h-10 rounded-full bg-maroon-600 flex items-center justify-center text-white font-bold">U</div>
-                        <span class="font-bold text-gray-700">Wajib Pajak (Anda)</span>
+                        <div class="w-10 h-10 rounded-full bg-maroon-600 flex items-center justify-center text-white font-bold">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                        </div>
+                        <span class="font-bold text-gray-700">Buat Diskusi Baru</span>
                     </div>
+                    
                     <textarea id="forum-post-input" 
-                            class="w-full p-4 rounded-xl border border-gray-300 bg-gray-50 text-gray-900 focus:bg-white focus:ring-2 focus:ring-maroon-500 outline-none transition-all" 
+                            class="w-full p-4 rounded-xl border border-gray-300 bg-gray-50 text-gray-900 focus:bg-white focus:ring-2 focus:ring-maroon-500 outline-none transition-all resize-none" 
                             rows="3" 
                             placeholder="Apa yang ingin Anda tanyakan atau bagikan hari ini?"></textarea>
+                    
                     <div class="mt-4 flex justify-end">
                         <button onclick="createNewPost()" class="bg-maroon-700 text-white px-8 py-2 rounded-full font-bold hover:bg-maroon-800 transition-all shadow-md">
                             Post ke Forum
@@ -1108,27 +1231,9 @@
                     </div>
                 </div>
 
-                <div id="forum-feed" class="space-y-8">
-                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
-                        <div class="flex items-center space-x-3 mb-4">
-                            <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">A</div>
-                            <div>
-                                <p class="font-bold text-gray-900 text-sm">Admin ACCUTAX <span class="text-xs font-normal text-gray-500 ml-2">1 jam lalu</span></p>
-                                <p class="text-xs text-maroon-600 font-semibold">Edukasi Pajak</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-800 mb-4">Penting! Penghitungan Masa Desember tetap menggunakan Tarif Pasal 17 ayat (1) huruf a UU PPh, bukan TER. Jangan lupa kumpulkan bukti potong Jan-Nov Anda.</p>
-                        <div class="flex items-center space-x-6 border-t border-gray-200 pt-4">
-                            <button class="flex items-center text-sm text-gray-500 hover:text-maroon-600"><svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 10h4.704a1 1 0 01.94 1.355l-1.903 5.186a2 2 0 01-1.88 1.309h-5.861a2 2 0 01-2-2v-7a2 2 0 01.586-1.414l3.414-3.414a2 2 0 012.828 0L14 8.586V10zM2 10h3a1 1 0 011 1v9a1 1 0 01-1 1H2a1 1 0 01-1-1v-9a1 1 0 011-1z"/></svg> 12 Like</button>
-                            <button onclick="toggleComment('default-1')" class="flex items-center text-sm text-gray-500 hover:text-maroon-600"><svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg> Komentar</button>
-                        </div>
-                        <div id="comment-area-default-1" class="hidden mt-4 pl-8 border-l-2 border-gray-200 space-y-3">
-                            <div class="text-sm bg-white p-3 rounded-lg border border-gray-100">
-                                <span class="font-bold">Budi:</span> Sangat membantu min!
-                            </div>
-                        </div>
+                <div id="forum-feed" class="space-y-8 pb-10">
                     </div>
-                    </div>
+
             </div>
         </div>
     </div>
@@ -1407,6 +1512,29 @@
         </div>
     </div>
 
+    <div id="delete-modal" class="fixed inset-0 z-[140] hidden bg-gray-900 bg-opacity-50 flex items-center justify-center transition-opacity backdrop-blur-sm">
+        <div class="bg-white p-6 rounded-2xl shadow-2xl w-full max-w-sm text-center transform transition-all scale-100 border border-gray-100">
+            
+            <div class="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+            </div>
+
+            <h3 id="delete-title" class="text-xl font-bold text-gray-900 mb-2">Hapus Item?</h3>
+            <p id="delete-desc" class="text-gray-500 text-sm mb-6">Tindakan ini tidak dapat dibatalkan.</p>
+
+            <div class="flex space-x-3">
+                <button onclick="closeDeleteModal()" class="flex-1 px-4 py-3 bg-gray-100 text-gray-700 rounded-xl font-bold hover:bg-gray-200 transition-colors">
+                    Batal
+                </button>
+                <button onclick="confirmDeleteAction()" class="flex-1 px-4 py-3 bg-red-600 text-white rounded-xl font-bold hover:bg-red-700 transition-colors shadow-lg">
+                    Ya, Hapus
+                </button>
+            </div>
+        </div>
+    </div>
+
   </footer>
   <script>
     // Array untuk menyimpan seluruh postingan forum
@@ -1440,6 +1568,15 @@
         });
     }
 
+// 1. DAFTAR ADMIN (Bisa lebih dari satu)
+const ADMIN_LIST = [
+    { username: "syafira daniela nahuway",     password: "23755099", name: "DEVELOPER Syafira",    role: "admin" },
+    { username: "arinia amanda",      password: "23755039", name: "Admin pajak Arinia",     role: "admin" },
+    { username: "aghata syaliza",      password: "23755070", name: "Admin pajak Aghata",     role: "admin" },
+    { username: "aisyah firnanda",      password: "23755071", name: "Admin pajak Aisyah",     role: "admin" },
+    { username: "fatima azzahra",  password: "23755081", name: "Admin pajak Fatima", role: "admin" }
+];
+
 // Panggil fungsi muat data saat web pertama kali dibuka
 document.addEventListener('DOMContentLoaded', loadForumData);
 
@@ -1463,145 +1600,285 @@ document.addEventListener('DOMContentLoaded', loadForumData);
         document.body.style.overflow = 'auto';
     }
 
-    function switchAuthTab(type) {
-        const loginForm = document.getElementById('form-login');
-        const regForm = document.getElementById('form-register');
-        const tabLogin = document.getElementById('tab-login');
-        const tabReg = document.getElementById('tab-register');
-        const title = document.getElementById('auth-title');
-        const subtitle = document.getElementById('auth-subtitle');
+    function switchView(viewName) {
+        // 1. Ambil elemen Login dan Register dari HTML
+        const viewLogin = document.getElementById('view-login');
+        const viewRegister = document.getElementById('view-register');
+        
+        // 2. Reset pesan error agar bersih saat pindah halaman
+        const errorLog = document.getElementById('login-error');
+        const errorReg = document.getElementById('reg-error');
+        if(errorLog) errorLog.classList.add('hidden');
+        if(errorReg) errorReg.classList.add('hidden');
 
-        if (type === 'login') {
-            loginForm.classList.remove('hidden');
-            regForm.classList.add('hidden');
-            tabLogin.className = "flex-1 py-4 text-center font-bold text-maroon-800 border-b-2 border-maroon-700 bg-maroon-50";
-            tabReg.className = "flex-1 py-4 text-center font-bold text-gray-500 hover:text-maroon-700 transition-colors";
-            title.textContent = "Selamat Datang Kembali";
-            subtitle.textContent = "Silakan masuk ke akun ACCUTAX Anda";
+        // 3. Logika Perpindahan
+        if (viewName === 'register') {
+            // Jika mau ke Daftar: Sembunyikan Login, Munculkan Register
+            viewLogin.classList.add('hidden');
+            viewRegister.classList.remove('hidden');
         } else {
-            loginForm.classList.add('hidden');
-            regForm.classList.remove('hidden');
-            tabReg.className = "flex-1 py-4 text-center font-bold text-maroon-800 border-b-2 border-maroon-700 bg-maroon-50";
-            tabLogin.className = "flex-1 py-4 text-center font-bold text-gray-500 hover:text-maroon-700 transition-colors";
-            title.textContent = "Daftar Akun Baru";
-            subtitle.textContent = "Bergabung dengan komunitas Wajib Pajak ACCUTAX";
+            // Jika mau ke Login: Sembunyikan Register, Munculkan Login
+            viewRegister.classList.add('hidden');
+            viewLogin.classList.remove('hidden');
         }
     }
 
-    // Fungsi Simulasi Login Sukses
-    function performAuth(type) {
-        const emailInput = document.querySelector('#form-login input[type="text"]').value;
-        const passwordInput = document.querySelector('#form-login input[type="password"]').value;
+    document.addEventListener('DOMContentLoaded', () => {
+        checkSession(); // Cek apakah user pernah login dan belum logout
         
-        // VALIDASI SEDERHANA
-        if (emailInput === "" || passwordInput === "") {
-            showNotification("Email dan Password wajib diisi!", "error");
+        // Fitur: Tekan Enter untuk Login
+        const passInput = document.getElementById('login-password');
+        if(passInput) {
+            passInput.addEventListener("keypress", (e) => {
+                if (e.key === "Enter") performLogin();
+            });
+        }
+    });
+
+    // 3. FUNGSI LOGIN UTAMA (UPDATE MULTI-ADMIN)
+    function performLogin() {
+        const inputUser = document.getElementById('login-input').value.trim(); 
+        const inputPass = document.getElementById('login-password').value.trim();
+        const errorMsg = document.getElementById('login-error');
+
+        // --- LOGIKA BARU: CEK KE DAFTAR ADMIN ---
+        // Mencari apakah username & password cocok dengan salah satu admin di ADMIN_LIST
+        const foundAdmin = ADMIN_LIST.find(admin => 
+            admin.username === inputUser && admin.password === inputPass
+        );
+
+        // SKENARIO A: Jika ketemu di daftar Admin
+        if (foundAdmin) {
+            setSession(foundAdmin.name, foundAdmin.role);
             return;
         }
 
-        // SIMULASI VERIFIKASI (Contoh password admin: 'admin123')
-        if (emailInput.toLowerCase().includes('admin') || emailInput.toLowerCase().includes('dev')) {
-            if (passwordInput !== "admin123") { // Ganti dengan password rahasia Anda
-                showNotification("Password Admin salah!", "error");
-                return;
-            }
-            currentUser.role = "developer";
+        // SKENARIO B: Jika tidak ketemu admin, Cek User Biasa (Database Browser)
+        const userDB = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+        
+        const foundUser = userDB.find(u => 
+            (u.email === inputUser || u.name === inputUser) && u.password === inputPass
+        );
+
+        if (foundUser) {
+            setSession(foundUser.name, 'user'); 
         } else {
-            currentUser.role = "user";
+            // GAGAL (Bukan Admin, Bukan User)
+            errorMsg.classList.remove('hidden');
+            shakeModal(); 
         }
-
-        currentUser.isLoggedIn = true;
-        currentUser.username = emailInput;
-
-        // Eksekusi perubahan UI
-        updateUIAfterLogin();
-        closeAuthModal();
-        showNotification("Selamat datang, " + currentUser.username, "success");
-
-
-        // UPDATE NAVBAR (Desktop)
-        const loginBtn = document.getElementById('nav-login-btn');
-        if(loginBtn) {
-            loginBtn.innerHTML = `Logout (${currentUser.username})`;
-            loginBtn.className = "ml-4 px-5 py-2 border-2 border-red-600 text-red-600 rounded-xl text-sm font-bold hover:bg-red-600 hover:text-white transition-all";
-            loginBtn.setAttribute("onclick", "handleLogout()");
-        }
-
-        // UPDATE MENU MOBILE (Baris 3)
-        const mobileLoginBtn = document.getElementById('nav-login-btn-mobile');
-        if(mobileLoginBtn) {
-            mobileLoginBtn.textContent = "Logout (" + currentUser.username + ")";
-            mobileLoginBtn.className = "w-full text-center py-3 bg-red-600 text-white rounded-xl font-bold shadow-md";
-            mobileLoginBtn.setAttribute("onclick", "handleLogout(); document.getElementById('mobile-menu').classList.add('hidden');");
-        }
-
-        closeAuthModal();
     }
 
-    function updateUIAfterLogin() {
+    // 4. FUNGSI DAFTAR (REGISTER)
+    function performRegister() {
+        const name = document.getElementById('reg-name').value.trim();
+        const email = document.getElementById('reg-email').value.trim();
+        const pass = document.getElementById('reg-password').value.trim();
+        const errorMsg = document.getElementById('reg-error');
+        const successMsg = document.getElementById('reg-success');
+
+        // Validasi Kosong
+        if (!name || !email || !pass) {
+            errorMsg.textContent = "Data tidak boleh kosong!";
+            errorMsg.classList.remove('hidden');
+            return;
+        }
+
+        // Ambil Database Lama
+        const userDB = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+
+        // Cek Duplikat Email
+        if (userDB.some(u => u.email === email)) {
+            errorMsg.textContent = "Email ini sudah terdaftar!";
+            errorMsg.classList.remove('hidden');
+            return;
+        }
+
+        // SIMPAN USER BARU KE DATABASE BROWSER
+        // Catatan: Data ini TIDAK AKAN HILANG saat logout
+        userDB.push({ name: name, email: email, password: pass, role: 'user' });
+        localStorage.setItem('registeredUsers', JSON.stringify(userDB));
+
+        // Sukses
+        errorMsg.classList.add('hidden');
+        successMsg.classList.remove('hidden');
+        
+        // Pindah ke Login setelah 1.5 detik
+        setTimeout(() => {
+            switchView('login');
+            document.getElementById('login-input').value = email; // Isi otomatis emailnya
+            document.getElementById('login-password').value = '';
+            successMsg.classList.add('hidden');
+        }, 1500);
+    }
+
+    function setSession(name, role) {
+        // Simpan status login di localStorage (Data Permanen)
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('activeName', name);
+        localStorage.setItem('activeRole', role);
+
+        // Update variabel forum (Data Sementara di Memori)
+        // REVISI: Simpan sebagai OBJEK agar fungsi forum tidak bingung
+        window.getCurrentUser = { 
+            username: name, 
+            role: role 
+        };
+        
+        window.isAdmin = (role === 'admin');
+
+        // Sembunyikan overlay login
+        const authOverlay = document.getElementById('auth-overlay');
+        if (authOverlay) authOverlay.classList.add('hidden');
+
+        // Update tampilan tombol Logout
+        updateLogoutUI(name, role);
+
+        // Tutup modal auth jika masih terbuka
+        closeAuthModal();
+        
+        // Opsional: Muat ulang forum agar tampilan Admin/User langsung berubah
+        if (typeof renderForum === 'function') renderForum();
+    }
+
+    // 6. HELPER: CEK SESI (Agar tidak perlu login tiap refresh)
+    function checkSession() {
+        const status = localStorage.getItem('isLoggedIn');
+        
+        if (status === 'true') {
+            // Jika sudah login, sembunyikan overlay
+            const name = localStorage.getItem('activeName');
+            const role = localStorage.getItem('activeRole');
+            
+            // Restore variabel forum
+            window.getCurrentUser = name;
+            window.isAdmin = (role === 'admin');
+
+            document.getElementById('auth-overlay').classList.add('hidden');
+            updateLogoutUI(name, role);
+        } else {
+            // Jika belum, pastikan overlay muncul
+            document.getElementById('auth-overlay').classList.remove('hidden');
+        }
+    }
+
+    // 7. FUNGSI LOGOUT (PENTING: Hanya hapus sesi, jangan hapus Database User)
+    // --- SISTEM LOGOUT DENGAN MODAL KEREN ---
+
+    // 1. Fungsi saat tombol "Keluar" ditekan (Hanya memunculkan Modal)
+    function performLogout() {
+        const modal = document.getElementById('logout-modal');
+        if (modal) {
+            modal.classList.remove('hidden'); // Munculkan Modal
+        }
+    }
+
+    // 2. Fungsi jika user menekan "Batal"
+    function closeLogoutModal() {
+        const modal = document.getElementById('logout-modal');
+        if (modal) {
+            modal.classList.add('hidden'); // Sembunyikan Modal
+        }
+    }
+
+    // 3. Fungsi jika user menekan "Ya, Keluar" (Eksekusi Hapus Data)
+    function confirmLogoutAction() {
+        // A. Hapus data sesi
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('activeName');
+        localStorage.removeItem('activeRole');
+        
+        // B. Tampilkan notifikasi kecil (Opsional)
+        // alert("Berhasil keluar!"); -> Boleh dihapus jika ingin langsung refresh
+
+        // C. Refresh halaman untuk mereset tampilan
+        location.reload();
+    }
+
+    // 8. Visual & Navigasi Kecil
+    function switchView(view) {
+        const vLogin = document.getElementById('view-login');
+        const vReg = document.getElementById('view-register');
+        const err = document.getElementById('login-error');
+        if(err) err.classList.add('hidden');
+
+        if(view === 'register') {
+            vLogin.classList.add('hidden');
+            vReg.classList.remove('hidden');
+        } else {
+            vReg.classList.add('hidden');
+            vLogin.classList.remove('hidden');
+        }
+    }
+
+    // --- FUNGSI UPDATE UI (METODE DIRECT PROPERTY - ANTI GAGAL) ---
+    function updateLogoutUI(name, role) {
+        // 1. UPDATE TOMBOL DESKTOP (PC)
         const navBtn = document.getElementById('nav-login-btn');
-        const mobileBtn = document.getElementById('nav-login-btn-mobile');
-        const label = currentUser.role === 'developer' ? "Admin" : currentUser.username;
-
-        const logoutAction = "handleLogout()";
-        const logoutStyle = "ml-4 px-5 py-2 border-2 border-red-600 text-red-600 rounded-xl text-sm font-bold hover:bg-red-600 hover:text-white transition-all";
-
         if (navBtn) {
-            navBtn.innerHTML = `Logout (${label})`;
-            navBtn.className = logoutStyle;
-            navBtn.setAttribute("onclick", logoutAction);
+            const displayName = name.length > 10 ? name.substring(0, 10) + '...' : name;
+            navBtn.textContent = `Logout (${displayName})`;
+            navBtn.className = "hidden md:block ml-4 px-5 py-2 border-2 border-red-600 text-red-600 rounded-xl text-sm font-bold hover:bg-red-600 hover:text-white transition-all shadow-sm";
+            
+            // Paksa event click lewat property JS (Lebih kuat dari HTML attribute)
+            navBtn.onclick = function(e) {
+                e.preventDefault(); 
+                performLogout(); 
+            };
         }
 
+        // 2. UPDATE TOMBOL MOBILE (HP) - PERBAIKAN UTAMA
+        const mobileBtn = document.getElementById('mobile-action-btn');
+        
         if (mobileBtn) {
-            mobileBtn.textContent = `Logout (${label})`;
-            mobileBtn.className = "w-full text-center py-3 bg-red-600 text-white rounded-xl font-bold shadow-md";
-            mobileBtn.setAttribute("onclick", logoutAction + "; document.getElementById('mobile-menu').classList.add('hidden');");
+            // A. Ubah Teks
+            mobileBtn.textContent = `Logout (${name})`;
+            
+            // B. Ubah Warna (Jadi Merah)
+            mobileBtn.className = "w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-bold text-white bg-red-600 hover:bg-red-700 focus:outline-none transition-colors mt-2";
+            
+            // C. Hapus Event Lama & Pasang Event Baru
+            // Kita timpa fungsi onclick langsung di memori browser
+            mobileBtn.onclick = function(e) {
+                e.preventDefault();   // Cegah perilaku aneh link
+                e.stopPropagation();  // Pastikan klik fokus ke tombol
+                performLogout();      // Jalankan Logout
+            };
         }
     }
-    const currentUser = {
-        isLoggedIn: true, // Ubah ke false untuk tes kondisi belum login
-        username: "Syafira (Dev)",
-        role: "developer" // Pilihan: "user" atau "developer"
-    };
-
-    function handleLogout() {
-        if (confirm("Apakah Anda yakin ingin keluar?")) {
-            // 1. Reset Data
-            currentUser.isLoggedIn = false;
-            currentUser.username = "";
-            currentUser.role = "";
-
-            // 2. Kembalikan Tombol Desktop
-            const navBtn = document.getElementById('nav-login-btn');
-            if (navBtn) {
-                navBtn.innerHTML = "Login / Daftar";
-                navBtn.setAttribute("onclick", "openAuthModal()");
-                navBtn.className = "ml-4 px-5 py-2 border-2 border-maroon-800 text-maroon-800 rounded-xl text-sm font-bold hover:bg-maroon-800 hover:text-white transition-all";
-            }
-
-            // 3. Kembalikan Tombol Mobile (Baris 3)
-            const mobileBtn = document.getElementById('nav-login-btn-mobile');
-            if (mobileBtn) {
-                mobileBtn.textContent = "Login / Daftar";
-                mobileBtn.className = "w-full text-center py-3 bg-maroon-800 text-white rounded-xl font-bold shadow-md";
-                mobileBtn.setAttribute("onclick", "openAuthModal(); document.getElementById('mobile-menu').classList.add('hidden');");
-            }
-
-            showNotification("Berhasil keluar.", "info");
-        }
+    
+    function shakeModal() {
+        const box = document.querySelector('#auth-overlay > div');
+        box.classList.add('animate-pulse');
+        setTimeout(() => box.classList.remove('animate-pulse'), 500);
     }
 
-    // --- SISTEM FORUM INTERAKTIF ACCUTAX ---
+    // --- SISTEM FORUM INTERAKTIF ACCUTAX (REVISI FINAL) ---
     function createNewPost() {
-        if (!currentUser.isLoggedIn) return showNotification("Login dulu!", "error");
+        // Mengambil data user langsung dari localStorage
+        const user = {
+            username: localStorage.getItem('activeName'),
+            role: localStorage.getItem('activeRole')
+        };
+
+        // REVISI: Cek apakah nama user ada (artinya sudah login)
+        if (!user.username) { 
+            alert("Silakan Login dulu!"); 
+            return; 
+        }
+
         const input = document.getElementById('forum-post-input');
         const content = input.value.trim();
-        if (!content) return;
+        
+        if (!content) { 
+            alert("Isi pesan tidak boleh kosong!"); 
+            return; 
+        }
 
         const newPost = {
             id: 'post-' + Date.now(),
-            username: currentUser.username,
-            role: currentUser.role,
+            username: user.username,
+            role: user.role,
             content: content,
             likes: 0,
             likedBy: [],
@@ -1609,80 +1886,53 @@ document.addEventListener('DOMContentLoaded', loadForumData);
             timestamp: new Date().toLocaleString('id-ID')
         };
 
+        // Memasukkan postingan ke urutan paling atas
         forumPosts.unshift(newPost);
-        saveToLocalStorage();
-        renderForum();
-        input.value = "";
-        showNotification("Berhasil posting!", "success");
-    }
-
-    // Fungsi simpan otomatis
-    function saveToLocalStorage() {
-        localStorage.setItem('accutax_forum_data', JSON.stringify(forumPosts));
-    }
-
-    function renderPost(post, isNew = false) {
-        const forumFeed = document.getElementById('forum-feed');
-        const badge = post.role === 'developer' ? '<span class="bg-maroon-600 text-white text-[10px] px-2 py-0.5 rounded-full ml-2">Official Dev</span>' : '';
         
-        const postHtml = `
-            <div id="${post.id}" class="bg-white p-6 rounded-2xl border ${post.role === 'developer' ? 'border-maroon-300' : 'border-gray-200'} mb-6 relative shadow-sm">
-                <button onclick="deletePost('${post.id}')" class="absolute top-4 right-4 text-gray-300 hover:text-red-500">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
-                </button>
-                <div class="flex items-center space-x-3 mb-4">
-                    <div class="w-10 h-10 rounded-full bg-gray-400 flex items-center justify-center text-white font-bold">${post.username.charAt(0).toUpperCase()}</div>
-                    <div>
-                        <p class="font-bold text-gray-900 text-sm">${post.username} ${badge}</p>
-                        <p class="text-[10px] text-gray-400">${post.timestamp}</p>
-                    </div>
-                </div>
-                <p class="text-gray-800 mb-4">${post.content}</p>
-                <div class="flex items-center space-x-6 border-t border-gray-100 pt-4 text-sm text-gray-400">
-                    <button onclick="handleLike('${post.id}')" class="hover:text-blue-500">Like (<span id="like-count-${post.id}">${post.likes || 0}</span>)</button>
-                    <button onclick="toggleComment('${post.id}')" class="hover:text-maroon-600">Komentar (${post.comments.length})</button>
-                </div>
-                
-                <div id="comment-area-${post.id}" class="hidden mt-4 pl-4 border-l-2 border-maroon-50">
-                    <div class="flex space-x-2 mb-4">
-                        <input type="text" id="input-comment-${post.id}" class="flex-1 text-xs p-2 border rounded-lg outline-none text-gray-900 bg-white" placeholder="Balas diskusi...">
-                        <button onclick="addComment('${post.id}')" class="text-[10px] bg-maroon-600 text-white px-3 py-1 rounded-lg">Kirim</button>
-                    </div>
-                    <div id="list-comment-${post.id}" class="space-y-1">
-                        </div>
-                </div>
-            </div>
-        `;
-
-        if (isNew) {
-            forumFeed.insertAdjacentHTML('afterbegin', postHtml);
-        } else {
-            forumFeed.insertAdjacentHTML('beforeend', postHtml);
-        }
-
-        // PENTING: Muat komentar yang sudah tersimpan untuk post ini
-        if (post.comments && post.comments.length > 0) {
-            post.comments.forEach(comment => {
-                renderSingleComment(post.id, comment);
-            });
-        }
+        // REVISI: Panggil nama fungsi simpan yang benar
+        saveToLocalStorage(); 
+        
+        // Perbarui tampilan forum di layar
+        renderForum();
+        
+        // Kosongkan kembali kotak input
+        input.value = "";
     }
 
-    // Fungsi Hapus Post atau Komentar
-    function deletePost(postId) {
-        if (currentUser.role !== 'developer') return;
-        if (confirm("Hapus postingan?")) {
-            posts = posts.filter(p => p.id != postId); // Filter array global
-            saveToLocalStorage(); // SIMPAN PERUBAHAN
-            renderForum();
-        }
-    }
-
-    // Fungsi Like
+    // Fungsi Like (REVISI)
     function handleLike(postId) {
-        const post = posts.find(p => p.id == postId);
-        // ... logika toggle like ...
-        saveToLocalStorage(); // SIMPAN PERUBAHAN
+        // Ambil data user dari localStorage
+        const user = {
+            username: localStorage.getItem('activeName'),
+            role: localStorage.getItem('activeRole')
+        };
+
+        // REVISI: Cek apakah user benar-benar sudah login
+        if (!user.username) { 
+            alert("Login dulu untuk menyukai!"); 
+            return; 
+        }
+
+        const post = forumPosts.find(p => p.id === postId);
+        if (!post) return;
+
+        if (!post.likedBy) post.likedBy = [];
+        const index = post.likedBy.indexOf(user.username);
+
+        if (index === -1) {
+            // Jika belum like, tambahkan ke daftar
+            post.likedBy.push(user.username);
+            post.likes++;
+        } else {
+            // Jika sudah like, hapus dari daftar (unlike)
+            post.likedBy.splice(index, 1);
+            post.likes--;
+        }
+
+        // REVISI: Gunakan nama fungsi simpan yang benar agar jumlah like tidak hilang
+        saveToLocalStorage(); 
+        
+        // Perbarui tampilan agar angka like berubah di layar
         renderForum();
     }
 
@@ -1691,96 +1941,257 @@ document.addEventListener('DOMContentLoaded', loadForumData);
         const forumFeed = document.getElementById('forum-feed');
         if (!forumFeed) return;
 
-        forumFeed.innerHTML = forumPosts.map(post => {
-            const isLiked = currentUser.isLoggedIn && post.likedBy && post.likedBy.includes(currentUser.username);
-            const isDev = currentUser.role === 'developer';
-            const badge = post.role === 'developer' ? '<span class="bg-maroon-700 text-white text-[9px] px-2 py-0.5 rounded-full ml-2 font-bold uppercase">Official Dev</span>' : '';
+        const user = {
+            username: localStorage.getItem('activeName'),
+            role: localStorage.getItem('activeRole')
+        }; // Cek siapa yang login
 
+        forumFeed.innerHTML = forumPosts.map(post => {
+            // Cek interaksi user
+            const isLiked = user && post.likedBy && post.likedBy.includes(user.username);
+            
+            // --- LOGIKA PEMBEDA TAMPILAN ADMIN VS USER ---
+            const isAdminPost = post.role === 'admin';
+            
+            // 1. Badge (Label)
+            const badge = isAdminPost 
+                ? '<span class="bg-maroon-700 text-white text-[10px] px-2 py-0.5 rounded-full ml-2 font-bold uppercase shadow-sm">ADMIN OFFICIAL</span>' 
+                : '<span class="bg-gray-200 text-gray-600 text-[10px] px-2 py-0.5 rounded-full ml-2 font-bold uppercase">Member</span>';
+
+            // 2. Warna Border & Background
+            // Admin: Border Maroon, Background agak merah muda tipis
+            // User: Border Abu, Background Putih
+            const cardStyle = isAdminPost 
+                ? 'border-2 border-maroon-100 bg-red-50/30' 
+                : 'border border-gray-200 bg-white';
+
+            // --- TOMBOL HAPUS POST ---
+            // Muncul jika: User Login ADALAH Pemilik Post, ATAU User Login ADALAH Admin
+            let deleteBtn = '';
+            if (user && (user.username === post.username || user.role === 'admin')) {
+                deleteBtn = `<button onclick="requestDelete('post', '${post.id}')" class="text-gray-300 hover:text-red-600 transition-colors p-2 rounded-full hover:bg-red-50">🗑️</button>`;
+            }
+
+            // --- RENDER KOMENTAR ---
+            const commentsHtml = post.comments.map(c => {
+                const isDevComment = c.role === 'admin';
+                // Pembeda Nama di Komentar
+                const nameClass = isDevComment ? 'text-maroon-800 font-extrabold' : 'text-gray-900 font-bold';
+                const bgComment = isDevComment ? 'bg-red-50 border-red-100' : 'bg-gray-50 border-gray-100';
+                
+                let delCommentBtn = '';
+                if (user && (user.username === c.username || user.role === 'admin')) {
+                    delCommentBtn = `<button onclick="requestDelete('comment', '${post.id}', '${c.id}')" class="ml-2 text-gray-400 hover:text-red-500 font-bold px-2">x</button>`;
+                }
+
+                return `
+                    <div class="${bgComment} p-3 rounded-xl border text-xs mb-2 flex justify-between items-start animate-fade-in">
+                        <div>
+                            <span class="${nameClass}">${c.username} ${isDevComment ? '✅' : ''}:</span>
+                            <span class="text-gray-700 ml-1 leading-relaxed">${c.text}</span>
+                            <div class="text-[9px] text-gray-400 mt-1">${c.timestamp}</div>
+                        </div>
+                        ${delCommentBtn}
+                    </div>
+                `;
+            }).join('');
+
+            // --- HTML KARTU POST ---
             return `
-                <div class="bg-white p-6 rounded-2xl border ${post.role === 'developer' ? 'border-maroon-200' : 'border-gray-100'} mb-6 shadow-sm animate-fade-in">
-                    <div class="flex justify-between items-start mb-4">
+                <div id="${post.id}" class="${cardStyle} p-6 rounded-2xl mb-6 shadow-sm hover:shadow-md transition-shadow">
+                    
+                    <div class="flex justify-between items-start mb-3">
                         <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 rounded-full bg-maroon-100 flex items-center justify-center text-maroon-700 font-extrabold">
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-sm ${isAdminPost ? 'bg-maroon-700' : 'bg-gray-400'}">
                                 ${post.username.charAt(0).toUpperCase()}
                             </div>
                             <div>
-                                <p class="font-bold text-gray-900 text-sm">${post.username} ${badge}</p>
-                                <p class="text-[10px] text-gray-400">${post.timestamp}</p>
+                                <p class="font-bold text-gray-900 text-sm flex items-center">${post.username} ${badge}</p>
+                                <p class="text-[10px] text-gray-500 flex items-center gap-1">
+                                    🕒 ${post.timestamp}
+                                </p>
                             </div>
                         </div>
-                        ${isDev ? `<button onclick="deletePost('${post.id}')" class="text-gray-300 hover:text-red-500 transition-colors">🗑️</button>` : ''}
+                        ${deleteBtn}
                     </div>
 
-                    <p class="text-gray-800 text-sm mb-4 leading-relaxed">${post.content}</p>
+                    <p class="text-gray-800 text-sm mb-4 leading-relaxed whitespace-pre-wrap">${post.content}</p>
 
-                    <div class="flex items-center space-x-6 border-t border-gray-50 pt-4 text-[12px]">
-                        <button onclick="handleLike('${post.id}')" class="flex items-center space-x-1 ${isLiked ? 'text-maroon-700 font-bold' : 'text-gray-400 hover:text-maroon-600'}">
-                            <span>${isLiked ? '❤️' : '🤍'} Like (${post.likes || 0})</span>
+                    <div class="flex items-center space-x-6 border-t border-gray-100/50 pt-3 text-xs">
+                        <button onclick="handleLike('${post.id}')" class="flex items-center space-x-1 transition-transform active:scale-95 ${isLiked ? 'text-pink-600 font-bold' : 'text-gray-500 hover:text-pink-600'}">
+                            <span>${isLiked ? '❤️' : '🤍'}</span>
+                            <span>Suka (${post.likes || 0})</span>
                         </button>
-                        <span class="text-gray-400">💬 Komentar (${post.comments.length})</span>
+                        <button onclick="toggleCommentBox('${post.id}')" class="text-gray-500 hover:text-maroon-600 flex items-center space-x-1 transition-colors">
+                            <span>💬</span>
+                            <span>Komentar (${post.comments.length})</span>
+                        </button>
                     </div>
 
-                    <div class="mt-4 space-y-2">
-                        ${post.comments.map(c => `
-                            <div class="bg-gray-50 p-3 rounded-xl border border-gray-100 text-[11px]">
-                                <span class="font-bold text-maroon-800">${c.username}${c.role === 'developer' ? ' (Dev)' : ''}:</span>
-                                <span class="text-gray-700 ml-1">${c.text}</span>
-                            </div>
-                        `).join('')}
+                    <div id="comment-box-${post.id}" class="hidden mt-4 pt-4 border-t border-gray-100">
+                        <div class="space-y-2 mb-3 max-h-60 overflow-y-auto pr-1">
+                            ${commentsHtml}
+                        </div>
+                        <div class="flex gap-2">
+                            <input type="text" id="input-${post.id}" 
+                                class="flex-1 bg-gray-50 border border-gray-300 rounded-xl px-4 py-2 text-xs focus:ring-2 focus:ring-maroon-500 outline-none transition-all" 
+                                placeholder="Tulis balasan..."
+                                onkeypress="if(event.key === 'Enter') addComment('${post.id}')">
+                            <button onclick="addComment('${post.id}')" class="bg-maroon-700 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-maroon-800 transition-colors shadow-md">
+                                Kirim
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="mt-4 flex gap-2">
-                        <input type="text" id="input-${post.id}" 
-                            class="flex-1 bg-white border border-gray-200 rounded-xl px-4 py-2 text-sm text-black placeholder-gray-400 focus:ring-1 focus:ring-maroon-500 outline-none" 
-                            placeholder="Balas diskusi..." onkeypress="if(event.key === 'Enter') addComment('${post.id}')">
-                        <button onclick="addComment('${post.id}')" class="bg-maroon-700 text-white px-5 py-2 rounded-xl text-sm font-bold active:scale-95 transition-all">Kirim</button>
-                    </div>
                 </div>
             `;
         }).join('');
     }
 
-    function handleLike(postId) {
-        if (!currentUser.isLoggedIn) return showNotification("Login dulu!", "info");
-        const post = forumPosts.find(p => p.id == postId);
-        if (!post.likedBy) post.likedBy = [];
-
-        const idx = post.likedBy.indexOf(currentUser.username);
-        if (idx === -1) {
-            post.likedBy.push(currentUser.username);
-            post.likes++;
-        } else {
-            post.likedBy.splice(idx, 1);
-            post.likes--;
-        }
-        saveToLocalStorage();
-        renderForum();
-    }
-
+    // Fungsi Tambah Komentar (REVISI FINAL)
     function addComment(postId) {
-        if (!currentUser.isLoggedIn) return showNotification("Login dulu!", "info");
+        // Ambil data user dari localStorage
+        const user = {
+            username: localStorage.getItem('activeName'),
+            role: localStorage.getItem('activeRole')
+        };
+
+        // REVISI: Cek apakah user sudah benar-benar login
+        if (!user.username) { 
+            alert("Login dulu untuk berkomentar!"); 
+            return; 
+        }
+
         const input = document.getElementById(`input-${postId}`);
         const text = input.value.trim();
         if (!text) return;
 
-        const post = forumPosts.find(p => p.id == postId);
-        post.comments.push({
-            username: currentUser.username,
-            role: currentUser.role,
-            text: text,
-            timestamp: new Date().toLocaleTimeString('id-ID')
-        });
-        
-        saveToLocalStorage();
-        renderForum();
+        const post = forumPosts.find(p => p.id === postId);
+        if (post) {
+            // Masukkan komentar ke dalam data post
+            post.comments.push({
+                id: 'c-' + Date.now(),
+                username: user.username,
+                role: user.role,
+                text: text,
+                timestamp: new Date().toLocaleString('id-ID')
+            });
+
+            // REVISI: Panggil fungsi simpan yang benar agar komentar tidak hilang
+            saveToLocalStorage(); 
+            
+            // Perbarui tampilan forum
+            renderForum();
+
+            // Pastikan kotak komentar tetap terbuka setelah render agar user bisa melihat hasilnya [cite: 1838]
+            setTimeout(() => {
+                const box = document.getElementById(`comment-box-${postId}`);
+                if (box) box.classList.remove('hidden');
+            }, 50);
+
+            // Bersihkan input balasan
+            input.value = "";
+        }
     }
 
-    function deletePost(postId) {
-        if (currentUser.role !== 'developer') return;
-        if (confirm("Hapus postingan ini?")) {
-            forumPosts = forumPosts.filter(p => p.id != postId);
-            saveToLocalStorage();
-            renderForum();
+    function toggleCommentBox(postId) {
+        const box = document.getElementById(`comment-box-${postId}`);
+        if(box) box.classList.toggle('hidden');
+    }
+
+    // D. SISTEM HAPUS DENGAN MODAL POPUP (REVISI BARU)
+
+    // 1. Fungsi Pemicu (Saat tombol sampah diklik)
+    function requestDelete(type, postId, commentId = null) {
+        // Simpan data apa yang mau dihapus ke variabel sementara
+        deleteTarget.type = type;
+        deleteTarget.postId = postId;
+        deleteTarget.commentId = commentId;
+
+        // Ubah Teks Modal Sesuai Konteks
+        const title = document.getElementById('delete-title');
+        const desc = document.getElementById('delete-desc');
+        
+        if (type === 'post') {
+            title.textContent = "Hapus Postingan?";
+            desc.textContent = "Postingan beserta like dan komentarnya akan hilang selamanya.";
+        } else {
+            title.textContent = "Hapus Komentar?";
+            desc.textContent = "Komentar ini akan dihapus dari diskusi.";
+        }
+
+        // Tampilkan Modal
+        document.getElementById('delete-modal').classList.remove('hidden');
+    }
+
+    // 2. Fungsi Tutup Modal
+    function closeDeleteModal() {
+        document.getElementById('delete-modal').classList.add('hidden');
+        // Reset target
+        deleteTarget = { type: null, postId: null, commentId: null };
+    }
+
+    // 3. Fungsi Eksekusi Hapus (Saat tombol "Ya, Hapus" diklik)
+    function confirmDeleteAction() {
+        if (deleteTarget.type === 'post') {
+            // 1. Hapus dari daftar postingan
+            forumPosts = forumPosts.filter(p => p.id !== deleteTarget.postId);
+            
+            // 2. REVISI: Simpan ke fungsi yang benar 
+            saveToLocalStorage(); 
+            
+            renderForum(); // Perbarui tampilan di layar 
+            showNotification("Postingan berhasil dihapus.", "success");
+        } 
+        else if (deleteTarget.type === 'comment') {
+            // 3. Hapus Komentar dari post tertentu
+            const post = forumPosts.find(p => p.id === deleteTarget.postId);
+            if (post) {
+                post.comments = post.comments.filter(c => c.id !== deleteTarget.commentId);
+                
+                // 4. REVISI: Simpan perubahan komentar 
+                saveToLocalStorage(); 
+                
+                renderForum();
+                showNotification("Komentar berhasil dihapus.", "success");
+            }
+        }
+        // 5. Tutup modal setelah selesai
+        closeDeleteModal();
+    }
+
+    // Variabel untuk menyimpan data sementara yang akan dihapus
+    let deleteTarget = { type: null, postId: null, commentId: null };
+
+    function requestDelete(type, postId, commentId = null) {
+        // 1. Simpan informasi apa yang mau dihapus
+        deleteTarget = { type, postId, commentId };
+
+        // 2. Sesuaikan teks di dalam modal agar user tidak bingung
+        const title = document.getElementById('delete-title');
+        const desc = document.getElementById('delete-desc');
+        
+        if (type === 'post') {
+            title.innerText = "Hapus Postingan?";
+            desc.innerText = "Apakah Anda yakin ingin menghapus postingan ini? Tindakan ini tidak dapat dibatalkan.";
+        } else {
+            title.innerText = "Hapus Komentar?";
+            desc.innerText = "Apakah Anda yakin ingin menghapus komentar ini?";
+        }
+
+        // 3. MUNCULKAN MODAL (Hapus kelas 'hidden')
+        const modal = document.getElementById('delete-modal');
+        if (modal) {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex'); // Pastikan menggunakan flex agar posisi di tengah
+        }
+    }
+
+    function closeDeleteModal() {
+        const modal = document.getElementById('delete-modal');
+        if (modal) {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
         }
     }
 
@@ -1788,8 +2199,10 @@ document.addEventListener('DOMContentLoaded', loadForumData);
         const list = document.getElementById('list-comment-' + postId);
         if (!list) return;
 
-        const nameStyle = comment.role === 'developer' ? 'text-maroon-700 font-extrabold' : 'text-gray-900 font-bold';
-        const devTag = comment.role === 'developer' ? ' (Dev)' : '';
+        // Pastikan style admin sesuai dengan role yang Anda gunakan di sistem
+        const isSpecial = comment.role === 'admin' || comment.role === 'developer';
+        const nameStyle = isSpecial ? 'text-maroon-700 font-extrabold' : 'text-gray-900 font-bold';
+        const devTag = isSpecial ? ' (Admin)' : '';
 
         const commentHtml = `
             <div id="${comment.id}" class="group text-sm bg-gray-50 p-3 rounded-lg border border-gray-100 animate-fade-in flex justify-between items-start mb-2">
@@ -1798,11 +2211,18 @@ document.addEventListener('DOMContentLoaded', loadForumData);
                     <span class="text-gray-700 ml-1">${comment.text}</span>
                     <p class="text-[9px] text-gray-400 mt-1">${comment.timestamp}</p>
                 </div>
-                ${(currentUser.username === comment.username || currentUser.role === 'developer') ? `
-                    <button onclick="deleteComment('${postId}', '${comment.id}')" class="text-gray-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity ml-2">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+                ${
+                    // Logika: Munculkan tombol sampah jika ini komentar miliknya ATAU dia adalah Admin
+                    (localStorage.getItem('activeName') === comment.username || 
+                    localStorage.getItem('activeRole') === 'admin') 
+                    ? `
+                    <button onclick="requestDelete('comment', '${postId}', '${comment.id}')" class="text-gray-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity ml-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
                     </button>
-                ` : ''}
+                    ` : ''
+                }
             </div>
         `;
         list.insertAdjacentHTML('beforeend', commentHtml);
@@ -2124,37 +2544,111 @@ document.addEventListener('DOMContentLoaded', loadForumData);
         }
         
         function updatePPh21AlreadyWithheld(penghasilanBrutoBulanan) {
-            if (penghasilanBrutoBulanan <= 0) {
-                const pph21Field = document.getElementById('pph21-dipotong');
-                if (pph21Field) {
-                    pph21Field.value = '';
-                }
-                return;
-            }
-            
-            // Get PTKP status for TER calculation
+            const jenisPegawai = document.getElementById('jenis-pegawai').value;
+            const pph21Field = document.getElementById('pph21-dipotong');
             const statusPTKP = document.getElementById('status-ptkp').value;
             const statusNPWP = document.getElementById('status-npwp').value;
-            
-            // Determine TER category and rate
-            const terKategori = getTERCategory(statusPTKP);
-            const terTarif = findTERRate(terKategori, penghasilanBrutoBulanan);
-            
-            // Calculate monthly PPh 21 using TER
-            let pph21Bulanan = penghasilanBrutoBulanan * (terTarif / 100);
-            
-            // Apply NPWP penalty if applicable
-            if (statusNPWP === 'tidak-ada') {
-                pph21Bulanan *= 1.2;
+
+            if (!pph21Field) return;
+
+            if (penghasilanBrutoBulanan <= 0) {
+                pph21Field.value = '';
+                return;
             }
-            
-            // Total for 11 months (Jan-Nov)
-            const totalPph21JanNov = pph21Bulanan * 11;
-            
-            const pph21Field = document.getElementById('pph21-dipotong');
-            if (pph21Field) {
+
+            if (['tetap', 'bukan-pegawai-berkesinambungan', 'bukan-pegawai-tidak'].includes(jenisPegawai)) {
+                pph21Field.setAttribute('readonly', true);
+                pph21Field.classList.add('bg-gray-50');
+                pph21Field.classList.remove('bg-white');
+            }
+
+            // --- 1. PEGAWAI TETAP (Metode TER) ---
+            if (jenisPegawai === 'tetap') {
+                const terKategori = getTERCategory(statusPTKP);
+                const terTarif = findTERRate(terKategori, penghasilanBrutoBulanan);
+                let pph21Bulanan = penghasilanBrutoBulanan * (terTarif / 100);
+
+                if (statusNPWP === 'tidak-ada') pph21Bulanan *= 1.2;
+
+                const totalPph21JanNov = pph21Bulanan * 11;
                 pph21Field.value = formatCurrency(totalPph21JanNov);
             }
+
+            // --- 2. BUKAN PEGAWAI BERKESINAMBUNGAN (Hitung Sebulan x 11) ---
+            else if (jenisPegawai === 'bukan-pegawai-berkesinambungan') {
+                // DPP Sebulan
+                const dppSebulan = penghasilanBrutoBulanan * 0.5;
+                // PTKP Sebulan
+                const ptkpTahunan = ptkpValues[statusPTKP] || 54000000;
+                const ptkpSebulan = ptkpTahunan / 12;
+                // PKP Sebulan
+                let pkpSebulan = Math.floor((dppSebulan - ptkpSebulan) / 1000) * 1000;
+                if (pkpSebulan < 0) pkpSebulan = 0;
+
+                // Hitung Pajak Sebulan lalu dikali 11
+                let pphSebulan = calculateTaxEstimasi(pkpSebulan, taxBrackets);
+                if (statusNPWP === 'tidak-ada') pphSebulan *= 1.2;
+
+                pph21Field.value = formatCurrency(pphSebulan * 11);
+            }
+
+            // --- 3. BUKAN PEGAWAI TIDAK BERKESINAMBUNGAN (Hitung Sebulan x 11) ---
+            else if (jenisPegawai === 'bukan-pegawai-tidak') {
+                // DPP Sebulan (50% Bruto)
+                const dppSebulan = penghasilanBrutoBulanan * 0.5;
+                // PKP = DPP (Tanpa PTKP)
+                let pkpSebulan = Math.floor(dppSebulan / 1000) * 1000;
+
+                // Hitung Pajak Sebulan lalu dikali 11
+                let pphSebulan = calculateTaxEstimasi(pkpSebulan, taxBrackets);
+                if (statusNPWP === 'tidak-ada') pphSebulan *= 1.2;
+
+                pph21Field.value = formatCurrency(pphSebulan * 11);
+            }
+
+            // --- 4. LAINNYA ---
+            else {
+                pph21Field.removeAttribute('readonly');
+                pph21Field.classList.remove('bg-gray-50');
+                pph21Field.classList.add('bg-white');
+                pph21Field.value = 'Rp 0'; 
+            }
+        }
+
+        // --- FUNGSI BANTUAN KECIL (Agar tidak error "calculateTax not found") ---
+        // Masukkan fungsi ini tepat di bawah fungsi updatePPh21AlreadyWithheld
+        function calculateTaxEstimasi(pkp, brackets) {
+            let sisa = pkp;
+            let totalPajak = 0;
+            // Default brackets jika parameter undefined
+            const tarif = brackets || [
+                { max: 60000000, rate: 0.05 },
+                { max: 250000000, rate: 0.15 },
+                { max: 500000000, rate: 0.25 },
+                { max: 5000000000, rate: 0.30 },
+                { max: Infinity, rate: 0.35 }
+            ];
+
+            for (const b of tarif) {
+                let prevMax = 0; // Logika sederhana untuk helper ini
+                // Asumsi struktur taxBrackets Anda {min, max, rate}
+                // Jika struktur {max, rate}, sesuaikan. 
+                // Agar aman, kita pakai logika loop range:
+                
+                const nominalKena = Math.min(sisa, b.max - (b.min || 0)); // Pakai min dari global variable jika ada
+                // Atau lebih aman pakai hardcode loop standar:
+                // (Saya pakai metode di bawah ini yang pasti jalan tanpa dependensi global yang rumit)
+            }
+            
+            // VERSI PALING AMAN (Hardcoded Pasal 17 Terbaru):
+            let tax = 0;
+            if (pkp > 5000000000) { tax += (pkp - 5000000000) * 0.35; pkp = 5000000000; }
+            if (pkp > 500000000)  { tax += (pkp - 500000000) * 0.30; pkp = 500000000; }
+            if (pkp > 250000000)  { tax += (pkp - 250000000) * 0.25; pkp = 250000000; }
+            if (pkp > 60000000)   { tax += (pkp - 60000000) * 0.15; pkp = 60000000; }
+            if (pkp > 0)          { tax += pkp * 0.05; }
+            
+            return tax;
         }
 
         function getTERCategory(statusPTKP) {
@@ -2336,17 +2830,22 @@ document.addEventListener('DOMContentLoaded', loadForumData);
                     errorMessage = 'Gaji Pokok harus diisi dengan nilai yang valid.';
                 }
             } else {
-                const gajiBulanan = getStoredValue('gaji-bulanan');
-                if (gajiBulanan <= 0) {
+                // --- REVISI: Cek Total Penghasilan (Bukan cuma Gaji) ---
+                const gaji = getStoredValue('gaji-bulanan');
+                const tunjangan = getStoredValue('tunjangan-bulanan');
+                const bonus = getStoredValue('bonus-bulanan');
+                const natura = getStoredValue('natura-bulanan');
+                
+                // Validasi lolos jika minimal ada SATU komponen penghasilan yang diisi
+                if ((gaji + tunjangan + bonus + natura) <= 0) {
                     isValid = false;
-                    errorMessage = 'Gaji Pokok per Bulan harus diisi dengan nilai yang valid.';
+                    errorMessage = 'Mohon isi minimal salah satu komponen penghasilan (Gaji, Tunjangan, Bonus, atau Natura).';
                 }
             }
 
             if (!isValid) {
                 showNotification(errorMessage, 'error');
             }
-
             return isValid;
         }
 
@@ -2401,57 +2900,317 @@ document.addEventListener('DOMContentLoaded', loadForumData);
                 // --- SPESIFIKASI BERDASARKAN JENIS PEGAWAI ---
 
                 if (jenisPegawai === 'tetap') {
-                    // PEGAWAI TETAP: Menggunakan Metode TER
-                    const terKategori = getTERCategory(statusPTKP);
-                    const terTarif = findTERRate(terKategori, penghasilanBruto);
-                    pph21Result = penghasilanBruto * (terTarif / 100);
+                    // --- PEGAWAI TETAP (MASA - METODE TER FINAL FIX) ---
+                    
+                    // 1. Ambil Komponen & Hitung Bruto
+                    const gaji = getStoredValue('gaji-pokok');
+                    const tunjangan = getStoredValue('tunjangan');
+                    const bonus = getStoredValue('bonus'); 
+                    const lembur = getStoredValue('lembur');
+                    const jkk = getStoredValue('jkk');
+                    const jkm = getStoredValue('jkm');
+                    const natura = getStoredValue('natura'); 
 
+                    penghasilanBruto = gaji + tunjangan + bonus + lembur + jkk + jkm + natura;
+
+                    // 2. HITUNG TER
+                    const statusPTKP = document.getElementById('status-ptkp').value; 
+                    const terKategori = getTERCategory(statusPTKP); 
+                    const terTarif = findTERRate(terKategori, penghasilanBruto);
+
+                    // 3. Hitung PPh 21
+                    let pph21Bulanan = penghasilanBruto * (terTarif / 100);
+                    
+                    // 4. Cek NPWP
+                    let stepNPWP = [];
+                    if (statusNPWP === 'tidak-ada') {
+                        const pphNormal = pph21Bulanan;
+                        pph21Bulanan *= 1.2; 
+                        stepNPWP = [
+                            `<div class="mt-1 bg-red-50 p-2 rounded border border-red-100">`,
+                            `<div class="flex justify-between text-xs font-bold text-red-700"><span>Pajak Normal:</span><span>${formatCurrency(pphNormal)}</span></div>`,
+                            `<div class="flex justify-between text-xs text-red-600"><span>(+) Sanksi Non-NPWP (20%):</span><span>+${formatCurrency(pph21Bulanan - pphNormal)}</span></div>`,
+                            `</div>`
+                        ];
+                    }
+
+                    pph21Result = pph21Bulanan;
+
+                    // 5. Visualisasi Langkah
                     calculationSteps = [
-                        `<span class="text-maroon-800 font-bold">Langkah 1: Menghitung Penghasilan Bruto Masa</span>`,
-                        `&nbsp;&nbsp;• Total Bruto Bulanan: ${formatCurrency(penghasilanBruto)}`,
-                        `<span class="text-maroon-800 font-bold">Langkah 2: Menentukan Kategori & Tarif TER</span>`,
-                        `&nbsp;&nbsp;• Status PTKP: ${statusPTKP} (Masuk Kategori ${terKategori})`,
-                        `&nbsp;&nbsp;• Tarif TER Berlaku: ${terTarif}% <span class="text-xs text-gray-500">(Sesuai PP 58/2023)</span>`,
-                        `<span class="text-maroon-800 font-bold">Langkah 3: Perhitungan PPh 21 Bulanan</span>`,
-                        `&nbsp;&nbsp;• PPh 21: ${formatCurrency(penghasilanBruto)} x ${terTarif}%`,
-                        `&nbsp;&nbsp;• <span class="text-lg font-bold text-maroon-600 underline">PPh 21 Terutang: ${formatCurrency(pph21Result)}</span>`
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">A. Penghasilan Bruto Sebulan</div>`,
+                        `<div class="flex justify-between text-sm"><span>Gaji + Tunjangan + Lainnya:</span> <span>${formatCurrency(penghasilanBruto)}</span></div>`,
+                        `<br>`,
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">B. Tarif Efektif Rata-rata (TER)</div>`,
+                        `<div class="flex justify-between text-sm"><span>Status ${statusPTKP} masuk kategori:</span> <span class="font-bold">TER ${terKategori}</span></div>`,
+                        `<div class="flex justify-between text-sm"><span>Tarif Pajak:</span> <span class="font-bold text-yellow-700">${terTarif}%</span></div>`,
+                        `<br>`,
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">C. Total Bayar</div>`,
+                        `<div class="flex justify-between font-black text-lg text-maroon-700 mt-2 pt-2 border-t border-dashed border-gray-300">
+                            <span>${formatCurrency(penghasilanBruto)} x ${terTarif}% =</span> 
+                            <span>${formatCurrency(pph21Result)}</span>
+                        </div>`
                     ];
 
-                    // Update UI TER
-                    document.getElementById('ter-info').classList.remove('hidden');
-                    document.getElementById('result-ter-kategori').textContent = `Kategori ${terKategori}`;
-                    document.getElementById('result-ter-tarif').textContent = `${terTarif}%`;
+                    // --- 6. SINKRONISASI UI (BAGIAN PERBAIKAN UTAMA) ---
+                    
+                    // A. Pastikan Kartu "TER" Muncul & Kartu "Tahunan" Sembunyi
+                    const cardTer = document.getElementById('ter-info');
+                    const cardTahunan = document.getElementById('tahunan-info');
+                    if (cardTer) cardTer.classList.remove('hidden');
+                    if (cardTahunan) cardTahunan.classList.add('hidden');
+
+                    // B. Update Isi Kartu (Coba update kedua versi ID agar pasti masuk)
+                    
+                    // Update Bruto (Pasti ID ini sama)
+                    const elNeto = document.getElementById('result-neto');
+                    if (elNeto) elNeto.textContent = formatCurrency(penghasilanBruto);
+
+                    // Update Kategori (Coba ID Tahunan & ID TER)
+                    // Versi 1 (ID Tahunan)
+                    const elPtkp = document.getElementById('result-ptkp-value');
+                    if (elPtkp) elPtkp.textContent = `TER ${terKategori}`;
+                    
+                    // Versi 2 (Kemungkinan ID Khusus TER - result-ter-kategori)
+                    const elTerKat = document.getElementById('result-ter-kategori'); 
+                    if (elTerKat) elTerKat.textContent = `TER ${terKategori}`;
+                    
+                    // Update Tarif
+                    // Versi 1 (ID Tahunan)
+                    const elPkp = document.getElementById('result-pkp');
+                    if (elPkp) elPkp.textContent = `${terTarif}%`;
+
+                    // Versi 2 (Kemungkinan ID Khusus TER - result-ter-tarif)
+                    const elTerTarif = document.getElementById('result-ter-tarif');
+                    if (elTerTarif) elTerTarif.textContent = `${terTarif}%`;
+
+                    // C. Sembunyikan field yang tidak relevan
+                    if(document.getElementById('result-pph21-tahunan')?.parentElement) {
+                        document.getElementById('result-pph21-tahunan').parentElement.classList.add('hidden');
+                    }
+                    if(document.getElementById('result-pph21-terpotong')?.parentElement) {
+                        document.getElementById('result-pph21-terpotong').parentElement.classList.add('hidden');
+                    }
+
 
                 } else if (jenisPegawai === 'bukan-pegawai-berkesinambungan') {
-                    // BUKAN PEGAWAI BERKESINAMBUNGAN: DPP 50% & PTKP Bulanan
-                    const dpp = penghasilanBruto * 0.5;
-                    const ptkpBulanan = (ptkpValues[statusPTKP] || 54000000) / 12;
-                    const pkpBulanan = Math.max(0, dpp - ptkpBulanan);
-                    pph21Result = calculateTax(pkpBulanan);
+                    // --- BUKAN PEGAWAI BERKESINAMBUNGAN (MASA - REVISI UI & LOGIKA) ---
 
+                    // 1. Hitung Bruto & DPP
+                    const gaji = getStoredValue('gaji-pokok');
+                    const tunjangan = getStoredValue('tunjangan');
+                    const bonus = getStoredValue('bonus');
+                    const lain = getStoredValue('lembur') + getStoredValue('natura');
+
+                    penghasilanBruto = gaji + tunjangan + bonus + lain;
+                    const dpp = penghasilanBruto * 0.5; // DPP selalu 50% dari Bruto
+
+                    // 2. Hitung PKP (PTKP dibagi 12 karena Masa)
+                    const statusPTKP = document.getElementById('status-ptkp').value;
+                    const ptkpTahunan = ptkpValues[statusPTKP] || 54000000;
+                    const ptkpSebulan = ptkpTahunan / 12;
+                    
+                    // Hitung PKP: DPP - PTKP Sebulan
+                    let pkp = Math.floor((dpp - ptkpSebulan) / 1000) * 1000;
+                    if (pkp < 0) pkp = 0;
+
+                    // 3. Hitung PPh 21 (Tarif Progresif Pasal 17)
+                    let sisaPKP = pkp;
+                    let layer = 1;
+                    let pph21Base = 0;
+                    let detailLapisPasal17 = [];
+
+                    if (typeof taxBrackets !== 'undefined') {
+                        for (const bracket of taxBrackets) {
+                            if (sisaPKP <= 0) break;
+                            const nominalKenaTarif = Math.min(sisaPKP, bracket.max - bracket.min);
+                            const pajakLapisIni = nominalKenaTarif * bracket.rate;
+                            pph21Base += pajakLapisIni;
+                            
+                            detailLapisPasal17.push(
+                                `<div class="flex justify-between text-xs ml-4 text-gray-600">` +
+                                `<span>• Lapis ${layer} (${(bracket.rate * 100)}% x ${formatCurrency(nominalKenaTarif)}):</span>` +
+                                `<span>${formatCurrency(pajakLapisIni)}</span>` +
+                                `</div>`
+                            );
+                            sisaPKP -= nominalKenaTarif;
+                            layer++;
+                        }
+                    } else {
+                        pph21Base = calculateTaxEstimasi(pkp); 
+                    }
+
+                    // 4. Cek NPWP
+                    let stepNPWP = [];
+                    let pphAkhir = pph21Base;
+                    if (statusNPWP === 'tidak-ada') {
+                        pphAkhir = pph21Base * 1.2;
+                        stepNPWP = [
+                            `<div class="mt-1 bg-red-50 p-2 rounded border border-red-100">`,
+                            `<div class="flex justify-between text-xs font-bold text-red-700"><span>Pajak Normal:</span><span>${formatCurrency(pph21Base)}</span></div>`,
+                            `<div class="flex justify-between text-xs text-red-600"><span>(+) Sanksi Non-NPWP (20%):</span><span>+${formatCurrency(pphAkhir - pph21Base)}</span></div>`,
+                            `</div>`
+                        ];
+                    }
+
+                    pph21Result = pphAkhir;
+
+                    // 5. Visualisasi Langkah (Calculation Steps)
                     calculationSteps = [
-                        `<span class="text-maroon-800 font-bold">Langkah 1: Dasar Pengenaan Pajak (DPP)</span>`,
-                        `&nbsp;&nbsp;• DPP (50% x Bruto): ${formatCurrency(dpp)}`,
-                        `<span class="text-maroon-800 font-bold">Langkah 2: Penghasilan Kena Pajak (PKP) Bulanan</span>`,
-                        `&nbsp;&nbsp;• PTKP Bulanan (${statusPTKP}): -${formatCurrency(ptkpBulanan)}`,
-                        `&nbsp;&nbsp;• <span class="font-semibold text-gray-700">PKP: ${formatCurrency(pkpBulanan)}</span>`,
-                        `<span class="text-maroon-800 font-bold">Langkah 3: PPh 21 Pasal 17</span>`,
-                        `&nbsp;&nbsp;• <span class="text-lg font-bold text-maroon-600 underline">PPh 21 Terutang: ${formatCurrency(pph21Result)}</span>`
+                        // BAGIAN A: DPP
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">A. Dasar Pengenaan Pajak (DPP)</div>`,
+                        `<div class="flex justify-between text-sm"><span>Penghasilan Bruto:</span> <span>${formatCurrency(penghasilanBruto)}</span></div>`,
+                        `<div class="flex justify-between text-xs text-gray-500"><span>Rumus:</span> <span>50% x Bruto</span></div>`,
+                        `<div class="flex justify-between font-semibold bg-gray-50 px-2 py-1 rounded mt-1 text-sm"><span>= DPP:</span> <span>${formatCurrency(dpp)}</span></div>`,
+                        `<br>`,
+
+                        // BAGIAN B: PKP
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">B. Penghasilan Kena Pajak (PKP)</div>`,
+                        `<div class="flex justify-between text-sm"><span>DPP:</span> <span>${formatCurrency(dpp)}</span></div>`,
+                        `<div class="flex justify-between text-xs text-gray-500"><span>(-) PTKP Sebulan (${statusPTKP}):</span> <span>-${formatCurrency(ptkpSebulan)}</span></div>`,
+                        `<div class="flex justify-between font-semibold bg-gray-50 px-2 py-1 rounded mt-1 text-sm"><span>= PKP (Masa):</span> <span>${formatCurrency(pkp)}</span></div>`,
+                        `<br>`,
+
+                        // BAGIAN C: TARIF
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">C. Perhitungan PPh 21 (Pasal 17)</div>`,
+                        ...detailLapisPasal17, 
+                        ...stepNPWP,           
+                        `<div class="flex justify-between text-sm mt-2 font-medium"><span>Subtotal PPh:</span> <span>${formatCurrency(pphAkhir)}</span></div>`,
+                        `<br>`,
+
+                        // BAGIAN D: HASIL
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">D. Total Bayar</div>`,
+                        `<div class="flex justify-between font-black text-lg text-maroon-700 mt-2 pt-2 border-t border-dashed border-gray-300">
+                            <span>TOTAL:</span> 
+                            <span>${formatCurrency(pph21Result)}</span>
+                        </div>`
                     ];
-                    document.getElementById('ter-info').classList.add('hidden');
+
+                    // --- 6. SINKRONISASI UI KARTU KIRI (REVISI PENTING) ---
+                    
+                    // A. TUKAR KARTU: Sembunyikan Kartu TER, Tampilkan Kartu Umum (Tahunan)
+                    const cardTer = document.getElementById('ter-info');
+                    const cardTahunan = document.getElementById('tahunan-info');
+                    
+                    if (cardTer) cardTer.classList.add('hidden'); // Sembunyikan label "Kategori TER"
+                    if (cardTahunan) cardTahunan.classList.remove('hidden'); // Tampilkan label umum (Neto, PTKP, PKP)
+
+                    // B. ISI DATA KE KARTU UMUM
+                    // Isi DPP ke kolom Neto
+                    document.getElementById('result-neto').textContent = formatCurrency(dpp);
+                    
+                    // Isi PTKP Sebulan ke kolom PTKP
+                    document.getElementById('result-ptkp-value').textContent = formatCurrency(ptkpSebulan);
+                    
+                    // Isi PKP ke kolom PKP
+                    document.getElementById('result-pkp').textContent = formatCurrency(pkp);
+                    
+                    // C. SEMBUNYIKAN FIELD TAHUNAN (Sisa / Terpotong)
+                    // Karena ini kalkulator Masa, kita tidak butuh info PPh setahun di kartu ringkasan
+                    const elPphTahunan = document.getElementById('result-pph21-tahunan');
+                    const elPphPotong = document.getElementById('result-pph21-terpotong');
+                    
+                    if(elPphTahunan && elPphTahunan.parentElement) elPphTahunan.parentElement.classList.add('hidden');
+                    if(elPphPotong && elPphPotong.parentElement) elPphPotong.parentElement.classList.add('hidden');
 
                 } else if (jenisPegawai === 'bukan-pegawai-tidak') {
-                    // BUKAN PEGAWAI TIDAK BERKESINAMBUNGAN: Langsung Pasal 17 atas 50% Bruto
-                    const dpp = penghasilanBruto * 0.5;
-                    pph21Result = calculateTax(dpp);
+                    // --- BUKAN PEGAWAI TIDAK BERKESINAMBUNGAN (MASA) ---
 
+                    // 1. Hitung Bruto & DPP
+                    const gaji = getStoredValue('gaji-pokok');
+                    const tunjangan = getStoredValue('tunjangan');
+                    const bonus = getStoredValue('bonus');
+                    const lain = getStoredValue('lembur') + getStoredValue('natura');
+
+                    penghasilanBruto = gaji + tunjangan + bonus + lain;
+                    
+                    // Rumus: 50% x Penghasilan Bruto
+                    const dpp = penghasilanBruto * 0.5;
+
+                    // 2. Hitung PKP
+                    // Regulasi: Tidak Berkesinambungan = Tidak dapat pengurangan PTKP.
+                    // Maka PKP = DPP.
+                    const pkp = Math.floor(dpp / 1000) * 1000;
+
+                    // 3. Hitung PPh 21 (Tarif Progresif Harian/Bulanan)
+                    let sisaPKP = pkp;
+                    let layer = 1;
+                    let pph21Base = 0;
+                    let detailLapisPasal17 = [];
+
+                    if (typeof taxBrackets !== 'undefined') {
+                        for (const bracket of taxBrackets) {
+                            if (sisaPKP <= 0) break;
+                            const nominalKenaTarif = Math.min(sisaPKP, bracket.max - bracket.min);
+                            const pajakLapisIni = nominalKenaTarif * bracket.rate;
+                            pph21Base += pajakLapisIni;
+                            
+                            detailLapisPasal17.push(
+                                `<div class="flex justify-between text-xs ml-4 text-gray-600">` +
+                                `<span>• Lapis ${layer} (${(bracket.rate * 100)}% x ${formatCurrency(nominalKenaTarif)}):</span>` +
+                                `<span>${formatCurrency(pajakLapisIni)}</span>` +
+                                `</div>`
+                            );
+                            sisaPKP -= nominalKenaTarif;
+                            layer++;
+                        }
+                    } else {
+                        pph21Base = calculateTaxEstimasi(pkp);
+                    }
+
+                    // 4. Cek Sanksi NPWP
+                    let stepNPWP = [];
+                    let pphAkhir = pph21Base;
+                    if (statusNPWP === 'tidak-ada') {
+                        pphAkhir = pph21Base * 1.2;
+                        stepNPWP = [
+                            `<div class="mt-1 bg-red-50 p-2 rounded border border-red-100">`,
+                            `<div class="flex justify-between text-xs font-bold text-red-700"><span>Pajak Normal:</span><span>${formatCurrency(pph21Base)}</span></div>`,
+                            `<div class="flex justify-between text-xs text-red-600"><span>(+) Sanksi Non-NPWP (20%):</span><span>+${formatCurrency(pphAkhir - pph21Base)}</span></div>`,
+                            `</div>`
+                        ];
+                    }
+
+                    pph21Result = pphAkhir;
+
+                    // --- 5. VISUALISASI LANGKAH (FORMAT A-B-C-D) ---
                     calculationSteps = [
-                        `<span class="text-maroon-800 font-bold">Langkah 1: Dasar Pengenaan Pajak (DPP)</span>`,
-                        `&nbsp;&nbsp;• DPP (50% x Bruto): ${formatCurrency(dpp)}`,
-                        `<span class="text-maroon-800 font-bold">Langkah 2: PPh 21 Pasal 17 (Progresif)</span>`,
-                        `&nbsp;&nbsp;• <span class="text-lg font-bold text-maroon-600 underline">PPh 21 Terutang: ${formatCurrency(pph21Result)}</span>`
+                        // BAGIAN A: DPP
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">A. Dasar Pengenaan Pajak (DPP)</div>`,
+                        `<div class="flex justify-between text-sm"><span>Penghasilan Bruto:</span> <span>${formatCurrency(penghasilanBruto)}</span></div>`,
+                        `<div class="flex justify-between text-xs text-gray-500"><span>Rumus:</span> <span>50% x Bruto</span></div>`,
+                        `<div class="flex justify-between font-semibold bg-gray-50 px-2 py-1 rounded mt-1 text-sm"><span>= DPP:</span> <span>${formatCurrency(dpp)}</span></div>`,
+                        `<br>`,
+
+                        // BAGIAN B: PKP
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">B. Penghasilan Kena Pajak (PKP)</div>`,
+                        `<div class="flex justify-between text-sm"><span>DPP:</span> <span>${formatCurrency(dpp)}</span></div>`,
+                        `<div class="flex justify-between text-xs text-gray-500 italic"><span>(-) PTKP (Tidak Berkesinambungan):</span> <span>Rp 0</span></div>`,
+                        `<div class="flex justify-between font-semibold bg-gray-50 px-2 py-1 rounded mt-1 text-sm"><span>= PKP (Masa):</span> <span>${formatCurrency(pkp)}</span></div>`,
+                        `<br>`,
+
+                        // BAGIAN C: TARIF
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">C. Perhitungan PPh 21</div>`,
+                        ...detailLapisPasal17,
+                        ...stepNPWP,
+                        `<div class="flex justify-between text-sm mt-2 font-medium"><span>Subtotal PPh:</span> <span>${formatCurrency(pphAkhir)}</span></div>`,
+                        `<br>`,
+
+                        // BAGIAN D: HASIL
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">D. PPh 21 Terutang Masa Ini</div>`,
+                        `<div class="flex justify-between font-black text-lg text-maroon-700 mt-2 pt-2 border-t border-dashed border-gray-300">
+                            <span>TOTAL BAYAR:</span> 
+                            <span>${formatCurrency(pph21Result)}</span>
+                        </div>`
                     ];
-                    document.getElementById('ter-info').classList.add('hidden');
+
+                    // --- SINKRONISASI UI ---
+                    document.getElementById('result-neto').textContent = formatCurrency(dpp);
+                    document.getElementById('result-ptkp-value').textContent = "Rp 0 (Tanpa PTKP)";
+                    document.getElementById('result-pkp').textContent = formatCurrency(pkp);
+                    
+                    document.getElementById('result-pph21-tahunan').parentElement.classList.add('hidden');
+                    document.getElementById('result-pph21-terpotong').parentElement.classList.add('hidden');
                 }
 
                 // Penyesuaian Penalti NPWP (+20%)
@@ -2467,8 +3226,8 @@ document.addEventListener('DOMContentLoaded', loadForumData);
                 }
 
                 document.getElementById('tahunan-info').classList.add('hidden');
-                
-            } else {
+
+            } else if (currentCalculatorType === 'tahunan') {
                 // --- LOGIKA KALKULATOR TAHUNAN (DESEMBER / BERHENTI BEKERJA) ---
                 const gajiBulanan = getStoredValue('gaji-bulanan');
                 const tunjanganBulanan = getStoredValue('tunjangan-bulanan');
@@ -2499,98 +3258,314 @@ document.addEventListener('DOMContentLoaded', loadForumData);
                     const pkp = Math.max(0, Math.floor((penghasilanNeto - ptkp) / 1000) * 1000);
 
                     // Perhitungan Lapis Pasal 17 
-                    let sisaPKP = pkp;
+                    let sisaPKP = pkp; 
                     let layer = 1;
+                    let pph21Base = 0; 
+                    let detailLapisPasal17 = []; 
+
+                    // Loop menggunakan data 'taxBrackets' yang sudah ada di kode asli Anda
                     for (const bracket of taxBrackets) {
                         if (sisaPKP <= 0) break;
                         const nominalKenaTarif = Math.min(sisaPKP, bracket.max - bracket.min);
                         const pajakLapisIni = nominalKenaTarif * bracket.rate;
-                        detailLapisPasal17.push(`&nbsp;&nbsp;&nbsp;&nbsp;• Lapis ${layer} (${bracket.rate * 100}%): ${formatCurrency(nominalKenaTarif)} = ${formatCurrency(pajakLapisIni)}`);
+                        pph21Base += pajakLapisIni;
+                        
+                        // Menyusun teks rincian tarif
+                        detailLapisPasal17.push(
+                            `<div class="flex justify-between text-xs ml-4 text-gray-600">` +
+                            `<span>• Lapis ${layer} (${(bracket.rate * 100)}% x ${formatCurrency(nominalKenaTarif)}):</span>` +
+                            `<span>${formatCurrency(pajakLapisIni)}</span>` +
+                            `</div>`
+                        );
                         sisaPKP -= nominalKenaTarif;
                         layer++;
                     }
 
                     pph21Tahunan = calculateTax(pkp);
-                    if (statusNPWP === 'tidak-ada') pph21Tahunan *= 1.2;
+                    let stepNPWP = []; 
+
+                    if (statusNPWP === 'tidak-ada') {
+                        const kenaikan = pph21Base * 0.2; // 20%
+                        pph21Tahunan = pph21Base + kenaikan;
+                        
+                        stepNPWP = [
+                            `<div class="mt-1 bg-red-50 p-2 rounded border border-red-100">`,
+                            `<div class="flex justify-between text-xs font-bold text-red-700"><span>Pajak Normal:</span><span>${formatCurrency(pph21Base)}</span></div>`,
+                            `<div class="flex justify-between text-xs text-red-600"><span>(+) Sanksi Non-NPWP (20%):</span><span>+${formatCurrency(kenaikan)}</span></div>`,
+                            `</div>`
+                        ];
+                    }
 
                     const pph21DipotongJanNov = parseRupiah(document.getElementById('pph21-dipotong').value) || 0;
                     pph21Result = pph21Tahunan - pph21DipotongJanNov;
+                    const kategoriTER = getTERCategory(statusPTKP); // Mendapatkan A, B, atau C
+                    const estimasiBrutoBulanan = penghasilanBruto / 12; // Rata-rata sebulan
+                    const tarifTER = findTERRate(kategoriTER, estimasiBrutoBulanan); // Mendapatkan % tarif
 
                     calculationSteps = [
-                        `<span class="text-maroon-800 font-bold">1. Analisis Penghasilan Neto (Pegawai Tetap)</span>`,
-                        `&nbsp;&nbsp;• Total Bruto Setahun: ${formatCurrency(penghasilanBruto)}`,
-                        `&nbsp;&nbsp;• Biaya Jabatan (5%): -${formatCurrency(biayaJabatan)}`,
-                        `&nbsp;&nbsp;• Iuran & Zakat: -${formatCurrency(iuranPensiunZakat)}`,
-                        `&nbsp;&nbsp;• <span class="font-semibold text-gray-700">Neto: ${formatCurrency(penghasilanNeto)}</span>`,
-                        `<span class="text-maroon-800 font-bold">2. Dasar Pengenaan Pajak (PKP)</span>`,
-                        `&nbsp;&nbsp;• PTKP (${statusPTKP}): -${formatCurrency(ptkp)}`,
-                        `&nbsp;&nbsp;• <span class="font-semibold text-gray-700">PKP Dibulatkan: ${formatCurrency(pkp)}</span>`,
-                        `<span class="text-maroon-800 font-bold">3. Tarif Progresif Pasal 17</span>`,
-                        ...detailLapisPasal17,
-                        `&nbsp;&nbsp;• Total PPh 21 Setahun: ${formatCurrency(pph21Tahunan)}`,
-                        `<span class="text-maroon-800 font-bold">4. Hasil Akhir Masa Desember</span>`,
-                        `&nbsp;&nbsp;• Telah Dipotong Jan-Nov: -${formatCurrency(pph21DipotongJanNov)}`,
-                        `&nbsp;&nbsp;• <span class="text-lg font-bold text-maroon-600 underline">PPh 21 Desember: ${formatCurrency(pph21Result)}</span>`
+                        // BAGIAN 1: NETO
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">A. Penghasilan Neto</div>`,
+                        `<div class="flex justify-between text-sm"><span>Bruto Setahun:</span> <span>${formatCurrency(penghasilanBruto)}</span></div>`,
+                        `<div class="flex justify-between text-xs text-gray-500"><span>(-) Biaya Jabatan & Iuran:</span> <span>-${formatCurrency(totalPengurang)}</span></div>`,
+                        `<div class="flex justify-between font-semibold bg-gray-50 px-2 py-1 rounded mt-1 text-sm"><span>= Neto:</span> <span>${formatCurrency(penghasilanNeto)}</span></div>`,
+                        `<br>`,
+
+                        // BAGIAN 2: PKP
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">B. Dasar Pengenaan Pajak</div>`,
+                        `<div class="flex justify-between text-xs text-gray-500"><span>(-) PTKP (${statusPTKP}):</span> <span>-${formatCurrency(ptkp)}</span></div>`,
+                        `<div class="flex justify-between font-semibold bg-gray-50 px-2 py-1 rounded mt-1 text-sm"><span>= PKP:</span> <span>${formatCurrency(pkp)}</span></div>`,
+                        `<br>`,
+
+                        // BAGIAN 3: TARIF
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">C. PPh 21 Terutang Setahun</div>`,
+                        ...detailLapisPasal17, 
+                        ...stepNPWP,           
+                        `<div class="flex justify-between font-bold text-maroon-700 mt-2 text-sm"><span>Total PPh Setahun:</span> <span>${formatCurrency(pph21Tahunan)}</span></div>`,
+                        `<br>`,
+
+                        // BAGIAN 4: HASIL AKHIR (DENGAN DETAIL TER LENGKAP)
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">D. PPh 21 Akhir (Masa Desember)</div>`,
+                        `<div class="flex justify-between text-sm mb-2"><span>PPh Terutang Setahun:</span> <span>${formatCurrency(pph21Tahunan)}</span></div>`,
+                        
+                        // --- UI INFO TER LENGKAP DI SINI ---
+                        `<div class="bg-blue-50 p-3 rounded-xl border border-blue-100 mb-3 shadow-sm">`,
+                            `<div class="flex justify-between items-center border-b border-blue-200 pb-2 mb-2">`,
+                                `<span class="text-blue-900 font-bold text-xs">Kredit Pajak (Jan-Nov)</span>`,
+                                `<span class="text-blue-800 font-bold text-sm">-${formatCurrency(pph21DipotongJanNov)}</span>`,
+                            `</div>`,
+                            `<div class="grid grid-cols-2 gap-y-1 text-xs text-blue-800">`,
+                                `<div>Kategori: <span class="font-bold bg-blue-200 px-1 rounded">TER ${kategoriTER}</span></div>`,
+                                `<div class="text-right">Tarif Rata-rata: <span class="font-bold bg-blue-200 px-1 rounded">${tarifTER}%</span></div>`,
+                                `<div class="col-span-2 text-[10px] text-blue-500 mt-1 italic leading-tight">*Kategori & tarif didasarkan pada status PTKP dan rata-rata penghasilan bruto Anda.</div>`,
+                            `</div>`,
+                        `</div>`,
+                        // -----------------------------------
+
+                        `<div class="flex justify-between font-black text-lg ${pph21Result >= 0 ? 'text-orange-600' : 'text-green-600'} mt-2 pt-2 border-t border-dashed border-gray-300">
+                            <span>${pph21Result >= 0 ? 'KURANG BAYAR:' : 'LEBIH BAYAR:'}</span> 
+                            <span>${formatCurrency(pph21Result)}</span>
+                        </div>`
                     ];
 
-                    // Update UI Tahunan
+                    // --- SINKRONASI UI (WAJIB) ---
                     document.getElementById('result-neto').textContent = formatCurrency(penghasilanNeto);
                     document.getElementById('result-ptkp-value').textContent = formatCurrency(ptkp);
                     document.getElementById('result-pkp').textContent = formatCurrency(pkp);
+                    document.getElementById('result-pph21-tahunan').textContent = formatCurrency(pph21Tahunan);
+                    document.getElementById('result-pph21-terpotong').textContent = formatCurrency(pph21DipotongJanNov);
 
                 } else if (jenisPegawai === 'bukan-pegawai-berkesinambungan') {
-                    // --- 2. BUKAN PEGAWAI BERKESINAMBUNGAN ---
-                    const dpp = penghasilanBruto * 0.5; 
-                    const ptkpSetahun = ptkpValues[statusPTKP] || 54000000;
-                    const pkpBP = Math.max(0, dpp - ptkpSetahun);
+                    // --- 2. BUKAN PEGAWAI BERKESINAMBUNGAN (REVISI ANTI-ERROR) ---
                     
-                    pph21Tahunan = calculateTax(pkpBP);
-                    if (statusNPWP === 'tidak-ada') pph21Tahunan *= 1.2;
-                    pph21Result = pph21Tahunan;
+                    // A. Hitung DPP (50% x Bruto)
+                    // Pastikan penghasilanBruto ada nilainya untuk mencegah error
+                    const brutoFinal = penghasilanBruto || 0;
+                    const dpp = brutoFinal * 0.5; 
+                    
+                    // B. Hitung PKP
+                    // Mendapat pengurangan PTKP karena berkesinambungan
+                    const ptkpSetahun = ptkpValues[statusPTKP] || 54000000;
+                    const pkpBP = Math.max(0, Math.floor((dpp - ptkpSetahun) / 1000) * 1000); 
 
-                    if (biayaJabatanField) biayaJabatanField.value = 'Rp 0'; 
+                    // C. Siapkan Tampilan Rincian Tarif (Looping UI)
+                    let sisaPKP = pkpBP; 
+                    let layer = 1;
+                    let detailLapisPasal17 = []; // Gunakan variabel lokal baru agar tidak konflik
 
+                    // Pengecekan keamanan taxBrackets
+                    if (typeof taxBrackets !== 'undefined') {
+                        for (const bracket of taxBrackets) {
+                            if (sisaPKP <= 0) break;
+                            const nominalKenaTarif = Math.min(sisaPKP, bracket.max - bracket.min);
+                            const pajakLapisIni = nominalKenaTarif * bracket.rate;
+                            
+                            detailLapisPasal17.push(
+                                `<div class="flex justify-between text-xs ml-4 text-gray-600">` +
+                                `<span>• Lapis ${layer} (${(bracket.rate * 100)}% x ${formatCurrency(nominalKenaTarif)}):</span>` +
+                                `<span>${formatCurrency(pajakLapisIni)}</span>` +
+                                `</div>`
+                            );
+                            sisaPKP -= nominalKenaTarif;
+                            layer++;
+                        }
+                    }
+
+                    // D. Hitung Angka PPh Terutang (Menggunakan fungsi helper yang sudah ada)
+                    pph21Tahunan = calculateTax(pkpBP); 
+
+                    // E. Sanksi NPWP
+                    let stepNPWP = []; 
+                    if (statusNPWP === 'tidak-ada') {
+                        const pphNormal = pph21Tahunan;
+                        pph21Tahunan *= 1.2; // Kenaikan 20%
+                        stepNPWP = [
+                            `<div class="mt-1 bg-red-50 p-2 rounded border border-red-100">`,
+                            `<div class="flex justify-between text-xs font-bold text-red-700"><span>Pajak Normal:</span><span>${formatCurrency(pphNormal)}</span></div>`,
+                            `<div class="flex justify-between text-xs text-red-600"><span>(+) Sanksi Non-NPWP (20%):</span><span>+${formatCurrency(pph21Tahunan - pphNormal)}</span></div>`,
+                            `</div>`
+                        ];
+                    }
+
+                    // F. Hitung Akhir (Kredit Pajak)
+                    const elemPotong = document.getElementById('pph21-dipotong');
+                    // Mencegah error jika elemen tidak ditemukan atau kosong
+                    const pphTelahDipotong = elemPotong ? (parseRupiah(elemPotong.value) || 0) : 0;
+                    pph21Result = pph21Tahunan - pphTelahDipotong;
+
+                    // Reset field Biaya Jabatan (Akses Langsung Element agar aman)
+                    const elBiayaJabatan = document.getElementById('biaya-jabatan-tahunan');
+                    if (elBiayaJabatan) elBiayaJabatan.value = 'Rp 0'; 
+
+                    // G. Tampilan Steps (Format Rapi A-B-C-D)
                     calculationSteps = [
-                        `<span class="text-maroon-800 font-bold">1. Dasar Pengenaan Pajak (DPP) - Bukan Pegawai</span>`,
-                        `&nbsp;&nbsp;• Bruto Setahun: ${formatCurrency(penghasilanBruto)}`,
-                        `&nbsp;&nbsp;• DPP (50% x Bruto): <span class="font-semibold text-gray-700">${formatCurrency(dpp)}</span>`,
-                        `<span class="text-maroon-800 font-bold">2. Penghasilan Kena Pajak (PKP)</span>`,
-                        `&nbsp;&nbsp;• PTKP Setahun (${statusPTKP}): -${formatCurrency(ptkpSetahun)}`,
-                        `&nbsp;&nbsp;• <span class="font-semibold text-gray-700">PKP: ${formatCurrency(pkpBP)}</span>`,
-                        `<span class="text-maroon-800 font-bold">3. Hasil Akhir (Pasal 17)</span>`,
-                        `&nbsp;&nbsp;• <span class="text-lg font-bold text-maroon-600 underline">PPh 21 Terutang: ${formatCurrency(pph21Result)}</span>`
+                        // BAGIAN A
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">A. Dasar Pengenaan Pajak (DPP)</div>`,
+                        `<div class="flex justify-between text-sm"><span>Bruto Setahun:</span> <span>${formatCurrency(brutoFinal)}</span></div>`,
+                        `<div class="flex justify-between text-xs text-gray-500"><span>Rumus (50% x Bruto):</span> <span>${formatCurrency(dpp)}</span></div>`,
+                        `<br>`,
+
+                        // BAGIAN B
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">B. Penghasilan Kena Pajak (PKP)</div>`,
+                        `<div class="flex justify-between text-sm"><span>DPP:</span> <span>${formatCurrency(dpp)}</span></div>`,
+                        `<div class="flex justify-between text-xs text-gray-500"><span>(-) PTKP (${statusPTKP}):</span> <span>-${formatCurrency(ptkpSetahun)}</span></div>`,
+                        `<div class="flex justify-between font-semibold bg-gray-50 px-2 py-1 rounded mt-1 text-sm"><span>= PKP:</span> <span>${formatCurrency(pkpBP)}</span></div>`,
+                        `<br>`,
+
+                        // BAGIAN C
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">C. PPh 21 Terutang Setahun</div>`,
+                        ...detailLapisPasal17, 
+                        ...stepNPWP,
+                        `<div class="flex justify-between font-bold text-maroon-700 mt-2 text-sm"><span>Total PPh Setahun:</span> <span>${formatCurrency(pph21Tahunan)}</span></div>`,
+                        `<br>`,
+
+                        // BAGIAN D
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">D. Kurang/Lebih Bayar</div>`,
+                        `<div class="flex justify-between text-sm"><span>PPh Terutang Setahun:</span> <span>${formatCurrency(pph21Tahunan)}</span></div>`,
+                        `<div class="flex justify-between text-sm text-blue-700"><span>(-) Sudah Dipotong:</span> <span>-${formatCurrency(pphTelahDipotong)}</span></div>`,
+                        
+                        `<div class="flex justify-between font-black text-lg ${pph21Result >= 0 ? 'text-orange-600' : 'text-green-600'} mt-2 pt-2 border-t border-dashed border-gray-300">
+                            <span>${pph21Result >= 0 ? 'KURANG BAYAR:' : 'LEBIH BAYAR:'}</span> 
+                            <span>${formatCurrency(pph21Result)}</span>
+                        </div>`
                     ];
 
+                    // H. Sinkronisasi UI (Agar kartu hasil tidak kosong)
                     document.getElementById('result-neto').textContent = formatCurrency(dpp);
                     document.getElementById('result-ptkp-value').textContent = formatCurrency(ptkpSetahun);
                     document.getElementById('result-pkp').textContent = formatCurrency(pkpBP);
+                    document.getElementById('result-pph21-tahunan').textContent = formatCurrency(pph21Tahunan);
+                    document.getElementById('result-pph21-terpotong').textContent = formatCurrency(pphTelahDipotong);
 
                 } else if (jenisPegawai === 'bukan-pegawai-tidak') {
-                    // --- 3. BUKAN PEGAWAI TIDAK BERKESINAMBUNGAN ---
-                    const dppTidak = penghasilanBruto * 0.5;
-                    pph21Tahunan = calculateTax(dppTidak);
-                    if (statusNPWP === 'tidak-ada') pph21Tahunan *= 1.2;
-                    pph21Result = pph21Tahunan;
+                    // --- 3. BUKAN PEGAWAI TIDAK BERKESINAMBUNGAN (REVISI TAMPILAN) ---
 
-                    if (biayaJabatanField) biayaJabatanField.value = 'Rp 0';
+                    // A. Hitung Dasar Pengenaan Pajak (DPP)
+                    // Rumus: 50% x Penghasilan Bruto
+                    const brutoFinal = penghasilanBruto || 0;
+                    const dpp = brutoFinal * 0.5;
 
+                    // B. Hitung PKP
+                    // Sesuai Regulasi: Tidak Berkesinambungan TIDAK dapat pengurangan PTKP.
+                    // Jadi PKP = DPP (Dibulatkan ribuan ke bawah)
+                    const pkp = Math.floor(dpp / 1000) * 1000;
+
+                    // C. Siapkan Tampilan Rincian Tarif (Looping UI)
+                    let sisaPKP = pkp; 
+                    let layer = 1;
+                    let detailLapisPasal17 = []; 
+
+                    // Pengecekan keamanan taxBrackets
+                    if (typeof taxBrackets !== 'undefined') {
+                        for (const bracket of taxBrackets) {
+                            if (sisaPKP <= 0) break;
+                            const nominalKenaTarif = Math.min(sisaPKP, bracket.max - bracket.min);
+                            const pajakLapisIni = nominalKenaTarif * bracket.rate;
+                            
+                            detailLapisPasal17.push(
+                                `<div class="flex justify-between text-xs ml-4 text-gray-600">` +
+                                `<span>• Lapis ${layer} (${(bracket.rate * 100)}% x ${formatCurrency(nominalKenaTarif)}):</span>` +
+                                `<span>${formatCurrency(pajakLapisIni)}</span>` +
+                                `</div>`
+                            );
+                            sisaPKP -= nominalKenaTarif;
+                            layer++;
+                        }
+                    }
+
+                    // D. Hitung Angka PPh Terutang
+                    pph21Tahunan = calculateTax(pkp);
+
+                    // E. Sanksi NPWP
+                    let stepNPWP = []; 
+                    if (statusNPWP === 'tidak-ada') {
+                        const pphNormal = pph21Tahunan;
+                        pph21Tahunan *= 1.2; // Kenaikan 20%
+                        stepNPWP = [
+                            `<div class="mt-1 bg-red-50 p-2 rounded border border-red-100">`,
+                            `<div class="flex justify-between text-xs font-bold text-red-700"><span>Pajak Normal:</span><span>${formatCurrency(pphNormal)}</span></div>`,
+                            `<div class="flex justify-between text-xs text-red-600"><span>(+) Sanksi Non-NPWP (20%):</span><span>+${formatCurrency(pph21Tahunan - pphNormal)}</span></div>`,
+                            `</div>`
+                        ];
+                    }
+
+                    // F. Hitung Akhir (Kredit Pajak Manual)
+                    const elemPotong = document.getElementById('pph21-dipotong');
+                    const pphTelahDipotong = elemPotong ? (parseRupiah(elemPotong.value) || 0) : 0;
+                    pph21Result = pph21Tahunan - pphTelahDipotong;
+
+                    // Reset Biaya Jabatan (Wajib 0)
+                    const elBiayaJabatan = document.getElementById('biaya-jabatan-tahunan');
+                    if (elBiayaJabatan) elBiayaJabatan.value = 'Rp 0';
+
+                    // G. Susun Tampilan Steps (Format Rapi A-B-C-D)
                     calculationSteps = [
-                        `<span class="text-maroon-800 font-bold">1. Dasar Pengenaan Pajak (DPP)</span>`,
-                        `&nbsp;&nbsp;• DPP (50% x Bruto): <span class="font-semibold text-gray-700">${formatCurrency(dppTidak)}</span>`,
-                        `<span class="text-maroon-800 font-bold">2. Hasil Akhir (Pasal 17)</span>`,
-                        `&nbsp;&nbsp;• Pajak dihitung langsung dari DPP tanpa PTKP`,
-                        `&nbsp;&nbsp;• <span class="text-lg font-bold text-maroon-600 underline">PPh 21 Terutang: ${formatCurrency(pph21Result)}</span>`
+                        // BAGIAN A: DPP
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">A. Dasar Pengenaan Pajak (DPP)</div>`,
+                        `<div class="flex justify-between text-sm"><span>Bruto Setahun:</span> <span>${formatCurrency(brutoFinal)}</span></div>`,
+                        `<div class="flex justify-between text-xs text-gray-500"><span>Rumus (50% x Bruto):</span> <span>${formatCurrency(dpp)}</span></div>`,
+                        `<br>`,
+
+                        // BAGIAN B: PKP (PENTING: Tampilkan Info Tanpa PTKP)
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">B. Penghasilan Kena Pajak (PKP)</div>`,
+                        `<div class="flex justify-between text-sm"><span>DPP:</span> <span>${formatCurrency(dpp)}</span></div>`,
+                        `<div class="flex justify-between text-xs text-gray-500 italic"><span>(-) PTKP (Tidak Berkesinambungan):</span> <span>Rp 0</span></div>`,
+                        `<div class="flex justify-between font-semibold bg-gray-50 px-2 py-1 rounded mt-1 text-sm"><span>= PKP:</span> <span>${formatCurrency(pkp)}</span></div>`,
+                        `<br>`,
+
+                        // BAGIAN C: TARIF
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">C. PPh 21 Terutang Setahun</div>`,
+                        ...detailLapisPasal17, 
+                        ...stepNPWP,
+                        `<div class="flex justify-between font-bold text-maroon-700 mt-2 text-sm"><span>Total PPh Setahun:</span> <span>${formatCurrency(pph21Tahunan)}</span></div>`,
+                        `<br>`,
+
+                        // BAGIAN D: HASIL AKHIR
+                        `<div class="mb-1 border-b border-gray-200 text-maroon-800 font-bold text-sm">D. Kurang/Lebih Bayar</div>`,
+                        `<div class="flex justify-between text-sm"><span>PPh Terutang Setahun:</span> <span>${formatCurrency(pph21Tahunan)}</span></div>`,
+                        `<div class="flex justify-between text-sm text-blue-700"><span>(-) Sudah Dipotong:</span> <span>-${formatCurrency(pphTelahDipotong)}</span></div>`,
+                        
+                        `<div class="flex justify-between font-black text-lg ${pph21Result >= 0 ? 'text-orange-600' : 'text-green-600'} mt-2 pt-2 border-t border-dashed border-gray-300">
+                            <span>${pph21Result >= 0 ? 'KURANG BAYAR:' : 'LEBIH BAYAR:'}</span> 
+                            <span>${formatCurrency(pph21Result)}</span>
+                        </div>`
                     ];
 
-                    document.getElementById('result-neto').textContent = formatCurrency(dppTidak);
-                    document.getElementById('result-ptkp-value').textContent = "Rp 0 (Tanpa PTKP)";
-                    document.getElementById('result-pkp').textContent = formatCurrency(dppTidak);
+                    // H. Sinkronisasi UI
+                    document.getElementById('result-neto').textContent = formatCurrency(dpp);
+                    document.getElementById('result-ptkp-value').textContent = "Rp 0 (Tanpa PTKP)"; // Info jelas di kartu ringkasan
+                    document.getElementById('result-pkp').textContent = formatCurrency(pkp);
+                    document.getElementById('result-pph21-tahunan').textContent = formatCurrency(pph21Tahunan);
+                    document.getElementById('result-pph21-terpotong').textContent = formatCurrency(pphTelahDipotong);
                 }
 
                 // Final UI Updates
                 document.getElementById('ter-info').classList.add('hidden');
                 document.getElementById('tahunan-info').classList.remove('hidden');
-                document.getElementById('bruto-breakdown').innerHTML = `Gaji: ${formatCurrency(totalGaji)} | Tunjangan: ${formatCurrency(totalTunjangan)} | Bonus/THR: ${formatCurrency(totalBonus)}`;
+                document.getElementById('bruto-breakdown').innerHTML = 
+                    `Gaji: ${formatCurrency(totalGaji)} | ` +
+                    `Tunjangan: ${formatCurrency(totalTunjangan)} | ` +
+                    `Bonus/THR: ${formatCurrency(totalBonus)} | ` +
+                    `Natura: ${formatCurrency(totalNatura)}`;
             }
 
             const namaWP = document.getElementById('nama-wp') ? document.getElementById('nama-wp').value : "";
