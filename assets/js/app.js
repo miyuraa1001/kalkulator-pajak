@@ -96,6 +96,53 @@
   }
 
   /**
+   * Router Tampilan Halaman (SPA Sections)
+   */
+  window.showSection = function (sectionId) {
+    const validSections = ['home', 'kalkulator', 'artikel', 'forum', 'tentang'];
+    let targetId = sectionId || 'home';
+    if (!validSections.includes(targetId)) targetId = 'home';
+
+    // Sembunyikan semua page-section
+    document.querySelectorAll('.page-section').forEach(sec => {
+      sec.classList.add('hidden');
+    });
+
+    if (targetId === 'artikel') {
+      // Artikel berada di dalam dashboard #home
+      const homeSec = document.getElementById('home');
+      if (homeSec) homeSec.classList.remove('hidden');
+      const artEl = document.getElementById('section-artikel');
+      if (artEl) {
+        artEl.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      const target = document.getElementById(targetId) || document.getElementById('home');
+      if (target) {
+        target.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // Update active nav styling
+    document.querySelectorAll('.nav-link-btn').forEach(link => {
+      const href = link.getAttribute('href') || '';
+      const linkSection = href.replace('#', '');
+      if (linkSection === targetId || (targetId === 'artikel' && linkSection === 'artikel') || (targetId === 'home' && linkSection === 'home')) {
+        link.className = "nav-link-btn px-3.5 py-2 text-sm font-bold text-rose-900 bg-rose-50 rounded-xl transition-all";
+      } else {
+        link.className = "nav-link-btn px-3.5 py-2 text-sm font-semibold text-slate-700 hover:text-rose-900 hover:bg-rose-50 rounded-xl transition-all";
+      }
+    });
+
+    // Tutup mobile drawer jika terbuka
+    const drawer = document.getElementById('mobile-drawer');
+    if (drawer && !drawer.classList.contains('hidden')) {
+      drawer.classList.add('hidden');
+    }
+  };
+
+  /**
    * Switcher Tab Kalkulator Multi-Pajak
    */
   window.switchTaxTab = function (tabName) {
@@ -759,6 +806,16 @@
 
     // Default tab
     switchTaxTab('pph21');
+
+    // Routing hash listener
+    window.addEventListener('hashchange', function () {
+      const hash = window.location.hash.replace('#', '') || 'home';
+      window.showSection(hash);
+    });
+
+    // Jalankan section awal sesuai hash URL
+    const initialHash = window.location.hash.replace('#', '') || 'home';
+    window.showSection(initialHash);
   });
 
 })();
