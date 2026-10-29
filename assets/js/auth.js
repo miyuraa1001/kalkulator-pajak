@@ -196,3 +196,4 @@ window.AuthModule = (function () {
     confirmLogout
   };
 })();
+

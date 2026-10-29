@@ -109,3 +109,4 @@ window.PPh23Calculator = (function () {
     calculate
   };
 })();
+

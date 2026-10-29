@@ -309,3 +309,4 @@ window.ForumModule = (function () {
     render
   };
 })();
+

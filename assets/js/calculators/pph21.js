@@ -374,3 +374,4 @@ window.PPh21Calculator = (function () {
     calculateTahunan
   };
 })();
+

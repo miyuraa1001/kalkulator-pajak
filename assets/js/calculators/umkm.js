@@ -171,3 +171,4 @@ window.UMKMCalculator = (function () {
     calculateQuick
   };
 })();
+
