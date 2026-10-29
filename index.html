@@ -360,44 +360,286 @@
     <section id="kalkulator" class="page-section hidden py-12 sm:py-16 bg-slate-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <!-- Back Navigation -->
-        <div class="mb-6">
-          <button onclick="showSection('home')" class="inline-flex items-center gap-2 text-rose-900 hover:text-rose-950 font-bold text-sm cursor-pointer">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-            <span>Kembali ke Beranda</span>
-          </button>
-        </div>
-
-        <!-- Section Header -->
-        <div class="text-center max-w-3xl mx-auto mb-10">
-          <span class="text-xs font-extrabold uppercase tracking-widest text-rose-900 bg-rose-100 px-3 py-1 rounded-full">Tools Kalkulator Pajak</span>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3">Tools Kalkulator Pajak Multi-Regulasi</h2>
-          <p class="text-slate-600 mt-2 text-sm sm:text-base">Simulator perpajakan resmi terlengkap yang dirancang ramah untuk orang awam. Dapatkan ringkasan indikator kunci (KPI), edukasi praktis regulasi, dan hitung pajak Anda secara cepat &amp; akurat.</p>
-        </div>
-
-        <!-- Sticky / Scrollable Tab Bar (Spacious touch targets for mobile) -->
-        <div class="tax-tab-scroll mb-8">
-          <div class="inline-flex p-1.5 bg-slate-200/80 rounded-2xl gap-1 max-w-full">
-            <button onclick="switchTaxTab('pph21')" data-tab="pph21" class="tax-tab-btn active">
-              <span>👤</span> <span>PPh 21 (TER &amp; Tahunan)</span>
-            </button>
-            <button onclick="switchTaxTab('ppn')" data-tab="ppn" class="tax-tab-btn">
-              <span>🧾</span> <span>PPN 11% (UU HPP)</span>
-            </button>
-            <button onclick="switchTaxTab('pph23')" data-tab="pph23" class="tax-tab-btn">
-              <span>💼</span> <span>PPh 23 (Jasa/Sewa)</span>
-            </button>
-            <button onclick="switchTaxTab('pph25')" data-tab="pph25" class="tax-tab-btn">
-              <span>🗓️</span> <span>PPh 25 (Angsuran)</span>
-            </button>
-            <button onclick="switchTaxTab('umkm')" data-tab="umkm" class="tax-tab-btn">
-              <span>🏪</span> <span>PPh Final UMKM 0,5%</span>
-            </button>
-            <button onclick="switchTaxTab('pph-final')" data-tab="pph-final" class="tax-tab-btn">
-              <span>🏢</span> <span>PPh Final 4(2)</span>
+        <!-- ============================================================== -->
+        <!-- VIEW A: KATALOG KPI CARDS TOOLS KALKULATOR                     -->
+        <!-- ============================================================== -->
+        <div id="kalkulator-hub" class="space-y-8">
+          
+          <!-- Back Navigation -->
+          <div>
+            <button onclick="showSection('home')" class="inline-flex items-center gap-2 text-rose-900 hover:text-rose-950 font-bold text-sm cursor-pointer">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+              <span>Kembali ke Beranda</span>
             </button>
           </div>
+
+          <!-- Section Header -->
+          <div class="text-center max-w-3xl mx-auto mb-10">
+            <span class="text-xs font-extrabold uppercase tracking-widest text-rose-900 bg-rose-100 px-3.5 py-1 rounded-full">Tools Kalkulator Pajak</span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3">Katalog Indikator Kunci (KPI) Perpajakan</h2>
+            <p class="text-slate-600 mt-2 text-xs sm:text-base leading-relaxed">
+              Panduan parameter dan regulasi resmi bagi orang awam. Pilih jenis pajak di bawah untuk memahami indikator kunci (KPI), lalu klik tombol untuk membuka lembar kalkulator perhitungannya.
+            </p>
+          </div>
+
+          <!-- 6 KPI Cards Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- KPI CARD 1: PPh 21 -->
+            <div class="card-elevated p-6 sm:p-7 rounded-3xl border border-slate-200/90 hover:border-rose-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group bg-white">
+              <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                  <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-900 border border-rose-200/60 flex items-center justify-center text-2xl shadow-xs">
+                    👤
+                  </div>
+                  <span class="text-[10px] font-bold px-2.5 py-1 bg-amber-50 text-amber-800 border border-amber-200 rounded-full">PP 58/2023 &amp; PMK 168</span>
+                </div>
+                <div>
+                  <h3 class="text-lg sm:text-xl font-black text-slate-900 group-hover:text-rose-900 transition-colors">PPh 21 (Gaji &amp; Upah)</h3>
+                  <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Potongan pajak penghasilan bulanan karyawan (TER Kategori A, B, C) serta rekonsiliasi akhir tahun (Desember).</p>
+                </div>
+                <!-- Micro KPI Stats -->
+                <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 text-xs">
+                  <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                    <div class="text-[10px] text-slate-400 font-medium">Tarif Efektif</div>
+                    <div class="font-bold text-rose-900 mt-0.5">0% s.d. 34% (TER)</div>
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                    <div class="text-[10px] text-slate-400 font-medium">Batas Bebas (PTKP)</div>
+                    <div class="font-bold text-slate-900 mt-0.5">s.d. Rp 54jt - 72jt</div>
+                  </div>
+                </div>
+                <div class="p-3 rounded-xl bg-rose-50/60 border border-rose-100 text-[11px] text-rose-900 leading-relaxed">
+                  💡 Gaji kotor sebulan langsung dikalikan tarif TER sesuai tanggungan keluarga tanpa hitung PTKP rumit!
+                </div>
+              </div>
+              <div class="pt-5 mt-5 border-t border-slate-100">
+                <button onclick="openTaxCalculator('pph21')" class="w-full py-3.5 px-4 bg-rose-900 hover:bg-rose-950 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer group-hover:shadow-rose-900/20">
+                  <span>Buka Kalkulator PPh 21</span>
+                  <span>&rarr;</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- KPI CARD 2: PPN 11% -->
+            <div class="card-elevated p-6 sm:p-7 rounded-3xl border border-slate-200/90 hover:border-emerald-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group bg-white">
+              <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                  <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-900 border border-emerald-200/60 flex items-center justify-center text-2xl shadow-xs">
+                    🧾
+                  </div>
+                  <span class="text-[10px] font-bold px-2.5 py-1 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-full">UU HPP 11%</span>
+                </div>
+                <div>
+                  <h3 class="text-lg sm:text-xl font-black text-slate-900 group-hover:text-emerald-900 transition-colors">PPN 11% &amp; WAPU</h3>
+                  <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Pajak Pertambahan Nilai atas penjualan barang/jasa, harga sebelum pajak (Exclude), termasuk pajak (Include), dan WAPU.</p>
+                </div>
+                <!-- Micro KPI Stats -->
+                <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 text-xs">
+                  <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                    <div class="text-[10px] text-slate-400 font-medium">Tarif Umum</div>
+                    <div class="font-bold text-emerald-900 mt-0.5">11% DPP Penuh</div>
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                    <div class="text-[10px] text-slate-400 font-medium">Besaran Tertentu</div>
+                    <div class="font-bold text-slate-900 mt-0.5">1,1% (PMK 71)</div>
+                  </div>
+                </div>
+                <div class="p-3 rounded-xl bg-emerald-50/60 border border-emerald-100 text-[11px] text-emerald-900 leading-relaxed">
+                  💡 Mendukung pemungutan bendahara pemerintah (&gt; Rp 2 Jt) dan BUMN (&gt; Rp 10 Jt) secara otomatis!
+                </div>
+              </div>
+              <div class="pt-5 mt-5 border-t border-slate-100">
+                <button onclick="openTaxCalculator('ppn')" class="w-full py-3.5 px-4 bg-emerald-800 hover:bg-emerald-900 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer group-hover:shadow-emerald-900/20">
+                  <span>Buka Kalkulator PPN 11%</span>
+                  <span>&rarr;</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- KPI CARD 3: PPh 23 -->
+            <div class="card-elevated p-6 sm:p-7 rounded-3xl border border-slate-200/90 hover:border-blue-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group bg-white">
+              <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                  <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-900 border border-blue-200/60 flex items-center justify-center text-2xl shadow-xs">
+                    💼
+                  </div>
+                  <span class="text-[10px] font-bold px-2.5 py-1 bg-blue-50 text-blue-800 border border-blue-200 rounded-full">PMK 141/2015</span>
+                </div>
+                <div>
+                  <h3 class="text-lg sm:text-xl font-black text-slate-900 group-hover:text-blue-900 transition-colors">PPh 23 (Jasa &amp; Sewa)</h3>
+                  <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Pemotongan pajak atas imbalan 62 jenis jasa teknik/IT/konsultan, sewa kendaraan/mesin, bunga pinjaman, dan dividen.</p>
+                </div>
+                <!-- Micro KPI Stats -->
+                <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 text-xs">
+                  <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                    <div class="text-[10px] text-slate-400 font-medium">Jasa &amp; Sewa</div>
+                    <div class="font-bold text-blue-900 mt-0.5">2% dari Bruto</div>
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                    <div class="text-[10px] text-slate-400 font-medium">Non-NPWP</div>
+                    <div class="font-bold text-rose-700 mt-0.5">+100% (2x Lipat)</div>
+                  </div>
+                </div>
+                <div class="p-3 rounded-xl bg-blue-50/60 border border-blue-100 text-[11px] text-blue-900 leading-relaxed">
+                  💡 Dilengkapi metode Gross (potong rekanan) dan Gross-Up (perusahaan menanggung pajak secara sah).
+                </div>
+              </div>
+              <div class="pt-5 mt-5 border-t border-slate-100">
+                <button onclick="openTaxCalculator('pph23')" class="w-full py-3.5 px-4 bg-blue-900 hover:bg-blue-950 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer group-hover:shadow-blue-900/20">
+                  <span>Buka Kalkulator PPh 23</span>
+                  <span>&rarr;</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- KPI CARD 4: PPh 25 -->
+            <div class="card-elevated p-6 sm:p-7 rounded-3xl border border-slate-200/90 hover:border-purple-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group bg-white">
+              <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                  <div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-900 border border-purple-200/60 flex items-center justify-center text-2xl shadow-xs">
+                    🗓️
+                  </div>
+                  <span class="text-[10px] font-bold px-2.5 py-1 bg-purple-50 text-purple-800 border border-purple-200 rounded-full">Pasal 25 UU PPh</span>
+                </div>
+                <div>
+                  <h3 class="text-lg sm:text-xl font-black text-slate-900 group-hover:text-purple-900 transition-colors">PPh 25 (Angsuran Pajak)</h3>
+                  <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Cicilan pajak bulanan bagi perusahaan (Badan), orang pribadi usaha, dan pedagang retail (OPPT) agar tidak kaget di akhir tahun.</p>
+                </div>
+                <!-- Micro KPI Stats -->
+                <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 text-xs">
+                  <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                    <div class="text-[10px] text-slate-400 font-medium">Metode Cicilan</div>
+                    <div class="font-bold text-purple-900 mt-0.5">SPT Lalu / 12</div>
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                    <div class="text-[10px] text-slate-400 font-medium">Tarif Toko (OPPT)</div>
+                    <div class="font-bold text-slate-900 mt-0.5">0,75% Omzet</div>
+                  </div>
+                </div>
+                <div class="p-3 rounded-xl bg-purple-50/60 border border-purple-100 text-[11px] text-purple-900 leading-relaxed">
+                  💡 Disetor paling lambat tanggal 15 setiap bulan melalui kode billing DJP akun 411125 / 411126.
+                </div>
+              </div>
+              <div class="pt-5 mt-5 border-t border-slate-100">
+                <button onclick="openTaxCalculator('pph25')" class="w-full py-3.5 px-4 bg-purple-900 hover:bg-purple-950 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer group-hover:shadow-purple-900/20">
+                  <span>Buka Kalkulator PPh 25</span>
+                  <span>&rarr;</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- KPI CARD 5: PPh Final UMKM -->
+            <div class="card-elevated p-6 sm:p-7 rounded-3xl border border-slate-200/90 hover:border-emerald-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group bg-white">
+              <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                  <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-900 border border-emerald-200/60 flex items-center justify-center text-2xl shadow-xs">
+                    🏪
+                  </div>
+                  <span class="text-[10px] font-bold px-2.5 py-1 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-full">PP 55/2022 Insentif</span>
+                </div>
+                <div>
+                  <h3 class="text-lg sm:text-xl font-black text-slate-900 group-hover:text-emerald-900 transition-colors">PPh Final UMKM 0,5%</h3>
+                  <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Skema pajak super ringan untuk pengusaha kecil dan UMKM. Lengkap dengan simulasi 12 bulan kumulatif Jan–Des.</p>
+                </div>
+                <!-- Micro KPI Stats -->
+                <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 text-xs">
+                  <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                    <div class="text-[10px] text-slate-400 font-medium">Tarif Pajak</div>
+                    <div class="font-bold text-rose-900 mt-0.5">0,5% dari Omzet</div>
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                    <div class="text-[10px] text-slate-400 font-medium">Bebas Pajak OP</div>
+                    <div class="font-bold text-emerald-700 mt-0.5">s.d. Rp 500 Juta (Rp 0)</div>
+                  </div>
+                </div>
+                <div class="p-3 rounded-xl bg-emerald-50/60 border border-emerald-100 text-[11px] text-emerald-900 leading-relaxed">
+                  🎉 Omzet Orang Pribadi di bawah Rp 500 Juta setahun GRATIS 100% tanpa bayar pajak sepeserpun!
+                </div>
+              </div>
+              <div class="pt-5 mt-5 border-t border-slate-100">
+                <button onclick="openTaxCalculator('umkm')" class="w-full py-3.5 px-4 bg-emerald-800 hover:bg-emerald-900 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer group-hover:shadow-emerald-900/20">
+                  <span>Buka Kalkulator UMKM</span>
+                  <span>&rarr;</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- KPI CARD 6: PPh Final 4(2) -->
+            <div class="card-elevated p-6 sm:p-7 rounded-3xl border border-slate-200/90 hover:border-amber-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group bg-white">
+              <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                  <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-900 border border-amber-200/60 flex items-center justify-center text-2xl shadow-xs">
+                    🏢
+                  </div>
+                  <span class="text-[10px] font-bold px-2.5 py-1 bg-amber-50 text-amber-800 border border-amber-200 rounded-full">Pasal 4 Ayat (2)</span>
+                </div>
+                <div>
+                  <h3 class="text-lg sm:text-xl font-black text-slate-900 group-hover:text-amber-900 transition-colors">PPh Final 4(2) Properti</h3>
+                  <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Pajak final yang lunas seketika atas sewa tanah/bangunan, jual-beli properti, jasa konstruksi (PP 9/2022), dan undian.</p>
+                </div>
+                <!-- Micro KPI Stats -->
+                <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 text-xs">
+                  <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                    <div class="text-[10px] text-slate-400 font-medium">Sewa Properti</div>
+                    <div class="font-bold text-slate-900 mt-0.5">10% dari Nilai Sewa</div>
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                    <div class="text-[10px] text-slate-400 font-medium">Jual Beli Rumah</div>
+                    <div class="font-bold text-rose-900 mt-0.5">2,5% Transaksi/NJOP</div>
+                  </div>
+                </div>
+                <div class="p-3 rounded-xl bg-amber-50/60 border border-amber-100 text-[11px] text-amber-900 leading-relaxed">
+                  ⚡ Bersifat Final: Begitu disetor, pajak selesai tuntas dan tidak dihitung ulang di SPT Tahunan.
+                </div>
+              </div>
+              <div class="pt-5 mt-5 border-t border-slate-100">
+                <button onclick="openTaxCalculator('pph-final')" class="w-full py-3.5 px-4 bg-amber-800 hover:bg-amber-900 text-white rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer group-hover:shadow-amber-900/20">
+                  <span>Buka Kalkulator PPh Final</span>
+                  <span>&rarr;</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
         </div>
+
+        <!-- ============================================================== -->
+        <!-- VIEW B: LEMBAR KERJA KALKULATOR KHUSUS (DIBUKA SAAT DIKLIK)     -->
+        <!-- ============================================================== -->
+        <div id="kalkulator-workspace" class="hidden space-y-6">
+
+          <!-- Top Workspace Navigation Bar -->
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-slate-200">
+            <button onclick="backToTaxHub()" class="inline-flex items-center gap-2 px-4 py-2.5 bg-white hover:bg-slate-100 text-rose-950 font-bold rounded-xl text-xs border border-slate-200 shadow-sm cursor-pointer transition-all">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+              <span>&larr; Kembali ke Pilihan Tools Pajak (Katalog KPI)</span>
+            </button>
+
+            <!-- Quick Jump Tab Bar -->
+            <div class="tax-tab-scroll">
+              <div class="inline-flex p-1 bg-slate-200/80 rounded-xl gap-1 max-w-full">
+                <button onclick="switchTaxTab('pph21')" data-tab="pph21" class="tax-tab-btn active text-xs py-2 px-3">
+                  <span>👤 PPh 21</span>
+                </button>
+                <button onclick="switchTaxTab('ppn')" data-tab="ppn" class="tax-tab-btn text-xs py-2 px-3">
+                  <span>🧾 PPN 11%</span>
+                </button>
+                <button onclick="switchTaxTab('pph23')" data-tab="pph23" class="tax-tab-btn text-xs py-2 px-3">
+                  <span>💼 PPh 23</span>
+                </button>
+                <button onclick="switchTaxTab('pph25')" data-tab="pph25" class="tax-tab-btn text-xs py-2 px-3">
+                  <span>🗓️ PPh 25</span>
+                </button>
+                <button onclick="switchTaxTab('umkm')" data-tab="umkm" class="tax-tab-btn text-xs py-2 px-3">
+                  <span>🏪 UMKM 0,5%</span>
+                </button>
+                <button onclick="switchTaxTab('pph-final')" data-tab="pph-final" class="tax-tab-btn text-xs py-2 px-3">
+                  <span>🏢 PPh Final</span>
+                </button>
+              </div>
+            </div>
+          </div>
 
         <!-- Form Panels Container -->
         <div class="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden p-6 sm:p-8 lg:p-10 transition-all">
@@ -1268,6 +1510,8 @@
           </div>
         </div>
 
+        </div> <!-- /#kalkulator-workspace -->
+
       </div>
     </section>
 
@@ -1418,12 +1662,12 @@
         <div>
           <h4 class="text-sm font-bold uppercase tracking-wider text-slate-200 mb-4">Tools Kalkulator Pajak</h4>
           <ul class="space-y-2 text-xs sm:text-sm text-slate-400">
-            <li><a href="#kalkulator" onclick="showSection('kalkulator'); switchTaxTab('pph21');" class="hover:text-white transition-colors">PPh 21 TER PP 58/2023</a></li>
-            <li><a href="#kalkulator" onclick="showSection('kalkulator'); switchTaxTab('ppn');" class="hover:text-white transition-colors">PPN 11% UU HPP &amp; WAPU</a></li>
-            <li><a href="#kalkulator" onclick="showSection('kalkulator'); switchTaxTab('pph23');" class="hover:text-white transition-colors">PPh 23 Jasa &amp; Sewa</a></li>
-            <li><a href="#kalkulator" onclick="showSection('kalkulator'); switchTaxTab('pph25');" class="hover:text-white transition-colors">PPh 25 Angsuran Bulanan</a></li>
-            <li><a href="#kalkulator" onclick="showSection('kalkulator'); switchTaxTab('umkm');" class="hover:text-white transition-colors">PPh Final UMKM 0,5%</a></li>
-            <li><a href="#kalkulator" onclick="showSection('kalkulator'); switchTaxTab('pph-final');" class="hover:text-white transition-colors">PPh Final Pasal 4(2)</a></li>
+            <li><a href="#kalkulator" onclick="openTaxCalculator('pph21')" class="hover:text-white transition-colors">PPh 21 TER PP 58/2023</a></li>
+            <li><a href="#kalkulator" onclick="openTaxCalculator('ppn')" class="hover:text-white transition-colors">PPN 11% UU HPP &amp; WAPU</a></li>
+            <li><a href="#kalkulator" onclick="openTaxCalculator('pph23')" class="hover:text-white transition-colors">PPh 23 Jasa &amp; Sewa</a></li>
+            <li><a href="#kalkulator" onclick="openTaxCalculator('pph25')" class="hover:text-white transition-colors">PPh 25 Angsuran Bulanan</a></li>
+            <li><a href="#kalkulator" onclick="openTaxCalculator('umkm')" class="hover:text-white transition-colors">PPh Final UMKM 0,5%</a></li>
+            <li><a href="#kalkulator" onclick="openTaxCalculator('pph-final')" class="hover:text-white transition-colors">PPh Final Pasal 4(2)</a></li>
           </ul>
         </div>
 

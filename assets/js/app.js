@@ -122,6 +122,14 @@
         target.classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
+
+      // Jika membuka kalkulator, default tampilkan hub KPI cards
+      if (targetId === 'kalkulator') {
+        const hub = document.getElementById('kalkulator-hub');
+        const workspace = document.getElementById('kalkulator-workspace');
+        if (hub) hub.classList.remove('hidden');
+        if (workspace) workspace.classList.add('hidden');
+      }
     }
 
     // Update active nav styling
@@ -140,6 +148,37 @@
     if (drawer && !drawer.classList.contains('hidden')) {
       drawer.classList.add('hidden');
     }
+  };
+
+  /**
+   * Buka Lembar Kerja Kalkulator Pajak Tertentu (dari KPI Card)
+   */
+  window.openTaxCalculator = function (taxName) {
+    // Pastikan section kalkulator aktif
+    const kalkulatorSec = document.getElementById('kalkulator');
+    if (kalkulatorSec && kalkulatorSec.classList.contains('hidden')) {
+      document.querySelectorAll('.page-section').forEach(sec => sec.classList.add('hidden'));
+      kalkulatorSec.classList.remove('hidden');
+    }
+
+    const hub = document.getElementById('kalkulator-hub');
+    const workspace = document.getElementById('kalkulator-workspace');
+    if (hub) hub.classList.add('hidden');
+    if (workspace) workspace.classList.remove('hidden');
+
+    window.switchTaxTab(taxName);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  /**
+   * Kembali ke Hub Katalog KPI Cards
+   */
+  window.backToTaxHub = function () {
+    const hub = document.getElementById('kalkulator-hub');
+    const workspace = document.getElementById('kalkulator-workspace');
+    if (workspace) workspace.classList.add('hidden');
+    if (hub) hub.classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   /**
