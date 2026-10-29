@@ -1643,52 +1643,153 @@
   <!-- ============================================================== -->
   <!-- FOOTER                                                         -->
   <!-- ============================================================== -->
-  <footer class="bg-slate-950 text-white pt-14 pb-8 border-t border-slate-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-slate-800">
+  <footer class="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white pt-12 sm:pt-16 pb-10 border-t border-slate-800/80 relative overflow-hidden">
+    <!-- Subtle background accent glow -->
+    <div class="absolute top-0 left-1/4 w-96 h-32 bg-rose-500/5 blur-3xl pointer-events-none rounded-full"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-32 bg-indigo-500/5 blur-3xl pointer-events-none rounded-full"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 pb-12 border-b border-slate-800/70">
         
-        <div class="md:col-span-2">
-          <div class="flex items-center gap-2 mb-4">
-            <span class="text-2xl font-black text-rose-500 font-sans">ACCUTAX</span>
+        <!-- Brand & Description (Col 1 to 5) -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="flex items-center gap-2.5">
+            <span class="text-2xl font-black tracking-tight text-white font-sans">
+              ACCU<span class="text-rose-500">TAX</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              Regulasi Terkini
+            </span>
           </div>
+          
           <p class="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-md">
-            Platform kalkulator pajak profesional Indonesia yang akurat, komprehensif, dan patuh regulasi perpajakan terbaru (UU HPP, PP 58/2023, PMK 168/2023, PP 55/2022).
+            Platform kalkulator dan edukasi perpajakan terpadu Indonesia yang akurat, transparan, dan sesuai ketentuan perundang-undangan perpajakan yang berlaku.
           </p>
-          <div class="mt-4 text-xs text-slate-500">
-            Dibuat dengan standar enterprise IT untuk kenyamanan navigasi desktop dan mobile yang lega.
+
+          <!-- Badges for regulations -->
+          <div class="flex flex-wrap gap-1.5 pt-1">
+            <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-900 text-slate-300 border border-slate-800">UU HPP No. 7/2021</span>
+            <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-900 text-slate-300 border border-slate-800">PP 58/2023 (TER)</span>
+            <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-900 text-slate-300 border border-slate-800">PMK 168/2023</span>
+            <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-900 text-slate-300 border border-slate-800">PP 55/2022</span>
+          </div>
+
+          <div class="pt-2 text-[11px] text-slate-500 flex items-center gap-2">
+            <svg class="w-4 h-4 text-rose-400/80 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            <span>Didesain dengan arsitektur enterprise &amp; privasi data 100% lokal di browser.</span>
           </div>
         </div>
 
-        <div>
-          <h4 class="text-sm font-bold uppercase tracking-wider text-slate-200 mb-4">Tools Kalkulator Pajak</h4>
-          <ul class="space-y-2 text-xs sm:text-sm text-slate-400">
-            <li><a href="#kalkulator" onclick="openTaxCalculator('pph21')" class="hover:text-white transition-colors">PPh 21 TER PP 58/2023</a></li>
-            <li><a href="#kalkulator" onclick="openTaxCalculator('ppn')" class="hover:text-white transition-colors">PPN 11% UU HPP &amp; WAPU</a></li>
-            <li><a href="#kalkulator" onclick="openTaxCalculator('pph23')" class="hover:text-white transition-colors">PPh 23 Jasa &amp; Sewa</a></li>
-            <li><a href="#kalkulator" onclick="openTaxCalculator('pph25')" class="hover:text-white transition-colors">PPh 25 Angsuran Bulanan</a></li>
-            <li><a href="#kalkulator" onclick="openTaxCalculator('umkm')" class="hover:text-white transition-colors">PPh Final UMKM 0,5%</a></li>
-            <li><a href="#kalkulator" onclick="openTaxCalculator('pph-final')" class="hover:text-white transition-colors">PPh Final Pasal 4(2)</a></li>
-          </ul>
+        <!-- Tools Kalkulator (Col 6 to 9 / 4 cols) -->
+        <div class="lg:col-span-4">
+          <div class="flex items-center justify-between mb-3.5">
+            <h4 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-200 flex items-center gap-2">
+              <span class="text-rose-400">⚡</span> Tools Kalkulator Pajak
+            </h4>
+            <span class="text-[11px] text-slate-500 font-medium">6 Modul Aktif</span>
+          </div>
+
+          <!-- 2-column grid on mobile & tablet for modern, compact layout -->
+          <div class="grid grid-cols-2 gap-2">
+            <a href="#kalkulator" onclick="openTaxCalculator('pph21')" class="group flex items-center gap-2 p-2 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 hover:border-rose-500/40 transition-all">
+              <div class="w-7 h-7 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform text-xs">
+                👤
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs font-semibold text-slate-200 group-hover:text-white truncate">PPh 21 TER</div>
+                <div class="text-[10px] text-slate-500 truncate">Karyawan &amp; Gol</div>
+              </div>
+            </a>
+
+            <a href="#kalkulator" onclick="openTaxCalculator('ppn')" class="group flex items-center gap-2 p-2 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 hover:border-blue-500/40 transition-all">
+              <div class="w-7 h-7 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform text-xs">
+                🧾
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs font-semibold text-slate-200 group-hover:text-white truncate">PPN 11%</div>
+                <div class="text-[10px] text-slate-500 truncate">Faktur &amp; WAPU</div>
+              </div>
+            </a>
+
+            <a href="#kalkulator" onclick="openTaxCalculator('pph23')" class="group flex items-center gap-2 p-2 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 hover:border-amber-500/40 transition-all">
+              <div class="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform text-xs">
+                💼
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs font-semibold text-slate-200 group-hover:text-white truncate">PPh 23</div>
+                <div class="text-[10px] text-slate-500 truncate">Jasa &amp; Sewa 2%</div>
+              </div>
+            </a>
+
+            <a href="#kalkulator" onclick="openTaxCalculator('pph25')" class="group flex items-center gap-2 p-2 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 hover:border-emerald-500/40 transition-all">
+              <div class="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform text-xs">
+                🗓️
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs font-semibold text-slate-200 group-hover:text-white truncate">PPh 25</div>
+                <div class="text-[10px] text-slate-500 truncate">Angsuran Rutin</div>
+              </div>
+            </a>
+
+            <a href="#kalkulator" onclick="openTaxCalculator('umkm')" class="group flex items-center gap-2 p-2 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 hover:border-purple-500/40 transition-all">
+              <div class="w-7 h-7 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform text-xs">
+                🏪
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs font-semibold text-slate-200 group-hover:text-white truncate">UMKM 0,5%</div>
+                <div class="text-[10px] text-slate-500 truncate">Omset &lt; 4,8M</div>
+              </div>
+            </a>
+
+            <a href="#kalkulator" onclick="openTaxCalculator('pph-final')" class="group flex items-center gap-2 p-2 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 hover:border-cyan-500/40 transition-all">
+              <div class="w-7 h-7 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform text-xs">
+                🏢
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs font-semibold text-slate-200 group-hover:text-white truncate">PPh Final 4(2)</div>
+                <div class="text-[10px] text-slate-500 truncate">Sewa &amp; Properti</div>
+              </div>
+            </a>
+          </div>
         </div>
 
-        <div>
-          <h4 class="text-sm font-bold uppercase tracking-wider text-slate-200 mb-4">Kontak &amp; Media Sosial</h4>
-          <ul class="space-y-2 text-xs sm:text-sm text-slate-400">
-            <li>📧 <a href="mailto:infoaccutax.id@gmail.com" class="hover:text-white">infoaccutax.id@gmail.com</a></li>
-            <li>📱 <a href="https://wa.me/6289670244070" target="_blank" rel="noopener noreferrer" class="hover:text-white">WhatsApp: 089670244070</a></li>
-            <li>📷 <a href="https://www.instagram.com/accutax.id" target="_blank" rel="noopener noreferrer" class="hover:text-white">Instagram: @accutax.id</a></li>
-            <li>🎵 <a href="https://www.tiktok.com/@accutax.id" target="_blank" rel="noopener noreferrer" class="hover:text-white">TikTok: @accutax.id</a></li>
-          </ul>
+        <!-- Kontak & Saluran Bantuan (Col 10 to 12 / 3 cols) -->
+        <div class="lg:col-span-3">
+          <h4 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-200 mb-3.5 flex items-center gap-2">
+            <span class="text-slate-400">💬</span> Kontak &amp; Saluran
+          </h4>
+          <div class="space-y-2 text-xs">
+            <a href="mailto:infoaccutax.id@gmail.com" class="flex items-center gap-2.5 p-2 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 text-slate-300 hover:text-white transition">
+              <span class="w-6 h-6 rounded-lg bg-slate-800 flex items-center justify-center text-xs">✉️</span>
+              <span class="truncate font-medium">infoaccutax.id@gmail.com</span>
+            </a>
+            <a href="https://wa.me/6289670244070" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 p-2 rounded-xl bg-slate-900/60 hover:bg-emerald-950/40 border border-slate-800/80 hover:border-emerald-500/30 text-slate-300 hover:text-emerald-400 transition">
+              <span class="w-6 h-6 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xs">💬</span>
+              <span class="truncate font-medium">WhatsApp: 0896-7024-4070</span>
+            </a>
+            <div class="grid grid-cols-2 gap-2 pt-0.5">
+              <a href="https://www.instagram.com/accutax.id" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1.5 p-2 rounded-xl bg-slate-900/60 hover:bg-rose-950/40 border border-slate-800/80 hover:border-rose-500/30 text-slate-300 hover:text-rose-400 transition text-[11px] font-medium">
+                <span>📷</span> Instagram
+              </a>
+              <a href="https://www.tiktok.com/@accutax.id" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1.5 p-2 rounded-xl bg-slate-900/60 hover:bg-indigo-950/40 border border-slate-800/80 hover:border-indigo-500/30 text-slate-300 hover:text-cyan-400 transition text-[11px] font-medium">
+                <span>🎵</span> TikTok
+              </a>
+            </div>
+          </div>
         </div>
 
       </div>
 
-      <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
-        <div>&copy; 2026 ACCUTAX. Hak Cipta Dilindungi Undang-Undang.</div>
-        <div class="flex gap-4">
-          <span>Keamanan Data Pribadi</span>
+      <!-- Bottom Bar -->
+      <div class="pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-3 text-center sm:text-left">
+        <div>&copy; 2026 ACCUTAX. Hak Cipta Dilindungi Undang-Undang Republik Indonesia.</div>
+        <div class="flex items-center gap-3 text-[11px]">
+          <span class="hover:text-slate-400 transition">Data Aman (Client-Side)</span>
           <span>•</span>
-          <span>Kepatuhan Standar DJP</span>
+          <span class="hover:text-slate-400 transition">Kepatuhan DJP RI</span>
         </div>
       </div>
     </div>
