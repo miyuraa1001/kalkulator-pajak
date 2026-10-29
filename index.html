@@ -97,48 +97,84 @@
     <!-- ============================================================== -->
     <section id="home" class="page-section">
       
-      <!-- HERO BANNER -->
-      <div class="relative overflow-hidden bg-gradient-to-b from-rose-950 via-rose-900 to-rose-850 text-white py-16 sm:py-24 lg:py-28">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(244,63,94,0.15),transparent_60%)] pointer-events-none"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div class="max-w-3xl mx-auto text-center">
+      <!-- HERO BANNER (DESKTOP-FEEL RESPONSIVE ON MOBILE) -->
+      <div class="relative overflow-hidden bg-gradient-to-b from-rose-950 via-rose-900 to-rose-900 text-white py-10 sm:py-20 lg:py-24">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(244,63,94,0.18),transparent_60%)] pointer-events-none"></div>
+        <div class="absolute -right-24 -top-24 w-72 sm:w-96 h-72 sm:h-96 rounded-full bg-rose-500/10 blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 relative z-10">
+          <div class="max-w-3xl sm:max-w-4xl mx-auto text-center">
             
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-rose-100 text-xs sm:text-sm font-semibold mb-6">
+            <!-- Badge Regulasi Resmi -->
+            <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-rose-100 text-[10px] sm:text-xs font-semibold mb-4 sm:mb-6">
               <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              Update Regulasi: UU HPP, PP 58/2023, PMK 168/2023 &amp; PP 55/2022
+              <span>Update Regulasi: UU HPP, PP 58/2023, PMK 168/2023 &amp; PP 55/2022</span>
             </div>
 
-            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight sm:leading-tight">
+            <!-- Title: Desktop proportion on mobile -->
+            <h1 class="text-xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-snug sm:leading-tight">
               Hitung Pajak Anda Secara Akurat, Cepat &amp; Sesuai Regulasi Terbaru
             </h1>
 
-            <p class="mt-6 text-base sm:text-xl text-rose-100/90 leading-relaxed max-w-2xl mx-auto">
+            <!-- Subtitle -->
+            <p class="mt-3.5 sm:mt-5 text-xs sm:text-base text-rose-100/90 leading-relaxed max-w-xl sm:max-w-2xl mx-auto">
               Platform kalkulasi pajak profesional berbasis web yang modern, responsif, dan akurat untuk Wajib Pajak Orang Pribadi, Badan Usaha, dan UMKM.
             </p>
 
-            <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button onclick="showSection('kalkulator')" class="w-full sm:w-auto px-8 py-4 bg-white text-rose-950 hover:bg-rose-50 font-bold rounded-2xl shadow-xl transition-all transform hover:-translate-y-0.5 text-center cursor-pointer">
-                Buka Tools Kalkulator Pajak &rarr;
+            <!-- Dual Action Buttons: Side-by-Side on Mobile like Desktop -->
+            <div class="mt-6 sm:mt-9 flex flex-row items-center justify-center gap-2 sm:gap-4">
+              <button onclick="showSection('kalkulator')" class="px-3.5 sm:px-8 py-3 sm:py-4 bg-white text-rose-950 hover:bg-rose-50 font-bold rounded-xl sm:rounded-2xl shadow-xl transition-all transform hover:-translate-y-0.5 text-xs sm:text-sm cursor-pointer whitespace-nowrap">
+                Buka Tools Kalkulator &rarr;
               </button>
-              <a href="#section-artikel" class="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-2xl backdrop-blur-sm border border-white/20 transition-all text-center">
+              <a href="#section-artikel" class="px-3.5 sm:px-8 py-3 sm:py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl sm:rounded-2xl backdrop-blur-sm border border-white/20 transition-all text-xs sm:text-sm whitespace-nowrap">
                 Pelajari Artikel &amp; Panduan
               </a>
             </div>
 
-            <!-- Stats Counters -->
-            <div class="mt-12 pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-              <div class="bg-white/5 backdrop-blur-sm p-4 rounded-2xl border border-white/10">
-                <div class="text-3xl font-black text-white">10,000+</div>
-                <div class="text-xs sm:text-sm text-rose-200 mt-1">Pengguna Aktif</div>
+            <!-- Stats Counters: 3 Columns on Mobile like Desktop -->
+            <div class="mt-6 sm:mt-10 pt-5 sm:pt-8 border-t border-white/10 grid grid-cols-3 gap-2 sm:gap-6 text-center">
+              <div class="bg-white/5 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-white/10">
+                <div class="text-base sm:text-3xl font-black text-white">10,000+</div>
+                <div class="text-[9px] sm:text-xs text-rose-200 mt-0.5 sm:mt-1">Pengguna Aktif</div>
               </div>
-              <div class="bg-white/5 backdrop-blur-sm p-4 rounded-2xl border border-white/10">
-                <div class="text-3xl font-black text-white">99.9%</div>
-                <div class="text-xs sm:text-sm text-rose-200 mt-1">Akurasi Perhitungan</div>
+              <div class="bg-white/5 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-white/10">
+                <div class="text-base sm:text-3xl font-black text-white">99.9%</div>
+                <div class="text-[9px] sm:text-xs text-rose-200 mt-0.5 sm:mt-1">Akurasi Perhitungan</div>
               </div>
-              <div class="bg-white/5 backdrop-blur-sm p-4 rounded-2xl border border-white/10">
-                <div class="text-3xl font-black text-white">2024–2026</div>
-                <div class="text-xs sm:text-sm text-rose-200 mt-1">Regulasi Resmi Terupdate</div>
+              <div class="bg-white/5 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-white/10">
+                <div class="text-base sm:text-3xl font-black text-white">2024–2026</div>
+                <div class="text-[9px] sm:text-xs text-rose-200 mt-0.5 sm:mt-1">Regulasi Terupdate</div>
+              </div>
+            </div>
+
+            <!-- Desktop-Style Feature Showcase Card (Looks like an Enterprise Desktop Dashboard Window) -->
+            <div class="mt-6 sm:mt-10 p-3 sm:p-5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 shadow-2xl text-left">
+              <div class="flex items-center justify-between pb-2.5 sm:pb-3 border-b border-white/10">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                  <span class="text-[10px] sm:text-xs font-bold text-rose-100 ml-1.5 sm:ml-2">ACCUTAX Enterprise Suite</span>
+                </div>
+                <span class="text-[9px] sm:text-[10px] font-semibold px-2 py-0.5 rounded bg-emerald-400/20 text-emerald-300 border border-emerald-400/30">Live Platform</span>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2.5 sm:pt-3 text-[10px] sm:text-xs">
+                <div class="bg-white/5 p-2 rounded-lg border border-white/5">
+                  <div class="text-rose-200 text-[9px] sm:text-[10px]">PPh 21 Karyawan</div>
+                  <div class="font-bold text-white mt-0.5">TER PP 58/2023</div>
+                </div>
+                <div class="bg-white/5 p-2 rounded-lg border border-white/5">
+                  <div class="text-rose-200 text-[9px] sm:text-[10px]">PPN 11% UU HPP</div>
+                  <div class="font-bold text-white mt-0.5">Exclude &amp; Include WAPU</div>
+                </div>
+                <div class="bg-white/5 p-2 rounded-lg border border-white/5">
+                  <div class="text-rose-200 text-[9px] sm:text-[10px]">PPh Final UMKM</div>
+                  <div class="font-bold text-white mt-0.5">0,5% Bebas 500 Juta</div>
+                </div>
+                <div class="bg-white/5 p-2 rounded-lg border border-white/5">
+                  <div class="text-rose-200 text-[9px] sm:text-[10px]">Format Cetak Resmi</div>
+                  <div class="font-bold text-white mt-0.5">Bukti Potong Standar A4</div>
+                </div>
               </div>
             </div>
 
