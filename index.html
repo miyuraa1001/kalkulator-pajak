@@ -48,7 +48,7 @@
         <!-- Desktop Navigation Links -->
         <nav class="hidden md:flex items-center gap-1.5 lg:gap-2">
           <a href="#home" onclick="showSection('home')" class="nav-link-btn px-3.5 py-2 text-sm font-bold text-rose-900 bg-rose-50 rounded-xl transition-all">Beranda</a>
-          <a href="#kalkulator" onclick="showSection('kalkulator')" class="nav-link-btn px-3.5 py-2 text-sm font-semibold text-slate-700 hover:text-rose-900 hover:bg-rose-50 rounded-xl transition-all">Kalkulator Pajak</a>
+          <a href="#kalkulator" onclick="showSection('kalkulator')" class="nav-link-btn px-3.5 py-2 text-sm font-semibold text-slate-700 hover:text-rose-900 hover:bg-rose-50 rounded-xl transition-all">Tools Kalkulator Pajak</a>
           <a href="#artikel" onclick="showSection('artikel')" class="nav-link-btn px-3.5 py-2 text-sm font-semibold text-slate-700 hover:text-rose-900 hover:bg-rose-50 rounded-xl transition-all">Artikel &amp; Edukasi</a>
           <a href="#forum" onclick="showSection('forum')" class="nav-link-btn px-3.5 py-2 text-sm font-semibold text-slate-700 hover:text-rose-900 hover:bg-rose-50 rounded-xl transition-all">Forum Komunitas</a>
           <a href="#tentang" onclick="showSection('tentang')" class="nav-link-btn px-3.5 py-2 text-sm font-semibold text-slate-700 hover:text-rose-900 hover:bg-rose-50 rounded-xl transition-all">Tentang Kami</a>
@@ -74,7 +74,7 @@
     <!-- Mobile Drawer Menu (Spacious & Clean) -->
     <div id="mobile-drawer" class="hidden md:hidden bg-white/98 backdrop-blur-xl border-b border-slate-200 px-6 py-6 space-y-3 shadow-xl transition-all">
       <a href="#home" onclick="showSection('home')" class="block py-2.5 px-3 font-bold text-slate-900 hover:bg-rose-50 rounded-xl">Beranda</a>
-      <a href="#kalkulator" onclick="showSection('kalkulator')" class="block py-2.5 px-3 font-semibold text-slate-700 hover:bg-rose-50 rounded-xl">Kalkulator Pajak</a>
+      <a href="#kalkulator" onclick="showSection('kalkulator')" class="block py-2.5 px-3 font-semibold text-slate-700 hover:bg-rose-50 rounded-xl">Tools Kalkulator Pajak</a>
       <a href="#artikel" onclick="showSection('artikel')" class="block py-2.5 px-3 font-semibold text-slate-700 hover:bg-rose-50 rounded-xl">Artikel &amp; Edukasi</a>
       <a href="#forum" onclick="showSection('forum')" class="block py-2.5 px-3 font-semibold text-slate-700 hover:bg-rose-50 rounded-xl">Forum Komunitas</a>
       <a href="#tentang" onclick="showSection('tentang')" class="block py-2.5 px-3 font-semibold text-slate-700 hover:bg-rose-50 rounded-xl">Tentang Kami</a>
@@ -119,7 +119,7 @@
 
             <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <button onclick="showSection('kalkulator')" class="w-full sm:w-auto px-8 py-4 bg-white text-rose-950 hover:bg-rose-50 font-bold rounded-2xl shadow-xl transition-all transform hover:-translate-y-0.5 text-center cursor-pointer">
-                Mulai Hitung Pajak &rarr;
+                Buka Tools Kalkulator Pajak &rarr;
               </button>
               <a href="#section-artikel" class="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-2xl backdrop-blur-sm border border-white/20 transition-all text-center">
                 Pelajari Artikel &amp; Panduan
@@ -334,9 +334,9 @@
 
         <!-- Section Header -->
         <div class="text-center max-w-3xl mx-auto mb-10">
-          <span class="text-xs font-extrabold uppercase tracking-widest text-rose-900 bg-rose-100 px-3 py-1 rounded-full">Kalkulator Pajak</span>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3">Pilih Jenis Pajak</h2>
-          <p class="text-slate-600 mt-2 text-sm sm:text-base">Gunakan simulator perpajakan di bawah ini sesuai transaksi dan status entitas Anda.</p>
+          <span class="text-xs font-extrabold uppercase tracking-widest text-rose-900 bg-rose-100 px-3 py-1 rounded-full">Tools Kalkulator Pajak</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3">Tools Kalkulator Pajak Multi-Regulasi</h2>
+          <p class="text-slate-600 mt-2 text-sm sm:text-base">Simulator perpajakan resmi terlengkap yang dirancang ramah untuk orang awam. Dapatkan ringkasan indikator kunci (KPI), edukasi praktis regulasi, dan hitung pajak Anda secara cepat &amp; akurat.</p>
         </div>
 
         <!-- Sticky / Scrollable Tab Bar (Spacious touch targets for mobile) -->
@@ -382,12 +382,69 @@
 
             <!-- Mode Selector: Masa (TER) vs Masa Terakhir (Desember) -->
             <div class="bg-slate-100 p-1.5 rounded-2xl flex max-w-xl gap-1">
-              <button type="button" id="btn-mode-masa" onclick="switchPPh21Mode('masa')" class="flex-1 py-3 px-4 rounded-xl font-bold text-sm bg-rose-900 text-white shadow-sm transition-all">
+              <button type="button" id="btn-mode-masa" onclick="switchPPh21Mode('masa')" class="flex-1 py-3 px-4 rounded-xl font-bold text-sm bg-rose-900 text-white shadow-sm transition-all cursor-pointer">
                 Masa Bulanan (Jan – Nov / TER)
               </button>
-              <button type="button" id="btn-mode-tahunan" onclick="switchPPh21Mode('tahunan')" class="flex-1 py-3 px-4 rounded-xl font-semibold text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">
+              <button type="button" id="btn-mode-tahunan" onclick="switchPPh21Mode('tahunan')" class="flex-1 py-3 px-4 rounded-xl font-semibold text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all cursor-pointer">
                 Masa Terakhir (Desember / Pasal 17)
               </button>
+            </div>
+
+            <!-- DYNAMIC KPI & EDUKASI AWAM PPh 21 -->
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="text-base">📊</span>
+                  <h4 class="text-xs font-black uppercase tracking-wider text-slate-700">Indikator Kunci (KPI) &amp; Ketentuan PPh 21</h4>
+                </div>
+                <span id="pph21-kpi-badge" class="text-[11px] font-semibold text-rose-900 bg-rose-50 px-2.5 py-0.5 rounded-full border border-rose-200/60">Panduan Orang Awam</span>
+              </div>
+
+              <!-- 4 KPI Cards -->
+              <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>⚙️</span> <span>Metode Perhitungan</span>
+                  </div>
+                  <div id="kpi-pph21-metode" class="text-base sm:text-lg font-black text-slate-900 mt-1.5">TER PP 58/2023</div>
+                  <div id="kpi-pph21-metode-desc" class="text-[11px] text-slate-500 mt-0.5">Tarif Efektif Rata-Rata Bulanan</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>📈</span> <span>Rentang Tarif</span>
+                  </div>
+                  <div id="kpi-pph21-tarif" class="text-base sm:text-lg font-black text-rose-900 mt-1.5">0% s.d. 34%</div>
+                  <div id="kpi-pph21-tarif-desc" class="text-[11px] text-slate-500 mt-0.5">Sesuai Kategori Tanggungan</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>🛡️</span> <span>Batas Bebas Pajak</span>
+                  </div>
+                  <div id="kpi-pph21-ptkp" class="text-base sm:text-lg font-black text-slate-900 mt-1.5">Gaji &le; Rp 5,4 Juta</div>
+                  <div id="kpi-pph21-ptkp-desc" class="text-[11px] text-slate-500 mt-0.5">Tarif 0% (Bebas Potongan)</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>📅</span> <span>Karakter Pemotongan</span>
+                  </div>
+                  <div id="kpi-pph21-waktu" class="text-base sm:text-lg font-black text-slate-900 mt-1.5">Masa Jan – Nov</div>
+                  <div id="kpi-pph21-waktu-desc" class="text-[11px] text-slate-500 mt-0.5">Potong langsung slip gaji bulanan</div>
+                </div>
+              </div>
+
+              <!-- Interactive Explanation Callout -->
+              <div id="pph21-edu-box" class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50/60 border border-amber-200/80 text-amber-950 text-xs sm:text-sm leading-relaxed flex items-start gap-3 shadow-xs">
+                <div class="text-xl sm:text-2xl flex-shrink-0 pt-0.5">💡</div>
+                <div>
+                  <div id="pph21-edu-title" class="font-bold text-amber-900 text-sm mb-1">Panduan Orang Awam: Cara Kerja TER Bulanan (Jan – Nov)</div>
+                  <div id="pph21-edu-desc" class="text-amber-900/90 space-y-1">
+                    Mulai 1 Januari 2024 melalui PP 58/2023 &amp; PMK 168/2023, potongan gaji bulanan dibuat sangat praktis! Gaji bruto bulanan langsung dikalikan persentase tarif TER sesuai status tanggungan Anda tanpa perlu repot menghitung pengurangan PTKP bulanan. Pajak riil setahun nantinya akan dihitung ulang secara akurat di masa Desember.
+                  </div>
+                </div>
+              </div>
             </div>
 
             <form onsubmit="submitPPh21(event)" class="space-y-8">
@@ -537,6 +594,64 @@
               </span>
             </div>
 
+            <!-- DYNAMIC KPI & EDUKASI AWAM PPN -->
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="text-base">📊</span>
+                  <h4 class="text-xs font-black uppercase tracking-wider text-slate-700">Indikator Kunci (KPI) &amp; Ketentuan PPN</h4>
+                </div>
+                <span id="ppn-kpi-badge" class="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/60">UU HPP Berlaku</span>
+              </div>
+
+              <!-- 4 KPI Cards -->
+              <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>🏷️</span> <span>Tarif Resmi PPN</span>
+                  </div>
+                  <div id="kpi-ppn-tarif" class="text-base sm:text-lg font-black text-rose-900 mt-1.5">11%</div>
+                  <div id="kpi-ppn-tarif-desc" class="text-[11px] text-slate-500 mt-0.5">Sesuai UU Harmonisasi Perpajakan</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>🧮</span> <span>Metode Tagihan</span>
+                  </div>
+                  <div id="kpi-ppn-metode" class="text-base sm:text-lg font-black text-slate-900 mt-1.5">Exclude PPN</div>
+                  <div id="kpi-ppn-metode-desc" class="text-[11px] text-slate-500 mt-0.5">Harga Dasar + Pajak 11%</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>📦</span> <span>Besaran Tertentu</span>
+                  </div>
+                  <div id="kpi-ppn-besaran" class="text-base sm:text-lg font-black text-slate-900 mt-1.5">1,1% Efektif</div>
+                  <div id="kpi-ppn-besaran-desc" class="text-[11px] text-slate-500 mt-0.5">PMK 71/2022 (Paket / Ekspedisi)</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>🏛️</span> <span>Status Pemungut</span>
+                  </div>
+                  <div id="kpi-ppn-wapu" class="text-base sm:text-lg font-black text-slate-900 mt-1.5">Non-WAPU</div>
+                  <div id="kpi-ppn-wapu-desc" class="text-[11px] text-slate-500 mt-0.5">Swasta Biasa (Setor Mandiri)</div>
+                </div>
+              </div>
+
+              <!-- Interactive Explanation Callout -->
+              <div id="ppn-edu-box" class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-emerald-50 to-teal-50/60 border border-emerald-200/80 text-emerald-950 text-xs sm:text-sm leading-relaxed flex items-start gap-3 shadow-xs">
+                <div class="text-xl sm:text-2xl flex-shrink-0 pt-0.5">💡</div>
+                <div>
+                  <div id="ppn-edu-title" class="font-bold text-emerald-900 text-sm mb-1">Panduan Orang Awam: Exclude vs Include PPN</div>
+                  <div id="ppn-edu-desc" class="text-emerald-900/90 space-y-1">
+                    <strong>Exclude PPN:</strong> Harga yang tertera adalah harga murni barang/jasa. Pembeli harus menambahkan 11% lagi untuk pajaknya (Total = Harga + 11%).<br>
+                    <strong>Include PPN:</strong> Harga yang tertera di nota atau kasir sudah termasuk pajak 11%. Dasar harga asli (DPP) dihitung dengan rumus: <code>(100 / 111) &times; Harga Total</code>.
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <form onsubmit="submitPPN(event)" class="space-y-6">
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 <div>
@@ -590,6 +705,63 @@
               <span class="px-3 py-1 bg-blue-50 text-blue-800 border border-blue-200 rounded-full text-xs font-semibold">
                 PMK 141/PMK.03/2015
               </span>
+            </div>
+
+            <!-- DYNAMIC KPI & EDUKASI AWAM PPh 23 -->
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="text-base">📊</span>
+                  <h4 class="text-xs font-black uppercase tracking-wider text-slate-700">Indikator Kunci (KPI) &amp; Ketentuan PPh 23</h4>
+                </div>
+                <span id="pph23-kpi-badge" class="text-[11px] font-semibold text-blue-900 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200/60">PMK 141/2015</span>
+              </div>
+
+              <!-- 4 KPI Cards -->
+              <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>💼</span> <span>Tarif Jasa &amp; Sewa</span>
+                  </div>
+                  <div id="kpi-pph23-tarif" class="text-base sm:text-lg font-black text-rose-900 mt-1.5">2%</div>
+                  <div id="kpi-pph23-tarif-desc" class="text-[11px] text-slate-500 mt-0.5">Dari Nilai Kontrak Bruto</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>💰</span> <span>Tarif Royalti/Bunga</span>
+                  </div>
+                  <div id="kpi-pph23-pasif" class="text-base sm:text-lg font-black text-slate-900 mt-1.5">15%</div>
+                  <div id="kpi-pph23-pasif-desc" class="text-[11px] text-slate-500 mt-0.5">Penghasilan Pasif &amp; Dividen</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>⚠️</span> <span>Sanksi Tanpa NPWP</span>
+                  </div>
+                  <div id="kpi-pph23-npwp" class="text-base sm:text-lg font-black text-rose-700 mt-1.5">+100% (2x Lipat)</div>
+                  <div id="kpi-pph23-npwp-desc" class="text-[11px] text-slate-500 mt-0.5">Tarif 2% naik jadi 4%</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>🗓️</span> <span>Tenggat Waktu</span>
+                  </div>
+                  <div id="kpi-pph23-tenggat" class="text-base sm:text-lg font-black text-slate-900 mt-1.5">Tgl 10 &amp; 20</div>
+                  <div id="kpi-pph23-tenggat-desc" class="text-[11px] text-slate-500 mt-0.5">Setor tgl 10, Lapor tgl 20 bln depan</div>
+                </div>
+              </div>
+
+              <!-- Interactive Explanation Callout -->
+              <div id="pph23-edu-box" class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50/60 border border-blue-200/80 text-blue-950 text-xs sm:text-sm leading-relaxed flex items-start gap-3 shadow-xs">
+                <div class="text-xl sm:text-2xl flex-shrink-0 pt-0.5">💡</div>
+                <div>
+                  <div id="pph23-edu-title" class="font-bold text-blue-900 text-sm mb-1">Panduan Orang Awam: Apa itu Pemotongan PPh 23?</div>
+                  <div id="pph23-edu-desc" class="text-blue-900/90 space-y-1">
+                    PPh 23 adalah pajak yang wajib dipotong oleh perusahaan saat membayar jasa teknik, IT, konsultan, manajemen, atau sewa peralatan kepada rekanan bisnis. Perusahaan pemotong wajib menyerahkan Bukti Potong (Bupot) resmi agar rekanan dapat menggunakannya sebagai pengurang pajak di SPT Tahunan.
+                  </div>
+                </div>
+              </div>
             </div>
 
             <form onsubmit="submitPPh23(event)" class="space-y-6">
@@ -649,6 +821,63 @@
               <span class="px-3 py-1 bg-purple-50 text-purple-800 border border-purple-200 rounded-full text-xs font-semibold">
                 Pasal 25 UU PPh
               </span>
+            </div>
+
+            <!-- DYNAMIC KPI & EDUKASI AWAM PPh 25 -->
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="text-base">📊</span>
+                  <h4 class="text-xs font-black uppercase tracking-wider text-slate-700">Indikator Kunci (KPI) &amp; Ketentuan PPh 25</h4>
+                </div>
+                <span id="pph25-kpi-badge" class="text-[11px] font-semibold text-purple-900 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-200/60">Pasal 25 UU PPh</span>
+              </div>
+
+              <!-- 4 KPI Cards -->
+              <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>🔄</span> <span>Tujuan Angsuran</span>
+                  </div>
+                  <div id="kpi-pph25-tujuan" class="text-base sm:text-lg font-black text-purple-900 mt-1.5">Cicilan Bulanan</div>
+                  <div id="kpi-pph25-tujuan-desc" class="text-[11px] text-slate-500 mt-0.5">Meringankan SPT Tahunan</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>🧮</span> <span>Dasar Hitung</span>
+                  </div>
+                  <div id="kpi-pph25-dasar" class="text-base sm:text-lg font-black text-slate-900 mt-1.5">SPT Tahun Lalu</div>
+                  <div id="kpi-pph25-dasar-desc" class="text-[11px] text-slate-500 mt-0.5">PPh Terutang - Kredit Pajak</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>🏪</span> <span>Tarif Khusus OPPT</span>
+                  </div>
+                  <div id="kpi-pph25-oppt" class="text-base sm:text-lg font-black text-slate-900 mt-1.5">0,75% Omzet</div>
+                  <div id="kpi-pph25-oppt-desc" class="text-[11px] text-slate-500 mt-0.5">Khusus Toko Eceran / Cabang</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>⏰</span> <span>Jatuh Tempo Setor</span>
+                  </div>
+                  <div id="kpi-pph25-tenggat" class="text-base sm:text-lg font-black text-slate-900 mt-1.5">Tgl 15 Tiap Bulan</div>
+                  <div id="kpi-pph25-tenggat-desc" class="text-[11px] text-slate-500 mt-0.5">Kode Billing Akun 411125 / 411126</div>
+                </div>
+              </div>
+
+              <!-- Interactive Explanation Callout -->
+              <div id="pph25-edu-box" class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-purple-50 to-fuchsia-50/60 border border-purple-200/80 text-purple-950 text-xs sm:text-sm leading-relaxed flex items-start gap-3 shadow-xs">
+                <div class="text-xl sm:text-2xl flex-shrink-0 pt-0.5">💡</div>
+                <div>
+                  <div id="pph25-edu-title" class="font-bold text-purple-900 text-sm mb-1">Panduan Orang Awam: Mengapa Harus Mencicil PPh 25?</div>
+                  <div id="pph25-edu-desc" class="text-purple-900/90 space-y-1">
+                    Bayangkan jika Anda harus membayar pajak penghasilan puluhan atau ratusan juta rupiah sekaligus di bulan Maret/April! Untuk mencegah hal itu, negara memberi fasilitas cicilan bernama PPh 25. Setiap bulan Anda menyetor 1/12 dari sisa pajak tahun lalu sehingga saat tutup tahun buku, Anda tidak lagi kaget.
+                  </div>
+                </div>
+              </div>
             </div>
 
             <form onsubmit="submitPPh25(event)" class="space-y-6">
@@ -717,6 +946,63 @@
               <span class="px-3 py-1 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-full text-xs font-semibold">
                 PP 55/2022 &amp; UU HPP
               </span>
+            </div>
+
+            <!-- DYNAMIC KPI & EDUKASI AWAM UMKM -->
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="text-base">📊</span>
+                  <h4 class="text-xs font-black uppercase tracking-wider text-slate-700">Indikator Kunci (KPI) &amp; Ketentuan UMKM PP 55/2022</h4>
+                </div>
+                <span id="umkm-kpi-badge" class="text-[11px] font-semibold text-emerald-900 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/60">Insentif Resmi UMKM</span>
+              </div>
+
+              <!-- 4 KPI Cards -->
+              <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>🏷️</span> <span>Tarif Final UMKM</span>
+                  </div>
+                  <div id="kpi-umkm-tarif" class="text-base sm:text-lg font-black text-rose-900 mt-1.5">0,5%</div>
+                  <div id="kpi-umkm-tarif-desc" class="text-[11px] text-slate-500 mt-0.5">Dari Omzet Bruto Bulanan</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>🎁</span> <span>Fasilitas Bebas Pajak</span>
+                  </div>
+                  <div id="kpi-umkm-fasilitas" class="text-base sm:text-lg font-black text-emerald-700 mt-1.5">s.d. Rp 500 Juta</div>
+                  <div id="kpi-umkm-fasilitas-desc" class="text-[11px] text-slate-500 mt-0.5">Khusus Orang Pribadi (0% Pajak)</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>⏳</span> <span>Masa Berlaku Fasilitas</span>
+                  </div>
+                  <div id="kpi-umkm-waktu" class="text-base sm:text-lg font-black text-slate-900 mt-1.5">OP: 7 Thn | CV: 4 Thn</div>
+                  <div id="kpi-umkm-waktu-desc" class="text-[11px] text-slate-500 mt-0.5">PT: 3 Tahun Pajak</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>📈</span> <span>Batas Maksimal Omzet</span>
+                  </div>
+                  <div id="kpi-umkm-syarat" class="text-base sm:text-lg font-black text-slate-900 mt-1.5">Rp 4,8 Miliar/thn</div>
+                  <div id="kpi-umkm-syarat-desc" class="text-[11px] text-slate-500 mt-0.5">Jika lewat, wajib pembukuan tarif umum</div>
+                </div>
+              </div>
+
+              <!-- Interactive Explanation Callout -->
+              <div id="umkm-edu-box" class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-emerald-50 to-green-50/60 border border-emerald-200/80 text-emerald-950 text-xs sm:text-sm leading-relaxed flex items-start gap-3 shadow-xs">
+                <div class="text-xl sm:text-2xl flex-shrink-0 pt-0.5">🎉</div>
+                <div>
+                  <div id="umkm-edu-title" class="font-bold text-emerald-900 text-sm mb-1">Kabar Gembira: Omzet s.d. Rp 500 Juta Bebas Pajak untuk Orang Pribadi!</div>
+                  <div id="umkm-edu-desc" class="text-emerald-900/90 space-y-1">
+                    Sesuai PP 55/2022 dan UU HPP, jika Anda adalah pengusaha UMKM Orang Pribadi, omzet Anda dari bulan Januari hingga mencapai Rp 500 Juta <strong>TIDAK KENA PAJAK SAMA SEKALI (Rp 0 / GRATIS)</strong>! Pajak 0,5% hanya dihitung dari selisih omzet yang melewati angka Rp 500 Juta tersebut.
+                  </div>
+                </div>
+              </div>
             </div>
 
             <form onsubmit="submitUMKM(event)" class="space-y-6">
@@ -797,6 +1083,63 @@
               <span class="px-3 py-1 bg-amber-50 text-amber-800 border border-amber-200 rounded-full text-xs font-semibold">
                 Pasal 4 Ayat (2) UU PPh
               </span>
+            </div>
+
+            <!-- DYNAMIC KPI & EDUKASI AWAM PPh Final 4(2) -->
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="text-base">📊</span>
+                  <h4 class="text-xs font-black uppercase tracking-wider text-slate-700">Indikator Kunci (KPI) &amp; Ketentuan Pajak Final</h4>
+                </div>
+                <span id="pphfinal-kpi-badge" class="text-[11px] font-semibold text-amber-900 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200/60">Pasal 4 Ayat (2) UU PPh</span>
+              </div>
+
+              <!-- 4 KPI Cards -->
+              <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>⚡</span> <span>Sifat Pemajakan</span>
+                  </div>
+                  <div id="kpi-pphfinal-sifat" class="text-base sm:text-lg font-black text-rose-900 mt-1.5">Final (Tuntas)</div>
+                  <div id="kpi-pphfinal-sifat-desc" class="text-[11px] text-slate-500 mt-0.5">Lunas seketika, bebas hitung SPT</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>🏠</span> <span>Sewa Tanah/Gedung</span>
+                  </div>
+                  <div id="kpi-pphfinal-sewa" class="text-base sm:text-lg font-black text-slate-900 mt-1.5">10%</div>
+                  <div id="kpi-pphfinal-sewa-desc" class="text-[11px] text-slate-500 mt-0.5">Rumah, Ruko, Kantor, Kamar Kos</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>📜</span> <span>Jual Beli Properti</span>
+                  </div>
+                  <div id="kpi-pphfinal-jual" class="text-base sm:text-lg font-black text-slate-900 mt-1.5">2,5%</div>
+                  <div id="kpi-pphfinal-jual-desc" class="text-[11px] text-slate-500 mt-0.5">Dari Nilai Akta / NJOP Tertinggi</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all">
+                  <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <span>🏗️</span> <span>Jasa Konstruksi</span>
+                  </div>
+                  <div id="kpi-pphfinal-konstruksi" class="text-base sm:text-lg font-black text-slate-900 mt-1.5">1,75% s.d. 4%</div>
+                  <div id="kpi-pphfinal-konstruksi-desc" class="text-[11px] text-slate-500 mt-0.5">Sesuai Sertifikat PP 9/2022</div>
+                </div>
+              </div>
+
+              <!-- Interactive Explanation Callout -->
+              <div id="pphfinal-edu-box" class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-amber-50 to-yellow-50/60 border border-amber-200/80 text-amber-950 text-xs sm:text-sm leading-relaxed flex items-start gap-3 shadow-xs">
+                <div class="text-xl sm:text-2xl flex-shrink-0 pt-0.5">💡</div>
+                <div>
+                  <div id="pphfinal-edu-title" class="font-bold text-amber-900 text-sm mb-1">Panduan Orang Awam: Apa Makna Pajak "Final"?</div>
+                  <div id="pphfinal-edu-desc" class="text-amber-900/90 space-y-1">
+                    Pajak Final artinya kewajiban perpajakan Anda atas transaksi tersebut telah selesai dan tuntas seketika saat dipotong atau dibayarkan. Di akhir tahun saat lapor SPT Tahunan, penghasilan ini cukup dilaporkan di lampiran penghasilan final tanpa perlu digabung dengan penghasilan lain dan tidak akan dihitung pajak progresif lagi!
+                  </div>
+                </div>
+              </div>
             </div>
 
             <form onsubmit="submitPPhFinal(event)" class="space-y-6">
@@ -1037,7 +1380,7 @@
         </div>
 
         <div>
-          <h4 class="text-sm font-bold uppercase tracking-wider text-slate-200 mb-4">Fitur Kalkulator</h4>
+          <h4 class="text-sm font-bold uppercase tracking-wider text-slate-200 mb-4">Tools Kalkulator Pajak</h4>
           <ul class="space-y-2 text-xs sm:text-sm text-slate-400">
             <li><a href="#kalkulator" onclick="showSection('kalkulator'); switchTaxTab('pph21');" class="hover:text-white transition-colors">PPh 21 TER PP 58/2023</a></li>
             <li><a href="#kalkulator" onclick="showSection('kalkulator'); switchTaxTab('ppn');" class="hover:text-white transition-colors">PPN 11% UU HPP &amp; WAPU</a></li>
