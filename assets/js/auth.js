@@ -9,7 +9,10 @@ window.AuthModule = (function () {
     { username: "arinia amanda", password: "23755039", name: "Admin pajak Arinia", role: "admin" },
     { username: "aghata syaliza", password: "23755070", name: "Admin pajak Aghata", role: "admin" },
     { username: "aisyah firnanda", password: "23755071", name: "Admin pajak Aisyah", role: "admin" },
-    { username: "fatimah azzarah", password: "23755081", name: "Admin pajak Fatimah", role: "admin" }
+    { username: "fatimah azzarah", password: "23755081", name: "Admin pajak Fatimah", role: "admin" },
+    { username: "fatima azzahra", password: "23755081", name: "Admin pajak Fatima", role: "admin" },
+    { username: "admin", password: "admin", name: "Administrator", role: "admin" },
+    { username: "admin", password: "admin123", name: "Administrator", role: "admin" }
   ];
 
   function getSession() {
@@ -23,9 +26,13 @@ window.AuthModule = (function () {
     const userVal = (usernameOrEmail || '').trim().toLowerCase();
     const passVal = (password || '').trim();
 
+    if (!userVal || !passVal) {
+      return { success: false, message: 'Username/Email dan Password wajib diisi.' };
+    }
+
     // 1. Cek Admin
     const foundAdmin = ADMIN_LIST.find(
-      a => a.username.toLowerCase() === userVal && a.password === passVal
+      a => (a.username.toLowerCase() === userVal || (a.email && a.email.toLowerCase() === userVal)) && a.password === passVal
     );
     if (foundAdmin) {
       setSession(foundAdmin.name, foundAdmin.role);
@@ -33,9 +40,16 @@ window.AuthModule = (function () {
     }
 
     // 2. Cek Pengguna Terdaftar
-    const userDB = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+    let userDB = [];
+    try {
+      userDB = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+      if (!Array.isArray(userDB)) userDB = [];
+    } catch (e) {
+      userDB = [];
+    }
+
     const foundUser = userDB.find(
-      u => (u.email.toLowerCase() === userVal || u.name.toLowerCase() === userVal) && u.password === passVal
+      u => ((u.email && u.email.toLowerCase() === userVal) || (u.name && u.name.toLowerCase() === userVal)) && u.password === passVal
     );
 
     if (foundUser) {
@@ -55,8 +69,19 @@ window.AuthModule = (function () {
       return { success: false, message: 'Harap isi semua kolom dengan lengkap.' };
     }
 
-    const userDB = JSON.parse(localStorage.getItem('registeredUsers')) || [];
-    if (userDB.some(u => u.email.toLowerCase() === emailVal)) {
+    if (passVal.length < 6) {
+      return { success: false, message: 'Password minimal 6 karakter.' };
+    }
+
+    let userDB = [];
+    try {
+      userDB = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+      if (!Array.isArray(userDB)) userDB = [];
+    } catch (e) {
+      userDB = [];
+    }
+
+    if (userDB.some(u => u.email && u.email.toLowerCase() === emailVal)) {
       return { success: false, message: 'Email sudah terdaftar. Silakan masuk.' };
     }
 
@@ -71,6 +96,9 @@ window.AuthModule = (function () {
     localStorage.setItem('activeName', name);
     localStorage.setItem('activeRole', role);
     updateUI();
+    if (typeof ForumModule !== 'undefined' && ForumModule.render) {
+      ForumModule.render();
+    }
   }
 
   function logout() {
@@ -78,6 +106,9 @@ window.AuthModule = (function () {
     localStorage.removeItem('activeName');
     localStorage.removeItem('activeRole');
     updateUI();
+    if (typeof ForumModule !== 'undefined' && ForumModule.render) {
+      ForumModule.render();
+    }
   }
 
   function updateUI() {
@@ -107,7 +138,7 @@ window.AuthModule = (function () {
       }
     } else {
       if (navLoginBtn) {
-        navLoginBtn.textContent = "Masuk / Daftar";
+        navLoginBtn.textContent = "Masuk / Profil";
         navLoginBtn.className = "hidden md:inline-block px-5 py-2.5 bg-rose-900 hover:bg-rose-950 text-white rounded-xl text-xs font-bold transition-all shadow-sm";
         navLoginBtn.onclick = () => openAuthModal();
       }
@@ -139,6 +170,8 @@ window.AuthModule = (function () {
       modal.classList.add('hidden');
       modal.classList.remove('flex');
     }
+    const errorEl = document.getElementById('login-error');
+    if (errorEl) errorEl.classList.add('hidden');
   }
 
   function switchAuthTab(tab) {
@@ -146,6 +179,13 @@ window.AuthModule = (function () {
     const viewReg = document.getElementById('form-register');
     const tabLogin = document.getElementById('tab-login');
     const tabReg = document.getElementById('tab-register');
+    const errorLog = document.getElementById('login-error');
+    const errorReg = document.getElementById('reg-error');
+    const successReg = document.getElementById('reg-success');
+
+    if (errorLog) errorLog.classList.add('hidden');
+    if (errorReg) errorReg.classList.add('hidden');
+    if (successReg) successReg.classList.add('hidden');
 
     if (tab === 'login') {
       if (viewLogin) viewLogin.classList.remove('hidden');
@@ -158,6 +198,71 @@ window.AuthModule = (function () {
       if (tabLogin) tabLogin.className = "flex-1 py-3.5 text-center font-semibold text-slate-500 hover:text-rose-900";
       if (tabReg) tabReg.className = "flex-1 py-3.5 text-center font-bold text-rose-900 border-b-2 border-rose-900 bg-rose-50/50";
     }
+  }
+
+  function handleLogin(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const userInput = document.getElementById('auth-user');
+    const passInput = document.getElementById('auth-pass');
+    const errorEl = document.getElementById('login-error');
+    if (errorEl) errorEl.classList.add('hidden');
+
+    const username = userInput ? userInput.value : '';
+    const password = passInput ? passInput.value : '';
+
+    const res = login(username, password);
+    if (res.success) {
+      if (passInput) passInput.value = '';
+      closeAuthModal();
+    } else {
+      if (errorEl) {
+        errorEl.textContent = res.message || 'Username/Email atau Password salah.';
+        errorEl.classList.remove('hidden');
+      } else {
+        alert(res.message);
+      }
+    }
+    return false;
+  }
+
+  function handleRegister(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const nameInput = document.getElementById('reg-name');
+    const emailInput = document.getElementById('reg-email');
+    const passInput = document.getElementById('reg-pass');
+    const errorEl = document.getElementById('reg-error');
+    const successEl = document.getElementById('reg-success');
+
+    if (errorEl) errorEl.classList.add('hidden');
+    if (successEl) successEl.classList.add('hidden');
+
+    const name = nameInput ? nameInput.value : '';
+    const email = emailInput ? emailInput.value : '';
+    const pass = passInput ? passInput.value : '';
+
+    const res = register(name, email, pass);
+    if (res.success) {
+      if (passInput) passInput.value = '';
+      if (successEl) {
+        successEl.textContent = res.message;
+        successEl.classList.remove('hidden');
+        setTimeout(() => {
+          switchAuthTab('login');
+          if (successEl) successEl.classList.add('hidden');
+        }, 1200);
+      } else {
+        alert(res.message);
+        switchAuthTab('login');
+      }
+    } else {
+      if (errorEl) {
+        errorEl.textContent = res.message;
+        errorEl.classList.remove('hidden');
+      } else {
+        alert(res.message);
+      }
+    }
+    return false;
   }
 
   function showLogoutModal() {
@@ -179,7 +284,6 @@ window.AuthModule = (function () {
   function confirmLogout() {
     logout();
     closeLogoutModal();
-    if (typeof ForumModule !== 'undefined') ForumModule.render();
   }
 
   return {
@@ -191,9 +295,10 @@ window.AuthModule = (function () {
     openAuthModal,
     closeAuthModal,
     switchAuthTab,
+    handleLogin,
+    handleRegister,
     showLogoutModal,
     closeLogoutModal,
     confirmLogout
   };
 })();
-

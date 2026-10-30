@@ -1710,18 +1710,22 @@
 
       <div class="p-6 sm:p-8">
         <!-- Form Login -->
-        <form id="form-login" onsubmit="event.preventDefault(); const res = AuthModule.login(document.getElementById('auth-user').value, document.getElementById('auth-pass').value); if(res.success){ AuthModule.closeAuthModal(); } else { alert(res.message); }" class="space-y-4">
+        <form id="form-login" onsubmit="return AuthModule.handleLogin(event)" class="space-y-4">
           <div class="text-center mb-4">
             <h3 class="text-xl font-bold text-slate-900">Selamat Datang Kembali</h3>
             <p class="text-xs text-slate-500 mt-1">Masuk untuk menyimpan riwayat dan berpartisipasi di forum.</p>
           </div>
+
+          <!-- Alert Error Login -->
+          <div id="login-error" class="hidden p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold text-center"></div>
+
           <div>
-            <label class="form-label">Username atau Email</label>
-            <input type="text" id="auth-user" class="form-input" placeholder="admin atau email anda" required>
+            <label class="form-label" for="auth-user">Username atau Email</label>
+            <input type="text" id="auth-user" name="username" autocomplete="username" class="form-input" placeholder="admin atau email anda" required>
           </div>
           <div>
-            <label class="form-label">Kata Sandi</label>
-            <input type="password" id="auth-pass" class="form-input" placeholder="••••••••" required>
+            <label class="form-label" for="auth-pass">Kata Sandi</label>
+            <input type="password" id="auth-pass" name="password" autocomplete="current-password" class="form-input" placeholder="••••••••" required>
           </div>
           <button type="submit" class="w-full py-3.5 bg-rose-900 hover:bg-rose-950 text-white rounded-xl font-bold text-sm shadow-md transition-all cursor-pointer">
             Masuk Sekarang
@@ -1729,22 +1733,27 @@
         </form>
 
         <!-- Form Register -->
-        <form id="form-register" onsubmit="event.preventDefault(); const res = AuthModule.register(document.getElementById('reg-name').value, document.getElementById('reg-email').value, document.getElementById('reg-pass').value); if(res.success){ alert(res.message); AuthModule.switchAuthTab('login'); } else { alert(res.message); }" class="space-y-4 hidden">
+        <form id="form-register" onsubmit="return AuthModule.handleRegister(event)" class="space-y-4 hidden">
           <div class="text-center mb-4">
             <h3 class="text-xl font-bold text-slate-900">Daftar Akun ACCUTAX</h3>
             <p class="text-xs text-slate-500 mt-1">Gratis, data akun tersimpan secara privat di peramban Anda.</p>
           </div>
+
+          <!-- Alert Pesan Register -->
+          <div id="reg-error" class="hidden p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold text-center"></div>
+          <div id="reg-success" class="hidden p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold text-center"></div>
+
           <div>
-            <label class="form-label">Nama Lengkap</label>
-            <input type="text" id="reg-name" class="form-input" placeholder="Contoh: Budi Santoso" required>
+            <label class="form-label" for="reg-name">Nama Lengkap</label>
+            <input type="text" id="reg-name" name="name" autocomplete="name" class="form-input" placeholder="Contoh: Budi Santoso" required>
           </div>
           <div>
-            <label class="form-label">Alamat Email</label>
-            <input type="email" id="reg-email" class="form-input" placeholder="budi@example.com" required>
+            <label class="form-label" for="reg-email">Alamat Email</label>
+            <input type="email" id="reg-email" name="email" autocomplete="email" class="form-input" placeholder="budi@example.com" required>
           </div>
           <div>
-            <label class="form-label">Kata Sandi Baru</label>
-            <input type="password" id="reg-pass" class="form-input" placeholder="Minimal 6 karakter" required>
+            <label class="form-label" for="reg-pass">Kata Sandi Baru</label>
+            <input type="password" id="reg-pass" name="new-password" autocomplete="new-password" class="form-input" placeholder="Minimal 6 karakter" required>
           </div>
           <button type="submit" class="w-full py-3.5 bg-rose-900 hover:bg-rose-950 text-white rounded-xl font-bold text-sm shadow-md transition-all cursor-pointer">
             Daftar Akun Baru
