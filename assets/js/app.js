@@ -108,35 +108,25 @@
       sec.classList.add('hidden');
     });
 
-    if (targetId === 'artikel') {
-      // Artikel berada di dalam dashboard #home
-      const homeSec = document.getElementById('home');
-      if (homeSec) homeSec.classList.remove('hidden');
-      const artEl = document.getElementById('section-artikel');
-      if (artEl) {
-        artEl.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      const target = document.getElementById(targetId) || document.getElementById('home');
-      if (target) {
-        target.classList.remove('hidden');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
+    const target = document.getElementById(targetId) || document.getElementById('home');
+    if (target) {
+      target.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-      // Jika membuka kalkulator, default tampilkan hub KPI cards
-      if (targetId === 'kalkulator') {
-        const hub = document.getElementById('kalkulator-hub');
-        const workspace = document.getElementById('kalkulator-workspace');
-        if (hub) hub.classList.remove('hidden');
-        if (workspace) workspace.classList.add('hidden');
-      }
+    // Jika membuka kalkulator, default tampilkan hub KPI cards
+    if (targetId === 'kalkulator') {
+      const hub = document.getElementById('kalkulator-hub');
+      const workspace = document.getElementById('kalkulator-workspace');
+      if (hub) hub.classList.remove('hidden');
+      if (workspace) workspace.classList.add('hidden');
     }
 
     // Update active nav styling
     document.querySelectorAll('.nav-link-btn').forEach(link => {
       const href = link.getAttribute('href') || '';
       const linkSection = href.replace('#', '');
-      if (linkSection === targetId || (targetId === 'artikel' && linkSection === 'artikel') || (targetId === 'home' && linkSection === 'home')) {
+      if (linkSection === targetId) {
         link.className = "nav-link-btn px-3.5 py-2 text-sm font-bold text-rose-900 bg-rose-50 rounded-xl transition-all";
       } else {
         link.className = "nav-link-btn px-3.5 py-2 text-sm font-semibold text-slate-700 hover:text-rose-900 hover:bg-rose-50 rounded-xl transition-all";

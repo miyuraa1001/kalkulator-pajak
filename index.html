@@ -93,232 +93,762 @@
   <main class="flex-grow pt-20">
 
     <!-- ============================================================== -->
-    <!-- 1. DASHBOARD VIEW (HOME): HERO + ARTIKEL SAJA                  -->
+    <!-- 1. DASHBOARD VIEW (HOME): TOOL-FIRST SAAS & BENTO GRID         -->
     <!-- ============================================================== -->
     <section id="home" class="page-section">
       
-      <!-- HERO BANNER (DESKTOP-FEEL RESPONSIVE ON MOBILE) -->
-      <div class="relative overflow-hidden bg-gradient-to-b from-rose-950 via-rose-900 to-rose-900 text-white py-10 sm:py-20 lg:py-24">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(244,63,94,0.18),transparent_60%)] pointer-events-none"></div>
-        <div class="absolute -right-24 -top-24 w-72 sm:w-96 h-72 sm:h-96 rounded-full bg-rose-500/10 blur-3xl pointer-events-none"></div>
+      <!-- HERO BANNER (MODERN SAAS PASTEL GLASSMORPHISM & 2-COLUMN LAYOUT) -->
+      <div class="relative overflow-hidden bg-gradient-to-br from-[#26050b] via-[#451019] to-[#190306] text-white py-12 sm:py-20 lg:py-24">
+        <!-- Dot / Grid Pattern & Ambient Mesh Glows -->
+        <div class="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.09)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
+        <div class="absolute -right-20 -top-20 w-96 h-96 rounded-full bg-rose-500/20 blur-3xl pointer-events-none"></div>
+        <div class="absolute right-1/4 top-1/3 w-80 h-80 rounded-full bg-amber-500/10 blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-20 bottom-0 w-96 h-96 rounded-full bg-rose-900/30 blur-3xl pointer-events-none"></div>
 
-        <div class="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 relative z-10">
-          <div class="max-w-3xl sm:max-w-4xl mx-auto text-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             
+            <!-- Kolom Kiri: Copywriting & CTA -->
+            <div class="lg:col-span-7 space-y-6 text-left">
+              <!-- Enterprise Live Badge -->
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/10 backdrop-blur-md border border-white/20 text-rose-200 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>Platform Pajak Korporasi &amp; PPh 21 Terintegrasi</span>
+              </div>
 
+              <!-- Main Headline -->
+              <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-snug sm:leading-tight text-white">
+                Hitung Pajak Korporasi &amp; PPh 21 Akurat, Cepat &amp; Sesuai Regulasi
+              </h1>
 
-            <!-- Title: Desktop proportion on mobile -->
-            <h1 class="text-xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-snug sm:leading-tight">
-              Hitung Pajak Anda Secara Akurat, Cepat &amp; Sesuai Regulasi Terbaru
-            </h1>
+              <!-- Subheadline (Corporate & Withholding focus, without UMKM) -->
+              <p class="text-xs sm:text-base text-rose-100/90 leading-relaxed max-w-xl">
+                Platform kepatuhan pajak profesional untuk tim keuangan dan praktisi akuntansi. Hitung otomatis skema TER bulanan PP 58/2023, rekonsiliasi akhir tahun PMK 168/2023, ekspor Formulir 1721-A1, serta administrasi pemotongan PPN &amp; PPh Potput secara presisi.
+              </p>
 
-            <!-- Subtitle -->
-            <p class="mt-3.5 sm:mt-5 text-xs sm:text-base text-rose-100/90 leading-relaxed max-w-xl sm:max-w-2xl mx-auto">
-              Platform kalkulasi pajak profesional berbasis web yang modern, responsif, dan akurat untuk Wajib Pajak Orang Pribadi, Badan Usaha, dan UMKM.
-            </p>
+              <!-- Dual Action Buttons -->
+              <div class="flex flex-row items-center gap-3 pt-2">
+                <button onclick="showSection('kalkulator')" class="px-5 sm:px-8 py-3.5 sm:py-4 bg-white text-rose-950 hover:bg-rose-50 font-bold rounded-2xl shadow-[0_10px_25px_-5px_rgba(255,255,255,0.3)] transition-all transform hover:-translate-y-0.5 text-xs sm:text-sm cursor-pointer whitespace-nowrap">
+                  Buka Tools Kalkulator &rarr;
+                </button>
+                <button onclick="showSection('artikel')" class="px-5 sm:px-8 py-3.5 sm:py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-2xl backdrop-blur-md border border-white/20 transition-all text-xs sm:text-sm cursor-pointer whitespace-nowrap">
+                  Pelajari Panduan Regulasi
+                </button>
+              </div>
 
-            <!-- Dual Action Buttons: Side-by-Side on Mobile like Desktop -->
-            <div class="mt-6 sm:mt-9 flex flex-row items-center justify-center gap-2 sm:gap-4">
-              <button onclick="showSection('kalkulator')" class="px-3.5 sm:px-8 py-3 sm:py-4 bg-white text-rose-950 hover:bg-rose-50 font-bold rounded-xl sm:rounded-2xl shadow-xl transition-all transform hover:-translate-y-0.5 text-xs sm:text-sm cursor-pointer whitespace-nowrap">
-                Buka Tools Kalkulator &rarr;
-              </button>
-              <a href="#section-artikel" class="px-3.5 sm:px-8 py-3 sm:py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl sm:rounded-2xl backdrop-blur-sm border border-white/20 transition-all text-xs sm:text-sm whitespace-nowrap">
-                Pelajari Artikel &amp; Panduan
-              </a>
+              <!-- 3 Statistik Boxes dengan Ikon SVG -->
+              <div class="pt-6 border-t border-white/10 grid grid-cols-3 gap-2.5 sm:gap-4 text-left">
+                <!-- Stat 1 -->
+                <div class="bg-white/5 backdrop-blur-sm p-3 sm:p-4 rounded-2xl border border-white/10 flex flex-col justify-between">
+                  <div class="w-8 h-8 rounded-xl bg-rose-500/20 flex items-center justify-center text-rose-200 mb-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                  </div>
+                  <div class="text-base sm:text-2xl font-black text-white">10,000+</div>
+                  <div class="text-[9px] sm:text-xs text-rose-200 mt-0.5">Pengguna Aktif</div>
+                </div>
+
+                <!-- Stat 2 -->
+                <div class="bg-white/5 backdrop-blur-sm p-3 sm:p-4 rounded-2xl border border-white/10 flex flex-col justify-between">
+                  <div class="w-8 h-8 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-300 mb-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                  </div>
+                  <div class="text-base sm:text-2xl font-black text-white">99.9%</div>
+                  <div class="text-[9px] sm:text-xs text-rose-200 mt-0.5">Akurasi Perhitungan</div>
+                </div>
+
+                <!-- Stat 3 -->
+                <div class="bg-white/5 backdrop-blur-sm p-3 sm:p-4 rounded-2xl border border-white/10 flex flex-col justify-between">
+                  <div class="w-8 h-8 rounded-xl bg-amber-500/20 flex items-center justify-center text-amber-300 mb-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                  </div>
+                  <div class="text-base sm:text-2xl font-black text-white">2024–2026</div>
+                  <div class="text-[9px] sm:text-xs text-rose-200 mt-0.5">Regulasi Terupdate</div>
+                </div>
+              </div>
             </div>
 
-            <!-- Stats Counters: 3 Columns on Mobile like Desktop -->
-            <div class="mt-6 sm:mt-10 pt-5 sm:pt-8 border-t border-white/10 grid grid-cols-3 gap-2 sm:gap-6 text-center">
-              <div class="bg-white/5 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-white/10">
-                <div class="text-base sm:text-3xl font-black text-white">10,000+</div>
-                <div class="text-[9px] sm:text-xs text-rose-200 mt-0.5 sm:mt-1">Pengguna Aktif</div>
-              </div>
-              <div class="bg-white/5 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-white/10">
-                <div class="text-base sm:text-3xl font-black text-white">99.9%</div>
-                <div class="text-[9px] sm:text-xs text-rose-200 mt-0.5 sm:mt-1">Akurasi Perhitungan</div>
-              </div>
-              <div class="bg-white/5 backdrop-blur-sm p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-white/10">
-                <div class="text-base sm:text-3xl font-black text-white">2024–2026</div>
-                <div class="text-[9px] sm:text-xs text-rose-200 mt-0.5 sm:mt-1">Regulasi Terupdate</div>
+            <!-- Kolom Kanan: Floating Glassmorphism UI Preview Card -->
+            <div class="lg:col-span-5 relative">
+              <!-- Soft Glow di Belakang Kartu -->
+              <div class="absolute -inset-1 bg-gradient-to-r from-rose-500/30 to-amber-500/20 rounded-[32px] blur-xl opacity-70 group-hover:opacity-100 transition duration-1000"></div>
+
+              <div class="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-5 sm:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] text-white group hover:border-white/30 transition-all">
+                <!-- Mac-Style Window Bar -->
+                <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-3 h-3 rounded-full bg-rose-400/90 shadow-sm inline-block"></span>
+                    <span class="w-3 h-3 rounded-full bg-amber-400/90 shadow-sm inline-block"></span>
+                    <span class="w-3 h-3 rounded-full bg-emerald-400/90 shadow-sm inline-block"></span>
+                  </div>
+                  <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-white/15 backdrop-blur-md border border-white/20 text-rose-100">
+                    Simulasi Cepat PPh 21 TER
+                  </span>
+                </div>
+
+                <!-- Profil Pegawai Mockup -->
+                <div class="mt-4 p-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-500 to-rose-700 flex items-center justify-center font-bold text-white shadow-sm">
+                      BS
+                    </div>
+                    <div>
+                      <div class="text-xs sm:text-sm font-bold text-white">Budi Santoso, S.Kom</div>
+                      <div class="text-[10px] text-rose-200">Pegawai Tetap • PT Pratama Taxindo</div>
+                    </div>
+                  </div>
+                  <span class="px-2 py-1 rounded-lg text-[10px] font-extrabold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30">
+                    TER A (TK/0)
+                  </span>
+                </div>
+
+                <!-- Parameter Penghasilan & Tarif Efektif -->
+                <div class="mt-4 grid grid-cols-2 gap-3">
+                  <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+                    <span class="block text-[10px] text-rose-200/80 uppercase tracking-wider font-semibold">Gaji Bruto Sebulan</span>
+                    <span class="text-sm sm:text-base font-extrabold text-white mt-0.5 block">Rp 10.000.000</span>
+                    <span class="text-[9px] text-slate-300">Penghasilan Rutin</span>
+                  </div>
+
+                  <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+                    <span class="block text-[10px] text-rose-200/80 uppercase tracking-wider font-semibold">Tarif Efektif Rata-Rata</span>
+                    <div class="flex items-center gap-1.5 mt-0.5">
+                      <span class="text-sm sm:text-base font-extrabold text-amber-300">2.00%</span>
+                      <span class="text-[9px] px-1.5 py-0.2 rounded bg-amber-400/20 text-amber-200 font-bold">PP 58/2023</span>
+                    </div>
+                    <span class="text-[9px] text-rose-200">Potongan: Rp 200.000/bln</span>
+                  </div>
+                </div>
+
+                <!-- True-Up Masa Desember (Glassmorphism Highlight) -->
+                <div class="mt-4 p-3.5 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-rose-300/30 backdrop-blur-md">
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                      <span class="text-[11px] font-bold text-white">Rekonsiliasi Desember (PMK 168)</span>
+                    </div>
+                    <span class="text-[9px] font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded-full border border-emerald-400/30">True-Up Sinkron</span>
+                  </div>
+                  <div class="space-y-1 text-[11px]">
+                    <div class="flex justify-between text-rose-100">
+                      <span>PPh 21 Setahun Penuh (Pasal 17):</span>
+                      <span class="font-bold text-white">Rp 2.400.000</span>
+                    </div>
+                    <div class="flex justify-between text-rose-200/80">
+                      <span>Akumulasi Potongan Jan–Nov (11 bln):</span>
+                      <span>Rp 2.200.000</span>
+                    </div>
+                    <div class="flex justify-between font-black text-amber-300 pt-1.5 border-t border-white/10">
+                      <span>Pajak Masa Desember:</span>
+                      <span>Rp 200.000 (Pas)</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CTA Mockup Button -->
+                <button onclick="openTaxCalculator('pph21')" class="w-full mt-4 py-3 px-4 rounded-xl text-xs font-bold text-rose-950 bg-white hover:bg-rose-50 shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer group/btn">
+                  <span>Buka Kertas Kerja PPh 21 Lengkap</span>
+                  <span class="group-hover/btn:translate-x-1 transition-transform">&rarr;</span>
+                </button>
               </div>
             </div>
-
-
 
           </div>
         </div>
       </div>
 
-      <!-- ARTIKEL SECTION (TERLETAK DI DASHBOARD SESUAI PERMINTAAN) -->
-      <div id="section-artikel" class="py-10 sm:py-16 lg:py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+      <!-- ============================================================== -->
+      <!-- SECTION BARU: BENTO GRID 3 PILAR KEUNGGULAN & ALUR KERJA       -->
+      <!-- ============================================================== -->
+      <div class="py-14 sm:py-20 bg-slate-50 border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
-            <span class="text-[10px] sm:text-xs font-extrabold uppercase tracking-widest text-rose-900 bg-rose-100 px-3 py-1 rounded-full">Artikel &amp; Edukasi</span>
-            <h2 class="text-xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 mt-2 sm:mt-3">Artikel Pajak &amp; Studi Kasus Terkini</h2>
-            <p class="text-slate-600 mt-1.5 sm:mt-2 text-xs sm:text-base">Pelajari lebih lanjut tentang metode TER PP 58/2023, PPN 11%, insentif UMKM, dan panduan bukti potong resmi.</p>
+          <!-- Section Header -->
+          <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+            <span class="text-xs font-extrabold uppercase tracking-widest text-rose-900 bg-rose-100 px-3.5 py-1 rounded-full">
+              3 Pilar Keunggulan ACCUTAX
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3">
+              Dirancang untuk Otomasi &amp; Presisi Pajak Korporasi
+            </h2>
+            <p class="text-slate-600 mt-2 text-xs sm:text-base leading-relaxed">
+              Hilangkan risiko salah hitung dan denda administratif melalui engine kepatuhan pajak otomatis yang selalu disesuaikan dengan PMK dan PP terbaru.
+            </p>
           </div>
 
-          <!-- Grid Artikel: 2 Kolom di Mobile, 3 Kolom di Layar Lebar -->
-          <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8 mb-8 sm:mb-12">
+          <!-- 3 Bento Grid Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
             
-            <!-- Artikel 1 -->
-            <article class="card-elevated overflow-hidden flex flex-col rounded-2xl sm:rounded-3xl">
-              <div class="h-28 sm:h-44 md:h-48 overflow-hidden bg-rose-900 relative">
-                <img src="assets/images/articles/artikel-1.png" alt="Bedah PP 58/2023" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                <span class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-rose-900/90 text-white text-[8px] sm:text-[10px] font-bold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded backdrop-blur-sm">Regulasi Baru</span>
-              </div>
-              <div class="p-3 sm:p-5 md:p-6 flex-grow flex flex-col justify-between">
-                <div>
-                  <h3 class="font-bold text-slate-900 text-xs sm:text-base md:text-lg hover:text-rose-900 transition-colors line-clamp-2 leading-snug sm:leading-tight">Bedah Tuntas PP Nomor 58 Tahun 2023</h3>
-                  <p class="text-[10px] sm:text-xs text-slate-500 mt-1 sm:mt-2 leading-relaxed line-clamp-2 sm:line-clamp-3">Pelajari cara kerja Tarif Efektif Rata-Rata (TER) untuk perhitungan PPh 21 bulanan dan perbedaannya dengan sistem lama.</p>
-                </div>
-                <div class="pt-2.5 sm:pt-4 mt-2.5 sm:mt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-2">
-                  <span class="text-[9px] sm:text-[11px] text-slate-400">15 Jan 2024</span>
-                  <button onclick="openArticleModal(1)" class="text-[10px] sm:text-xs font-bold text-rose-900 hover:text-rose-950 inline-flex items-center gap-0.5 cursor-pointer">Baca Selengkapnya &rarr;</button>
-                </div>
-              </div>
-            </article>
+            <!-- Pilar 1: Otomatisasi Tabel TER -->
+            <div class="relative overflow-hidden bg-gradient-to-br from-white via-rose-50/40 to-rose-100/30 rounded-3xl p-7 border border-rose-200/70 shadow-[0_10px_30px_-10px_rgba(153,27,27,0.08)] hover:-translate-y-1.5 hover:shadow-xl transition-all flex flex-col justify-between group">
+              <div class="absolute -right-10 -top-10 w-36 h-36 rounded-full bg-rose-300/20 blur-2xl pointer-events-none"></div>
 
-            <!-- Artikel 2 -->
-            <article class="card-elevated overflow-hidden flex flex-col rounded-2xl sm:rounded-3xl">
-              <div class="h-28 sm:h-44 md:h-48 overflow-hidden bg-rose-900 relative">
-                <img src="assets/images/articles/artikel-2.jpg" alt="Panduan Teknis TER" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                <span class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-rose-900/90 text-white text-[8px] sm:text-[10px] font-bold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded backdrop-blur-sm">Tutorial</span>
-              </div>
-              <div class="p-3 sm:p-5 md:p-6 flex-grow flex flex-col justify-between">
-                <div>
-                  <h3 class="font-bold text-slate-900 text-xs sm:text-base md:text-lg hover:text-rose-900 transition-colors line-clamp-2 leading-snug sm:leading-tight">Panduan Teknis Perhitungan TER</h3>
-                  <p class="text-[10px] sm:text-xs text-slate-500 mt-1 sm:mt-2 leading-relaxed line-clamp-2 sm:line-clamp-3">Langkah demi langkah menghitung PPh 21 TER untuk berbagai kategori PTKP dan simulasi pegawai tetap.</p>
+              <div>
+                <div class="w-14 h-14 rounded-2xl bg-white shadow-sm border border-rose-100 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
+                  <svg viewBox="0 0 48 48" class="w-9 h-9">
+                    <defs>
+                      <linearGradient id="bentoIcon1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#FB7185" />
+                        <stop offset="100%" stop-color="#9F1239" />
+                      </linearGradient>
+                    </defs>
+                    <rect x="6" y="8" width="36" height="32" rx="6" fill="#FFF1F2" stroke="#FDA4AF" stroke-width="2"/>
+                    <rect x="12" y="14" width="24" height="4" rx="2" fill="url(#bentoIcon1)"/>
+                    <rect x="12" y="22" width="10" height="4" rx="2" fill="#FECDD3"/>
+                    <rect x="26" y="22" width="10" height="4" rx="2" fill="url(#bentoIcon1)"/>
+                    <rect x="12" y="30" width="14" height="4" rx="2" fill="url(#bentoIcon1)"/>
+                    <circle cx="34" cy="32" r="6" fill="#F43F5E"/>
+                    <path d="M32 32l1.5 1.5 3-3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                 </div>
-                <div class="pt-2.5 sm:pt-4 mt-2.5 sm:mt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-2">
-                  <span class="text-[9px] sm:text-[11px] text-slate-400">10 Jan 2024</span>
-                  <button onclick="openArticleModal(2)" class="text-[10px] sm:text-xs font-bold text-rose-900 hover:text-rose-950 inline-flex items-center gap-0.5 cursor-pointer">Baca Selengkapnya &rarr;</button>
-                </div>
+                <h3 class="text-lg sm:text-xl font-extrabold text-slate-900 mb-2">Otomatisasi Tabel TER</h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                  Penentuan kategori TER A, B, atau C berjalan instan berdasarkan status perkawinan/tanggungan PTKP (TK/0 s.d K/3) dan nominal bruto sesuai lampiran PP 58/2023.
+                </p>
               </div>
-            </article>
 
-            <!-- Artikel 3 -->
-            <article class="card-elevated overflow-hidden flex flex-col rounded-2xl sm:rounded-3xl">
-              <div class="h-28 sm:h-44 md:h-48 overflow-hidden bg-rose-900 relative">
-                <img src="assets/images/articles/artikel-3.png" alt="FAQ PPh 21" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                <span class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-rose-900/90 text-white text-[8px] sm:text-[10px] font-bold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded backdrop-blur-sm">Tanya Jawab</span>
+              <div class="pt-4 border-t border-rose-100/80 flex items-center justify-between text-xs">
+                <span class="font-bold text-rose-900">Kategori A, B, &amp; C Otomatis</span>
+                <span class="text-rose-600 font-semibold">&rarr;</span>
               </div>
-              <div class="p-3 sm:p-5 md:p-6 flex-grow flex flex-col justify-between">
-                <div>
-                  <h3 class="font-bold text-slate-900 text-xs sm:text-base md:text-lg hover:text-rose-900 transition-colors line-clamp-2 leading-snug sm:leading-tight">FAQ &amp; Tanya Jawab PPh 21 Terbaru</h3>
-                  <p class="text-[10px] sm:text-xs text-slate-500 mt-1 sm:mt-2 leading-relaxed line-clamp-2 sm:line-clamp-3">Kumpulan pertanyaan yang sering diajukan seputar metode TER, penalti non-NPWP, dan mekanisme true-up Desember.</p>
-                </div>
-                <div class="pt-2.5 sm:pt-4 mt-2.5 sm:mt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-2">
-                  <span class="text-[9px] sm:text-[11px] text-slate-400">12 Jan 2024</span>
-                  <button onclick="openArticleModal(3)" class="text-[10px] sm:text-xs font-bold text-rose-900 hover:text-rose-950 inline-flex items-center gap-0.5 cursor-pointer">Baca Selengkapnya &rarr;</button>
-                </div>
-              </div>
-            </article>
+            </div>
 
-            <!-- Artikel 4 -->
-            <article class="card-elevated overflow-hidden flex flex-col rounded-2xl sm:rounded-3xl">
-              <div class="h-28 sm:h-44 md:h-48 overflow-hidden bg-rose-900 relative">
-                <img src="assets/images/articles/artikel-4.jpg" alt="PMK 168/2023" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                <span class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-rose-900/90 text-white text-[8px] sm:text-[10px] font-bold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded backdrop-blur-sm">Regulasi Menteri</span>
-              </div>
-              <div class="p-3 sm:p-5 md:p-6 flex-grow flex flex-col justify-between">
-                <div>
-                  <h3 class="font-bold text-slate-900 text-xs sm:text-base md:text-lg hover:text-rose-900 transition-colors line-clamp-2 leading-snug sm:leading-tight">Bedah Tuntas PMK 168/2023</h3>
-                  <p class="text-[10px] sm:text-xs text-slate-500 mt-1 sm:mt-2 leading-relaxed line-clamp-2 sm:line-clamp-3">Petunjuk pelaksanaan pemotongan PPh 21 bagi Bukan Pegawai, Tenaga Ahli, Dewan Komisaris, dan Peserta Kegiatan.</p>
-                </div>
-                <div class="pt-2.5 sm:pt-4 mt-2.5 sm:mt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-2">
-                  <span class="text-[9px] sm:text-[11px] text-slate-400">01 Jan 2024</span>
-                  <button onclick="openArticleModal(4)" class="text-[10px] sm:text-xs font-bold text-rose-900 hover:text-rose-950 inline-flex items-center gap-0.5 cursor-pointer">Baca Selengkapnya &rarr;</button>
-                </div>
-              </div>
-            </article>
+            <!-- Pilar 2: Rekonsiliasi Masa Pajak Desember -->
+            <div class="relative overflow-hidden bg-gradient-to-br from-white via-indigo-50/40 to-indigo-100/30 rounded-3xl p-7 border border-indigo-200/70 shadow-[0_10px_30px_-10px_rgba(30,58,138,0.08)] hover:-translate-y-1.5 hover:shadow-xl transition-all flex flex-col justify-between group">
+              <div class="absolute -right-10 -top-10 w-36 h-36 rounded-full bg-indigo-300/20 blur-2xl pointer-events-none"></div>
 
-            <!-- Artikel 5 -->
-            <article class="card-elevated overflow-hidden flex flex-col rounded-2xl sm:rounded-3xl">
-              <div class="h-28 sm:h-44 md:h-48 overflow-hidden bg-rose-900 relative">
-                <img src="assets/images/articles/artikel-5.jpg" alt="Template 1721-A1" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                <span class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-rose-900/90 text-white text-[8px] sm:text-[10px] font-bold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded backdrop-blur-sm">Administrasi</span>
-              </div>
-              <div class="p-3 sm:p-5 md:p-6 flex-grow flex flex-col justify-between">
-                <div>
-                  <h3 class="font-bold text-slate-900 text-xs sm:text-base md:text-lg hover:text-rose-900 transition-colors line-clamp-2 leading-snug sm:leading-tight">Template Bukti Potong 1721-A1</h3>
-                  <p class="text-[10px] sm:text-xs text-slate-500 mt-1 sm:mt-2 leading-relaxed line-clamp-2 sm:line-clamp-3">Panduan pengisian formulir bukti pemotongan PPh 21 tahunan bagi HRD dan staf payroll perusahaan.</p>
+              <div>
+                <div class="w-14 h-14 rounded-2xl bg-white shadow-sm border border-indigo-100 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
+                  <svg viewBox="0 0 48 48" class="w-9 h-9">
+                    <defs>
+                      <linearGradient id="bentoIcon2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#60A5FA" />
+                        <stop offset="100%" stop-color="#1E3A8A" />
+                      </linearGradient>
+                    </defs>
+                    <rect x="8" y="10" width="32" height="30" rx="6" fill="#EFF6FF" stroke="#93C5FD" stroke-width="2"/>
+                    <path d="M8 18h32" stroke="#60A5FA" stroke-width="2"/>
+                    <rect x="14" y="6" width="4" height="6" rx="1" fill="url(#bentoIcon2)"/>
+                    <rect x="30" y="6" width="4" height="6" rx="1" fill="url(#bentoIcon2)"/>
+                    <circle cx="24" cy="28" r="7" fill="url(#bentoIcon2)"/>
+                    <path d="M24 25v3l2 1" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
                 </div>
-                <div class="pt-2.5 sm:pt-4 mt-2.5 sm:mt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-2">
-                  <span class="text-[9px] sm:text-[11px] text-slate-400">28 Des 2023</span>
-                  <button onclick="openArticleModal(5)" class="text-[10px] sm:text-xs font-bold text-rose-900 hover:text-rose-950 inline-flex items-center gap-0.5 cursor-pointer">Baca Selengkapnya &rarr;</button>
-                </div>
+                <h3 class="text-lg sm:text-xl font-extrabold text-slate-900 mb-2">Rekonsiliasi Masa Desember</h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                  Kalkulasi True-Up otomatis: PPh 21 setahun dihitung ulang menggunakan tarif progresif Pasal 17 UU HPP, lalu dikurangi akumulasi potongan bulan Jan–Nov.
+                </p>
               </div>
-            </article>
 
-            <!-- Artikel 6 -->
-            <article class="card-elevated overflow-hidden flex flex-col rounded-2xl sm:rounded-3xl">
-              <div class="h-28 sm:h-44 md:h-48 overflow-hidden bg-rose-900 relative">
-                <img src="assets/images/articles/artikel-6.jpg" alt="Studi Kasus Desember" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                <span class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-rose-900/90 text-white text-[8px] sm:text-[10px] font-bold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded backdrop-blur-sm">Analisis Kasus</span>
+              <div class="pt-4 border-t border-indigo-100/80 flex items-center justify-between text-xs">
+                <span class="font-bold text-indigo-900">Mekanisme True-Up PMK 168</span>
+                <span class="text-indigo-600 font-semibold">&rarr;</span>
               </div>
-              <div class="p-3 sm:p-5 md:p-6 flex-grow flex flex-col justify-between">
-                <div>
-                  <h3 class="font-bold text-slate-900 text-xs sm:text-base md:text-lg hover:text-rose-900 transition-colors line-clamp-2 leading-snug sm:leading-tight">Studi Kasus Pajak Desember (True-Up)</h3>
-                  <p class="text-[10px] sm:text-xs text-slate-500 mt-1 sm:mt-2 leading-relaxed line-clamp-2 sm:line-clamp-3">Mengapa PPh 21 bulan Desember berbeda dengan bulan sebelumnya? Simak simulasi perhitungan rekonsiliasi akhir tahun.</p>
+            </div>
+
+            <!-- Pilar 3: Simulasi Bukti Potong 1721-A1 -->
+            <div class="relative overflow-hidden bg-gradient-to-br from-white via-emerald-50/40 to-emerald-100/30 rounded-3xl p-7 border border-emerald-200/70 shadow-[0_10px_30px_-10px_rgba(6,95,70,0.08)] hover:-translate-y-1.5 hover:shadow-xl transition-all flex flex-col justify-between group">
+              <div class="absolute -right-10 -top-10 w-36 h-36 rounded-full bg-emerald-300/20 blur-2xl pointer-events-none"></div>
+
+              <div>
+                <div class="w-14 h-14 rounded-2xl bg-white shadow-sm border border-emerald-100 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
+                  <svg viewBox="0 0 48 48" class="w-9 h-9">
+                    <defs>
+                      <linearGradient id="bentoIcon3" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#34D399" />
+                        <stop offset="100%" stop-color="#065F46" />
+                      </linearGradient>
+                    </defs>
+                    <path d="M12 8h16l10 10v22a4 4 0 01-4 4H12a4 4 0 01-4-4V12a4 4 0 014-4z" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="2"/>
+                    <path d="M28 8v10h10" fill="none" stroke="#34D399" stroke-width="2"/>
+                    <rect x="14" y="22" width="14" height="3" rx="1.5" fill="url(#bentoIcon3)"/>
+                    <rect x="14" y="28" width="20" height="3" rx="1.5" fill="#A7F3D0"/>
+                    <circle cx="30" cy="36" r="6" fill="url(#bentoIcon3)"/>
+                    <path d="M28 36l1.5 1.5 3-3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                 </div>
-                <div class="pt-2.5 sm:pt-4 mt-2.5 sm:mt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-2">
-                  <span class="text-[9px] sm:text-[11px] text-slate-400">25 Des 2023</span>
-                  <button onclick="openArticleModal(6)" class="text-[10px] sm:text-xs font-bold text-rose-900 hover:text-rose-950 inline-flex items-center gap-0.5 cursor-pointer">Baca Selengkapnya &rarr;</button>
-                </div>
+                <h3 class="text-lg sm:text-xl font-extrabold text-slate-900 mb-2">Simulasi Bukti Potong 1721-A1</h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                  Pratinjau kertas kerja dan formulir Bukti Pemotongan 1721-A1 berstandar resmi DJP, lengkap dengan rincian biaya jabatan, iuran pensiun, dan netto fiskal.
+                </p>
               </div>
-            </article>
+
+              <div class="pt-4 border-t border-emerald-100/80 flex items-center justify-between text-xs">
+                <span class="font-bold text-emerald-900">Format Cetak A4 &amp; Ekspor PDF</span>
+                <span class="text-emerald-600 font-semibold">&rarr;</span>
+              </div>
+            </div>
 
           </div>
 
-          <!-- Dokumen Sumber Regulasi & Unduhan: 2 Kolom di Mobile, 4 Kolom di Desktop -->
-          <div class="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-4 sm:p-8 shadow-sm">
-            <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-4 sm:mb-6 flex items-center gap-2">
-              <span>📂</span> <span>Dokumen Regulasi &amp; Template Formulir</span>
-            </h3>
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
-              <a href="assets/docs/2023pp058.pdf" download class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 hover:bg-rose-50 border border-slate-200 transition-all flex flex-col justify-between">
-                <div>
-                  <span class="text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 bg-rose-100 text-rose-800 rounded">PDF Resmi</span>
-                  <h4 class="font-bold text-slate-900 text-xs sm:text-sm mt-1.5 sm:mt-2 line-clamp-1">PP 58 Tahun 2023</h4>
-                  <p class="text-[10px] sm:text-xs text-slate-500 mt-0.5 sm:mt-1 line-clamp-2">Tarif TER PPh 21 Karyawan</p>
-                </div>
-                <span class="text-[10px] sm:text-xs font-bold text-rose-900 mt-2 sm:mt-3 inline-block">Unduh File &darr;</span>
-              </a>
+          <!-- Section Ringkas: 3 Langkah Mudah Cara Kerja ACCUTAX -->
+          <div class="bg-white rounded-3xl border border-slate-200/80 p-6 sm:p-10 shadow-sm">
+            <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+              <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900">
+                3 Langkah Mudah Cara Kerja ACCUTAX
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-500 mt-1.5">
+                Alur komputasi pajak ringkas, transparan, dan tidak memerlukan instalasi software yang rumit.
+              </p>
+            </div>
 
-              <a href="assets/docs/2023pmkeuangan168.pdf" download class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 hover:bg-rose-50 border border-slate-200 transition-all flex flex-col justify-between">
-                <div>
-                  <span class="text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 bg-rose-100 text-rose-800 rounded">PDF Resmi</span>
-                  <h4 class="font-bold text-slate-900 text-xs sm:text-sm mt-1.5 sm:mt-2 line-clamp-1">PMK 168 Tahun 2023</h4>
-                  <p class="text-[10px] sm:text-xs text-slate-500 mt-0.5 sm:mt-1 line-clamp-2">Petunjuk Teknis Pemotongan</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+              <!-- Step 1 -->
+              <div class="p-5 rounded-2xl bg-slate-50/80 border border-slate-200/60 relative">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="w-8 h-8 rounded-xl bg-rose-900 text-white font-black text-xs flex items-center justify-center shadow-sm">01</span>
+                  <svg class="w-6 h-6 text-rose-900/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
                 </div>
-                <span class="text-[10px] sm:text-xs font-bold text-rose-900 mt-2 sm:mt-3 inline-block">Unduh File &darr;</span>
-              </a>
+                <h4 class="text-sm font-bold text-slate-900 mb-1">Input Parameter Transaksi</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                  Masukkan gaji bruto bulanan, status PTKP karyawan, atau DPP nilai transaksi pemotongan pada form interaktif.
+                </p>
+              </div>
 
-              <a href="assets/docs/Formulir-Excel-Bukti-Potong-PPh-21-Karyawan-1.xls" download class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 hover:bg-rose-50 border border-slate-200 transition-all flex flex-col justify-between">
-                <div>
-                  <span class="text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded">Excel XLS</span>
-                  <h4 class="font-bold text-slate-900 text-xs sm:text-sm mt-1.5 sm:mt-2 line-clamp-1">Formulir 1721-A1</h4>
-                  <p class="text-[10px] sm:text-xs text-slate-500 mt-0.5 sm:mt-1 line-clamp-2">Template Bukti Potong</p>
+              <!-- Step 2 -->
+              <div class="p-5 rounded-2xl bg-slate-50/80 border border-slate-200/60 relative">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="w-8 h-8 rounded-xl bg-rose-900 text-white font-black text-xs flex items-center justify-center shadow-sm">02</span>
+                  <svg class="w-6 h-6 text-rose-900/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
                 </div>
-                <span class="text-[10px] sm:text-xs font-bold text-rose-900 mt-2 sm:mt-3 inline-block">Unduh File &darr;</span>
-              </a>
+                <h4 class="text-sm font-bold text-slate-900 mb-1">Kalkulasi Otomatis Regulasi</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                  Engine ACCUTAX mengeksekusi perhitungan sesuai formula PP 58/2023, PMK 168/2023, dan UU HPP secara instan.
+                </p>
+              </div>
 
-              <a href="assets/docs/Cetak Bukti Potong - ACCUTAX.pdf" download class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 hover:bg-rose-50 border border-slate-200 transition-all flex flex-col justify-between">
-                <div>
-                  <span class="text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 bg-blue-100 text-blue-800 rounded">Spesimen PDF</span>
-                  <h4 class="font-bold text-slate-900 text-xs sm:text-sm mt-1.5 sm:mt-2 line-clamp-1">Spesimen ACCUTAX</h4>
-                  <p class="text-[10px] sm:text-xs text-slate-500 mt-0.5 sm:mt-1 line-clamp-2">Format Standar A4 Digital</p>
+              <!-- Step 3 -->
+              <div class="p-5 rounded-2xl bg-slate-50/80 border border-slate-200/60 relative">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="w-8 h-8 rounded-xl bg-rose-900 text-white font-black text-xs flex items-center justify-center shadow-sm">03</span>
+                  <svg class="w-6 h-6 text-rose-900/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                 </div>
-                <span class="text-[10px] sm:text-xs font-bold text-rose-900 mt-2 sm:mt-3 inline-block">Unduh File &darr;</span>
-              </a>
+                <h4 class="text-sm font-bold text-slate-900 mb-1">Unduh Kertas Kerja &amp; Bukti Potong</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                  Dapatkan hasil hitungan bersih, cetak format spesimen A4 standar resmi, atau unduh rincian untuk pelaporan SPT.
+                </p>
+              </div>
             </div>
           </div>
 
         </div>
       </div>
 
+      <!-- ============================================================== -->
+      <!-- SECTION: DOKUMEN REGULASI & TEMPLATE FORMULIR (DI BERANDA)     -->
+      <!-- ============================================================== -->
+      <div class="py-12 sm:py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div class="bg-gradient-to-br from-slate-50 via-white to-rose-50/30 rounded-3xl border border-slate-200/90 p-6 sm:p-10 shadow-sm">
+            <div class="flex items-center gap-3.5 mb-6 sm:mb-8">
+              <!-- Custom Maroon/Rose Gradient Box Icon (Menggantikan 📁) -->
+              <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-rose-900 to-rose-950 flex items-center justify-center text-white shadow-md shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+              </div>
+              <div>
+                <h3 class="text-lg sm:text-2xl font-extrabold text-slate-900">Dokumen Regulasi &amp; Template Formulir</h3>
+                <p class="text-xs sm:text-sm text-slate-500">Berkas sumber hukum resmi dan lembar kerja perpajakan standar DJP siap unduh.</p>
+              </div>
+            </div>
+
+            <!-- 4 Download Cards dengan Soft Pastel Gradient & Typographic Watermark -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+              
+              <!-- Card 1: PP 58/2023 -->
+              <a href="assets/docs/2023pp058.pdf" download class="relative overflow-hidden p-5 rounded-2xl bg-gradient-to-br from-rose-50/80 via-white to-rose-100/40 hover:from-rose-100/90 hover:to-rose-200/50 border border-rose-200/80 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
+                <!-- Watermark Tipografi Tipe File -->
+                <div class="absolute -top-3 -right-2 text-5xl font-black text-rose-950/5 select-none pointer-events-none tracking-tighter">PDF</div>
+                
+                <div class="relative z-10">
+                  <span class="text-[10px] font-bold px-2 py-0.5 bg-rose-100 text-rose-900 rounded-md border border-rose-200/60 inline-block">PDF Resmi DJP</span>
+                  <h4 class="font-bold text-slate-900 text-sm mt-3 line-clamp-1 group-hover:text-rose-900 transition-colors">PP 58 Tahun 2023</h4>
+                  <p class="text-xs text-slate-500 mt-1 line-clamp-2">Tarif Efektif Rata-Rata (TER) PPh 21 Pegawai &amp; Kategori A/B/C.</p>
+                </div>
+                
+                <!-- Interactive Pill Button -->
+                <span class="mt-4 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-rose-900 bg-white group-hover:bg-rose-900 group-hover:text-white border border-rose-200 transition-all shadow-xs w-fit">
+                  <span>Unduh File</span>
+                  <span class="group-hover:translate-y-0.5 transition-transform">&darr;</span>
+                </span>
+              </a>
+
+              <!-- Card 2: PMK 168/2023 -->
+              <a href="assets/docs/2023pmkeuangan168.pdf" download class="relative overflow-hidden p-5 rounded-2xl bg-gradient-to-br from-indigo-50/80 via-white to-indigo-100/40 hover:from-indigo-100/90 hover:to-indigo-200/50 border border-indigo-200/80 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
+                <div class="absolute -top-3 -right-2 text-5xl font-black text-indigo-950/5 select-none pointer-events-none tracking-tighter">PDF</div>
+                
+                <div class="relative z-10">
+                  <span class="text-[10px] font-bold px-2 py-0.5 bg-indigo-100 text-indigo-900 rounded-md border border-indigo-200/60 inline-block">PDF Kemenkeu</span>
+                  <h4 class="font-bold text-slate-900 text-sm mt-3 line-clamp-1 group-hover:text-indigo-900 transition-colors">PMK 168 Tahun 2023</h4>
+                  <p class="text-xs text-slate-500 mt-1 line-clamp-2">Petunjuk Pelaksanaan &amp; Tata Cara Pemotongan PPh Pasal 21.</p>
+                </div>
+                
+                <span class="mt-4 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-indigo-900 bg-white group-hover:bg-indigo-900 group-hover:text-white border border-indigo-200 transition-all shadow-xs w-fit">
+                  <span>Unduh File</span>
+                  <span class="group-hover:translate-y-0.5 transition-transform">&darr;</span>
+                </span>
+              </a>
+
+              <!-- Card 3: Formulir 1721-A1 -->
+              <a href="assets/docs/Formulir-Excel-Bukti-Potong-PPh-21-Karyawan-1.xls" download class="relative overflow-hidden p-5 rounded-2xl bg-gradient-to-br from-emerald-50/80 via-white to-emerald-100/40 hover:from-emerald-100/90 hover:to-emerald-200/50 border border-emerald-200/80 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
+                <div class="absolute -top-3 -right-2 text-5xl font-black text-emerald-950/5 select-none pointer-events-none tracking-tighter">XLS</div>
+                
+                <div class="relative z-10">
+                  <span class="text-[10px] font-bold px-2 py-0.5 bg-emerald-100 text-emerald-900 rounded-md border border-emerald-200/60 inline-block">Excel XLS</span>
+                  <h4 class="font-bold text-slate-900 text-sm mt-3 line-clamp-1 group-hover:text-emerald-900 transition-colors">Formulir 1721-A1</h4>
+                  <p class="text-xs text-slate-500 mt-1 line-clamp-2">Template Excel Kertas Kerja Bukti Potong Pegawai Tetap Tahunan.</p>
+                </div>
+                
+                <span class="mt-4 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-emerald-900 bg-white group-hover:bg-emerald-900 group-hover:text-white border border-emerald-200 transition-all shadow-xs w-fit">
+                  <span>Unduh File</span>
+                  <span class="group-hover:translate-y-0.5 transition-transform">&darr;</span>
+                </span>
+              </a>
+
+              <!-- Card 4: Spesimen ACCUTAX -->
+              <a href="assets/docs/Cetak Bukti Potong - ACCUTAX.pdf" download class="relative overflow-hidden p-5 rounded-2xl bg-gradient-to-br from-blue-50/80 via-white to-blue-100/40 hover:from-blue-100/90 hover:to-blue-200/50 border border-blue-200/80 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
+                <div class="absolute -top-3 -right-2 text-5xl font-black text-blue-950/5 select-none pointer-events-none tracking-tighter">DOC</div>
+                
+                <div class="relative z-10">
+                  <span class="text-[10px] font-bold px-2 py-0.5 bg-blue-100 text-blue-900 rounded-md border border-blue-200/60 inline-block">Spesimen PDF</span>
+                  <h4 class="font-bold text-slate-900 text-sm mt-3 line-clamp-1 group-hover:text-blue-900 transition-colors">Spesimen ACCUTAX</h4>
+                  <p class="text-xs text-slate-500 mt-1 line-clamp-2">Contoh Format Cetak Standar A4 Digital Resmi &amp; Siap Arsip.</p>
+                </div>
+                
+                <span class="mt-4 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-blue-900 bg-white group-hover:bg-blue-900 group-hover:text-white border border-blue-200 transition-all shadow-xs w-fit">
+                  <span>Unduh File</span>
+                  <span class="group-hover:translate-y-0.5 transition-transform">&darr;</span>
+                </span>
+              </a>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- 2. DEDICATED VIEW: ARTIKEL & EDUKASI PERPAJAKAN (EKSKLUSIF)     -->
+    <!-- ============================================================== -->
+    <section id="artikel" class="page-section hidden py-12 sm:py-16 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Back Navigation to Home -->
+        <div class="mb-6">
+          <button onclick="showSection('home')" class="inline-flex items-center gap-2 text-rose-900 hover:text-rose-950 font-bold text-sm cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            <span>Kembali ke Beranda</span>
+          </button>
+        </div>
+
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-rose-900 bg-rose-100 px-3.5 py-1 rounded-full">
+            Pusat Edukasi &amp; Pengetahuan Pajak
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3">
+            Artikel Pajak &amp; Studi Kasus Terkini
+          </h2>
+          <p class="text-slate-600 mt-2 text-xs sm:text-base leading-relaxed">
+            Panduan komprehensif implementasi regulasi perpajakan terbaru: metode TER PP 58/2023, petunjuk teknis PMK 168/2023, rekonsiliasi masa Desember, dan pengisian bukti potong resmi.
+          </p>
+        </div>
+
+        <!-- 6 Kartu Artikel dengan Banner Gradasi Modern & Ilustrasi 3D Inline SVG Seragam -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          
+          <!-- Artikel 1: Bedah Tuntas PP 58/2023 -->
+          <article class="card-elevated overflow-hidden flex flex-col rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl transition-all group">
+            <!-- Modern Gradient Banner + 3D Inline SVG Illustration -->
+            <div class="h-44 sm:h-48 relative overflow-hidden bg-gradient-to-br from-[#4c0519] via-[#881337] to-[#e11d48] flex items-center justify-center p-4">
+              <!-- Glassmorphism Category Badge -->
+              <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-rose-950 text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm border border-white/60 z-10">
+                Regulasi Baru
+              </span>
+
+              <!-- 3D Law & Tax Decree SVG -->
+              <svg viewBox="0 0 96 96" class="w-24 h-24 drop-shadow-2xl group-hover:scale-105 transition-transform duration-500">
+                <defs>
+                  <linearGradient id="artDoc1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FFFFFF" />
+                    <stop offset="100%" stop-color="#FECDD3" />
+                  </linearGradient>
+                  <linearGradient id="artSeal1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FBBF24" />
+                    <stop offset="100%" stop-color="#B45309" />
+                  </linearGradient>
+                </defs>
+                <!-- Stacked Paper 3D -->
+                <rect x="26" y="16" width="48" height="62" rx="6" fill="#9F1239" opacity="0.6"/>
+                <rect x="22" y="12" width="48" height="62" rx="6" fill="url(#artDoc1)" stroke="#FDA4AF" stroke-width="1.5"/>
+                <!-- Law Scales / Document Lines -->
+                <rect x="30" y="24" width="22" height="4" rx="2" fill="#BE123C"/>
+                <rect x="30" y="32" width="32" height="3" rx="1.5" fill="#FDA4AF"/>
+                <rect x="30" y="38" width="28" height="3" rx="1.5" fill="#FDA4AF"/>
+                <rect x="30" y="44" width="20" height="3" rx="1.5" fill="#FDA4AF"/>
+                <!-- Gold Official Seal -->
+                <circle cx="56" cy="56" r="13" fill="url(#artSeal1)" stroke="#FEF08A" stroke-width="2"/>
+                <text x="56" y="60" font-size="11" font-weight="900" fill="#451A03" text-anchor="middle">%</text>
+              </svg>
+            </div>
+
+            <div class="p-5 sm:p-6 flex-grow flex flex-col justify-between">
+              <div>
+                <h3 class="font-extrabold text-slate-900 text-base sm:text-lg group-hover:text-rose-900 transition-colors line-clamp-2 leading-snug">
+                  Bedah Tuntas PP Nomor 58 Tahun 2023
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed line-clamp-3">
+                  Pelajari cara kerja Tarif Efektif Rata-Rata (TER) untuk perhitungan PPh 21 bulanan dan perbedaannya dengan sistem lama tanpa perhitungan PTKP manual tiap bulan.
+                </p>
+              </div>
+              <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-[11px] font-medium text-slate-400">15 Jan 2024</span>
+                <button onclick="openArticleModal(1)" class="text-xs font-bold text-rose-900 hover:text-rose-950 inline-flex items-center gap-1 cursor-pointer">
+                  <span>Baca Selengkapnya</span>
+                  <span>&rarr;</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Artikel 2: Panduan Teknis Perhitungan TER -->
+          <article class="card-elevated overflow-hidden flex flex-col rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl transition-all group">
+            <div class="h-44 sm:h-48 relative overflow-hidden bg-gradient-to-br from-[#064e3b] via-[#047857] to-[#10b981] flex items-center justify-center p-4">
+              <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-emerald-950 text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm border border-white/60 z-10">
+                Tutorial Teknis
+              </span>
+
+              <!-- 3D Calculator & Tier Bars SVG -->
+              <svg viewBox="0 0 96 96" class="w-24 h-24 drop-shadow-2xl group-hover:scale-105 transition-transform duration-500">
+                <defs>
+                  <linearGradient id="artCalc" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FFFFFF" />
+                    <stop offset="100%" stop-color="#A7F3D0" />
+                  </linearGradient>
+                </defs>
+                <rect x="22" y="14" width="52" height="66" rx="8" fill="url(#artCalc)" stroke="#6EE7B7" stroke-width="1.5"/>
+                <!-- LCD Screen -->
+                <rect x="30" y="22" width="36" height="14" rx="4" fill="#064E3B"/>
+                <text x="62" y="32" font-size="9" font-weight="bold" fill="#6EE7B7" text-anchor="end">TER A 2.0%</text>
+                <!-- 3D Calc Buttons -->
+                <rect x="30" y="42" width="9" height="9" rx="2.5" fill="#34D399"/>
+                <rect x="43.5" y="42" width="9" height="9" rx="2.5" fill="#34D399"/>
+                <rect x="57" y="42" width="9" height="9" rx="2.5" fill="#059669"/>
+                <rect x="30" y="55" width="9" height="9" rx="2.5" fill="#34D399"/>
+                <rect x="43.5" y="55" width="9" height="9" rx="2.5" fill="#34D399"/>
+                <rect x="57" y="55" width="9" height="19" rx="3" fill="#047857"/>
+                <rect x="30" y="68" width="22.5" height="6" rx="2.5" fill="#10B981"/>
+              </svg>
+            </div>
+
+            <div class="p-5 sm:p-6 flex-grow flex flex-col justify-between">
+              <div>
+                <h3 class="font-extrabold text-slate-900 text-base sm:text-lg group-hover:text-emerald-900 transition-colors line-clamp-2 leading-snug">
+                  Panduan Teknis Perhitungan TER
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed line-clamp-3">
+                  Langkah demi langkah menghitung PPh 21 TER untuk berbagai kategori PTKP dan simulasi pegawai tetap dari Januari hingga November.
+                </p>
+              </div>
+              <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-[11px] font-medium text-slate-400">10 Jan 2024</span>
+                <button onclick="openArticleModal(2)" class="text-xs font-bold text-emerald-900 hover:text-emerald-950 inline-flex items-center gap-1 cursor-pointer">
+                  <span>Baca Selengkapnya</span>
+                  <span>&rarr;</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Artikel 3: FAQ & Tanya Jawab PPh 21 Terbaru -->
+          <article class="card-elevated overflow-hidden flex flex-col rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl transition-all group">
+            <div class="h-44 sm:h-48 relative overflow-hidden bg-gradient-to-br from-[#1e1b4b] via-[#312e81] to-[#3b82f6] flex items-center justify-center p-4">
+              <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-indigo-950 text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm border border-white/60 z-10">
+                Tanya Jawab
+              </span>
+
+              <!-- 3D Speech Bubble & Question Mark SVG -->
+              <svg viewBox="0 0 96 96" class="w-24 h-24 drop-shadow-2xl group-hover:scale-105 transition-transform duration-500">
+                <defs>
+                  <linearGradient id="artFaqBubble" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FFFFFF" />
+                    <stop offset="100%" stop-color="#C7D2FE" />
+                  </linearGradient>
+                </defs>
+                <!-- Back Chat Bubble -->
+                <path d="M52 26h18a10 10 0 0110 10v16a10 10 0 01-10 10h-6l-8 7v-7h-4a10 10 0 01-10-10V36a10 10 0 0110-10z" fill="#4338CA" opacity="0.6"/>
+                <!-- Front Chat Bubble -->
+                <path d="M22 20h32a12 12 0 0112 12v18a12 12 0 01-12 12h-8l-12 9v-9h-12a12 12 0 01-12-12V32a12 12 0 0112-12z" fill="url(#artFaqBubble)" stroke="#A5B4FC" stroke-width="1.5"/>
+                <!-- Question Mark 3D -->
+                <text x="38" y="47" font-size="24" font-weight="900" fill="#312E81" text-anchor="middle">?</text>
+              </svg>
+            </div>
+
+            <div class="p-5 sm:p-6 flex-grow flex flex-col justify-between">
+              <div>
+                <h3 class="font-extrabold text-slate-900 text-base sm:text-lg group-hover:text-indigo-900 transition-colors line-clamp-2 leading-snug">
+                  FAQ &amp; Tanya Jawab PPh 21 Terbaru
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed line-clamp-3">
+                  Kumpulan pertanyaan penting yang sering diajukan seputar metode TER, penalti tarif tanpa NPWP, dan mekanisme true-up rekonsiliasi akhir tahun.
+                </p>
+              </div>
+              <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-[11px] font-medium text-slate-400">12 Jan 2024</span>
+                <button onclick="openArticleModal(3)" class="text-xs font-bold text-indigo-900 hover:text-indigo-950 inline-flex items-center gap-1 cursor-pointer">
+                  <span>Baca Selengkapnya</span>
+                  <span>&rarr;</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Artikel 4: Bedah Tuntas PMK 168/2023 -->
+          <article class="card-elevated overflow-hidden flex flex-col rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl transition-all group">
+            <div class="h-44 sm:h-48 relative overflow-hidden bg-gradient-to-br from-[#3b0764] via-[#6b21a8] to-[#a855f7] flex items-center justify-center p-4">
+              <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-purple-950 text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm border border-white/60 z-10">
+                Regulasi Menteri
+              </span>
+
+              <!-- 3D Ministerial Book & Ribbon SVG -->
+              <svg viewBox="0 0 96 96" class="w-24 h-24 drop-shadow-2xl group-hover:scale-105 transition-transform duration-500">
+                <defs>
+                  <linearGradient id="artBook" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FFFFFF" />
+                    <stop offset="100%" stop-color="#E9D5FF" />
+                  </linearGradient>
+                </defs>
+                <path d="M22 18h46a6 6 0 016 6v52a6 6 0 01-6 6H22a4 4 0 01-4-4V22a4 4 0 014-4z" fill="url(#artBook)" stroke="#D8B4FE" stroke-width="1.5"/>
+                <!-- Book Spine -->
+                <rect x="18" y="18" width="8" height="64" rx="2" fill="#7E22CE"/>
+                <!-- Ribbon Bookmark -->
+                <path d="M50 18v22l6-4 6 4V18z" fill="#F43F5E"/>
+                <!-- Content Lines -->
+                <rect x="32" y="32" width="14" height="3" rx="1.5" fill="#9333EA"/>
+                <rect x="32" y="40" width="32" height="3" rx="1.5" fill="#C084FC"/>
+                <rect x="32" y="48" width="28" height="3" rx="1.5" fill="#C084FC"/>
+                <rect x="32" y="56" width="30" height="3" rx="1.5" fill="#C084FC"/>
+              </svg>
+            </div>
+
+            <div class="p-5 sm:p-6 flex-grow flex flex-col justify-between">
+              <div>
+                <h3 class="font-extrabold text-slate-900 text-base sm:text-lg group-hover:text-purple-900 transition-colors line-clamp-2 leading-snug">
+                  Bedah Tuntas PMK 168/2023
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed line-clamp-3">
+                  Petunjuk pelaksanaan pemotongan PPh 21 bagi Bukan Pegawai, Tenaga Ahli, Dewan Komisaris, dan Peserta Kegiatan sesuai amanat Menteri Keuangan.
+                </p>
+              </div>
+              <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-[11px] font-medium text-slate-400">01 Jan 2024</span>
+                <button onclick="openArticleModal(4)" class="text-xs font-bold text-purple-900 hover:text-purple-950 inline-flex items-center gap-1 cursor-pointer">
+                  <span>Baca Selengkapnya</span>
+                  <span>&rarr;</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Artikel 5: Template Bukti Potong 1721-A1 -->
+          <article class="card-elevated overflow-hidden flex flex-col rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl transition-all group">
+            <div class="h-44 sm:h-48 relative overflow-hidden bg-gradient-to-br from-[#78350f] via-[#b45309] to-[#f59e0b] flex items-center justify-center p-4">
+              <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-amber-950 text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm border border-white/60 z-10">
+                Administrasi DJP
+              </span>
+
+              <!-- 3D 1721-A1 Tax Certificate SVG -->
+              <svg viewBox="0 0 96 96" class="w-24 h-24 drop-shadow-2xl group-hover:scale-105 transition-transform duration-500">
+                <defs>
+                  <linearGradient id="artA1Doc" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FFFFFF" />
+                    <stop offset="100%" stop-color="#FEF3C7" />
+                  </linearGradient>
+                </defs>
+                <rect x="22" y="14" width="52" height="66" rx="6" fill="url(#artA1Doc)" stroke="#FCD34D" stroke-width="1.5"/>
+                <!-- Form Header Bar -->
+                <rect x="28" y="22" width="40" height="8" rx="2" fill="#D97706"/>
+                <text x="48" y="28" font-size="6" font-weight="bold" fill="white" text-anchor="middle">1721 - A1</text>
+                <!-- Mini Table Grid -->
+                <rect x="28" y="34" width="40" height="2" fill="#FDE68A"/>
+                <rect x="28" y="40" width="40" height="2" fill="#FDE68A"/>
+                <rect x="28" y="46" width="40" height="2" fill="#FDE68A"/>
+                <rect x="28" y="52" width="40" height="2" fill="#FDE68A"/>
+                <!-- Stamp/Sign -->
+                <circle cx="56" cy="64" r="7" fill="#B45309" opacity="0.8"/>
+                <path d="M53 64l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+
+            <div class="p-5 sm:p-6 flex-grow flex flex-col justify-between">
+              <div>
+                <h3 class="font-extrabold text-slate-900 text-base sm:text-lg group-hover:text-amber-900 transition-colors line-clamp-2 leading-snug">
+                  Template Bukti Potong 1721-A1
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed line-clamp-3">
+                  Panduan pengisian formulir bukti pemotongan PPh 21 tahunan bagi HRD dan staf payroll perusahaan untuk pelaporan SPT Tahunan OP.
+                </p>
+              </div>
+              <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-[11px] font-medium text-slate-400">28 Des 2023</span>
+                <button onclick="openArticleModal(5)" class="text-xs font-bold text-amber-900 hover:text-amber-950 inline-flex items-center gap-1 cursor-pointer">
+                  <span>Baca Selengkapnya</span>
+                  <span>&rarr;</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Artikel 6: Studi Kasus Pajak Desember (True-Up) -->
+          <article class="card-elevated overflow-hidden flex flex-col rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl transition-all group">
+            <div class="h-44 sm:h-48 relative overflow-hidden bg-gradient-to-br from-[#083344] via-[#0e7490] to-[#06b6d4] flex items-center justify-center p-4">
+              <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-cyan-950 text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm border border-white/60 z-10">
+                Analisis Kasus
+              </span>
+
+              <!-- 3D Calendar & Scale SVG -->
+              <svg viewBox="0 0 96 96" class="w-24 h-24 drop-shadow-2xl group-hover:scale-105 transition-transform duration-500">
+                <defs>
+                  <linearGradient id="artDecCal" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FFFFFF" />
+                    <stop offset="100%" stop-color="#CFFAFE" />
+                  </linearGradient>
+                </defs>
+                <rect x="22" y="18" width="52" height="60" rx="8" fill="url(#artDecCal)" stroke="#67E8F9" stroke-width="1.5"/>
+                <!-- Header Calendar Pad -->
+                <rect x="22" y="18" width="52" height="18" rx="6" fill="#0891B2"/>
+                <text x="48" y="30" font-size="8" font-weight="900" fill="white" text-anchor="middle">DESEMBER</text>
+                <!-- Scale / True-Up Balance Graphic -->
+                <circle cx="48" cy="54" r="14" fill="#E0F2FE"/>
+                <path d="M48 45v18M40 54h16" stroke="#0284C7" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="40" cy="57" r="3" fill="#0284C7"/>
+                <circle cx="56" cy="51" r="3" fill="#06B6D4"/>
+              </svg>
+            </div>
+
+            <div class="p-5 sm:p-6 flex-grow flex flex-col justify-between">
+              <div>
+                <h3 class="font-extrabold text-slate-900 text-base sm:text-lg group-hover:text-cyan-900 transition-colors line-clamp-2 leading-snug">
+                  Studi Kasus Pajak Desember (True-Up)
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed line-clamp-3">
+                  Mengapa PPh 21 bulan Desember berbeda dengan bulan sebelumnya? Simak simulasi rekonsiliasi akhir tahun dan cara perhitungan true-up.
+                </p>
+              </div>
+              <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-[11px] font-medium text-slate-400">25 Des 2023</span>
+                <button onclick="openArticleModal(6)" class="text-xs font-bold text-cyan-900 hover:text-cyan-950 inline-flex items-center gap-1 cursor-pointer">
+                  <span>Baca Selengkapnya</span>
+                  <span>&rarr;</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
     </section>
 
     <!-- ============================================================== -->
@@ -1876,14 +2406,14 @@
   <!-- ============================================================== -->
   <!-- FOOTER                                                         -->
   <!-- ============================================================== -->
-  <footer class="bg-slate-950 text-white pt-10 sm:pt-14 pb-8 border-t border-slate-900">
+  <footer class="bg-[#0B0F19] text-white pt-12 sm:pt-16 pb-8 border-t border-slate-800/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10 pb-8 sm:pb-12 border-b border-slate-800">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10 pb-8 sm:pb-12 border-b border-slate-800/80">
         
         <!-- Brand & Description -->
         <div class="md:col-span-2 space-y-3">
           <div class="flex items-center gap-2">
-            <span class="text-2xl font-black text-rose-500 font-sans tracking-tight">ACCUTAX</span>
+            <span class="text-2xl font-black font-sans tracking-tight text-white">ACCU<span class="text-[#FDA4AF]">TAX</span></span>
           </div>
           <p class="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-md">
             Platform kalkulasi pajak profesional Indonesia yang akurat dan terpercaya untuk membantu Anda menghitung pajak penghasilan dan pertambahan nilai sesuai dengan regulasi perpajakan terbaru di Indonesia.
@@ -1904,42 +2434,55 @@
             </ul>
           </div>
 
-          <!-- Kontak & Media Sosial (Official Logos) -->
+          <!-- Kontak & Media Sosial (Monochrome SVGs in Glassmorphism Circles) -->
           <div>
             <h4 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-200 mb-3 sm:mb-4">Kontak &amp; Medsos</h4>
-            <div class="space-y-2.5 sm:space-y-3 text-xs sm:text-sm text-slate-400">
+            <div class="space-y-2.5 sm:space-y-3 text-xs sm:text-sm text-slate-300">
+              
+              <!-- Email -->
               <div class="flex items-center">
-                <a href="mailto:infoaccutax.id@gmail.com" class="hover:text-white transition-colors flex items-center gap-2 sm:gap-2.5 group">
-                  <svg class="w-4 h-4 sm:w-5 sm:h-5 text-rose-400 shrink-0 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-                  </svg>
+                <a href="mailto:infoaccutax.id@gmail.com" class="hover:text-white transition-colors flex items-center gap-2.5 group">
+                  <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-white/20 group-hover:scale-105 transition-all text-slate-200 group-hover:text-white">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                    </svg>
+                  </div>
                   <span class="break-all text-[11px] sm:text-xs md:text-sm">infoaccutax.id@gmail.com</span>
                 </a>
               </div>
 
+              <!-- WhatsApp -->
               <div class="flex items-center">
-                <a href="https://wa.me/6289670244070" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-2 sm:gap-2.5 group">
-                  <svg class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 shrink-0 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.63" />
-                  </svg>
+                <a href="https://wa.me/6289670244070" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-2.5 group">
+                  <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-white/20 group-hover:scale-105 transition-all text-slate-200 group-hover:text-white">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.63" />
+                    </svg>
+                  </div>
                   <span class="text-[11px] sm:text-xs md:text-sm">089670244070</span>
                 </a>
               </div>
 
+              <!-- Instagram -->
               <div class="flex items-center">
-                <a href="https://www.instagram.com/accutax.id?igsh=MWNkc3E1d21kMXRtZw==" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-2 sm:gap-2.5 group">
-                  <svg class="w-4 h-4 sm:w-5 sm:h-5 text-pink-400 shrink-0 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
-                  </svg>
+                <a href="https://www.instagram.com/accutax.id?igsh=MWNkc3E1d21kMXRtZw==" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-2.5 group">
+                  <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-white/20 group-hover:scale-105 transition-all text-slate-200 group-hover:text-white">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
+                    </svg>
+                  </div>
                   <span class="text-[11px] sm:text-xs md:text-sm">@accutax.id</span>
                 </a>
               </div>
 
+              <!-- TikTok -->
               <div class="flex items-center">
-                <a href="https://www.tiktok.com/@accutax.id?_r=1&amp;_t=ZS-929DMApx0Sn" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-2 sm:gap-2.5 group">
-                  <svg class="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400 shrink-0 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
-                  </svg>
+                <a href="https://www.tiktok.com/@accutax.id?_r=1&amp;_t=ZS-929DMApx0Sn" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-2.5 group">
+                  <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-white/20 group-hover:scale-105 transition-all text-slate-200 group-hover:text-white">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+                    </svg>
+                  </div>
                   <span class="text-[11px] sm:text-xs md:text-sm">@accutax.id</span>
                 </a>
               </div>
