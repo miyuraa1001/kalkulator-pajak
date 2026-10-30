@@ -209,3 +209,18 @@ body {
   }
 }
 
+/* ============================================================== */
+/* 3D Modern KPI Card Styling                                     */
+/* ============================================================== */
+.kpi-card-3d {
+  border-radius: 28px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.kpi-card-3d:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.12);
+}
+
+

@@ -847,475 +847,468 @@
             </p>
           </div>
 
-          <!-- 6 KPI Cards Grid (Pastel Glassmorphism & 3D Micro-Data Visualization) -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
+                    <!-- 6 KPI Cards Grid (Modern 3D Visual & Pastel Glassmorphism) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 sm:gap-y-16 gap-x-6 sm:gap-x-8 pt-8 sm:pt-12">
 
             <!-- ==========================================
-                 1. KARTU PPh 21 (GAJI & UPAH) - ROSE/MAROON
+                 1. KARTU PPh 21 (GAJI & UPAH) - ROSE / PEACH PASTEL
                  ========================================== -->
-            <div class="relative overflow-hidden rounded-2xl sm:rounded-[28px] bg-gradient-to-br from-[#FFF0F0] via-[#FFF6F6] to-[#FFE4E6] p-4 sm:p-7 border border-white/80 shadow-[0_12px_35px_-10px_rgba(153,27,27,0.12)] hover:-translate-y-2 hover:shadow-[0_20px_40px_-12px_rgba(153,27,27,0.22)] transition-all duration-300 flex flex-col justify-between group">
-              <!-- Ornamen Latar Belakang (Mesh Glow) -->
-              <div class="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-rose-300/30 blur-2xl pointer-events-none"></div>
-              <div class="absolute -left-10 bottom-10 w-32 h-32 rounded-full bg-red-200/30 blur-2xl pointer-events-none"></div>
+            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#FFF0F0] via-[#FFF5F5] to-[#FFE6E8] p-5 sm:p-7 border border-rose-200/80 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between group">
+              <!-- Ornamen Latar Belakang & Mesh Glow -->
+              <div class="absolute inset-0 rounded-[28px] overflow-hidden pointer-events-none">
+                <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-rose-300/25 blur-2xl"></div>
+                <div class="absolute -left-8 bottom-4 w-36 h-36 rounded-full bg-red-200/25 blur-2xl"></div>
+              </div>
+              <!-- Ornamen Glass Sphere di sisi kiri -->
+              <div class="absolute -left-3 top-12 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/50 backdrop-blur-md border border-white/80 shadow-[0_4px_12px_rgba(244,63,94,0.15)] pointer-events-none z-20"></div>
 
               <div>
-                <!-- Header: 3D SVG Icon & Pill Badge -->
-                <div class="flex justify-between items-start mb-3 sm:mb-5 relative z-10">
-                  <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/70 backdrop-blur-md border border-white shadow-xs flex items-center justify-center p-1.5 sm:p-2 group-hover:scale-105 transition-transform">
-                    <svg viewBox="0 0 64 64" class="w-8 h-8 sm:w-12 sm:h-12 drop-shadow-md">
-                      <defs>
-                        <linearGradient id="gradUser" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stop-color="#FB7185" />
-                          <stop offset="100%" stop-color="#9F1239" />
-                        </linearGradient>
-                        <linearGradient id="gradCoin" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stop-color="#FDE047" />
-                          <stop offset="100%" stop-color="#CA8A04" />
-                        </linearGradient>
-                      </defs>
-                      <rect x="38" y="22" width="6" height="20" rx="3" fill="#FDA4AF" />
-                      <rect x="46" y="14" width="6" height="28" rx="3" fill="#E11D48" />
-                      <circle cx="24" cy="22" r="10" fill="url(#gradUser)" />
-                      <path d="M10 48 C10 38, 38 38, 38 48 Z" fill="url(#gradUser)" />
-                      <circle cx="44" cy="44" r="9" fill="url(#gradCoin)" stroke="#FEF08A" stroke-width="2" />
-                      <text x="44" y="48" font-size="10" font-weight="bold" fill="#713F12" text-anchor="middle">%</text>
-                    </svg>
+                <!-- Header: 3D Illustration (Overlapping Top Edge) & Badge Peraturan -->
+                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[90px] sm:min-h-[105px]">
+                  <div class="-mt-12 sm:-mt-14 -ml-2 sm:-ml-3 pointer-events-none">
+                    <img src="assets/images/kpi/pph21-hero.png" alt="PPh 21 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_12px_18px_rgba(153,27,27,0.15)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
                   </div>
-                  <span class="px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold bg-white/70 backdrop-blur-md border border-rose-200/80 text-rose-900 shadow-xs">
+                  <span class="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold bg-white/80 backdrop-blur-md border border-rose-200/80 text-rose-900 shadow-sm shrink-0">
                     PP 58/2023 &amp; PMK 168
                   </span>
                 </div>
 
                 <!-- Judul & Deskripsi -->
-                <h3 class="text-base sm:text-xl font-extrabold text-slate-900 mb-1 sm:mb-2 relative z-10">PPh 21 (Gaji &amp; Upah)</h3>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3 sm:mb-6 relative z-10">
+                <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-1.5 relative z-10 tracking-tight">PPh 21 (Gaji &amp; Upah)</h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 sm:mb-5 relative z-10">
                   Potongan pajak penghasilan bulanan karyawan (TER Kategori A, B, C) serta rekonsiliasi akhir tahun (Desember).
                 </p>
 
-                <!-- Kotak Parameter KPI + Micro Charts -->
-                <div class="grid grid-cols-2 gap-2 sm:gap-3 mb-2.5 sm:mb-4 relative z-10">
-                  <!-- Box 1 -->
-                  <div class="bg-white/75 backdrop-blur-md border border-white rounded-xl sm:rounded-2xl p-2 sm:p-3.5 shadow-xs flex items-center justify-between">
+                <!-- Grid Metrik Kunci (Dua Kotak Berdampingan) -->
+                <div class="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-4 sm:mb-5 relative z-10">
+                  <!-- Metrik 1 -->
+                  <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white/90 shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
                     <div>
-                      <span class="block text-[9px] sm:text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Tarif Efektif</span>
-                      <span class="text-xs sm:text-sm font-extrabold text-rose-900">0% s.d. 34% (TER)</span>
+                      <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Tarif Efektif</span>
+                      <span class="text-xs sm:text-sm font-extrabold text-rose-950 leading-tight">0% s.d.<br>34% (TER)</span>
                     </div>
-                    <svg class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 32 32">
-                      <rect x="4" y="20" width="5" height="8" rx="2" fill="#FECDD3" />
-                      <rect x="13" y="13" width="5" height="15" rx="2" fill="#FB7185" />
-                      <rect x="22" y="6" width="5" height="22" rx="2" fill="#9F1239" />
-                    </svg>
+                    <!-- Mini Bar Chart -->
+                    <div class="w-6 h-6 sm:w-7 sm:h-7 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" class="w-6 h-6">
+                        <rect x="3" y="14" width="4" height="8" rx="2" fill="#FDA4AF" />
+                        <rect x="10" y="8" width="4" height="14" rx="2" fill="#FB7185" />
+                        <rect x="17" y="3" width="4" height="19" rx="2" fill="#BE123C" />
+                      </svg>
+                    </div>
                   </div>
-                  <!-- Box 2 -->
-                  <div class="bg-white/75 backdrop-blur-md border border-white rounded-xl sm:rounded-2xl p-2 sm:p-3.5 shadow-xs flex items-center justify-between">
+
+                  <!-- Metrik 2 -->
+                  <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white/90 shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
                     <div>
-                      <span class="block text-[9px] sm:text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Batas Bebas (PTKP)</span>
-                      <span class="text-xs sm:text-sm font-extrabold text-slate-900">s.d. Rp 54jt - 72jt</span>
+                      <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Batas Bebas (PTKP)</span>
+                      <span class="text-xs sm:text-sm font-extrabold text-slate-900 leading-tight">s.d. Rp 54jt<br>- 72jt</span>
                     </div>
-                    <svg class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 32 32">
-                      <circle cx="16" cy="16" r="12" fill="none" stroke="#FFE4E6" stroke-width="4" />
-                      <circle cx="16" cy="16" r="12" fill="none" stroke="#E11D48" stroke-width="4" stroke-dasharray="50 75" stroke-linecap="round" transform="rotate(-90 16 16)" />
-                      <text x="16" y="19" font-size="8" font-weight="bold" fill="#881337" text-anchor="middle">0%</text>
-                    </svg>
+                    <!-- Mini Donut Ring -->
+                    <div class="w-6 h-6 sm:w-7 sm:h-7 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 32 32" class="w-7 h-7">
+                        <circle cx="16" cy="16" r="12" fill="none" stroke="#FFE4E6" stroke-width="4.5" />
+                        <circle cx="16" cy="16" r="12" fill="none" stroke="#E11D48" stroke-width="4.5" stroke-dasharray="56 75" stroke-linecap="round" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
 
-                <!-- Info Highlight Box -->
-                <div class="bg-white/60 backdrop-blur-md border border-rose-200/70 rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 mb-3.5 sm:mb-6 relative z-10">
-                  <p class="text-[11px] sm:text-xs font-medium text-rose-950 leading-relaxed">
-                    💡 Gaji kotor sebulan langsung dikalikan tarif TER sesuai tanggungan keluarga tanpa hitung PTKP rumit!
-                  </p>
+                <!-- Info Tips Box (Pastel Lembut & Glassmorphism) -->
+                <div class="p-3 sm:p-3.5 rounded-2xl bg-amber-50/70 backdrop-blur-sm border border-amber-200/50 text-[11px] sm:text-xs text-slate-700 leading-relaxed mb-5 sm:mb-6 flex items-start gap-2.5 relative z-10">
+                  <span class="text-sm shrink-0">💡</span>
+                  <span>Gaji kotor sebulan langsung dikalikan tarif TER sesuai tanggungan keluarga tanpa hitung PTKP rumit!</span>
                 </div>
               </div>
 
               <!-- Tombol CTA -->
-              <button onclick="openTaxCalculator('pph21')" class="w-full py-3 sm:py-3.5 px-4 sm:px-5 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-[#7F1D1D] via-[#991B1B] to-[#651313] shadow-[0_8px_20px_-4px_rgba(127,29,29,0.5)] hover:shadow-[0_12px_25px_-4px_rgba(127,29,29,0.7)] hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 relative z-10 cursor-pointer">
+              <button onclick="openTaxCalculator('pph21')" class="w-full py-3 sm:py-3.5 px-5 rounded-full font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-[#6b1515] to-[#450a0a] hover:from-[#7f1d1d] hover:to-[#550b0b] shadow-[0_10px_20px_-5px_rgba(107,21,21,0.4)] hover:shadow-[0_14px_24px_-4px_rgba(107,21,21,0.5)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer relative z-10">
                 <span>Buka Kalkulator PPh 21</span>
-                <span class="text-sm sm:text-base group-hover:translate-x-1 transition-transform">&rarr;</span>
+                <span class="text-base leading-none">→</span>
               </button>
             </div>
 
-
             <!-- ==========================================
-                 2. KARTU PPN 11% & WAPU - EMERALD/TEAL
+                 2. KARTU PPN 11% & WAPU - EMERALD / MINT PASTEL
                  ========================================== -->
-            <div class="relative overflow-hidden rounded-2xl sm:rounded-[28px] bg-gradient-to-br from-[#ECFDF5] via-[#F0FDF4] to-[#CCFBF1] p-4 sm:p-7 border border-emerald-300/60 shadow-[0_12px_35px_-10px_rgba(6,95,70,0.12)] hover:-translate-y-2 hover:shadow-[0_20px_40px_-12px_rgba(6,95,70,0.22)] transition-all duration-300 flex flex-col justify-between group">
-              <div class="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-emerald-300/30 blur-2xl pointer-events-none"></div>
-              <div class="absolute -left-10 bottom-10 w-32 h-32 rounded-full bg-teal-200/30 blur-2xl pointer-events-none"></div>
+            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#EBF9F3] via-[#F2FAF6] to-[#DCF5EB] p-5 sm:p-7 border border-emerald-200/80 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between group">
+              <!-- Ornamen Latar Belakang & Mesh Glow -->
+              <div class="absolute inset-0 rounded-[28px] overflow-hidden pointer-events-none">
+                <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-emerald-300/25 blur-2xl"></div>
+                <div class="absolute -left-8 bottom-4 w-36 h-36 rounded-full bg-teal-200/25 blur-2xl"></div>
+              </div>
+              <!-- Ornamen Glass Sphere di sisi kiri -->
+              <div class="absolute -left-3 top-12 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/50 backdrop-blur-md border border-white/80 shadow-[0_4px_12px_rgba(16,185,129,0.15)] pointer-events-none z-20"></div>
 
               <div>
-                <div class="flex justify-between items-start mb-3 sm:mb-5 relative z-10">
-                  <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/70 backdrop-blur-md border border-white shadow-xs flex items-center justify-center p-1.5 sm:p-2 group-hover:scale-105 transition-transform">
-                    <svg viewBox="0 0 64 64" class="w-8 h-8 sm:w-12 sm:h-12 drop-shadow-md">
-                      <defs>
-                        <linearGradient id="gradDoc" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stop-color="#FFFFFF" />
-                          <stop offset="100%" stop-color="#A7F3D0" />
-                        </linearGradient>
-                        <linearGradient id="gradEmerald" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stop-color="#34D399" />
-                          <stop offset="100%" stop-color="#065F46" />
-                        </linearGradient>
-                      </defs>
-                      <rect x="14" y="10" width="30" height="42" rx="5" fill="url(#gradDoc)" stroke="#6EE7B7" stroke-width="1.5" />
-                      <rect x="20" y="18" width="18" height="4" rx="2" fill="#10B981" />
-                      <rect x="20" y="26" width="14" height="3" rx="1.5" fill="#6EE7B7" />
-                      <rect x="20" y="33" width="18" height="3" rx="1.5" fill="#6EE7B7" />
-                      <circle cx="44" cy="40" r="11" fill="url(#gradEmerald)" />
-                      <text x="44" y="44" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">%</text>
-                    </svg>
+                <!-- Header: 3D Illustration & Badge Peraturan -->
+                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[90px] sm:min-h-[105px]">
+                  <div class="-mt-12 sm:-mt-14 -ml-2 sm:-ml-3 pointer-events-none">
+                    <img src="assets/images/kpi/ppn11-hero.png" alt="PPN 11% 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_12px_18px_rgba(5,150,105,0.15)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
                   </div>
-                  <span class="px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold bg-white/70 backdrop-blur-md border border-emerald-300/80 text-emerald-900 shadow-xs">
+                  <span class="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold bg-white/80 backdrop-blur-md border border-emerald-200/80 text-emerald-900 shadow-sm shrink-0">
                     UU HPP 11%
                   </span>
                 </div>
 
-                <h3 class="text-base sm:text-xl font-extrabold text-emerald-950 mb-1 sm:mb-2 relative z-10">PPN 11% &amp; WAPU</h3>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3 sm:mb-6 relative z-10">
+                <!-- Judul & Deskripsi -->
+                <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-1.5 relative z-10 tracking-tight">PPN 11% &amp; WAPU</h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 sm:mb-5 relative z-10">
                   Pajak Pertambahan Nilai atas penjualan barang/jasa, harga sebelum pajak (Exclude), termasuk pajak (Include), dan WAPU.
                 </p>
 
-                <!-- Kotak Parameter KPI + Micro Donut Charts -->
-                <div class="grid grid-cols-2 gap-2 sm:gap-3 mb-2.5 sm:mb-4 relative z-10">
-                  <div class="bg-white/75 backdrop-blur-md border border-white rounded-xl sm:rounded-2xl p-2 sm:p-3.5 shadow-xs flex items-center justify-between">
+                <!-- Grid Metrik Kunci (Dua Kotak Berdampingan) -->
+                <div class="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-4 sm:mb-5 relative z-10">
+                  <!-- Metrik 1 -->
+                  <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white/90 shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
                     <div>
-                      <span class="block text-[9px] sm:text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Tarif Umum</span>
-                      <span class="text-xs sm:text-sm font-extrabold text-emerald-900">11% DPP Penuh</span>
+                      <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Tarif Umum</span>
+                      <span class="text-xs sm:text-sm font-extrabold text-emerald-950 leading-tight">11% DPP<br>Penuh</span>
                     </div>
-                    <svg class="w-6 h-6 sm:w-9 sm:h-9 shrink-0" viewBox="0 0 36 36">
-                      <circle cx="18" cy="18" r="13" fill="none" stroke="#D1FAE5" stroke-width="4.5" />
-                      <circle cx="18" cy="18" r="13" fill="none" stroke="#059669" stroke-width="4.5" stroke-dasharray="28 82" stroke-linecap="round" transform="rotate(-90 18 18)" />
-                      <text x="18" y="21" font-size="8" font-weight="bold" fill="#065F46" text-anchor="middle">11%</text>
-                    </svg>
+                    <!-- Mini Ring Chart 11% -->
+                    <div class="relative w-7 h-7 sm:w-8 sm:h-8 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 32 32" class="w-7 h-7 sm:w-8 sm:h-8">
+                        <circle cx="16" cy="16" r="12" fill="none" stroke="#A7F3D0" stroke-width="3.5" />
+                        <circle cx="16" cy="16" r="12" fill="none" stroke="#059669" stroke-width="3.5" stroke-dasharray="60 75" stroke-linecap="round" />
+                      </svg>
+                      <span class="absolute text-[8px] sm:text-[9px] font-extrabold text-emerald-800">11%</span>
+                    </div>
                   </div>
 
-                  <div class="bg-white/75 backdrop-blur-md border border-white rounded-xl sm:rounded-2xl p-2 sm:p-3.5 shadow-xs flex items-center justify-between">
+                  <!-- Metrik 2 -->
+                  <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white/90 shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
                     <div>
-                      <span class="block text-[9px] sm:text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Besaran Tertentu</span>
-                      <span class="text-xs sm:text-sm font-extrabold text-slate-900">1,1% (PMK 71)</span>
+                      <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Besaran Tertentu</span>
+                      <span class="text-xs sm:text-sm font-extrabold text-emerald-950 leading-tight">1,1% (PMK<br>71)</span>
                     </div>
-                    <svg class="w-6 h-6 sm:w-9 sm:h-9 shrink-0" viewBox="0 0 36 36">
-                      <circle cx="18" cy="18" r="13" fill="none" stroke="#D1FAE5" stroke-width="4.5" />
-                      <circle cx="18" cy="18" r="13" fill="none" stroke="#F59E0B" stroke-width="4.5" stroke-dasharray="14 82" stroke-linecap="round" transform="rotate(-90 18 18)" />
-                      <text x="18" y="21" font-size="7.5" font-weight="bold" fill="#92400E" text-anchor="middle">1.1%</text>
-                    </svg>
+                    <!-- Mini Ring Chart 1.1% -->
+                    <div class="relative w-7 h-7 sm:w-8 sm:h-8 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 32 32" class="w-7 h-7">
+                        <circle cx="16" cy="16" r="12" fill="none" stroke="#D1FAE5" stroke-width="3.5" />
+                        <circle cx="16" cy="16" r="12" fill="none" stroke="#F59E0B" stroke-width="3.5" stroke-dasharray="25 75" stroke-linecap="round" />
+                      </svg>
+                      <span class="absolute text-[7px] sm:text-[8px] font-extrabold text-emerald-800">1.1%</span>
+                    </div>
                   </div>
                 </div>
 
-                <div class="bg-white/60 backdrop-blur-md border border-emerald-200/80 rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 mb-3.5 sm:mb-6 relative z-10">
-                  <p class="text-[11px] sm:text-xs font-medium text-emerald-950 leading-relaxed">
-                    💡 Mendukung pemungutan bendahara pemerintah (&gt; Rp 2 Jt) dan BUMN (&gt; Rp 10 Jt) secara otomatis!
-                  </p>
+                <!-- Info Tips Box (Pastel Lembut & Glassmorphism) -->
+                <div class="p-3 sm:p-3.5 rounded-2xl bg-emerald-50/70 backdrop-blur-sm border border-emerald-200/50 text-[11px] sm:text-xs text-slate-700 leading-relaxed mb-5 sm:mb-6 flex items-start gap-2.5 relative z-10">
+                  <span class="text-sm shrink-0">💡</span>
+                  <span>Mendukung pemungutan bendahara pemerintah (&gt; Rp 2 Jt) dan BUMN (&gt; Rp 10 Jt) secara otomatis!</span>
                 </div>
               </div>
 
-              <button onclick="openTaxCalculator('ppn')" class="w-full py-3 sm:py-3.5 px-4 sm:px-5 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-[#065F46] via-[#047857] to-[#064E3B] shadow-[0_8px_20px_-4px_rgba(6,95,70,0.5)] hover:shadow-[0_12px_25px_-4px_rgba(6,95,70,0.7)] hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 relative z-10 cursor-pointer">
-                <span>Buka Kalkulator PPN 11%</span>
-                <span class="text-sm sm:text-base group-hover:translate-x-1 transition-transform">&rarr;</span>
+              <!-- Tombol CTA -->
+              <button onclick="openTaxCalculator('ppn')" class="w-full py-3 sm:py-3.5 px-5 rounded-full font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-[#064e3b] to-[#022c22] hover:from-[#047857] hover:to-[#064e3b] shadow-[0_10px_20px_-5px_rgba(6,78,59,0.4)] hover:shadow-[0_14px_24px_-4px_rgba(6,78,59,0.5)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer relative z-10">
+                <span>Buka Kalkulator PPN 11</span>
+                <span class="text-base leading-none">→</span>
               </button>
             </div>
 
-
             <!-- ==========================================
-                 3. KARTU PPh 23 (JASA & SEWA) - INDIGO/BLUE
+                 3. KARTU PPh 23 (JASA & SEWA) - BLUE / SLATE PASTEL
                  ========================================== -->
-            <div class="relative overflow-hidden rounded-2xl sm:rounded-[28px] bg-gradient-to-br from-[#EFF6FF] via-[#EEF2FF] to-[#E0E7FF] p-4 sm:p-7 border border-white/80 shadow-[0_12px_35px_-10px_rgba(30,58,138,0.12)] hover:-translate-y-2 hover:shadow-[0_20px_40px_-12px_rgba(30,58,138,0.22)] transition-all duration-300 flex flex-col justify-between group">
-              <div class="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-blue-300/30 blur-2xl pointer-events-none"></div>
-              <div class="absolute -left-10 bottom-10 w-32 h-32 rounded-full bg-indigo-200/30 blur-2xl pointer-events-none"></div>
+            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#EEF2FF] via-[#F5F7FF] to-[#E0E7FF] p-5 sm:p-7 border border-indigo-200/80 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between group">
+              <!-- Ornamen Latar Belakang & Mesh Glow -->
+              <div class="absolute inset-0 rounded-[28px] overflow-hidden pointer-events-none">
+                <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-indigo-300/25 blur-2xl"></div>
+                <div class="absolute -left-8 bottom-4 w-36 h-36 rounded-full bg-blue-200/25 blur-2xl"></div>
+              </div>
+              <!-- Ornamen Glass Sphere di sisi kiri -->
+              <div class="absolute -left-3 top-12 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/50 backdrop-blur-md border border-white/80 shadow-[0_4px_12px_rgba(99,102,241,0.15)] pointer-events-none z-20"></div>
 
               <div>
-                <div class="flex justify-between items-start mb-3 sm:mb-5 relative z-10">
-                  <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/70 backdrop-blur-md border border-white shadow-xs flex items-center justify-center p-1.5 sm:p-2 group-hover:scale-105 transition-transform">
-                    <svg viewBox="0 0 64 64" class="w-8 h-8 sm:w-12 sm:h-12 drop-shadow-md">
-                      <defs>
-                        <linearGradient id="gradBag" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stop-color="#A16207" />
-                          <stop offset="100%" stop-color="#5C2D0C" />
-                        </linearGradient>
-                        <linearGradient id="gradBlueBadge" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stop-color="#60A5FA" />
-                          <stop offset="100%" stop-color="#1E3A8A" />
-                        </linearGradient>
-                      </defs>
-                      <path d="M24 18 V14 C24 11, 40 11, 40 14 V18" fill="none" stroke="#78350F" stroke-width="4" stroke-linecap="round" />
-                      <rect x="10" y="18" width="44" height="32" rx="7" fill="url(#gradBag)" />
-                      <path d="M10 28 Q32 35 54 28" fill="none" stroke="#CA8A04" stroke-width="2" opacity="0.6" />
-                      <rect x="28" y="27" width="8" height="6" rx="2" fill="#FDE047" />
-                      <circle cx="46" cy="42" r="10" fill="url(#gradBlueBadge)" stroke="#EFF6FF" stroke-width="1.5" />
-                      <path d="M42 44 L45 40 L48 42 L51 37" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
-                    </svg>
+                <!-- Header: 3D Illustration & Badge Peraturan -->
+                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[90px] sm:min-h-[105px]">
+                  <div class="-mt-12 sm:-mt-14 -ml-2 sm:-ml-3 pointer-events-none">
+                    <img src="assets/images/kpi/pph23-hero.png" alt="PPh 23 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_12px_18px_rgba(30,58,138,0.15)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
                   </div>
-                  <span class="px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold bg-white/70 backdrop-blur-md border border-blue-200/80 text-blue-900 shadow-xs">
+                  <span class="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold bg-white/80 backdrop-blur-md border border-indigo-200/80 text-indigo-900 shadow-sm shrink-0">
                     PMK 141/2015
                   </span>
                 </div>
 
-                <h3 class="text-base sm:text-xl font-extrabold text-slate-900 mb-1 sm:mb-2 relative z-10">PPh 23 (Jasa &amp; Sewa)</h3>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3 sm:mb-6 relative z-10">
+                <!-- Judul & Deskripsi -->
+                <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-1.5 relative z-10 tracking-tight">PPh 23 (Jasa &amp; Sewa)</h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 sm:mb-5 relative z-10">
                   Pemotongan pajak atas imbalan 62 jenis jasa teknik/IT/konsultan, sewa kendaraan/mesin, bunga pinjaman, dan dividen.
                 </p>
 
-                <div class="grid grid-cols-2 gap-2 sm:gap-3 mb-2.5 sm:mb-4 relative z-10">
-                  <div class="bg-white/75 backdrop-blur-md border border-white rounded-xl sm:rounded-2xl p-2 sm:p-3.5 shadow-xs flex items-center justify-between">
+                <!-- Grid Metrik Kunci (Dua Kotak Berdampingan) -->
+                <div class="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-4 sm:mb-5 relative z-10">
+                  <!-- Metrik 1 -->
+                  <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white/90 shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
                     <div>
-                      <span class="block text-[9px] sm:text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Jasa &amp; Sewa</span>
-                      <span class="text-xs sm:text-sm font-extrabold text-blue-900">2% dari Bruto</span>
+                      <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Jasa &amp; Sewa</span>
+                      <span class="text-xs sm:text-sm font-extrabold text-indigo-950 leading-tight">2% dari<br>Bruto</span>
                     </div>
-                    <svg class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 32 32">
-                      <rect x="4" y="18" width="5" height="10" rx="2" fill="#93C5FD" />
-                      <rect x="13" y="12" width="5" height="16" rx="2" fill="#3B82F6" />
-                      <rect x="22" y="7" width="5" height="21" rx="2" fill="#1E3A8A" />
-                    </svg>
+                    <!-- Mini Blue Bar Chart -->
+                    <div class="w-6 h-6 sm:w-7 sm:h-7 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" class="w-6 h-6">
+                        <rect x="4" y="12" width="4" height="10" rx="1.5" fill="#93C5FD" />
+                        <rect x="10" y="6" width="4" height="16" rx="1.5" fill="#3B82F6" />
+                        <rect x="16" y="2" width="4" height="20" rx="1.5" fill="#1D4ED8" />
+                      </svg>
+                    </div>
                   </div>
 
-                  <div class="bg-white/75 backdrop-blur-md border border-white rounded-xl sm:rounded-2xl p-2 sm:p-3.5 shadow-xs flex items-center justify-between">
+                  <!-- Metrik 2 -->
+                  <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white/90 shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
                     <div>
-                      <span class="block text-[9px] sm:text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Non-NPWP</span>
-                      <span class="text-xs sm:text-sm font-extrabold text-rose-700">+100% (2x Lipat)</span>
+                      <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Non-NPWP</span>
+                      <span class="text-xs sm:text-sm font-extrabold text-rose-600 leading-tight">+100%<br>(2x Lipat)</span>
                     </div>
-                    <svg class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 32 32">
-                      <path d="M4 24 L12 16 L18 20 L27 8" fill="none" stroke="#E11D48" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                      <circle cx="27" cy="8" r="3" fill="#E11D48" />
-                    </svg>
+                    <!-- Mini Trend-up Chart -->
+                    <div class="w-6 h-6 sm:w-7 sm:h-7 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" class="w-7 h-7">
+                        <rect x="2" y="16" width="3.5" height="6" rx="1" fill="#6EE7B7" />
+                        <rect x="7" y="12" width="3.5" height="10" rx="1" fill="#34D399" />
+                        <rect x="12" y="8" width="3.5" height="14" rx="1" fill="#F87171" />
+                        <rect x="17" y="4" width="3.5" height="18" rx="1" fill="#EF4444" />
+                        <path d="M2 14 L10 8 L15 11 L22 2 M22 2 L18 2 M22 2 L22 6" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
 
-                <div class="bg-white/60 backdrop-blur-md border border-blue-200/70 rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 mb-3.5 sm:mb-6 relative z-10">
-                  <p class="text-[11px] sm:text-xs font-medium text-blue-950 leading-relaxed">
-                    💡 Dilengkapi metode Gross (potong rekanan) dan Gross-Up (perusahaan menanggung pajak secara sah).
-                  </p>
+                <!-- Info Tips Box (Pastel Lembut & Glassmorphism) -->
+                <div class="p-3 sm:p-3.5 rounded-2xl bg-indigo-50/70 backdrop-blur-sm border border-indigo-200/50 text-[11px] sm:text-xs text-slate-700 leading-relaxed mb-5 sm:mb-6 flex items-start gap-2.5 relative z-10">
+                  <span class="text-sm shrink-0">💡</span>
+                  <span>Dilengkapi metode Gross (potong rekanan) dan Gross-Up (perusahaan menanggung pajak secara sah).</span>
                 </div>
               </div>
 
-              <button onclick="openTaxCalculator('pph23')" class="w-full py-3 sm:py-3.5 px-4 sm:px-5 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-[#1E3A8A] via-[#1D4ED8] to-[#172554] shadow-[0_8px_20px_-4px_rgba(30,58,138,0.5)] hover:shadow-[0_12px_25px_-4px_rgba(30,58,138,0.7)] hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 relative z-10 cursor-pointer">
+              <!-- Tombol CTA -->
+              <button onclick="openTaxCalculator('pph23')" class="w-full py-3 sm:py-3.5 px-5 rounded-full font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-[#1e3a8a] to-[#0f172a] hover:from-[#1d4ed8] hover:to-[#1e3a8a] shadow-[0_10px_20px_-5px_rgba(30,58,138,0.4)] hover:shadow-[0_14px_24px_-4px_rgba(30,58,138,0.5)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer relative z-10">
                 <span>Buka Kalkulator PPh 23</span>
-                <span class="text-sm sm:text-base group-hover:translate-x-1 transition-transform">&rarr;</span>
+                <span class="text-base leading-none">→</span>
               </button>
             </div>
 
-
             <!-- ==========================================
-                 4. KARTU PPh 25 (ANGSURAN PAJAK) - PURPLE/VIOLET
+                 4. KARTU PPh 25 (ANGSURAN PAJAK) - LAVENDER / PURPLE PASTEL
                  ========================================== -->
-            <div class="relative overflow-hidden rounded-2xl sm:rounded-[28px] bg-gradient-to-br from-[#F5F3FF] via-[#FAF5FF] to-[#EDE9FE] p-4 sm:p-7 border border-white/80 shadow-[0_12px_35px_-10px_rgba(88,28,135,0.12)] hover:-translate-y-2 hover:shadow-[0_20px_40px_-12px_rgba(88,28,135,0.22)] transition-all duration-300 flex flex-col justify-between group">
-              <div class="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-purple-300/30 blur-2xl pointer-events-none"></div>
-              <div class="absolute -left-10 bottom-10 w-32 h-32 rounded-full bg-violet-200/30 blur-2xl pointer-events-none"></div>
+            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#F5F0FF] via-[#FAF5FF] to-[#ECE0FF] p-5 sm:p-7 border border-purple-200/80 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between group">
+              <!-- Ornamen Latar Belakang & Mesh Glow -->
+              <div class="absolute inset-0 rounded-[28px] overflow-hidden pointer-events-none">
+                <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-purple-300/25 blur-2xl"></div>
+                <div class="absolute -left-8 bottom-4 w-36 h-36 rounded-full bg-violet-200/25 blur-2xl"></div>
+              </div>
+              <!-- Ornamen Glass Sphere di sisi kiri -->
+              <div class="absolute -left-3 top-12 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/50 backdrop-blur-md border border-white/80 shadow-[0_4px_12px_rgba(168,85,247,0.15)] pointer-events-none z-20"></div>
 
               <div>
-                <div class="flex justify-between items-start mb-3 sm:mb-5 relative z-10">
-                  <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/70 backdrop-blur-md border border-white shadow-xs flex items-center justify-center p-1.5 sm:p-2 group-hover:scale-105 transition-transform">
-                    <svg viewBox="0 0 64 64" class="w-8 h-8 sm:w-12 sm:h-12 drop-shadow-md">
-                      <defs>
-                        <linearGradient id="gradCal" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stop-color="#A855F7" />
-                          <stop offset="100%" stop-color="#581C87" />
-                        </linearGradient>
-                      </defs>
-                      <rect x="12" y="14" width="40" height="38" rx="8" fill="#FFFFFF" stroke="#DDD6FE" stroke-width="2" />
-                      <path d="M12 22 C12 16, 52 16, 52 22 L52 26 L12 26 Z" fill="url(#gradCal)" />
-                      <circle cx="22" cy="14" r="3" fill="#581C87" />
-                      <circle cx="42" cy="14" r="3" fill="#581C87" />
-                      <text x="32" y="44" font-size="14" font-weight="900" fill="#6B21A8" text-anchor="middle">15</text>
-                    </svg>
+                <!-- Header: 3D Illustration & Badge Peraturan -->
+                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[90px] sm:min-h-[105px]">
+                  <div class="-mt-12 sm:-mt-14 -ml-2 sm:-ml-3 pointer-events-none">
+                    <img src="assets/images/kpi/pph25-hero.png" alt="PPh 25 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_12px_18px_rgba(126,34,206,0.15)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
                   </div>
-                  <span class="px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold bg-white/70 backdrop-blur-md border border-purple-200/80 text-purple-900 shadow-xs">
+                  <span class="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold bg-white/80 backdrop-blur-md border border-purple-200/80 text-purple-900 shadow-sm shrink-0">
                     Pasal 25 UU PPh
                   </span>
                 </div>
 
-                <h3 class="text-base sm:text-xl font-extrabold text-slate-900 mb-1 sm:mb-2 relative z-10">PPh 25 (Angsuran Pajak)</h3>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3 sm:mb-6 relative z-10">
+                <!-- Judul & Deskripsi -->
+                <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-1.5 relative z-10 tracking-tight">PPh 25 (Angsuran Pajak)</h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 sm:mb-5 relative z-10">
                   Cicilan pajak bulanan bagi perusahaan (Badan), orang pribadi usaha, dan pedagang retail (OPPT) agar tidak kaget di akhir tahun.
                 </p>
 
-                <div class="grid grid-cols-2 gap-2 sm:gap-3 mb-2.5 sm:mb-4 relative z-10">
-                  <div class="bg-white/75 backdrop-blur-md border border-white rounded-xl sm:rounded-2xl p-2 sm:p-3.5 shadow-xs flex items-center justify-between">
+                <!-- Grid Metrik Kunci (Dua Kotak Berdampingan) -->
+                <div class="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-4 sm:mb-5 relative z-10">
+                  <!-- Metrik 1 -->
+                  <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white/90 shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
                     <div>
-                      <span class="block text-[9px] sm:text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Metode Cicilan</span>
-                      <span class="text-xs sm:text-sm font-extrabold text-purple-900">SPT Lalu / 12</span>
+                      <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Metode Cicilan</span>
+                      <span class="text-xs sm:text-sm font-extrabold text-purple-950 leading-tight">SPT Lalu<br>/ 12</span>
                     </div>
-                    <svg class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 32 32">
-                      <circle cx="16" cy="16" r="11" fill="none" stroke="#E9D5FF" stroke-width="4" />
-                      <circle cx="16" cy="16" r="11" fill="none" stroke="#7E22CE" stroke-width="4" stroke-dasharray="40 70" stroke-linecap="round" transform="rotate(-90 16 16)" />
-                      <text x="16" y="19" font-size="7.5" font-weight="bold" fill="#581C87" text-anchor="middle">1/12</text>
-                    </svg>
+                    <!-- Mini Circle Badge 1/12 -->
+                    <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-purple-100 border border-purple-300 shrink-0 flex items-center justify-center text-[9px] sm:text-[10px] font-extrabold text-purple-800">
+                      1/12
+                    </div>
                   </div>
 
-                  <div class="bg-white/75 backdrop-blur-md border border-white rounded-xl sm:rounded-2xl p-2 sm:p-3.5 shadow-xs flex items-center justify-between">
+                  <!-- Metrik 2 -->
+                  <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white/90 shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
                     <div>
-                      <span class="block text-[9px] sm:text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Tarif Toko (OPPT)</span>
-                      <span class="text-xs sm:text-sm font-extrabold text-slate-900">0,75% Omzet</span>
+                      <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Tarif Toko (OPPT)</span>
+                      <span class="text-xs sm:text-sm font-extrabold text-purple-950 leading-tight">0,75%<br>Omzet</span>
                     </div>
-                    <svg class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 32 32">
-                      <rect x="5" y="16" width="5" height="12" rx="2" fill="#D8B4FE" />
-                      <rect x="14" y="11" width="5" height="17" rx="2" fill="#A855F7" />
-                      <rect x="23" y="6" width="5" height="22" rx="2" fill="#581C87" />
-                    </svg>
+                    <!-- Mini Purple Bar Chart -->
+                    <div class="w-6 h-6 sm:w-7 sm:h-7 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" class="w-6 h-6">
+                        <rect x="4" y="14" width="4" height="8" rx="1.5" fill="#DDD6FE" />
+                        <rect x="10" y="8" width="4" height="14" rx="1.5" fill="#A855F7" />
+                        <rect x="16" y="4" width="4" height="18" rx="1.5" fill="#6B21A8" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
 
-                <div class="bg-white/60 backdrop-blur-md border border-purple-200/70 rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 mb-3.5 sm:mb-6 relative z-10">
-                  <p class="text-[11px] sm:text-xs font-medium text-purple-950 leading-relaxed">
-                    💡 Disetor paling lambat tanggal 15 setiap bulan melalui kode billing DJP akun 411125 / 411126.
-                  </p>
+                <!-- Info Tips Box (Pastel Lembut & Glassmorphism) -->
+                <div class="p-3 sm:p-3.5 rounded-2xl bg-purple-50/70 backdrop-blur-sm border border-purple-200/50 text-[11px] sm:text-xs text-slate-700 leading-relaxed mb-5 sm:mb-6 flex items-start gap-2.5 relative z-10">
+                  <span class="text-sm shrink-0">💡</span>
+                  <span>Disetor paling lambat tanggal 15 setiap bulan melalui kode billing DJP akun 411125 / 411126.</span>
                 </div>
               </div>
 
-              <button onclick="openTaxCalculator('pph25')" class="w-full py-3 sm:py-3.5 px-4 sm:px-5 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-[#581C87] via-[#6B21A8] to-[#3B0764] shadow-[0_8px_20px_-4px_rgba(88,28,135,0.5)] hover:shadow-[0_12px_25px_-4px_rgba(88,28,135,0.7)] hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 relative z-10 cursor-pointer">
+              <!-- Tombol CTA -->
+              <button onclick="openTaxCalculator('pph25')" class="w-full py-3 sm:py-3.5 px-5 rounded-full font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-[#4c1d95] to-[#2e1065] hover:from-[#5b21b6] hover:to-[#4c1d95] shadow-[0_10px_20px_-5px_rgba(76,29,149,0.4)] hover:shadow-[0_14px_24px_-4px_rgba(76,29,149,0.5)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer relative z-10">
                 <span>Buka Kalkulator PPh 25</span>
-                <span class="text-sm sm:text-base group-hover:translate-x-1 transition-transform">&rarr;</span>
+                <span class="text-base leading-none">→</span>
               </button>
             </div>
 
-
             <!-- ==========================================
-                 5. KARTU PPh FINAL UMKM 0,5% - MINT/GREEN
+                 5. KARTU PPh FINAL UMKM 0,5% - GREEN TEA / PISTACHIO PASTEL
                  ========================================== -->
-            <div class="relative overflow-hidden rounded-2xl sm:rounded-[28px] bg-gradient-to-br from-[#F0FDF4] via-[#ECFDF5] to-[#DCFCE7] p-4 sm:p-7 border border-emerald-400/50 shadow-[0_12px_35px_-10px_rgba(21,128,61,0.12)] hover:-translate-y-2 hover:shadow-[0_20px_40px_-12px_rgba(21,128,61,0.22)] transition-all duration-300 flex flex-col justify-between group">
-              <div class="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-green-300/30 blur-2xl pointer-events-none"></div>
-              <div class="absolute -left-10 bottom-10 w-32 h-32 rounded-full bg-emerald-200/30 blur-2xl pointer-events-none"></div>
+            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#F0FAF2] via-[#F7FCF8] to-[#E2F7E8] p-5 sm:p-7 border border-green-200/80 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between group">
+              <!-- Ornamen Latar Belakang & Mesh Glow -->
+              <div class="absolute inset-0 rounded-[28px] overflow-hidden pointer-events-none">
+                <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-green-300/25 blur-2xl"></div>
+                <div class="absolute -left-8 bottom-4 w-36 h-36 rounded-full bg-emerald-200/25 blur-2xl"></div>
+              </div>
+              <!-- Ornamen Glass Sphere di sisi kiri -->
+              <div class="absolute -left-3 top-12 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/50 backdrop-blur-md border border-white/80 shadow-[0_4px_12px_rgba(34,197,94,0.15)] pointer-events-none z-20"></div>
 
               <div>
-                <div class="flex justify-between items-start mb-3 sm:mb-5 relative z-10">
-                  <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/70 backdrop-blur-md border border-white shadow-xs flex items-center justify-center p-1.5 sm:p-2 group-hover:scale-105 transition-transform">
-                    <svg viewBox="0 0 64 64" class="w-8 h-8 sm:w-12 sm:h-12 drop-shadow-md">
-                      <defs>
-                        <linearGradient id="gradShop" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stop-color="#4ADE80" />
-                          <stop offset="100%" stop-color="#15803D" />
-                        </linearGradient>
-                        <linearGradient id="gradRoof" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stop-color="#22C55E" />
-                          <stop offset="100%" stop-color="#166534" />
-                        </linearGradient>
-                      </defs>
-                      <rect x="14" y="26" width="36" height="26" rx="4" fill="#FFFFFF" stroke="#86EFAC" stroke-width="2" />
-                      <path d="M10 26 L16 14 H48 L54 26 Z" fill="url(#gradRoof)" />
-                      <rect x="26" y="36" width="12" height="16" rx="2" fill="url(#gradShop)" />
-                      <circle cx="44" cy="40" r="9" fill="#FEF08A" stroke="#FACC15" stroke-width="1.5" />
-                      <text x="44" y="44" font-size="9" font-weight="bold" fill="#713F12" text-anchor="middle">Rp</text>
-                    </svg>
+                <!-- Header: 3D Illustration & Badge Peraturan -->
+                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[90px] sm:min-h-[105px]">
+                  <div class="-mt-12 sm:-mt-14 -ml-2 sm:-ml-3 pointer-events-none">
+                    <img src="assets/images/kpi/umkm-hero.png" alt="PPh UMKM 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_12px_18px_rgba(5,150,105,0.15)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
                   </div>
-                  <span class="px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold bg-white/70 backdrop-blur-md border border-green-300/80 text-green-900 shadow-xs">
+                  <span class="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold bg-white/80 backdrop-blur-md border border-green-200/80 text-green-900 shadow-sm shrink-0">
                     PP 55/2022 Insentif
                   </span>
                 </div>
 
-                <h3 class="text-base sm:text-xl font-extrabold text-slate-900 mb-1 sm:mb-2 relative z-10">PPh Final UMKM 0,5%</h3>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3 sm:mb-6 relative z-10">
-                  Skema pajak super ringan untuk pengusaha kecil dan UMKM. Lengkap dengan simulasi 12 bulan kumulatif Jan–Des.
+                <!-- Judul & Deskripsi -->
+                <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-1.5 relative z-10 tracking-tight">PPh Final UMKM 0,5%</h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 sm:mb-5 relative z-10">
+                  Skema pajak super ringan untuk pengusaha kecil dan UMKM. Lengkap dengan simulasi 12 bulan kumulatif Jan-Des.
                 </p>
 
-                <div class="grid grid-cols-2 gap-2 sm:gap-3 mb-2.5 sm:mb-4 relative z-10">
-                  <div class="bg-white/75 backdrop-blur-md border border-white rounded-xl sm:rounded-2xl p-2 sm:p-3.5 shadow-xs flex items-center justify-between">
+                <!-- Grid Metrik Kunci (Dua Kotak Berdampingan) -->
+                <div class="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-4 sm:mb-5 relative z-10">
+                  <!-- Metrik 1 -->
+                  <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white/90 shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
                     <div>
-                      <span class="block text-[9px] sm:text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Tarif Pajak</span>
-                      <span class="text-xs sm:text-sm font-extrabold text-rose-800">0,5% dari Omzet</span>
+                      <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Tarif Pajak</span>
+                      <span class="text-xs sm:text-sm font-extrabold text-emerald-950 leading-tight">0,5% dari<br>Omzet</span>
                     </div>
-                    <svg class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 32 32">
-                      <circle cx="16" cy="16" r="11" fill="none" stroke="#DCFCE7" stroke-width="4" />
-                      <circle cx="16" cy="16" r="11" fill="none" stroke="#15803D" stroke-width="4" stroke-dasharray="20 70" stroke-linecap="round" transform="rotate(-90 16 16)" />
-                    </svg>
+                    <!-- Mini Green Donut Ring -->
+                    <div class="w-6 h-6 sm:w-7 sm:h-7 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 32 32" class="w-7 h-7">
+                        <circle cx="16" cy="16" r="12" fill="none" stroke="#D1FAE5" stroke-width="4.5" />
+                        <circle cx="16" cy="16" r="12" fill="none" stroke="#059669" stroke-width="4.5" stroke-dasharray="25 75" stroke-linecap="round" />
+                      </svg>
+                    </div>
                   </div>
 
-                  <div class="bg-white/75 backdrop-blur-md border border-white rounded-xl sm:rounded-2xl p-2 sm:p-3.5 shadow-xs flex items-center justify-between">
+                  <!-- Metrik 2 -->
+                  <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white/90 shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
                     <div>
-                      <span class="block text-[9px] sm:text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Bebas Pajak OP</span>
-                      <span class="text-[11px] sm:text-xs font-extrabold text-emerald-800">s.d. Rp 500 Jt (Rp 0)</span>
+                      <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Bebas Pajak OP</span>
+                      <span class="text-xs sm:text-sm font-extrabold text-emerald-950 leading-tight">s.d. Rp 500<br>Juta (Rp 0)</span>
                     </div>
-                    <svg class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 32 32">
-                      <path d="M9 16 L14 21 L23 11" fill="none" stroke="#16A34A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
+                    <!-- Green Checkmark -->
+                    <div class="w-6 h-6 sm:w-7 sm:h-7 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 6L9 17l-5-5"/>
+                      </svg>
+                    </div>
                   </div>
                 </div>
 
-                <div class="bg-white/60 backdrop-blur-md border border-green-200/80 rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 mb-3.5 sm:mb-6 relative z-10">
-                  <p class="text-[11px] sm:text-xs font-medium text-green-950 leading-relaxed">
-                    🎉 Omzet Orang Pribadi di bawah Rp 500 Juta setahun GRATIS 100% tanpa bayar pajak sepeserpun!
-                  </p>
+                <!-- Info Tips Box (Pastel Lembut & Glassmorphism) -->
+                <div class="p-3 sm:p-3.5 rounded-2xl bg-green-50/70 backdrop-blur-sm border border-green-200/50 text-[11px] sm:text-xs text-slate-700 leading-relaxed mb-5 sm:mb-6 flex items-start gap-2.5 relative z-10">
+                  <span class="text-sm shrink-0">🎯</span>
+                  <span>Omzet Orang Pribadi di bawah 500 Juta setahun GRATIS 100% tanpa bayar pajak</span>
                 </div>
               </div>
 
-              <button onclick="openTaxCalculator('umkm')" class="w-full py-3 sm:py-3.5 px-4 sm:px-5 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-[#065F46] via-[#047857] to-[#064E3B] shadow-[0_8px_20px_-4px_rgba(6,95,70,0.5)] hover:shadow-[0_12px_25px_-4px_rgba(6,95,70,0.7)] hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 relative z-10 cursor-pointer">
+              <!-- Tombol CTA -->
+              <button onclick="openTaxCalculator('umkm')" class="w-full py-3 sm:py-3.5 px-5 rounded-full font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-[#064e3b] to-[#062c22] hover:from-[#047857] hover:to-[#064e3b] shadow-[0_10px_20px_-5px_rgba(6,78,59,0.4)] hover:shadow-[0_14px_24px_-4px_rgba(6,78,59,0.5)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer relative z-10">
                 <span>Buka Kalkulator UMKM</span>
-                <span class="text-sm sm:text-base group-hover:translate-x-1 transition-transform">&rarr;</span>
+                <span class="text-base leading-none">→</span>
               </button>
             </div>
 
-
             <!-- ==========================================
-                 6. KARTU PPh FINAL 4(2) PROPERTI - AMBER/WARM GOLD
+                 6. KARTU PPh FINAL 4(2) PROPERTI - CREAM / WARM ORANGE PASTEL
                  ========================================== -->
-            <div class="relative overflow-hidden rounded-2xl sm:rounded-[28px] bg-gradient-to-br from-[#FFFBEB] via-[#FEF3C7]/60 to-[#FFEDD5] p-4 sm:p-7 border border-white/80 shadow-[0_12px_35px_-10px_rgba(146,64,14,0.12)] hover:-translate-y-2 hover:shadow-[0_20px_40px_-12px_rgba(146,64,14,0.22)] transition-all duration-300 flex flex-col justify-between group">
-              <div class="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-amber-300/30 blur-2xl pointer-events-none"></div>
-              <div class="absolute -left-10 bottom-10 w-32 h-32 rounded-full bg-orange-200/30 blur-2xl pointer-events-none"></div>
+            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#FFF8EE] via-[#FFFBF5] to-[#FEEED8] p-5 sm:p-7 border border-amber-200/80 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between group">
+              <!-- Ornamen Latar Belakang & Mesh Glow -->
+              <div class="absolute inset-0 rounded-[28px] overflow-hidden pointer-events-none">
+                <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-amber-300/25 blur-2xl"></div>
+                <div class="absolute -left-8 bottom-4 w-36 h-36 rounded-full bg-orange-200/25 blur-2xl"></div>
+              </div>
+              <!-- Ornamen Glass Sphere di sisi kiri -->
+              <div class="absolute -left-3 top-12 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/50 backdrop-blur-md border border-white/80 shadow-[0_4px_12px_rgba(245,158,11,0.15)] pointer-events-none z-20"></div>
 
               <div>
-                <div class="flex justify-between items-start mb-3 sm:mb-5 relative z-10">
-                  <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/70 backdrop-blur-md border border-white shadow-xs flex items-center justify-center p-1.5 sm:p-2 group-hover:scale-105 transition-transform">
-                    <svg viewBox="0 0 64 64" class="w-8 h-8 sm:w-12 sm:h-12 drop-shadow-md">
-                      <defs>
-                        <linearGradient id="gradBuild" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stop-color="#F59E0B" />
-                          <stop offset="100%" stop-color="#92400E" />
-                        </linearGradient>
-                      </defs>
-                      <rect x="14" y="12" width="24" height="40" rx="3" fill="url(#gradBuild)" />
-                      <rect x="34" y="24" width="16" height="28" rx="3" fill="#B45309" />
-                      <rect x="20" y="18" width="4" height="4" rx="1" fill="#FEF3C7" />
-                      <rect x="28" y="18" width="4" height="4" rx="1" fill="#FEF3C7" />
-                      <rect x="20" y="26" width="4" height="4" rx="1" fill="#FEF3C7" />
-                      <rect x="28" y="26" width="4" height="4" rx="1" fill="#FEF3C7" />
-                      <rect x="20" y="34" width="4" height="4" rx="1" fill="#FEF3C7" />
-                      <rect x="28" y="34" width="4" height="4" rx="1" fill="#FEF3C7" />
-                    </svg>
+                <!-- Header: 3D Illustration & Badge Peraturan -->
+                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[90px] sm:min-h-[105px]">
+                  <div class="-mt-12 sm:-mt-14 -ml-2 sm:-ml-3 pointer-events-none">
+                    <img src="assets/images/kpi/pph42-hero.png" alt="PPh Final 4(2) 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_12px_18px_rgba(180,83,9,0.15)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
                   </div>
-                  <span class="px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold bg-white/70 backdrop-blur-md border border-amber-300/80 text-amber-900 shadow-xs">
+                  <span class="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold bg-white/80 backdrop-blur-md border border-amber-200/80 text-amber-900 shadow-sm shrink-0">
                     Pasal 4 Ayat (2)
                   </span>
                 </div>
 
-                <h3 class="text-base sm:text-xl font-extrabold text-slate-900 mb-1 sm:mb-2 relative z-10">PPh Final 4(2) Properti</h3>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3 sm:mb-6 relative z-10">
+                <!-- Judul & Deskripsi -->
+                <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-1.5 relative z-10 tracking-tight">PPh Final 4(2) Properti</h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 sm:mb-5 relative z-10">
                   Pajak final yang lunas seketika atas sewa tanah/bangunan, jual-beli properti, jasa konstruksi (PP 9/2022), dan undian.
                 </p>
 
-                <div class="grid grid-cols-2 gap-2 sm:gap-3 mb-2.5 sm:mb-4 relative z-10">
-                  <div class="bg-white/75 backdrop-blur-md border border-white rounded-xl sm:rounded-2xl p-2 sm:p-3.5 shadow-xs flex items-center justify-between">
+                <!-- Grid Metrik Kunci (Dua Kotak Berdampingan) -->
+                <div class="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-4 sm:mb-5 relative z-10">
+                  <!-- Metrik 1 -->
+                  <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white/90 shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
                     <div>
-                      <span class="block text-[9px] sm:text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Sewa Properti</span>
-                      <span class="text-xs sm:text-sm font-extrabold text-slate-900">10% Nilai Sewa</span>
+                      <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Sewa Properti</span>
+                      <span class="text-xs sm:text-sm font-extrabold text-amber-950 leading-tight">10% dari<br>Nilai Sewa</span>
                     </div>
-                    <svg class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 32 32">
-                      <circle cx="16" cy="16" r="11" fill="none" stroke="#FEF3C7" stroke-width="4" />
-                      <circle cx="16" cy="16" r="11" fill="none" stroke="#D97706" stroke-width="4" stroke-dasharray="25 70" stroke-linecap="round" transform="rotate(-90 16 16)" />
-                      <text x="16" y="19" font-size="7.5" font-weight="bold" fill="#92400E" text-anchor="middle">10%</text>
-                    </svg>
+                    <!-- Mini Ring 10% -->
+                    <div class="relative w-7 h-7 sm:w-8 sm:h-8 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 32 32" class="w-7 h-7 sm:w-8 sm:h-8">
+                        <circle cx="16" cy="16" r="12" fill="none" stroke="#FEF3C7" stroke-width="3.5" />
+                        <circle cx="16" cy="16" r="12" fill="none" stroke="#D97706" stroke-width="3.5" stroke-dasharray="55 75" stroke-linecap="round" />
+                      </svg>
+                      <span class="absolute text-[8px] sm:text-[9px] font-extrabold text-amber-900">10%</span>
+                    </div>
                   </div>
 
-                  <div class="bg-white/75 backdrop-blur-md border border-white rounded-xl sm:rounded-2xl p-2 sm:p-3.5 shadow-xs flex items-center justify-between">
+                  <!-- Metrik 2 -->
+                  <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white/90 shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
                     <div>
-                      <span class="block text-[9px] sm:text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Jual Beli Rumah</span>
-                      <span class="text-[11px] sm:text-xs font-extrabold text-amber-900">2,5% Transaksi/NJOP</span>
+                      <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Jual Beli Rumah</span>
+                      <span class="text-xs sm:text-sm font-extrabold text-amber-950 leading-tight">2,5% Transaksi<br>/NJOP</span>
                     </div>
-                    <svg class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" viewBox="0 0 32 32">
-                      <rect x="4" y="19" width="5" height="9" rx="2" fill="#FDE68A" />
-                      <rect x="13" y="13" width="5" height="15" rx="2" fill="#F59E0B" />
-                      <rect x="22" y="7" width="5" height="21" rx="2" fill="#92400E" />
-                    </svg>
+                    <!-- Mini Amber Bar Chart -->
+                    <div class="w-6 h-6 sm:w-7 sm:h-7 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" class="w-6 h-6">
+                        <rect x="4" y="14" width="4" height="8" rx="1.5" fill="#FDE68A" />
+                        <rect x="10" y="8" width="4" height="14" rx="1.5" fill="#F59E0B" />
+                        <rect x="16" y="3" width="4" height="19" rx="1.5" fill="#B45309" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
 
-                <div class="bg-white/60 backdrop-blur-md border border-amber-200/80 rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 mb-3.5 sm:mb-6 relative z-10">
-                  <p class="text-[11px] sm:text-xs font-medium text-amber-950 leading-relaxed">
-                    ⚡ Bersifat Final: Begitu disetor, pajak selesai tuntas dan tidak dihitung ulang di SPT Tahunan.
-                  </p>
+                <!-- Info Tips Box (Pastel Lembut & Glassmorphism) -->
+                <div class="p-3 sm:p-3.5 rounded-2xl bg-amber-50/70 backdrop-blur-sm border border-amber-200/50 text-[11px] sm:text-xs text-slate-700 leading-relaxed mb-5 sm:mb-6 flex items-start gap-2.5 relative z-10">
+                  <span class="text-sm shrink-0">⚡</span>
+                  <span>Bersifat Final: Begitu disetor, pajak selesai tuntas dan tidak dihitung ulang di SPT Tahunan.</span>
                 </div>
               </div>
 
-              <button onclick="openTaxCalculator('pph-final')" class="w-full py-3 sm:py-3.5 px-4 sm:px-5 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-[#92400E] via-[#B45309] to-[#78350F] shadow-[0_8px_20px_-4px_rgba(146,64,14,0.5)] hover:shadow-[0_12px_25px_-4px_rgba(146,64,14,0.7)] hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 relative z-10 cursor-pointer">
-                <span>Buka Kalkulator PPh Final</span>
-                <span class="text-sm sm:text-base group-hover:translate-x-1 transition-transform">&rarr;</span>
+              <!-- Tombol CTA -->
+              <button onclick="openTaxCalculator('pph-final')" class="w-full py-3 sm:py-3.5 px-5 rounded-full font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-[#78350f] to-[#451a03] hover:from-[#92400e] hover:to-[#78350f] shadow-[0_10px_20px_-5px_rgba(120,53,15,0.4)] hover:shadow-[0_14px_24px_-4px_rgba(120,53,15,0.5)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer relative z-10">
+                <span>Buka Kalkulator PPh Final 4(2)</span>
+                <span class="text-base leading-none">→</span>
               </button>
             </div>
 
