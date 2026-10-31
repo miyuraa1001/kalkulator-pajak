@@ -832,7 +832,7 @@
           
           <!-- Back Navigation -->
           <div>
-            <button onclick="showSection('home')" class="inline-flex items-center gap-2 text-rose-900 hover:text-rose-950 font-bold text-sm cursor-pointer">
+            <button onclick="showSection('home')" class="inline-flex items-center gap-2 text-rose-900 hover:text-rose-950 font-bold text-sm cursor-pointer transition-colors">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
               <span>Kembali ke Beranda</span>
             </button>
@@ -840,38 +840,41 @@
 
           <!-- Section Header -->
           <div class="text-center max-w-3xl mx-auto mb-6 sm:mb-10">
-            <span class="text-[10px] sm:text-xs font-extrabold uppercase tracking-widest text-rose-900 bg-rose-100 px-3 py-1 rounded-full">Tools Kalkulator Pajak</span>
-            <h2 class="text-xl sm:text-4xl font-extrabold text-slate-900 mt-2 sm:mt-3">Katalog Indikator Kunci (KPI) Perpajakan</h2>
+            <span class="text-[10px] sm:text-xs font-extrabold uppercase tracking-widest text-rose-900 bg-rose-100/90 border border-rose-200 px-3.5 py-1 rounded-full shadow-sm">Tools Kalkulator Pajak</span>
+            <h2 class="text-xl sm:text-4xl font-extrabold text-slate-900 mt-2 sm:mt-3 tracking-tight">Katalog Indikator Kunci (KPI) Perpajakan</h2>
             <p class="text-slate-600 mt-1.5 sm:mt-2 text-xs sm:text-base leading-relaxed">
               Panduan parameter dan regulasi resmi bagi orang awam. Pilih jenis pajak di bawah untuk memahami indikator kunci (KPI), lalu klik tombol untuk membuka lembar kalkulator perhitungannya.
             </p>
           </div>
 
-                    <!-- 6 KPI Cards Grid (Modern 3D Visual & Pastel Glassmorphism) -->
+          <!-- 6 KPI Cards Grid (Ultra 3D Visual & Pastel Glassmorphism) -->
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 sm:gap-y-16 gap-x-6 sm:gap-x-8 pt-8 sm:pt-12">
 
             <!-- ==========================================
                  1. KARTU PPh 21 (GAJI & UPAH) - ROSE / PEACH PASTEL
                  ========================================== -->
-            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#FEE2E2] via-[#FFF1F2] to-[#FECDD3] p-5 sm:p-7 border border-rose-200/90 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between h-full group">
+            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#FFF1F2] via-[#FFE4E6] to-[#FECDD3] p-5 sm:p-7 border border-rose-200/90 shadow-[0_12px_30px_-5px_rgba(0,0,0,0.06),0_8px_12px_-6px_rgba(0,0,0,0.04),inset_0_2px_2px_rgba(255,255,255,0.85)] hover:-translate-y-2 hover:scale-[1.01] hover:shadow-[0_25px_40px_-12px_rgba(244,63,94,0.22)] transition-all duration-300 flex flex-col justify-between h-full group">
               <!-- Ornamen Latar Belakang & Mesh Glow -->
               <div class="absolute inset-0 rounded-[28px] overflow-hidden pointer-events-none">
-                <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-rose-300/30 blur-2xl"></div>
-                <div class="absolute -left-8 bottom-4 w-36 h-36 rounded-full bg-red-200/30 blur-2xl"></div>
+                <div class="absolute -right-8 -top-8 w-44 h-44 rounded-full bg-rose-300/35 blur-2xl"></div>
+                <div class="absolute -left-8 bottom-4 w-40 h-40 rounded-full bg-red-200/35 blur-2xl"></div>
               </div>
-              <!-- Ornamen Glass Sphere di sisi kiri -->
-              <div class="absolute -left-3.5 top-14 w-10 h-10 rounded-full bg-white/45 backdrop-blur-md border border-white/80 shadow-[0_6px_16px_rgba(244,63,94,0.18)] pointer-events-none z-20"></div>
-              <!-- Partikel Melayang (Koin Emas & Memo) -->
-              <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute -top-3 left-6 w-6 h-6 object-contain pointer-events-none drop-shadow-md z-20">
-              <img src="assets/images/kpi/pph21-dokumen.png" alt="Floating Document" class="absolute top-24 -right-3 w-8 sm:w-9 h-auto object-contain pointer-events-none drop-shadow-md z-20">
+              <!-- Ornamen 3D Glass Sphere di sisi kiri -->
+              <div class="absolute -left-3.5 top-14 w-11 h-11 rounded-full bg-white/45 backdrop-blur-md border border-white/80 shadow-[0_8px_20px_rgba(244,63,94,0.2),inset_0_2px_4px_rgba(255,255,255,0.9),inset_0_-2px_4px_rgba(190,18,60,0.1)] pointer-events-none z-20"></div>
+              <!-- Partikel Melayang 3D (Koin Emas & Dokumen) -->
+              <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute -top-3 left-6 w-7 h-7 object-contain pointer-events-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.18)] z-20 hover:rotate-12 transition-transform">
+              <img src="assets/images/kpi/pph21-dokumen.png" alt="Floating Document" class="absolute top-20 sm:top-22 -right-2.5 sm:-right-3 w-9 sm:w-11 h-auto object-contain pointer-events-none drop-shadow-[0_6px_12px_rgba(0,0,0,0.15)] z-20">
+              <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute top-32 right-6 w-5 h-5 object-contain pointer-events-none drop-shadow-sm z-20 opacity-90">
+              <div class="absolute top-8 right-28 w-4 h-4 rounded-full bg-white/40 backdrop-blur-sm border border-white/60 pointer-events-none z-10"></div>
 
               <div>
-                <!-- Header: 3D Illustration (Overlapping Top Edge) & Badge Peraturan -->
-                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[90px] sm:min-h-[105px]">
+                <!-- Header: 3D Illustration & 3D Extruded Badge Peraturan -->
+                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[92px] sm:min-h-[105px]">
                   <div class="-mt-12 sm:-mt-14 -ml-2 sm:-ml-3 pointer-events-none">
-                    <img src="assets/images/kpi/pph21-hero.png" alt="PPh 21 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_12px_18px_rgba(153,27,27,0.18)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
+                    <img src="assets/images/kpi/pph21-hero.png" alt="PPh 21 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_14px_22px_rgba(153,27,27,0.2)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
                   </div>
-                  <span class="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold bg-white/90 backdrop-blur-md border border-rose-300/70 text-rose-950 shadow-sm shrink-0">
+                  <!-- 3D Pill Badge Sesuai Referensi -->
+                  <span class="px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-extrabold bg-gradient-to-b from-[#FFF1F2] via-[#FFE4E6] to-[#FECDD3] border border-rose-300/90 text-[#881337] shadow-[0_4px_10px_rgba(244,63,94,0.25),inset_0_2px_2px_rgba(255,255,255,0.9),inset_0_-2px_2px_rgba(190,18,60,0.15)] shrink-0 tracking-tight">
                     PP 58/2023 &amp; PMK 168
                   </span>
                 </div>
@@ -882,76 +885,110 @@
                   Potongan pajak penghasilan bulanan karyawan (TER Kategori A, B, C) serta rekonsiliasi akhir tahun (Desember).
                 </p>
 
-                <!-- Grid Metrik Kunci (Dua Kotak Berdampingan) -->
+                <!-- Grid Metrik Kunci (3D Cards dengan Visualisasi Silinder & Torus Vektor) -->
                 <div class="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-4 sm:mb-5 relative z-10">
-                  <!-- Metrik 1 -->
-                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
+                  <!-- Metrik 1: Tarif Efektif dengan 3D Silinder Bar -->
+                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_6px_16px_rgba(0,0,0,0.04),inset_0_1.5px_1px_rgba(255,255,255,1)] flex justify-between items-center hover:scale-[1.02] transition-transform">
                     <div>
                       <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Tarif Efektif</span>
                       <span class="text-xs sm:text-sm font-extrabold text-rose-950 leading-tight">0% s.d.<br>34% (TER)</span>
                     </div>
-                    <!-- Mini Bar Chart -->
-                    <div class="w-6 h-6 sm:w-7 sm:h-7 shrink-0 flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" class="w-6 h-6">
-                        <rect x="3" y="14" width="4" height="8" rx="2" fill="#FDA4AF" />
-                        <rect x="10" y="8" width="4" height="14" rx="2" fill="#FB7185" />
-                        <rect x="17" y="3" width="4" height="19" rx="2" fill="#BE123C" />
+                    <!-- 3D Cylinders SVG -->
+                    <div class="w-7 h-7 sm:w-8 sm:h-8 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 32 32" class="w-8 h-8 drop-shadow-sm">
+                        <defs>
+                          <linearGradient id="bar21_1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FECDD3" />
+                            <stop offset="50%" stop-color="#FB7185" />
+                            <stop offset="100%" stop-color="#E11D48" />
+                          </linearGradient>
+                          <linearGradient id="bar21_2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FB7185" />
+                            <stop offset="50%" stop-color="#E11D48" />
+                            <stop offset="100%" stop-color="#BE123C" />
+                          </linearGradient>
+                          <linearGradient id="bar21_3" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#E11D48" />
+                            <stop offset="50%" stop-color="#BE123C" />
+                            <stop offset="100%" stop-color="#881337" />
+                          </linearGradient>
+                        </defs>
+                        <!-- Bar 1 -->
+                        <rect x="4" y="18" width="5.5" height="11" rx="2.75" fill="url(#bar21_1)" />
+                        <ellipse cx="6.75" cy="19.5" rx="2.5" ry="1.2" fill="#FFF1F2" opacity="0.8" />
+                        <!-- Bar 2 -->
+                        <rect x="13.25" y="11" width="5.5" height="18" rx="2.75" fill="url(#bar21_2)" />
+                        <ellipse cx="16" cy="12.5" rx="2.5" ry="1.2" fill="#FFE4E6" opacity="0.8" />
+                        <!-- Bar 3 -->
+                        <rect x="22.5" y="4" width="5.5" height="25" rx="2.75" fill="url(#bar21_3)" />
+                        <ellipse cx="25.25" cy="5.5" rx="2.5" ry="1.2" fill="#FECDD3" opacity="0.8" />
                       </svg>
                     </div>
                   </div>
 
-                  <!-- Metrik 2 -->
-                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
+                  <!-- Metrik 2: Batas Bebas PTKP dengan 3D Torus Donut -->
+                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_6px_16px_rgba(0,0,0,0.04),inset_0_1.5px_1px_rgba(255,255,255,1)] flex justify-between items-center hover:scale-[1.02] transition-transform">
                     <div>
                       <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Batas Bebas (PTKP)</span>
                       <span class="text-xs sm:text-sm font-extrabold text-slate-900 leading-tight">s.d. Rp 54jt<br>- 72jt</span>
                     </div>
-                    <!-- Mini Donut Ring -->
-                    <div class="w-6 h-6 sm:w-7 sm:h-7 shrink-0 flex items-center justify-center">
-                      <svg viewBox="0 0 32 32" class="w-7 h-7">
-                        <circle cx="16" cy="16" r="12" fill="none" stroke="#FFE4E6" stroke-width="4.5" />
-                        <circle cx="16" cy="16" r="12" fill="none" stroke="#E11D48" stroke-width="4.5" stroke-dasharray="56 75" stroke-linecap="round" />
+                    <!-- 3D Donut Torus SVG -->
+                    <div class="w-7 h-7 sm:w-8 sm:h-8 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 32 32" class="w-8 h-8 drop-shadow-sm">
+                        <defs>
+                          <linearGradient id="torus21" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FDA4AF" />
+                            <stop offset="40%" stop-color="#E11D48" />
+                            <stop offset="100%" stop-color="#9F1239" />
+                          </linearGradient>
+                        </defs>
+                        <circle cx="16" cy="16" r="11.5" fill="none" stroke="#FFE4E6" stroke-width="4.5" />
+                        <circle cx="16" cy="16" r="11.5" fill="none" stroke="url(#torus21)" stroke-width="4.5" stroke-dasharray="52 75" stroke-linecap="round" />
+                        <circle cx="16" cy="16" r="6" fill="#FFFFFF" opacity="0.9" />
                       </svg>
                     </div>
                   </div>
                 </div>
 
-                <!-- Info Tips Box (Pastel Lembut & Glassmorphism) -->
-                <div class="p-3 sm:p-3.5 rounded-2xl bg-amber-100/70 backdrop-blur-sm border border-amber-200/80 text-[11px] sm:text-xs text-amber-950 leading-relaxed mb-5 sm:mb-6 flex items-start gap-2.5 relative z-10">
-                  <span class="text-sm shrink-0">💡</span>
-                  <span>Gaji kotor sebulan langsung dikalikan tarif TER sesuai tanggungan keluarga tanpa hitung PTKP rumit!</span>
+                <!-- Info Tips Box (3D Pastel Card dengan Ikon Lampu 3D Berpijar) -->
+                <div class="p-3 sm:p-3.5 rounded-2xl bg-gradient-to-r from-[#FFFDF7] via-[#FFFBEB] to-[#FEF3C7]/90 backdrop-blur-sm border border-amber-200/90 text-[11px] sm:text-xs text-slate-800 leading-relaxed mb-5 sm:mb-6 flex items-start gap-2.5 relative z-10 shadow-[0_4px_14px_rgba(245,158,11,0.08),inset_0_1px_1px_rgba(255,255,255,0.9)]">
+                  <span class="text-base shrink-0 filter drop-shadow-[0_2px_4px_rgba(245,158,11,0.4)]">💡</span>
+                  <span class="font-medium">Gaji kotor sebulan langsung dikalikan tarif TER sesuai tanggungan keluarga tanpa hitung PTKP rumit!</span>
                 </div>
               </div>
 
-              <!-- Tombol CTA -->
-              <button onclick="openTaxCalculator('pph21')" class="w-full py-3 sm:py-3.5 px-5 rounded-full font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-[#6b1515] to-[#450a0a] hover:from-[#7f1d1d] hover:to-[#550b0b] shadow-[0_10px_20px_-5px_rgba(107,21,21,0.4)] hover:shadow-[0_14px_24px_-4px_rgba(107,21,21,0.5)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer relative z-10 mt-auto">
-                <span>Buka Kalkulator PPh 21</span>
-                <span class="text-base leading-none">→</span>
+              <!-- Tombol CTA 3D (Pill dengan Bevel 3D, Highlight & Drop Shadow Pekat) -->
+              <button onclick="openTaxCalculator('pph21')" class="w-full py-3.5 px-6 rounded-full font-bold text-xs sm:text-sm text-white bg-gradient-to-b from-[#881337] via-[#701a2b] to-[#4c0519] border-t border-white/35 shadow-[0_10px_22px_-4px_rgba(136,19,55,0.45),inset_0_1.5px_0_rgba(255,255,255,0.35),inset_0_-2.5px_0_rgba(0,0,0,0.35)] hover:from-[#9f1239] hover:to-[#55071e] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-4px_rgba(136,19,55,0.55)] active:translate-y-0.5 active:shadow-[0_4px_10px_-2px_rgba(136,19,55,0.4)] transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer relative z-10 mt-auto">
+                <span class="tracking-wide">Buka Kalkulator PPh 21</span>
+                <span class="text-base leading-none font-black">→</span>
               </button>
             </div>
 
             <!-- ==========================================
                  2. KARTU PPN 11% & WAPU - EMERALD / MINT PASTEL
                  ========================================== -->
-            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#D1FAE5] via-[#ECFDF5] to-[#A7F3D0] p-5 sm:p-7 border border-emerald-200/90 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between h-full group">
+            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#ECFDF5] via-[#D1FAE5] to-[#A7F3D0] p-5 sm:p-7 border border-emerald-200/90 shadow-[0_12px_30px_-5px_rgba(0,0,0,0.06),0_8px_12px_-6px_rgba(0,0,0,0.04),inset_0_2px_2px_rgba(255,255,255,0.85)] hover:-translate-y-2 hover:scale-[1.01] hover:shadow-[0_25px_40px_-12px_rgba(16,185,129,0.22)] transition-all duration-300 flex flex-col justify-between h-full group">
               <!-- Ornamen Latar Belakang & Mesh Glow -->
               <div class="absolute inset-0 rounded-[28px] overflow-hidden pointer-events-none">
-                <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-emerald-300/30 blur-2xl"></div>
-                <div class="absolute -left-8 bottom-4 w-36 h-36 rounded-full bg-teal-200/30 blur-2xl"></div>
+                <div class="absolute -right-8 -top-8 w-44 h-44 rounded-full bg-emerald-300/35 blur-2xl"></div>
+                <div class="absolute -left-8 bottom-4 w-40 h-40 rounded-full bg-teal-200/35 blur-2xl"></div>
               </div>
-              <!-- Ornamen Glass Sphere di sisi kiri -->
-              <div class="absolute -left-3.5 top-14 w-10 h-10 rounded-full bg-white/45 backdrop-blur-md border border-white/80 shadow-[0_6px_16px_rgba(16,185,129,0.18)] pointer-events-none z-20"></div>
-              <!-- Partikel Melayang (Koin Emas & Memo) -->
-              <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute -top-3 left-6 w-6 h-6 object-contain pointer-events-none drop-shadow-md z-20">
-              <img src="assets/images/kpi/ppn11-dokumen.png" alt="Floating Document" class="absolute top-24 -right-3 w-8 sm:w-9 h-auto object-contain pointer-events-none drop-shadow-md z-20">
+              <!-- Ornamen 3D Glass Sphere di sisi kiri -->
+              <div class="absolute -left-3.5 top-14 w-11 h-11 rounded-full bg-white/45 backdrop-blur-md border border-white/80 shadow-[0_8px_20px_rgba(16,185,129,0.2),inset_0_2px_4px_rgba(255,255,255,0.9),inset_0_-2px_4px_rgba(5,150,105,0.1)] pointer-events-none z-20"></div>
+              <!-- Partikel Melayang 3D (Koin Emas & Dokumen) -->
+              <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute -top-3 left-6 w-7 h-7 object-contain pointer-events-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.18)] z-20 hover:rotate-12 transition-transform">
+              <img src="assets/images/kpi/ppn11-dokumen.png" alt="Floating Document" class="absolute top-20 sm:top-22 -right-2.5 sm:-right-3 w-9 sm:w-11 h-auto object-contain pointer-events-none drop-shadow-[0_6px_12px_rgba(0,0,0,0.15)] z-20">
+              <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute top-32 right-6 w-5 h-5 object-contain pointer-events-none drop-shadow-sm z-20 opacity-90">
+              <div class="absolute top-8 right-28 w-4 h-4 rounded-full bg-white/40 backdrop-blur-sm border border-white/60 pointer-events-none z-10"></div>
 
               <div>
-                <!-- Header: 3D Illustration & Badge Peraturan -->
-                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[90px] sm:min-h-[105px]">
+                <!-- Header: 3D Illustration & 3D Extruded Badge Peraturan -->
+                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[92px] sm:min-h-[105px]">
                   <div class="-mt-12 sm:-mt-14 -ml-2 sm:-ml-3 pointer-events-none">
-                    <img src="assets/images/kpi/ppn11-hero.png" alt="PPN 11% 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_12px_18px_rgba(5,150,105,0.18)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
+                    <img src="assets/images/kpi/ppn11-hero.png" alt="PPN 11% 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_14px_22px_rgba(5,150,105,0.2)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
                   </div>
-                  <span class="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold bg-white/90 backdrop-blur-md border border-emerald-300/70 text-emerald-950 shadow-sm shrink-0">
+                  <!-- 3D Pill Badge Sesuai Referensi -->
+                  <span class="px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-extrabold bg-gradient-to-b from-[#ECFDF5] via-[#D1FAE5] to-[#A7F3D0] border border-emerald-300/90 text-[#065F46] shadow-[0_4px_10px_rgba(16,185,129,0.25),inset_0_2px_2px_rgba(255,255,255,0.9),inset_0_-2px_2px_rgba(5,150,105,0.15)] shrink-0 tracking-tight">
                     UU HPP 11%
                   </span>
                 </div>
@@ -962,77 +999,94 @@
                   Pajak Pertambahan Nilai atas penjualan barang/jasa, harga sebelum pajak (Exclude), termasuk pajak (Include), dan WAPU.
                 </p>
 
-                <!-- Grid Metrik Kunci (Dua Kotak Berdampingan) -->
+                <!-- Grid Metrik Kunci (3D Ring Donut dengan Label Persen Vektor) -->
                 <div class="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-4 sm:mb-5 relative z-10">
-                  <!-- Metrik 1 -->
-                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
+                  <!-- Metrik 1: Tarif Umum 11% -->
+                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_6px_16px_rgba(0,0,0,0.04),inset_0_1.5px_1px_rgba(255,255,255,1)] flex justify-between items-center hover:scale-[1.02] transition-transform">
                     <div>
                       <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Tarif Umum</span>
                       <span class="text-xs sm:text-sm font-extrabold text-emerald-950 leading-tight">11% DPP<br>Penuh</span>
                     </div>
-                    <!-- Mini Ring Chart 11% -->
-                    <div class="relative w-7 h-7 sm:w-8 sm:h-8 shrink-0 flex items-center justify-center">
-                      <svg viewBox="0 0 32 32" class="w-7 h-7 sm:w-8 sm:h-8">
-                        <circle cx="16" cy="16" r="12" fill="none" stroke="#A7F3D0" stroke-width="3.5" />
-                        <circle cx="16" cy="16" r="12" fill="none" stroke="#059669" stroke-width="3.5" stroke-dasharray="60 75" stroke-linecap="round" />
+                    <!-- 3D Ring 11% SVG -->
+                    <div class="relative w-8 h-8 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 32 32" class="w-8 h-8 drop-shadow-sm">
+                        <defs>
+                          <linearGradient id="ringPpn1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#6EE7B7" />
+                            <stop offset="50%" stop-color="#059669" />
+                            <stop offset="100%" stop-color="#064E3B" />
+                          </linearGradient>
+                        </defs>
+                        <circle cx="16" cy="16" r="12" fill="none" stroke="#D1FAE5" stroke-width="3.5" />
+                        <circle cx="16" cy="16" r="12" fill="none" stroke="url(#ringPpn1)" stroke-width="3.5" stroke-dasharray="62 75" stroke-linecap="round" />
                       </svg>
-                      <span class="absolute text-[8px] sm:text-[9px] font-extrabold text-emerald-800">11%</span>
+                      <span class="absolute text-[8px] font-black text-emerald-900 drop-shadow-sm">11%</span>
                     </div>
                   </div>
 
-                  <!-- Metrik 2 -->
-                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
+                  <!-- Metrik 2: Besaran Tertentu 1,1% -->
+                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_6px_16px_rgba(0,0,0,0.04),inset_0_1.5px_1px_rgba(255,255,255,1)] flex justify-between items-center hover:scale-[1.02] transition-transform">
                     <div>
                       <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Besaran Tertentu</span>
                       <span class="text-xs sm:text-sm font-extrabold text-emerald-950 leading-tight">1,1% (PMK<br>71)</span>
                     </div>
-                    <!-- Mini Ring Chart 1.1% -->
-                    <div class="relative w-7 h-7 sm:w-8 sm:h-8 shrink-0 flex items-center justify-center">
-                      <svg viewBox="0 0 32 32" class="w-7 h-7">
+                    <!-- 3D Ring 1.1% SVG -->
+                    <div class="relative w-8 h-8 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 32 32" class="w-8 h-8 drop-shadow-sm">
+                        <defs>
+                          <linearGradient id="ringPpn2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FCD34D" />
+                            <stop offset="60%" stop-color="#F59E0B" />
+                            <stop offset="100%" stop-color="#D97706" />
+                          </linearGradient>
+                        </defs>
                         <circle cx="16" cy="16" r="12" fill="none" stroke="#D1FAE5" stroke-width="3.5" />
-                        <circle cx="16" cy="16" r="12" fill="none" stroke="#F59E0B" stroke-width="3.5" stroke-dasharray="25 75" stroke-linecap="round" />
+                        <circle cx="16" cy="16" r="12" fill="none" stroke="url(#ringPpn2)" stroke-width="3.5" stroke-dasharray="28 75" stroke-linecap="round" />
                       </svg>
-                      <span class="absolute text-[7px] sm:text-[8px] font-extrabold text-emerald-800">1.1%</span>
+                      <span class="absolute text-[7px] font-black text-emerald-950 drop-shadow-sm">1.1%</span>
                     </div>
                   </div>
                 </div>
 
-                <!-- Info Tips Box (Pastel Lembut & Glassmorphism) -->
-                <div class="p-3 sm:p-3.5 rounded-2xl bg-emerald-100/70 backdrop-blur-sm border border-emerald-200/80 text-[11px] sm:text-xs text-emerald-950 leading-relaxed mb-5 sm:mb-6 flex items-start gap-2.5 relative z-10">
-                  <span class="text-sm shrink-0">💡</span>
-                  <span>Mendukung pemungutan bendahara pemerintah (&gt; Rp 2 Jt) dan BUMN (&gt; Rp 10 Jt) secara otomatis!</span>
+                <!-- Info Tips Box (3D Pastel Card dengan Ikon Lampu 3D Berpijar) -->
+                <div class="p-3 sm:p-3.5 rounded-2xl bg-gradient-to-r from-[#FFFDF7] via-[#FFFBEB] to-[#FEF3C7]/90 backdrop-blur-sm border border-amber-200/90 text-[11px] sm:text-xs text-slate-800 leading-relaxed mb-5 sm:mb-6 flex items-start gap-2.5 relative z-10 shadow-[0_4px_14px_rgba(245,158,11,0.08),inset_0_1px_1px_rgba(255,255,255,0.9)]">
+                  <span class="text-base shrink-0 filter drop-shadow-[0_2px_4px_rgba(245,158,11,0.4)]">💡</span>
+                  <span class="font-medium">Mendukung pemungutan bendahara pemerintah (&gt; Rp 2 Jt) dan BUMN (&gt; Rp 10 Jt) secara otomatis!</span>
                 </div>
               </div>
 
-              <!-- Tombol CTA -->
-              <button onclick="openTaxCalculator('ppn')" class="w-full py-3 sm:py-3.5 px-5 rounded-full font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-[#064e3b] to-[#022c22] hover:from-[#047857] hover:to-[#064e3b] shadow-[0_10px_20px_-5px_rgba(6,78,59,0.4)] hover:shadow-[0_14px_24px_-4px_rgba(6,78,59,0.5)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer relative z-10 mt-auto">
-                <span>Buka Kalkulator PPN 11</span>
-                <span class="text-base leading-none">→</span>
+              <!-- Tombol CTA 3D (Pill dengan Bevel 3D, Highlight & Drop Shadow Pekat) -->
+              <button onclick="openTaxCalculator('ppn')" class="w-full py-3.5 px-6 rounded-full font-bold text-xs sm:text-sm text-white bg-gradient-to-b from-[#065F46] via-[#044E39] to-[#022C22] border-t border-white/35 shadow-[0_10px_22px_-4px_rgba(6,95,70,0.45),inset_0_1.5px_0_rgba(255,255,255,0.35),inset_0_-2.5px_0_rgba(0,0,0,0.35)] hover:from-[#047857] hover:to-[#023326] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-4px_rgba(6,95,70,0.55)] active:translate-y-0.5 active:shadow-[0_4px_10px_-2px_rgba(6,95,70,0.4)] transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer relative z-10 mt-auto">
+                <span class="tracking-wide">Buka Kalkulator PPN 11</span>
+                <span class="text-base leading-none font-black">→</span>
               </button>
             </div>
 
             <!-- ==========================================
                  3. KARTU PPh 23 (JASA & SEWA) - BLUE / SLATE PASTEL
                  ========================================== -->
-            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#E0E7FF] via-[#EEF2FF] to-[#C7D2FE] p-5 sm:p-7 border border-indigo-200/90 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between h-full group">
+            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#EEF2FF] via-[#E0E7FF] to-[#C7D2FE] p-5 sm:p-7 border border-indigo-200/90 shadow-[0_12px_30px_-5px_rgba(0,0,0,0.06),0_8px_12px_-6px_rgba(0,0,0,0.04),inset_0_2px_2px_rgba(255,255,255,0.85)] hover:-translate-y-2 hover:scale-[1.01] hover:shadow-[0_25px_40px_-12px_rgba(99,102,241,0.22)] transition-all duration-300 flex flex-col justify-between h-full group">
               <!-- Ornamen Latar Belakang & Mesh Glow -->
               <div class="absolute inset-0 rounded-[28px] overflow-hidden pointer-events-none">
-                <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-indigo-300/30 blur-2xl"></div>
-                <div class="absolute -left-8 bottom-4 w-36 h-36 rounded-full bg-blue-200/30 blur-2xl"></div>
+                <div class="absolute -right-8 -top-8 w-44 h-44 rounded-full bg-indigo-300/35 blur-2xl"></div>
+                <div class="absolute -left-8 bottom-4 w-40 h-40 rounded-full bg-blue-200/35 blur-2xl"></div>
               </div>
-              <!-- Ornamen Glass Sphere di sisi kiri -->
-              <div class="absolute -left-3.5 top-14 w-10 h-10 rounded-full bg-white/45 backdrop-blur-md border border-white/80 shadow-[0_6px_16px_rgba(99,102,241,0.18)] pointer-events-none z-20"></div>
-              <!-- Partikel Melayang (Koin Emas & Memo) -->
-              <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute -top-3 left-6 w-6 h-6 object-contain pointer-events-none drop-shadow-md z-20">
-              <img src="assets/images/kpi/pph23-dokumen.png" alt="Floating Document" class="absolute top-24 -right-3 w-8 sm:w-9 h-auto object-contain pointer-events-none drop-shadow-md z-20">
+              <!-- Ornamen 3D Glass Sphere di sisi kiri -->
+              <div class="absolute -left-3.5 top-14 w-11 h-11 rounded-full bg-white/45 backdrop-blur-md border border-white/80 shadow-[0_8px_20px_rgba(99,102,241,0.2),inset_0_2px_4px_rgba(255,255,255,0.9),inset_0_-2px_4px_rgba(49,46,129,0.1)] pointer-events-none z-20"></div>
+              <!-- Partikel Melayang 3D (Koin Emas & Dokumen) -->
+              <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute -top-3 left-6 w-7 h-7 object-contain pointer-events-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.18)] z-20 hover:rotate-12 transition-transform">
+              <img src="assets/images/kpi/pph23-dokumen.png" alt="Floating Document" class="absolute top-20 sm:top-22 -right-2.5 sm:-right-3 w-9 sm:w-11 h-auto object-contain pointer-events-none drop-shadow-[0_6px_12px_rgba(0,0,0,0.15)] z-20">
+              <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute top-32 right-6 w-5 h-5 object-contain pointer-events-none drop-shadow-sm z-20 opacity-90">
+              <div class="absolute top-8 right-28 w-4 h-4 rounded-full bg-white/40 backdrop-blur-sm border border-white/60 pointer-events-none z-10"></div>
 
               <div>
-                <!-- Header: 3D Illustration & Badge Peraturan -->
-                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[90px] sm:min-h-[105px]">
+                <!-- Header: 3D Illustration & 3D Extruded Badge Peraturan -->
+                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[92px] sm:min-h-[105px]">
                   <div class="-mt-12 sm:-mt-14 -ml-2 sm:-ml-3 pointer-events-none">
-                    <img src="assets/images/kpi/pph23-hero.png" alt="PPh 23 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_12px_18px_rgba(30,58,138,0.18)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
+                    <img src="assets/images/kpi/pph23-hero.png" alt="PPh 23 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_14px_22px_rgba(30,58,138,0.2)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
                   </div>
-                  <span class="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold bg-white/90 backdrop-blur-md border border-indigo-300/70 text-indigo-950 shadow-sm shrink-0">
+                  <!-- 3D Pill Badge Sesuai Referensi -->
+                  <span class="px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-extrabold bg-gradient-to-b from-[#EEF2FF] via-[#E0E7FF] to-[#C7D2FE] border border-indigo-300/90 text-[#312E81] shadow-[0_4px_10px_rgba(99,102,241,0.25),inset_0_2px_2px_rgba(255,255,255,0.9),inset_0_-2px_2px_rgba(49,46,129,0.15)] shrink-0 tracking-tight">
                     PMK 141/2015
                   </span>
                 </div>
@@ -1043,79 +1097,102 @@
                   Pemotongan pajak atas imbalan 62 jenis jasa teknik/IT/konsultan, sewa kendaraan/mesin, bunga pinjaman, dan dividen.
                 </p>
 
-                <!-- Grid Metrik Kunci (Dua Kotak Berdampingan) -->
+                <!-- Grid Metrik Kunci (3D Bars & Trendline Arrow Sesuai Referensi) -->
                 <div class="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-4 sm:mb-5 relative z-10">
-                  <!-- Metrik 1 -->
-                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
+                  <!-- Metrik 1: Jasa & Sewa 2% -->
+                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_6px_16px_rgba(0,0,0,0.04),inset_0_1.5px_1px_rgba(255,255,255,1)] flex justify-between items-center hover:scale-[1.02] transition-transform">
                     <div>
                       <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Jasa &amp; Sewa</span>
                       <span class="text-xs sm:text-sm font-extrabold text-indigo-950 leading-tight">2% dari<br>Bruto</span>
                     </div>
-                    <!-- Mini Blue Bar Chart -->
-                    <div class="w-6 h-6 sm:w-7 sm:h-7 shrink-0 flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" class="w-6 h-6">
-                        <rect x="4" y="12" width="4" height="10" rx="1.5" fill="#93C5FD" />
-                        <rect x="10" y="6" width="4" height="16" rx="1.5" fill="#3B82F6" />
-                        <rect x="16" y="2" width="4" height="20" rx="1.5" fill="#1D4ED8" />
+                    <!-- 3D Blue Cylinders SVG -->
+                    <div class="w-7 h-7 sm:w-8 sm:h-8 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 32 32" class="w-8 h-8 drop-shadow-sm">
+                        <defs>
+                          <linearGradient id="bar23_1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#BAE6FD" />
+                            <stop offset="50%" stop-color="#60A5FA" />
+                            <stop offset="100%" stop-color="#2563EB" />
+                          </linearGradient>
+                          <linearGradient id="bar23_2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#60A5FA" />
+                            <stop offset="50%" stop-color="#2563EB" />
+                            <stop offset="100%" stop-color="#1D4ED8" />
+                          </linearGradient>
+                          <linearGradient id="bar23_3" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#3B82F6" />
+                            <stop offset="50%" stop-color="#1D4ED8" />
+                            <stop offset="100%" stop-color="#1E3A8A" />
+                          </linearGradient>
+                        </defs>
+                        <rect x="4" y="16" width="5.5" height="13" rx="2.75" fill="url(#bar23_1)" />
+                        <ellipse cx="6.75" cy="17.5" rx="2.5" ry="1.2" fill="#EFF6FF" opacity="0.8" />
+                        <rect x="13.25" y="10" width="5.5" height="19" rx="2.75" fill="url(#bar23_2)" />
+                        <ellipse cx="16" cy="11.5" rx="2.5" ry="1.2" fill="#DBEAFE" opacity="0.8" />
+                        <rect x="22.5" y="4" width="5.5" height="25" rx="2.75" fill="url(#bar23_3)" />
+                        <ellipse cx="25.25" cy="5.5" rx="2.5" ry="1.2" fill="#BFDBFE" opacity="0.8" />
                       </svg>
                     </div>
                   </div>
 
-                  <!-- Metrik 2 -->
-                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
+                  <!-- Metrik 2: Non-NPWP +100% dengan Trendline Arrow -->
+                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_6px_16px_rgba(0,0,0,0.04),inset_0_1.5px_1px_rgba(255,255,255,1)] flex justify-between items-center hover:scale-[1.02] transition-transform">
                     <div>
                       <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Non-NPWP</span>
                       <span class="text-xs sm:text-sm font-extrabold text-rose-600 leading-tight">+100%<br>(2x Lipat)</span>
                     </div>
-                    <!-- Mini Trend-up Chart -->
-                    <div class="w-6 h-6 sm:w-7 sm:h-7 shrink-0 flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" class="w-7 h-7">
-                        <rect x="2" y="16" width="3.5" height="6" rx="1" fill="#6EE7B7" />
-                        <rect x="7" y="12" width="3.5" height="10" rx="1" fill="#34D399" />
-                        <rect x="12" y="8" width="3.5" height="14" rx="1" fill="#F87171" />
-                        <rect x="17" y="4" width="3.5" height="18" rx="1" fill="#EF4444" />
-                        <path d="M2 14 L10 8 L15 11 L22 2 M22 2 L18 2 M22 2 L22 6" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <!-- 3D Trendline SVG -->
+                    <div class="w-7 h-7 sm:w-8 sm:h-8 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 32 32" class="w-8 h-8 drop-shadow-sm">
+                        <rect x="3" y="20" width="4" height="9" rx="2" fill="#6EE7B7" />
+                        <rect x="9.5" y="15" width="4" height="14" rx="2" fill="#34D399" />
+                        <rect x="16" y="10" width="4" height="19" rx="2" fill="#F87171" />
+                        <rect x="22.5" y="5" width="4" height="24" rx="2" fill="#EF4444" />
+                        <path d="M3 18 L11 11 L18 14 L28 3 M28 3 L22 3 M28 3 L28 9" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
                       </svg>
                     </div>
                   </div>
                 </div>
 
-                <!-- Info Tips Box (Pastel Lembut & Glassmorphism) -->
-                <div class="p-3 sm:p-3.5 rounded-2xl bg-amber-100/70 backdrop-blur-sm border border-amber-200/80 text-[11px] sm:text-xs text-amber-950 leading-relaxed mb-5 sm:mb-6 flex items-start gap-2.5 relative z-10">
-                  <span class="text-sm shrink-0">💡</span>
-                  <span>Dilengkapi metode Gross (potong rekanan) dan Gross-Up (perusahaan menanggung pajak secara sah).</span>
+                <!-- Info Tips Box (3D Pastel Card dengan Ikon Lampu 3D Berpijar) -->
+                <div class="p-3 sm:p-3.5 rounded-2xl bg-gradient-to-r from-[#FFFDF7] via-[#FFFBEB] to-[#FEF3C7]/90 backdrop-blur-sm border border-amber-200/90 text-[11px] sm:text-xs text-slate-800 leading-relaxed mb-5 sm:mb-6 flex items-start gap-2.5 relative z-10 shadow-[0_4px_14px_rgba(245,158,11,0.08),inset_0_1px_1px_rgba(255,255,255,0.9)]">
+                  <span class="text-base shrink-0 filter drop-shadow-[0_2px_4px_rgba(245,158,11,0.4)]">💡</span>
+                  <span class="font-medium">Dilengkapi metode Gross (potong rekanan) dan Gross-Up (perusahaan menanggung pajak secara sah).</span>
                 </div>
               </div>
 
-              <!-- Tombol CTA -->
-              <button onclick="openTaxCalculator('pph23')" class="w-full py-3 sm:py-3.5 px-5 rounded-full font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-[#1e3a8a] to-[#0f172a] hover:from-[#1d4ed8] hover:to-[#1e3a8a] shadow-[0_10px_20px_-5px_rgba(30,58,138,0.4)] hover:shadow-[0_14px_24px_-4px_rgba(30,58,138,0.5)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer relative z-10 mt-auto">
-                <span>Buka Kalkulator PPh 23</span>
-                <span class="text-base leading-none">→</span>
+              <!-- Tombol CTA 3D (Pill dengan Bevel 3D, Highlight & Drop Shadow Pekat) -->
+              <button onclick="openTaxCalculator('pph23')" class="w-full py-3.5 px-6 rounded-full font-bold text-xs sm:text-sm text-white bg-gradient-to-b from-[#1E3A8A] via-[#172554] to-[#0F172A] border-t border-white/35 shadow-[0_10px_22px_-4px_rgba(30,58,138,0.45),inset_0_1.5px_0_rgba(255,255,255,0.35),inset_0_-2.5px_0_rgba(0,0,0,0.35)] hover:from-[#2563EB] hover:to-[#172554] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-4px_rgba(30,58,138,0.55)] active:translate-y-0.5 active:shadow-[0_4px_10px_-2px_rgba(30,58,138,0.4)] transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer relative z-10 mt-auto">
+                <span class="tracking-wide">Buka Kalkulator PPh 23</span>
+                <span class="text-base leading-none font-black">→</span>
               </button>
             </div>
 
             <!-- ==========================================
                  4. KARTU PPh 25 (ANGSURAN PAJAK) - LAVENDER / PURPLE PASTEL
                  ========================================== -->
-            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#EDE9FE] via-[#F5F3FF] to-[#DDD6FE] p-5 sm:p-7 border border-purple-200/90 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between h-full group">
+            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#F5F3FF] via-[#EDE9FE] to-[#DDD6FE] p-5 sm:p-7 border border-purple-200/90 shadow-[0_12px_30px_-5px_rgba(0,0,0,0.06),0_8px_12px_-6px_rgba(0,0,0,0.04),inset_0_2px_2px_rgba(255,255,255,0.85)] hover:-translate-y-2 hover:scale-[1.01] hover:shadow-[0_25px_40px_-12px_rgba(168,85,247,0.22)] transition-all duration-300 flex flex-col justify-between h-full group">
               <!-- Ornamen Latar Belakang & Mesh Glow -->
               <div class="absolute inset-0 rounded-[28px] overflow-hidden pointer-events-none">
-                <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-purple-300/30 blur-2xl"></div>
-                <div class="absolute -left-8 bottom-4 w-36 h-36 rounded-full bg-violet-200/30 blur-2xl"></div>
+                <div class="absolute -right-8 -top-8 w-44 h-44 rounded-full bg-purple-300/35 blur-2xl"></div>
+                <div class="absolute -left-8 bottom-4 w-40 h-40 rounded-full bg-violet-200/35 blur-2xl"></div>
               </div>
-              <!-- Ornamen Glass Sphere di sisi kiri -->
-              <div class="absolute -left-3.5 top-14 w-10 h-10 rounded-full bg-white/45 backdrop-blur-md border border-white/80 shadow-[0_6px_16px_rgba(168,85,247,0.18)] pointer-events-none z-20"></div>
-              <!-- Partikel Melayang (Koin Emas & Memo) -->
-              <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute -top-3 left-6 w-6 h-6 object-contain pointer-events-none drop-shadow-md z-20">
-              <img src="assets/images/kpi/pph25-dokumen.png" alt="Floating Document" class="absolute top-24 -right-3 w-8 sm:w-9 h-auto object-contain pointer-events-none drop-shadow-md z-20">
+              <!-- Ornamen 3D Glass Sphere di sisi kiri -->
+              <div class="absolute -left-3.5 top-14 w-11 h-11 rounded-full bg-white/45 backdrop-blur-md border border-white/80 shadow-[0_8px_20px_rgba(168,85,247,0.2),inset_0_2px_4px_rgba(255,255,255,0.9),inset_0_-2px_4px_rgba(88,28,135,0.1)] pointer-events-none z-20"></div>
+              <!-- Partikel Melayang 3D (Koin Emas & Dokumen) -->
+              <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute -top-3 left-6 w-7 h-7 object-contain pointer-events-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.18)] z-20 hover:rotate-12 transition-transform">
+              <img src="assets/images/kpi/pph25-dokumen.png" alt="Floating Document" class="absolute top-20 sm:top-22 -right-2.5 sm:-right-3 w-9 sm:w-11 h-auto object-contain pointer-events-none drop-shadow-[0_6px_12px_rgba(0,0,0,0.15)] z-20">
+              <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute top-32 right-6 w-5 h-5 object-contain pointer-events-none drop-shadow-sm z-20 opacity-90">
+              <div class="absolute top-8 right-28 w-4 h-4 rounded-full bg-white/40 backdrop-blur-sm border border-white/60 pointer-events-none z-10"></div>
 
               <div>
-                <!-- Header: 3D Illustration & Badge Peraturan -->
-                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[90px] sm:min-h-[105px]">
+                <!-- Header: 3D Illustration & 3D Extruded Badge Peraturan -->
+                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[92px] sm:min-h-[105px]">
                   <div class="-mt-12 sm:-mt-14 -ml-2 sm:-ml-3 pointer-events-none">
-                    <img src="assets/images/kpi/pph25-hero.png" alt="PPh 25 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_12px_18px_rgba(126,34,206,0.18)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
+                    <img src="assets/images/kpi/pph25-hero.png" alt="PPh 25 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_14px_22px_rgba(126,34,206,0.2)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
                   </div>
-                  <span class="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold bg-white/90 backdrop-blur-md border border-purple-300/70 text-purple-950 shadow-sm shrink-0">
+                  <!-- 3D Pill Badge Sesuai Referensi -->
+                  <span class="px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-extrabold bg-gradient-to-b from-[#F5F3FF] via-[#EDE9FE] to-[#DDD6FE] border border-purple-300/90 text-[#4C1D95] shadow-[0_4px_10px_rgba(168,85,247,0.25),inset_0_2px_2px_rgba(255,255,255,0.9),inset_0_-2px_2px_rgba(126,34,206,0.15)] shrink-0 tracking-tight">
                     Pasal 25 UU PPh
                   </span>
                 </div>
@@ -1126,73 +1203,96 @@
                   Cicilan pajak bulanan bagi perusahaan (Badan), orang pribadi usaha, dan pedagang retail (OPPT) agar tidak kaget di akhir tahun.
                 </p>
 
-                <!-- Grid Metrik Kunci (Dua Kotak Berdampingan) -->
+                <!-- Grid Metrik Kunci (3D Badge 1/12 & 3D Purple Bars) -->
                 <div class="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-4 sm:mb-5 relative z-10">
-                  <!-- Metrik 1 -->
-                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
+                  <!-- Metrik 1: Metode Cicilan SPT / 12 -->
+                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_6px_16px_rgba(0,0,0,0.04),inset_0_1.5px_1px_rgba(255,255,255,1)] flex justify-between items-center hover:scale-[1.02] transition-transform">
                     <div>
                       <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Metode Cicilan</span>
                       <span class="text-xs sm:text-sm font-extrabold text-purple-950 leading-tight">SPT Lalu<br>/ 12</span>
                     </div>
-                    <!-- Mini Circle Badge 1/12 -->
-                    <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-purple-100 border border-purple-300 shrink-0 flex items-center justify-center text-[9px] sm:text-[10px] font-extrabold text-purple-800">
+                    <!-- 3D 1/12 Badge SVG -->
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-100 to-purple-200 border border-purple-300 shadow-[0_2px_8px_rgba(168,85,247,0.25),inset_0_1px_1px_rgba(255,255,255,0.8)] shrink-0 flex items-center justify-center text-[10px] font-black text-purple-900">
                       1/12
                     </div>
                   </div>
 
-                  <!-- Metrik 2 -->
-                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
+                  <!-- Metrik 2: Tarif Toko OPPT 0,75% -->
+                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_6px_16px_rgba(0,0,0,0.04),inset_0_1.5px_1px_rgba(255,255,255,1)] flex justify-between items-center hover:scale-[1.02] transition-transform">
                     <div>
                       <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Tarif Toko (OPPT)</span>
                       <span class="text-xs sm:text-sm font-extrabold text-purple-950 leading-tight">0,75%<br>Omzet</span>
                     </div>
-                    <!-- Mini Purple Bar Chart -->
-                    <div class="w-6 h-6 sm:w-7 sm:h-7 shrink-0 flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" class="w-6 h-6">
-                        <rect x="4" y="14" width="4" height="8" rx="1.5" fill="#DDD6FE" />
-                        <rect x="10" y="8" width="4" height="14" rx="1.5" fill="#A855F7" />
-                        <rect x="16" y="4" width="4" height="18" rx="1.5" fill="#6B21A8" />
+                    <!-- 3D Purple Bars SVG -->
+                    <div class="w-7 h-7 sm:w-8 sm:h-8 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 32 32" class="w-8 h-8 drop-shadow-sm">
+                        <defs>
+                          <linearGradient id="bar25_1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#E9D5FF" />
+                            <stop offset="50%" stop-color="#C084FC" />
+                            <stop offset="100%" stop-color="#A855F7" />
+                          </linearGradient>
+                          <linearGradient id="bar25_2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#C084FC" />
+                            <stop offset="50%" stop-color="#A855F7" />
+                            <stop offset="100%" stop-color="#7E22CE" />
+                          </linearGradient>
+                          <linearGradient id="bar25_3" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#A855F7" />
+                            <stop offset="50%" stop-color="#7E22CE" />
+                            <stop offset="100%" stop-color="#4C1D95" />
+                          </linearGradient>
+                        </defs>
+                        <rect x="4" y="18" width="5.5" height="11" rx="2.75" fill="url(#bar25_1)" />
+                        <ellipse cx="6.75" cy="19.5" rx="2.5" ry="1.2" fill="#FAF5FF" opacity="0.8" />
+                        <rect x="13.25" y="11" width="5.5" height="18" rx="2.75" fill="url(#bar25_2)" />
+                        <ellipse cx="16" cy="12.5" rx="2.5" ry="1.2" fill="#F3E8FF" opacity="0.8" />
+                        <rect x="22.5" y="4" width="5.5" height="25" rx="2.75" fill="url(#bar25_3)" />
+                        <ellipse cx="25.25" cy="5.5" rx="2.5" ry="1.2" fill="#E9D5FF" opacity="0.8" />
                       </svg>
                     </div>
                   </div>
                 </div>
 
-                <!-- Info Tips Box (Pastel Lembut & Glassmorphism) -->
-                <div class="p-3 sm:p-3.5 rounded-2xl bg-amber-100/70 backdrop-blur-sm border border-amber-200/80 text-[11px] sm:text-xs text-amber-950 leading-relaxed mb-5 sm:mb-6 flex items-start gap-2.5 relative z-10">
-                  <span class="text-sm shrink-0">💡</span>
-                  <span>Disetor paling lambat tanggal 15 setiap bulan melalui kode billing DJP akun 411125 / 411126.</span>
+                <!-- Info Tips Box (3D Pastel Card dengan Ikon Lampu 3D Berpijar) -->
+                <div class="p-3 sm:p-3.5 rounded-2xl bg-gradient-to-r from-[#FFFDF7] via-[#FFFBEB] to-[#FEF3C7]/90 backdrop-blur-sm border border-amber-200/90 text-[11px] sm:text-xs text-slate-800 leading-relaxed mb-5 sm:mb-6 flex items-start gap-2.5 relative z-10 shadow-[0_4px_14px_rgba(245,158,11,0.08),inset_0_1px_1px_rgba(255,255,255,0.9)]">
+                  <span class="text-base shrink-0 filter drop-shadow-[0_2px_4px_rgba(245,158,11,0.4)]">💡</span>
+                  <span class="font-medium">Disetor paling lambat tanggal 15 setiap bulan melalui kode billing DJP akun 411125 / 411126.</span>
                 </div>
               </div>
 
-              <!-- Tombol CTA -->
-              <button onclick="openTaxCalculator('pph25')" class="w-full py-3 sm:py-3.5 px-5 rounded-full font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-[#4c1d95] to-[#2e1065] hover:from-[#5b21b6] hover:to-[#4c1d95] shadow-[0_10px_20px_-5px_rgba(76,29,149,0.4)] hover:shadow-[0_14px_24px_-4px_rgba(76,29,149,0.5)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer relative z-10 mt-auto">
-                <span>Buka Kalkulator PPh 25</span>
-                <span class="text-base leading-none">→</span>
+              <!-- Tombol CTA 3D (Pill dengan Bevel 3D, Highlight & Drop Shadow Pekat) -->
+              <button onclick="openTaxCalculator('pph25')" class="w-full py-3.5 px-6 rounded-full font-bold text-xs sm:text-sm text-white bg-gradient-to-b from-[#581C87] via-[#4C1D95] to-[#2E1065] border-t border-white/35 shadow-[0_10px_22px_-4px_rgba(88,28,135,0.45),inset_0_1.5px_0_rgba(255,255,255,0.35),inset_0_-2.5px_0_rgba(0,0,0,0.35)] hover:from-[#6B21A8] hover:to-[#3B0764] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-4px_rgba(88,28,135,0.55)] active:translate-y-0.5 active:shadow-[0_4px_10px_-2px_rgba(88,28,135,0.4)] transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer relative z-10 mt-auto">
+                <span class="tracking-wide">Buka Kalkulator PPh 25</span>
+                <span class="text-base leading-none font-black">→</span>
               </button>
             </div>
 
             <!-- ==========================================
                  5. KARTU PPh FINAL UMKM 0,5% - GREEN TEA / PISTACHIO PASTEL
                  ========================================== -->
-            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#DCFCE7] via-[#F0FDF4] to-[#BBF7D0] p-5 sm:p-7 border border-green-200/90 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between h-full group">
+            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#F0FDF4] via-[#DCFCE7] to-[#BBF7D0] p-5 sm:p-7 border border-green-200/90 shadow-[0_12px_30px_-5px_rgba(0,0,0,0.06),0_8px_12px_-6px_rgba(0,0,0,0.04),inset_0_2px_2px_rgba(255,255,255,0.85)] hover:-translate-y-2 hover:scale-[1.01] hover:shadow-[0_25px_40px_-12px_rgba(34,197,94,0.22)] transition-all duration-300 flex flex-col justify-between h-full group">
               <!-- Ornamen Latar Belakang & Mesh Glow -->
               <div class="absolute inset-0 rounded-[28px] overflow-hidden pointer-events-none">
-                <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-green-300/30 blur-2xl"></div>
-                <div class="absolute -left-8 bottom-4 w-36 h-36 rounded-full bg-emerald-200/30 blur-2xl"></div>
+                <div class="absolute -right-8 -top-8 w-44 h-44 rounded-full bg-green-300/35 blur-2xl"></div>
+                <div class="absolute -left-8 bottom-4 w-40 h-40 rounded-full bg-emerald-200/35 blur-2xl"></div>
               </div>
-              <!-- Ornamen Glass Sphere di sisi kiri -->
-              <div class="absolute -left-3.5 top-14 w-10 h-10 rounded-full bg-white/45 backdrop-blur-md border border-white/80 shadow-[0_6px_16px_rgba(34,197,94,0.18)] pointer-events-none z-20"></div>
-              <!-- Partikel Melayang (Koin Emas & Memo) -->
-              <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute -top-3 left-6 w-6 h-6 object-contain pointer-events-none drop-shadow-md z-20">
-              <img src="assets/images/kpi/umkm-dokumen.png" alt="Floating Document" class="absolute top-24 -right-3 w-8 sm:w-9 h-auto object-contain pointer-events-none drop-shadow-md z-20">
+              <!-- Ornamen 3D Glass Sphere di sisi kiri -->
+              <div class="absolute -left-3.5 top-14 w-11 h-11 rounded-full bg-white/45 backdrop-blur-md border border-white/80 shadow-[0_8px_20px_rgba(34,197,94,0.2),inset_0_2px_4px_rgba(255,255,255,0.9),inset_0_-2px_4px_rgba(20,83,45,0.1)] pointer-events-none z-20"></div>
+              <!-- Partikel Melayang 3D (Koin Emas & Dokumen) -->
+              <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute -top-3 left-6 w-7 h-7 object-contain pointer-events-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.18)] z-20 hover:rotate-12 transition-transform">
+              <img src="assets/images/kpi/umkm-dokumen.png" alt="Floating Document" class="absolute top-20 sm:top-22 -right-2.5 sm:-right-3 w-9 sm:w-11 h-auto object-contain pointer-events-none drop-shadow-[0_6px_12px_rgba(0,0,0,0.15)] z-20">
+              <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute top-32 right-6 w-5 h-5 object-contain pointer-events-none drop-shadow-sm z-20 opacity-90">
+              <div class="absolute top-8 right-28 w-4 h-4 rounded-full bg-white/40 backdrop-blur-sm border border-white/60 pointer-events-none z-10"></div>
 
               <div>
-                <!-- Header: 3D Illustration & Badge Peraturan -->
-                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[90px] sm:min-h-[105px]">
+                <!-- Header: 3D Illustration & 3D Extruded Badge Peraturan -->
+                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[92px] sm:min-h-[105px]">
                   <div class="-mt-12 sm:-mt-14 -ml-2 sm:-ml-3 pointer-events-none">
-                    <img src="assets/images/kpi/umkm-hero.png" alt="PPh UMKM 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_12px_18px_rgba(5,150,105,0.18)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
+                    <img src="assets/images/kpi/umkm-hero.png" alt="PPh UMKM 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_14px_22px_rgba(5,150,105,0.2)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
                   </div>
-                  <span class="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold bg-white/90 backdrop-blur-md border border-green-300/70 text-green-950 shadow-sm shrink-0">
+                  <!-- 3D Pill Badge Sesuai Referensi -->
+                  <span class="px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-extrabold bg-gradient-to-b from-[#F0FDF4] via-[#DCFCE7] to-[#BBF7D0] border border-green-300/90 text-[#14532D] shadow-[0_4px_10px_rgba(34,197,94,0.25),inset_0_2px_2px_rgba(255,255,255,0.9),inset_0_-2px_2px_rgba(21,128,61,0.15)] shrink-0 tracking-tight">
                     PP 55/2022 Insentif
                   </span>
                 </div>
@@ -1203,74 +1303,85 @@
                   Skema pajak super ringan untuk pengusaha kecil dan UMKM. Lengkap dengan simulasi 12 bulan kumulatif Jan-Des.
                 </p>
 
-                <!-- Grid Metrik Kunci (Dua Kotak Berdampingan) -->
+                <!-- Grid Metrik Kunci (3D Donut & 3D Green Checkmark Badge) -->
                 <div class="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-4 sm:mb-5 relative z-10">
-                  <!-- Metrik 1 -->
-                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
+                  <!-- Metrik 1: Tarif Pajak 0,5% -->
+                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_6px_16px_rgba(0,0,0,0.04),inset_0_1.5px_1px_rgba(255,255,255,1)] flex justify-between items-center hover:scale-[1.02] transition-transform">
                     <div>
                       <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Tarif Pajak</span>
                       <span class="text-xs sm:text-sm font-extrabold text-emerald-950 leading-tight">0,5% dari<br>Omzet</span>
                     </div>
-                    <!-- Mini Green Donut Ring -->
-                    <div class="w-6 h-6 sm:w-7 sm:h-7 shrink-0 flex items-center justify-center">
-                      <svg viewBox="0 0 32 32" class="w-7 h-7">
-                        <circle cx="16" cy="16" r="12" fill="none" stroke="#D1FAE5" stroke-width="4.5" />
-                        <circle cx="16" cy="16" r="12" fill="none" stroke="#059669" stroke-width="4.5" stroke-dasharray="25 75" stroke-linecap="round" />
+                    <!-- 3D Donut SVG -->
+                    <div class="w-7 h-7 sm:w-8 sm:h-8 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 32 32" class="w-8 h-8 drop-shadow-sm">
+                        <defs>
+                          <linearGradient id="torusUmkm" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#6EE7B7" />
+                            <stop offset="60%" stop-color="#059669" />
+                            <stop offset="100%" stop-color="#047857" />
+                          </linearGradient>
+                        </defs>
+                        <circle cx="16" cy="16" r="11.5" fill="none" stroke="#D1FAE5" stroke-width="4.5" />
+                        <circle cx="16" cy="16" r="11.5" fill="none" stroke="url(#torusUmkm)" stroke-width="4.5" stroke-dasharray="32 75" stroke-linecap="round" />
+                        <circle cx="16" cy="16" r="6" fill="#FFFFFF" opacity="0.9" />
                       </svg>
                     </div>
                   </div>
 
-                  <!-- Metrik 2 -->
-                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
+                  <!-- Metrik 2: Bebas Pajak s.d. 500 Juta -->
+                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_6px_16px_rgba(0,0,0,0.04),inset_0_1.5px_1px_rgba(255,255,255,1)] flex justify-between items-center hover:scale-[1.02] transition-transform">
                     <div>
                       <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Bebas Pajak OP</span>
                       <span class="text-xs sm:text-sm font-extrabold text-emerald-950 leading-tight">s.d. Rp 500<br>Juta (Rp 0)</span>
                     </div>
-                    <!-- Green Checkmark -->
-                    <div class="w-6 h-6 sm:w-7 sm:h-7 shrink-0 flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <!-- 3D Checkmark Disc SVG -->
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-100 to-emerald-200 border border-emerald-300 shadow-[0_2px_8px_rgba(16,185,129,0.25),inset_0_1px_1px_rgba(255,255,255,0.8)] shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" class="w-5 h-5 text-emerald-700 drop-shadow-sm" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M20 6L9 17l-5-5"/>
                       </svg>
                     </div>
                   </div>
                 </div>
 
-                <!-- Info Tips Box (Pastel Lembut & Glassmorphism) -->
-                <div class="p-3 sm:p-3.5 rounded-2xl bg-amber-100/70 backdrop-blur-sm border border-amber-200/80 text-[11px] sm:text-xs text-amber-950 leading-relaxed mb-5 sm:mb-6 flex items-start gap-2.5 relative z-10">
-                  <span class="text-sm shrink-0">🎯</span>
-                  <span>Omzet Orang Pribadi di bawah 500 Juta setahun GRATIS 100% tanpa bayar pajak</span>
+                <!-- Info Tips Box (3D Pastel Card dengan Ikon Lampu 3D Berpijar) -->
+                <div class="p-3 sm:p-3.5 rounded-2xl bg-gradient-to-r from-[#FFFDF7] via-[#FFFBEB] to-[#FEF3C7]/90 backdrop-blur-sm border border-amber-200/90 text-[11px] sm:text-xs text-slate-800 leading-relaxed mb-5 sm:mb-6 flex items-start gap-2.5 relative z-10 shadow-[0_4px_14px_rgba(245,158,11,0.08),inset_0_1px_1px_rgba(255,255,255,0.9)]">
+                  <span class="text-base shrink-0 filter drop-shadow-[0_2px_4px_rgba(245,158,11,0.4)]">💡</span>
+                  <span class="font-medium">Omzet Orang Pribadi di bawah 500 Juta setahun GRATIS 100% tanpa bayar pajak</span>
                 </div>
               </div>
 
-              <!-- Tombol CTA -->
-              <button onclick="openTaxCalculator('umkm')" class="w-full py-3 sm:py-3.5 px-5 rounded-full font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-[#064e3b] to-[#062c22] hover:from-[#047857] hover:to-[#064e3b] shadow-[0_10px_20px_-5px_rgba(6,78,59,0.4)] hover:shadow-[0_14px_24px_-4px_rgba(6,78,59,0.5)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer relative z-10 mt-auto">
-                <span>Buka Kalkulator UMKM</span>
-                <span class="text-base leading-none">→</span>
+              <!-- Tombol CTA 3D (Pill dengan Bevel 3D, Highlight & Drop Shadow Pekat) -->
+              <button onclick="openTaxCalculator('umkm')" class="w-full py-3.5 px-6 rounded-full font-bold text-xs sm:text-sm text-white bg-gradient-to-b from-[#065F46] via-[#044E39] to-[#022C22] border-t border-white/35 shadow-[0_10px_22px_-4px_rgba(6,95,70,0.45),inset_0_1.5px_0_rgba(255,255,255,0.35),inset_0_-2.5px_0_rgba(0,0,0,0.35)] hover:from-[#047857] hover:to-[#023326] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-4px_rgba(6,95,70,0.55)] active:translate-y-0.5 active:shadow-[0_4px_10px_-2px_rgba(6,95,70,0.4)] transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer relative z-10 mt-auto">
+                <span class="tracking-wide">Buka Kalkulator UMKM</span>
+                <span class="text-base leading-none font-black">→</span>
               </button>
             </div>
 
             <!-- ==========================================
                  6. KARTU PPh FINAL 4(2) PROPERTI - CREAM / WARM ORANGE PASTEL
                  ========================================== -->
-            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#FEF3C7] via-[#FFFBEB] to-[#FED7AA] p-5 sm:p-7 border border-amber-200/90 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between h-full group">
+            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#FFFBEB] via-[#FEF3C7] to-[#FED7AA] p-5 sm:p-7 border border-amber-200/90 shadow-[0_12px_30px_-5px_rgba(0,0,0,0.06),0_8px_12px_-6px_rgba(0,0,0,0.04),inset_0_2px_2px_rgba(255,255,255,0.85)] hover:-translate-y-2 hover:scale-[1.01] hover:shadow-[0_25px_40px_-12px_rgba(245,158,11,0.22)] transition-all duration-300 flex flex-col justify-between h-full group">
               <!-- Ornamen Latar Belakang & Mesh Glow -->
               <div class="absolute inset-0 rounded-[28px] overflow-hidden pointer-events-none">
-                <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-amber-300/30 blur-2xl"></div>
-                <div class="absolute -left-8 bottom-4 w-36 h-36 rounded-full bg-orange-200/30 blur-2xl"></div>
+                <div class="absolute -right-8 -top-8 w-44 h-44 rounded-full bg-amber-300/35 blur-2xl"></div>
+                <div class="absolute -left-8 bottom-4 w-40 h-40 rounded-full bg-orange-200/35 blur-2xl"></div>
               </div>
-              <!-- Ornamen Glass Sphere di sisi kiri -->
-              <div class="absolute -left-3.5 top-14 w-10 h-10 rounded-full bg-white/45 backdrop-blur-md border border-white/80 shadow-[0_6px_16px_rgba(245,158,11,0.18)] pointer-events-none z-20"></div>
-              <!-- Partikel Melayang (Koin Emas & Memo) -->
-              <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute -top-3 left-6 w-6 h-6 object-contain pointer-events-none drop-shadow-md z-20">
-              <img src="assets/images/kpi/pph42-dokumen.png" alt="Floating Document" class="absolute top-24 -right-3 w-8 sm:w-9 h-auto object-contain pointer-events-none drop-shadow-md z-20">
+              <!-- Ornamen 3D Glass Sphere di sisi kiri -->
+              <div class="absolute -left-3.5 top-14 w-11 h-11 rounded-full bg-white/45 backdrop-blur-md border border-white/80 shadow-[0_8px_20px_rgba(245,158,11,0.2),inset_0_2px_4px_rgba(255,255,255,0.9),inset_0_-2px_4px_rgba(180,83,9,0.1)] pointer-events-none z-20"></div>
+              <!-- Partikel Melayang 3D (Koin Emas & Dokumen) -->
+              <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute -top-3 left-6 w-7 h-7 object-contain pointer-events-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.18)] z-20 hover:rotate-12 transition-transform">
+              <img src="assets/images/kpi/pph42-dokumen.png" alt="Floating Document" class="absolute top-20 sm:top-22 -right-2.5 sm:-right-3 w-9 sm:w-11 h-auto object-contain pointer-events-none drop-shadow-[0_6px_12px_rgba(0,0,0,0.15)] z-20">
+              <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute top-32 right-6 w-5 h-5 object-contain pointer-events-none drop-shadow-sm z-20 opacity-90">
+              <div class="absolute top-8 right-28 w-4 h-4 rounded-full bg-white/40 backdrop-blur-sm border border-white/60 pointer-events-none z-10"></div>
 
               <div>
-                <!-- Header: 3D Illustration & Badge Peraturan -->
-                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[90px] sm:min-h-[105px]">
+                <!-- Header: 3D Illustration & 3D Extruded Badge Peraturan -->
+                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[92px] sm:min-h-[105px]">
                   <div class="-mt-12 sm:-mt-14 -ml-2 sm:-ml-3 pointer-events-none">
-                    <img src="assets/images/kpi/pph42-hero.png" alt="PPh Final 4(2) 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_12px_18px_rgba(180,83,9,0.18)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
+                    <img src="assets/images/kpi/pph42-hero.png" alt="PPh Final 4(2) 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_14px_22px_rgba(180,83,9,0.2)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
                   </div>
-                  <span class="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold bg-white/90 backdrop-blur-md border border-amber-300/70 text-amber-950 shadow-sm shrink-0">
+                  <!-- 3D Pill Badge Sesuai Referensi -->
+                  <span class="px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-extrabold bg-gradient-to-b from-[#FFFBEB] via-[#FEF3C7] to-[#FED7AA] border border-amber-300/90 text-[#78350F] shadow-[0_4px_10px_rgba(245,158,11,0.25),inset_0_2px_2px_rgba(255,255,255,0.9),inset_0_-2px_2px_rgba(180,83,9,0.15)] shrink-0 tracking-tight">
                     Pasal 4 Ayat (2)
                   </span>
                 </div>
@@ -1281,59 +1392,84 @@
                   Pajak final yang lunas seketika atas sewa tanah/bangunan, jual-beli properti, jasa konstruksi (PP 9/2022), dan undian.
                 </p>
 
-                <!-- Grid Metrik Kunci (Dua Kotak Berdampingan) -->
+                <!-- Grid Metrik Kunci (3D Donut 10% & 3D Amber Bars) -->
                 <div class="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-4 sm:mb-5 relative z-10">
-                  <!-- Metrik 1 -->
-                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
+                  <!-- Metrik 1: Sewa Properti 10% -->
+                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_6px_16px_rgba(0,0,0,0.04),inset_0_1.5px_1px_rgba(255,255,255,1)] flex justify-between items-center hover:scale-[1.02] transition-transform">
                     <div>
                       <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Sewa Properti</span>
                       <span class="text-xs sm:text-sm font-extrabold text-amber-950 leading-tight">10% dari<br>Nilai Sewa</span>
                     </div>
-                    <!-- Mini Ring 10% -->
-                    <div class="relative w-7 h-7 sm:w-8 sm:h-8 shrink-0 flex items-center justify-center">
-                      <svg viewBox="0 0 32 32" class="w-7 h-7 sm:w-8 sm:h-8">
+                    <!-- 3D Donut 10% SVG -->
+                    <div class="relative w-8 h-8 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 32 32" class="w-8 h-8 drop-shadow-sm">
+                        <defs>
+                          <linearGradient id="ringPph42" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FCD34D" />
+                            <stop offset="60%" stop-color="#F59E0B" />
+                            <stop offset="100%" stop-color="#B45309" />
+                          </linearGradient>
+                        </defs>
                         <circle cx="16" cy="16" r="12" fill="none" stroke="#FEF3C7" stroke-width="3.5" />
-                        <circle cx="16" cy="16" r="12" fill="none" stroke="#D97706" stroke-width="3.5" stroke-dasharray="55 75" stroke-linecap="round" />
+                        <circle cx="16" cy="16" r="12" fill="none" stroke="url(#ringPph42)" stroke-width="3.5" stroke-dasharray="58 75" stroke-linecap="round" />
                       </svg>
-                      <span class="absolute text-[8px] sm:text-[9px] font-extrabold text-amber-900">10%</span>
+                      <span class="absolute text-[8px] font-black text-amber-950 drop-shadow-sm">10%</span>
                     </div>
                   </div>
 
-                  <!-- Metrik 2 -->
-                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_4px_14px_rgba(0,0,0,0.03)] flex justify-between items-center">
+                  <!-- Metrik 2: Jual Beli Rumah 2,5% -->
+                  <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-2.5 sm:p-3.5 border border-white shadow-[0_6px_16px_rgba(0,0,0,0.04),inset_0_1.5px_1px_rgba(255,255,255,1)] flex justify-between items-center hover:scale-[1.02] transition-transform">
                     <div>
                       <span class="block text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Jual Beli Rumah</span>
                       <span class="text-xs sm:text-sm font-extrabold text-amber-950 leading-tight">2,5% Transaksi<br>/NJOP</span>
                     </div>
-                    <!-- Mini Amber Bar Chart -->
-                    <div class="w-6 h-6 sm:w-7 sm:h-7 shrink-0 flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" class="w-6 h-6">
-                        <rect x="4" y="14" width="4" height="8" rx="1.5" fill="#FDE68A" />
-                        <rect x="10" y="8" width="4" height="14" rx="1.5" fill="#F59E0B" />
-                        <rect x="16" y="3" width="4" height="19" rx="1.5" fill="#B45309" />
+                    <!-- 3D Amber Bars SVG -->
+                    <div class="w-7 h-7 sm:w-8 sm:h-8 shrink-0 flex items-center justify-center">
+                      <svg viewBox="0 0 32 32" class="w-8 h-8 drop-shadow-sm">
+                        <defs>
+                          <linearGradient id="bar42_1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FDE68A" />
+                            <stop offset="50%" stop-color="#F59E0B" />
+                            <stop offset="100%" stop-color="#D97706" />
+                          </linearGradient>
+                          <linearGradient id="bar42_2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#F59E0B" />
+                            <stop offset="50%" stop-color="#D97706" />
+                            <stop offset="100%" stop-color="#B45309" />
+                          </linearGradient>
+                          <linearGradient id="bar42_3" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#D97706" />
+                            <stop offset="50%" stop-color="#B45309" />
+                            <stop offset="100%" stop-color="#78350F" />
+                          </linearGradient>
+                        </defs>
+                        <rect x="4" y="18" width="5.5" height="11" rx="2.75" fill="url(#bar42_1)" />
+                        <ellipse cx="6.75" cy="19.5" rx="2.5" ry="1.2" fill="#FFFBEB" opacity="0.8" />
+                        <rect x="13.25" y="11" width="5.5" height="18" rx="2.75" fill="url(#bar42_2)" />
+                        <ellipse cx="16" cy="12.5" rx="2.5" ry="1.2" fill="#FEF3C7" opacity="0.8" />
+                        <rect x="22.5" y="4" width="5.5" height="25" rx="2.75" fill="url(#bar42_3)" />
+                        <ellipse cx="25.25" cy="5.5" rx="2.5" ry="1.2" fill="#FDE68A" opacity="0.8" />
                       </svg>
                     </div>
                   </div>
                 </div>
 
-                <!-- Info Tips Box (Pastel Lembut & Glassmorphism) -->
-                <div class="p-3 sm:p-3.5 rounded-2xl bg-amber-100/70 backdrop-blur-sm border border-amber-200/80 text-[11px] sm:text-xs text-amber-950 leading-relaxed mb-5 sm:mb-6 flex items-start gap-2.5 relative z-10">
-                  <span class="text-sm shrink-0">⚡</span>
-                  <span>Bersifat Final: Begitu disetor, pajak selesai tuntas dan tidak dihitung ulang di SPT Tahunan.</span>
+                <!-- Info Tips Box (3D Pastel Card dengan Ikon Lampu 3D Berpijar) -->
+                <div class="p-3 sm:p-3.5 rounded-2xl bg-gradient-to-r from-[#FFFDF7] via-[#FFFBEB] to-[#FEF3C7]/90 backdrop-blur-sm border border-amber-200/90 text-[11px] sm:text-xs text-slate-800 leading-relaxed mb-5 sm:mb-6 flex items-start gap-2.5 relative z-10 shadow-[0_4px_14px_rgba(245,158,11,0.08),inset_0_1px_1px_rgba(255,255,255,0.9)]">
+                  <span class="text-base shrink-0 filter drop-shadow-[0_2px_4px_rgba(245,158,11,0.4)]">💡</span>
+                  <span class="font-medium">Bersifat Final: Begitu disetor, pajak selesai tuntas dan tidak dihitung ulang di SPT Tahunan.</span>
                 </div>
               </div>
 
-              <!-- Tombol CTA -->
-              <button onclick="openTaxCalculator('pph-final')" class="w-full py-3 sm:py-3.5 px-5 rounded-full font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-[#78350f] to-[#451a03] hover:from-[#92400e] hover:to-[#78350f] shadow-[0_10px_20px_-5px_rgba(120,53,15,0.4)] hover:shadow-[0_14px_24px_-4px_rgba(120,53,15,0.5)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer relative z-10 mt-auto">
-                <span>Buka Kalkulator PPh Final 4(2)</span>
-                <span class="text-base leading-none">→</span>
+              <!-- Tombol CTA 3D (Pill dengan Bevel 3D, Highlight & Drop Shadow Pekat) -->
+              <button onclick="openTaxCalculator('pph-final')" class="w-full py-3.5 px-6 rounded-full font-bold text-xs sm:text-sm text-white bg-gradient-to-b from-[#92400E] via-[#78350F] to-[#451A03] border-t border-white/35 shadow-[0_10px_22px_-4px_rgba(146,64,14,0.45),inset_0_1.5px_0_rgba(255,255,255,0.35),inset_0_-2.5px_0_rgba(0,0,0,0.35)] hover:from-[#B45309] hover:to-[#5E270A] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-4px_rgba(146,64,14,0.55)] active:translate-y-0.5 active:shadow-[0_4px_10px_-2px_rgba(146,64,14,0.4)] transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer relative z-10 mt-auto">
+                <span class="tracking-wide">Buka Kalkulator PPh Final 4(2)</span>
+                <span class="text-base leading-none font-black">→</span>
               </button>
             </div>
 
           </div>
         </div>
-
-        <!-- ============================================================== -->
 
         <!-- ============================================================== -->
         <!-- VIEW B: LEMBAR KERJA KALKULATOR KHUSUS (DIBUKA SAAT DIKLIK)     -->
