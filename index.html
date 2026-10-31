@@ -853,7 +853,7 @@
             <!-- ==========================================
                  1. KARTU PPh 21 (GAJI & UPAH) - ROSE / PEACH PASTEL
                  ========================================== -->
-            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#FEE2E2] via-[#FFF1F2] to-[#FECDD3] p-5 sm:p-7 border border-rose-200/90 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between group">
+            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#FEE2E2] via-[#FFF1F2] to-[#FECDD3] p-5 sm:p-6 border border-rose-200/90 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between h-full group">
               <!-- Ornamen Latar Belakang & Mesh Glow -->
               <div class="absolute inset-0 rounded-[28px] overflow-hidden pointer-events-none">
                 <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-rose-300/30 blur-2xl"></div>
@@ -863,49 +863,55 @@
               <div class="absolute -left-3.5 top-14 w-10 h-10 rounded-full bg-white/45 backdrop-blur-md border border-white/80 shadow-[0_6px_16px_rgba(244,63,94,0.18)] pointer-events-none z-20"></div>
               <!-- Partikel Melayang (Koin Emas & Dokumen) -->
               <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute -top-3 left-6 w-6 h-6 object-contain pointer-events-none drop-shadow-md z-20">
-              <img src="assets/images/kpi/pph21-dokumen.png" alt="Floating Document" class="absolute top-20 sm:top-24 -right-2 sm:-right-3 w-9 sm:w-11 h-auto object-contain pointer-events-none drop-shadow-md z-20">
+              <img src="assets/images/kpi/pph21-dokumen.png" alt="Floating Document" class="absolute top-18 sm:top-20 -right-2 sm:-right-3 w-8 sm:w-10 h-auto object-contain pointer-events-none drop-shadow-md z-20">
 
               <div>
                 <!-- Header: 3D Illustration (Overlapping Top Edge) & 3D Badge Peraturan -->
-                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[90px] sm:min-h-[105px]">
-                  <div class="-mt-12 sm:-mt-14 -ml-2 sm:-ml-3 pointer-events-none">
-                    <img src="assets/images/kpi/pph21-hero.png" alt="PPh 21 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_12px_18px_rgba(153,27,27,0.18)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
+                <div class="flex justify-between items-start mb-2 relative z-10 h-[92px] sm:h-[105px]">
+                  <div class="-mt-11 sm:-mt-13 -ml-2 sm:-ml-3 pointer-events-none">
+                    <img src="assets/images/kpi/pph21-hero.png" alt="PPh 21 3D Illustration" class="h-28 sm:h-34 w-auto object-contain drop-shadow-[0_12px_18px_rgba(153,27,27,0.18)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
                   </div>
-                  <img src="assets/images/kpi/pph21-badge.png" alt="PP 58/2023 & PMK 168" class="h-10 sm:h-12 w-auto object-contain drop-shadow-sm shrink-0 -mt-1 sm:-mt-2 pointer-events-none">
+                  <div class="shrink-0 -mt-1 sm:-mt-1.5">
+                    <img src="assets/images/kpi/pph21-badge.png" alt="PP 58/2023 & PMK 168" class="h-9 sm:h-11 w-auto max-w-[140px] sm:max-w-[160px] object-contain drop-shadow-sm pointer-events-none">
+                  </div>
                 </div>
 
                 <!-- Judul & Deskripsi -->
-                <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-1.5 relative z-10 tracking-tight">PPh 21 (Gaji &amp; Upah)</h3>
-                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4 sm:mb-5 relative z-10 font-medium">
-                  Potongan pajak penghasilan bulanan karyawan (TER Kategori A, B, C) serta rekonsiliasi akhir tahun (Desember).
-                </p>
+                <div class="mb-3.5 relative z-10 min-h-[74px] sm:min-h-[82px] flex flex-col justify-start">
+                  <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-1 tracking-tight leading-tight">PPh 21 (Gaji &amp; Upah)</h3>
+                  <p class="text-xs sm:text-[13px] text-slate-700 leading-relaxed font-medium line-clamp-2">
+                    Potongan pajak penghasilan bulanan karyawan (TER Kategori A, B, C) serta rekonsiliasi akhir tahun (Desember).
+                  </p>
+                </div>
 
-                <!-- Grid Metrik Kunci (3D Cards Berdampingan) -->
-                <div class="grid grid-cols-2 gap-2 sm:gap-3 mb-4 sm:mb-5 relative z-10">
-                  <div class="hover:scale-[1.02] transition-transform duration-200">
-                    <img src="assets/images/kpi/pph21-metrik1.png" alt="Tarif Efektif 0% s.d. 34% (TER)" class="w-full h-auto object-contain drop-shadow-sm">
+                <!-- Grid Metrik Kunci (3D Cards Berdampingan Sejajar Rapi) -->
+                <div class="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-3.5 relative z-10 h-[88px] sm:h-[98px] items-center">
+                  <div class="h-full flex items-center justify-center hover:scale-[1.02] transition-transform duration-200">
+                    <img src="assets/images/kpi/pph21-metrik1.png" alt="Tarif Efektif 0% s.d. 34% (TER)" class="h-full max-h-[88px] sm:max-h-[98px] w-auto max-w-full object-contain drop-shadow-sm">
                   </div>
-                  <div class="hover:scale-[1.02] transition-transform duration-200">
-                    <img src="assets/images/kpi/pph21-metrik2.png" alt="Batas Bebas (PTKP) s.d. Rp 54jt - 72jt" class="w-full h-auto object-contain drop-shadow-sm">
+                  <div class="h-full flex items-center justify-center hover:scale-[1.02] transition-transform duration-200">
+                    <img src="assets/images/kpi/pph21-metrik2.png" alt="Batas Bebas (PTKP) s.d. Rp 54jt - 72jt" class="h-full max-h-[88px] sm:max-h-[98px] w-auto max-w-full object-contain drop-shadow-sm">
                   </div>
                 </div>
 
-                <!-- Info Tips Box (3D Card) -->
-                <div class="mb-5 sm:mb-6 relative z-10 hover:scale-[1.01] transition-transform duration-200">
-                  <img src="assets/images/kpi/pph21-tips.png" alt="Tips PPh 21" class="w-full h-auto object-contain drop-shadow-sm">
+                <!-- Info Tips Box (3D Card Proporsional) -->
+                <div class="h-[68px] sm:h-[76px] flex items-center justify-center mb-4 sm:mb-5 relative z-10 hover:scale-[1.01] transition-transform duration-200">
+                  <img src="assets/images/kpi/pph21-tips.png" alt="Tips PPh 21" class="h-full max-h-[68px] sm:max-h-[76px] w-auto max-w-[260px] sm:max-w-[290px] object-contain drop-shadow-sm">
                 </div>
               </div>
 
               <!-- Tombol CTA 3D -->
-              <button onclick="openTaxCalculator('pph21')" class="w-full block hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer relative z-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 rounded-full" aria-label="Buka Kalkulator PPh 21">
-                <img src="assets/images/kpi/pph21-tombol.png" alt="Buka Kalkulator PPh 21" class="w-full h-auto object-contain drop-shadow-[0_8px_16px_rgba(107,21,21,0.25)] hover:drop-shadow-[0_12px_22px_rgba(107,21,21,0.35)]">
-              </button>
+              <div class="mt-auto pt-1 w-full flex justify-center relative z-10">
+                <button onclick="openTaxCalculator('pph21')" class="w-full max-w-[255px] sm:max-w-[280px] block hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 cursor-pointer focus:outline-none rounded-full" aria-label="Buka Kalkulator PPh 21">
+                  <img src="assets/images/kpi/pph21-tombol.png" alt="Buka Kalkulator PPh 21" class="w-full h-auto max-h-[50px] sm:max-h-[56px] object-contain mx-auto drop-shadow-[0_8px_16px_rgba(107,21,21,0.22)] hover:drop-shadow-[0_12px_22px_rgba(107,21,21,0.32)]">
+                </button>
+              </div>
             </div>
 
             <!-- ==========================================
                  2. KARTU PPN 11% & WAPU - EMERALD / MINT PASTEL
                  ========================================== -->
-            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#D1FAE5] via-[#ECFDF5] to-[#A7F3D0] p-5 sm:p-7 border border-emerald-200/90 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between group">
+            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#D1FAE5] via-[#ECFDF5] to-[#A7F3D0] p-5 sm:p-6 border border-emerald-200/90 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between h-full group">
               <!-- Ornamen Latar Belakang & Mesh Glow -->
               <div class="absolute inset-0 rounded-[28px] overflow-hidden pointer-events-none">
                 <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-emerald-300/30 blur-2xl"></div>
@@ -915,49 +921,55 @@
               <div class="absolute -left-3.5 top-14 w-10 h-10 rounded-full bg-white/45 backdrop-blur-md border border-white/80 shadow-[0_6px_16px_rgba(16,185,129,0.18)] pointer-events-none z-20"></div>
               <!-- Partikel Melayang (Koin Emas & Dokumen) -->
               <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute -top-3 left-6 w-6 h-6 object-contain pointer-events-none drop-shadow-md z-20">
-              <img src="assets/images/kpi/ppn11-dokumen.png" alt="Floating Document" class="absolute top-20 sm:top-24 -right-2 sm:-right-3 w-9 sm:w-11 h-auto object-contain pointer-events-none drop-shadow-md z-20">
+              <img src="assets/images/kpi/ppn11-dokumen.png" alt="Floating Document" class="absolute top-18 sm:top-20 -right-2 sm:-right-3 w-8 sm:w-10 h-auto object-contain pointer-events-none drop-shadow-md z-20">
 
               <div>
                 <!-- Header: 3D Illustration & 3D Badge Peraturan -->
-                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[90px] sm:min-h-[105px]">
-                  <div class="-mt-12 sm:-mt-14 -ml-2 sm:-ml-3 pointer-events-none">
-                    <img src="assets/images/kpi/ppn11-hero.png" alt="PPN 11% 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_12px_18px_rgba(5,150,105,0.18)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
+                <div class="flex justify-between items-start mb-2 relative z-10 h-[92px] sm:h-[105px]">
+                  <div class="-mt-11 sm:-mt-13 -ml-2 sm:-ml-3 pointer-events-none">
+                    <img src="assets/images/kpi/ppn11-hero.png" alt="PPN 11% 3D Illustration" class="h-28 sm:h-34 w-auto object-contain drop-shadow-[0_12px_18px_rgba(5,150,105,0.18)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
                   </div>
-                  <img src="assets/images/kpi/ppn11-badge.png" alt="UU HPP 11%" class="h-10 sm:h-12 w-auto object-contain drop-shadow-sm shrink-0 -mt-1 sm:-mt-2 pointer-events-none">
+                  <div class="shrink-0 -mt-1 sm:-mt-1.5">
+                    <img src="assets/images/kpi/ppn11-badge.png" alt="UU HPP 11%" class="h-9 sm:h-11 w-auto max-w-[140px] sm:max-w-[160px] object-contain drop-shadow-sm pointer-events-none">
+                  </div>
                 </div>
 
                 <!-- Judul & Deskripsi -->
-                <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-1.5 relative z-10 tracking-tight">PPN 11% &amp; WAPU</h3>
-                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4 sm:mb-5 relative z-10 font-medium">
-                  Pajak Pertambahan Nilai atas penjualan barang/jasa, harga sebelum pajak (Exclude), termasuk pajak (Include), dan WAPU.
-                </p>
+                <div class="mb-3.5 relative z-10 min-h-[74px] sm:min-h-[82px] flex flex-col justify-start">
+                  <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-1 tracking-tight leading-tight">PPN 11% &amp; WAPU</h3>
+                  <p class="text-xs sm:text-[13px] text-slate-700 leading-relaxed font-medium line-clamp-2">
+                    Pajak Pertambahan Nilai atas penjualan barang/jasa, harga sebelum pajak (Exclude), termasuk pajak (Include), dan WAPU.
+                  </p>
+                </div>
 
-                <!-- Grid Metrik Kunci (3D Cards Berdampingan) -->
-                <div class="grid grid-cols-2 gap-2 sm:gap-3 mb-4 sm:mb-5 relative z-10">
-                  <div class="hover:scale-[1.02] transition-transform duration-200">
-                    <img src="assets/images/kpi/ppn11-metrik1.png" alt="Tarif Umum 11% DPP Penuh" class="w-full h-auto object-contain drop-shadow-sm">
+                <!-- Grid Metrik Kunci (3D Cards Berdampingan Sejajar Rapi) -->
+                <div class="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-3.5 relative z-10 h-[88px] sm:h-[98px] items-center">
+                  <div class="h-full flex items-center justify-center hover:scale-[1.02] transition-transform duration-200">
+                    <img src="assets/images/kpi/ppn11-metrik1.png" alt="Tarif Umum 11% DPP Penuh" class="h-full max-h-[88px] sm:max-h-[98px] w-auto max-w-full object-contain drop-shadow-sm">
                   </div>
-                  <div class="hover:scale-[1.02] transition-transform duration-200">
-                    <img src="assets/images/kpi/ppn11-metrik2.png" alt="Besaran Tertentu 1,1% (PMK 71)" class="w-full h-auto object-contain drop-shadow-sm">
+                  <div class="h-full flex items-center justify-center hover:scale-[1.02] transition-transform duration-200">
+                    <img src="assets/images/kpi/ppn11-metrik2.png" alt="Besaran Tertentu 1,1% (PMK 71)" class="h-full max-h-[88px] sm:max-h-[98px] w-auto max-w-full object-contain drop-shadow-sm">
                   </div>
                 </div>
 
-                <!-- Info Tips Box (3D Card) -->
-                <div class="mb-5 sm:mb-6 relative z-10 hover:scale-[1.01] transition-transform duration-200">
-                  <img src="assets/images/kpi/ppn11-tips.png" alt="Tips PPN 11%" class="w-full h-auto object-contain drop-shadow-sm">
+                <!-- Info Tips Box (3D Card Proporsional) -->
+                <div class="h-[68px] sm:h-[76px] flex items-center justify-center mb-4 sm:mb-5 relative z-10 hover:scale-[1.01] transition-transform duration-200">
+                  <img src="assets/images/kpi/ppn11-tips.png" alt="Tips PPN 11%" class="h-full max-h-[68px] sm:max-h-[76px] w-auto max-w-[260px] sm:max-w-[290px] object-contain drop-shadow-sm">
                 </div>
               </div>
 
               <!-- Tombol CTA 3D -->
-              <button onclick="openTaxCalculator('ppn')" class="w-full block hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer relative z-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 rounded-full" aria-label="Buka Kalkulator PPN 11">
-                <img src="assets/images/kpi/ppn11-tombol.png" alt="Buka Kalkulator PPN 11" class="w-full h-auto object-contain drop-shadow-[0_8px_16px_rgba(6,78,59,0.25)] hover:drop-shadow-[0_12px_22px_rgba(6,78,59,0.35)]">
-              </button>
+              <div class="mt-auto pt-1 w-full flex justify-center relative z-10">
+                <button onclick="openTaxCalculator('ppn')" class="w-full max-w-[255px] sm:max-w-[280px] block hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 cursor-pointer focus:outline-none rounded-full" aria-label="Buka Kalkulator PPN 11">
+                  <img src="assets/images/kpi/ppn11-tombol.png" alt="Buka Kalkulator PPN 11" class="w-full h-auto max-h-[50px] sm:max-h-[56px] object-contain mx-auto drop-shadow-[0_8px_16px_rgba(6,78,59,0.22)] hover:drop-shadow-[0_12px_22px_rgba(6,78,59,0.32)]">
+                </button>
+              </div>
             </div>
 
             <!-- ==========================================
                  3. KARTU PPh 23 (JASA & SEWA) - BLUE / SLATE PASTEL
                  ========================================== -->
-            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#E0E7FF] via-[#EEF2FF] to-[#C7D2FE] p-5 sm:p-7 border border-indigo-200/90 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between group">
+            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#E0E7FF] via-[#EEF2FF] to-[#C7D2FE] p-5 sm:p-6 border border-indigo-200/90 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between h-full group">
               <!-- Ornamen Latar Belakang & Mesh Glow -->
               <div class="absolute inset-0 rounded-[28px] overflow-hidden pointer-events-none">
                 <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-indigo-300/30 blur-2xl"></div>
@@ -967,49 +979,55 @@
               <div class="absolute -left-3.5 top-14 w-10 h-10 rounded-full bg-white/45 backdrop-blur-md border border-white/80 shadow-[0_6px_16px_rgba(99,102,241,0.18)] pointer-events-none z-20"></div>
               <!-- Partikel Melayang (Koin Emas & Dokumen) -->
               <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute -top-3 left-6 w-6 h-6 object-contain pointer-events-none drop-shadow-md z-20">
-              <img src="assets/images/kpi/pph23-dokumen.png" alt="Floating Document" class="absolute top-20 sm:top-24 -right-2 sm:-right-3 w-9 sm:w-11 h-auto object-contain pointer-events-none drop-shadow-md z-20">
+              <img src="assets/images/kpi/pph23-dokumen.png" alt="Floating Document" class="absolute top-18 sm:top-20 -right-2 sm:-right-3 w-8 sm:w-10 h-auto object-contain pointer-events-none drop-shadow-md z-20">
 
               <div>
                 <!-- Header: 3D Illustration & 3D Badge Peraturan -->
-                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[90px] sm:min-h-[105px]">
-                  <div class="-mt-12 sm:-mt-14 -ml-2 sm:-ml-3 pointer-events-none">
-                    <img src="assets/images/kpi/pph23-hero.png" alt="PPh 23 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_12px_18px_rgba(30,58,138,0.18)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
+                <div class="flex justify-between items-start mb-2 relative z-10 h-[92px] sm:h-[105px]">
+                  <div class="-mt-11 sm:-mt-13 -ml-2 sm:-ml-3 pointer-events-none">
+                    <img src="assets/images/kpi/pph23-hero.png" alt="PPh 23 3D Illustration" class="h-28 sm:h-34 w-auto object-contain drop-shadow-[0_12px_18px_rgba(30,58,138,0.18)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
                   </div>
-                  <img src="assets/images/kpi/pph23-badge.png" alt="PMK 141/2015" class="h-10 sm:h-12 w-auto object-contain drop-shadow-sm shrink-0 -mt-1 sm:-mt-2 pointer-events-none">
+                  <div class="shrink-0 -mt-1 sm:-mt-1.5">
+                    <img src="assets/images/kpi/pph23-badge.png" alt="PMK 141/2015" class="h-9 sm:h-11 w-auto max-w-[140px] sm:max-w-[160px] object-contain drop-shadow-sm pointer-events-none">
+                  </div>
                 </div>
 
                 <!-- Judul & Deskripsi -->
-                <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-1.5 relative z-10 tracking-tight">PPh 23 (Jasa &amp; Sewa)</h3>
-                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4 sm:mb-5 relative z-10 font-medium">
-                  Pemotongan pajak atas imbalan 62 jenis jasa teknik/IT/konsultan, sewa kendaraan/mesin, bunga pinjaman, dan dividen.
-                </p>
+                <div class="mb-3.5 relative z-10 min-h-[74px] sm:min-h-[82px] flex flex-col justify-start">
+                  <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-1 tracking-tight leading-tight">PPh 23 (Jasa &amp; Sewa)</h3>
+                  <p class="text-xs sm:text-[13px] text-slate-700 leading-relaxed font-medium line-clamp-2">
+                    Pemotongan pajak atas imbalan 62 jenis jasa teknik/IT/konsultan, sewa kendaraan/mesin, bunga pinjaman, dan dividen.
+                  </p>
+                </div>
 
-                <!-- Grid Metrik Kunci (3D Cards Berdampingan) -->
-                <div class="grid grid-cols-2 gap-2 sm:gap-3 mb-4 sm:mb-5 relative z-10">
-                  <div class="hover:scale-[1.02] transition-transform duration-200">
-                    <img src="assets/images/kpi/pph23-metrik1.png" alt="Jasa & Sewa 2% dari Bruto" class="w-full h-auto object-contain drop-shadow-sm">
+                <!-- Grid Metrik Kunci (3D Cards Berdampingan Sejajar Rapi) -->
+                <div class="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-3.5 relative z-10 h-[88px] sm:h-[98px] items-center">
+                  <div class="h-full flex items-center justify-center hover:scale-[1.02] transition-transform duration-200">
+                    <img src="assets/images/kpi/pph23-metrik1.png" alt="Jasa & Sewa 2% dari Bruto" class="h-full max-h-[88px] sm:max-h-[98px] w-auto max-w-full object-contain drop-shadow-sm">
                   </div>
-                  <div class="hover:scale-[1.02] transition-transform duration-200">
-                    <img src="assets/images/kpi/pph23-metrik2.png" alt="Non-NPWP +100% (2x Lipat)" class="w-full h-auto object-contain drop-shadow-sm">
+                  <div class="h-full flex items-center justify-center hover:scale-[1.02] transition-transform duration-200">
+                    <img src="assets/images/kpi/pph23-metrik2.png" alt="Non-NPWP +100% (2x Lipat)" class="h-full max-h-[88px] sm:max-h-[98px] w-auto max-w-full object-contain drop-shadow-sm">
                   </div>
                 </div>
 
-                <!-- Info Tips Box (3D Card) -->
-                <div class="mb-5 sm:mb-6 relative z-10 hover:scale-[1.01] transition-transform duration-200">
-                  <img src="assets/images/kpi/pph23-tips.png" alt="Tips PPh 23" class="w-full h-auto object-contain drop-shadow-sm">
+                <!-- Info Tips Box (3D Card Proporsional) -->
+                <div class="h-[68px] sm:h-[76px] flex items-center justify-center mb-4 sm:mb-5 relative z-10 hover:scale-[1.01] transition-transform duration-200">
+                  <img src="assets/images/kpi/pph23-tips.png" alt="Tips PPh 23" class="h-full max-h-[68px] sm:max-h-[76px] w-auto max-w-[260px] sm:max-w-[290px] object-contain drop-shadow-sm">
                 </div>
               </div>
 
               <!-- Tombol CTA 3D -->
-              <button onclick="openTaxCalculator('pph23')" class="w-full block hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer relative z-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 rounded-full" aria-label="Buka Kalkulator PPh 23">
-                <img src="assets/images/kpi/pph23-tombol.png" alt="Buka Kalkulator PPh 23" class="w-full h-auto object-contain drop-shadow-[0_8px_16px_rgba(30,58,138,0.25)] hover:drop-shadow-[0_12px_22px_rgba(30,58,138,0.35)]">
-              </button>
+              <div class="mt-auto pt-1 w-full flex justify-center relative z-10">
+                <button onclick="openTaxCalculator('pph23')" class="w-full max-w-[255px] sm:max-w-[280px] block hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 cursor-pointer focus:outline-none rounded-full" aria-label="Buka Kalkulator PPh 23">
+                  <img src="assets/images/kpi/pph23-tombol.png" alt="Buka Kalkulator PPh 23" class="w-full h-auto max-h-[50px] sm:max-h-[56px] object-contain mx-auto drop-shadow-[0_8px_16px_rgba(30,58,138,0.22)] hover:drop-shadow-[0_12px_22px_rgba(30,58,138,0.32)]">
+                </button>
+              </div>
             </div>
 
             <!-- ==========================================
                  4. KARTU PPh 25 (ANGSURAN PAJAK) - LAVENDER / PURPLE PASTEL
                  ========================================== -->
-            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#EDE9FE] via-[#F5F3FF] to-[#DDD6FE] p-5 sm:p-7 border border-purple-200/90 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between group">
+            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#EDE9FE] via-[#F5F3FF] to-[#DDD6FE] p-5 sm:p-6 border border-purple-200/90 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between h-full group">
               <!-- Ornamen Latar Belakang & Mesh Glow -->
               <div class="absolute inset-0 rounded-[28px] overflow-hidden pointer-events-none">
                 <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-purple-300/30 blur-2xl"></div>
@@ -1019,49 +1037,55 @@
               <div class="absolute -left-3.5 top-14 w-10 h-10 rounded-full bg-white/45 backdrop-blur-md border border-white/80 shadow-[0_6px_16px_rgba(168,85,247,0.18)] pointer-events-none z-20"></div>
               <!-- Partikel Melayang (Koin Emas & Dokumen) -->
               <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute -top-3 left-6 w-6 h-6 object-contain pointer-events-none drop-shadow-md z-20">
-              <img src="assets/images/kpi/pph25-dokumen.png" alt="Floating Document" class="absolute top-20 sm:top-24 -right-2 sm:-right-3 w-9 sm:w-11 h-auto object-contain pointer-events-none drop-shadow-md z-20">
+              <img src="assets/images/kpi/pph25-dokumen.png" alt="Floating Document" class="absolute top-18 sm:top-20 -right-2 sm:-right-3 w-8 sm:w-10 h-auto object-contain pointer-events-none drop-shadow-md z-20">
 
               <div>
                 <!-- Header: 3D Illustration & 3D Badge Peraturan -->
-                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[90px] sm:min-h-[105px]">
-                  <div class="-mt-12 sm:-mt-14 -ml-2 sm:-ml-3 pointer-events-none">
-                    <img src="assets/images/kpi/pph25-hero.png" alt="PPh 25 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_12px_18px_rgba(126,34,206,0.18)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
+                <div class="flex justify-between items-start mb-2 relative z-10 h-[92px] sm:h-[105px]">
+                  <div class="-mt-11 sm:-mt-13 -ml-2 sm:-ml-3 pointer-events-none">
+                    <img src="assets/images/kpi/pph25-hero.png" alt="PPh 25 3D Illustration" class="h-28 sm:h-34 w-auto object-contain drop-shadow-[0_12px_18px_rgba(126,34,206,0.18)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
                   </div>
-                  <img src="assets/images/kpi/pph25-badge.png" alt="Pasal 25 UU PPh" class="h-10 sm:h-12 w-auto object-contain drop-shadow-sm shrink-0 -mt-1 sm:-mt-2 pointer-events-none">
+                  <div class="shrink-0 -mt-1 sm:-mt-1.5">
+                    <img src="assets/images/kpi/pph25-badge.png" alt="Pasal 25 UU PPh" class="h-9 sm:h-11 w-auto max-w-[140px] sm:max-w-[160px] object-contain drop-shadow-sm pointer-events-none">
+                  </div>
                 </div>
 
                 <!-- Judul & Deskripsi -->
-                <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-1.5 relative z-10 tracking-tight">PPh 25 (Angsuran Pajak)</h3>
-                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4 sm:mb-5 relative z-10 font-medium">
-                  Cicilan pajak bulanan bagi perusahaan (Badan), orang pribadi usaha, dan pedagang retail (OPPT) agar tidak kaget di akhir tahun.
-                </p>
+                <div class="mb-3.5 relative z-10 min-h-[74px] sm:min-h-[82px] flex flex-col justify-start">
+                  <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-1 tracking-tight leading-tight">PPh 25 (Angsuran Pajak)</h3>
+                  <p class="text-xs sm:text-[13px] text-slate-700 leading-relaxed font-medium line-clamp-2">
+                    Cicilan pajak bulanan bagi perusahaan (Badan), orang pribadi usaha, dan pedagang retail (OPPT) agar tidak kaget di akhir tahun.
+                  </p>
+                </div>
 
-                <!-- Grid Metrik Kunci (3D Cards Berdampingan) -->
-                <div class="grid grid-cols-2 gap-2 sm:gap-3 mb-4 sm:mb-5 relative z-10">
-                  <div class="hover:scale-[1.02] transition-transform duration-200">
-                    <img src="assets/images/kpi/pph25-metrik1.png" alt="Metode Cicilan SPT Lalu / 12" class="w-full h-auto object-contain drop-shadow-sm">
+                <!-- Grid Metrik Kunci (3D Cards Berdampingan Sejajar Rapi) -->
+                <div class="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-3.5 relative z-10 h-[88px] sm:h-[98px] items-center">
+                  <div class="h-full flex items-center justify-center hover:scale-[1.02] transition-transform duration-200">
+                    <img src="assets/images/kpi/pph25-metrik1.png" alt="Metode Cicilan SPT Lalu / 12" class="h-full max-h-[88px] sm:max-h-[98px] w-auto max-w-full object-contain drop-shadow-sm">
                   </div>
-                  <div class="hover:scale-[1.02] transition-transform duration-200">
-                    <img src="assets/images/kpi/pph25-metrik2.png" alt="Tarif Toko (OPPT) 0,75% Omzet" class="w-full h-auto object-contain drop-shadow-sm">
+                  <div class="h-full flex items-center justify-center hover:scale-[1.02] transition-transform duration-200">
+                    <img src="assets/images/kpi/pph25-metrik2.png" alt="Tarif Toko (OPPT) 0,75% Omzet" class="h-full max-h-[88px] sm:max-h-[98px] w-auto max-w-full object-contain drop-shadow-sm">
                   </div>
                 </div>
 
-                <!-- Info Tips Box (3D Card) -->
-                <div class="mb-5 sm:mb-6 relative z-10 hover:scale-[1.01] transition-transform duration-200">
-                  <img src="assets/images/kpi/pph25-tips.png" alt="Tips PPh 25" class="w-full h-auto object-contain drop-shadow-sm">
+                <!-- Info Tips Box (3D Card Proporsional) -->
+                <div class="h-[68px] sm:h-[76px] flex items-center justify-center mb-4 sm:mb-5 relative z-10 hover:scale-[1.01] transition-transform duration-200">
+                  <img src="assets/images/kpi/pph25-tips.png" alt="Tips PPh 25" class="h-full max-h-[68px] sm:max-h-[76px] w-auto max-w-[260px] sm:max-w-[290px] object-contain drop-shadow-sm">
                 </div>
               </div>
 
               <!-- Tombol CTA 3D -->
-              <button onclick="openTaxCalculator('pph25')" class="w-full block hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer relative z-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 rounded-full" aria-label="Buka Kalkulator PPh 25">
-                <img src="assets/images/kpi/pph25-tombol.png" alt="Buka Kalkulator PPh 25" class="w-full h-auto object-contain drop-shadow-[0_8px_16px_rgba(76,29,149,0.25)] hover:drop-shadow-[0_12px_22px_rgba(76,29,149,0.35)]">
-              </button>
+              <div class="mt-auto pt-1 w-full flex justify-center relative z-10">
+                <button onclick="openTaxCalculator('pph25')" class="w-full max-w-[255px] sm:max-w-[280px] block hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 cursor-pointer focus:outline-none rounded-full" aria-label="Buka Kalkulator PPh 25">
+                  <img src="assets/images/kpi/pph25-tombol.png" alt="Buka Kalkulator PPh 25" class="w-full h-auto max-h-[50px] sm:max-h-[56px] object-contain mx-auto drop-shadow-[0_8px_16px_rgba(76,29,149,0.22)] hover:drop-shadow-[0_12px_22px_rgba(76,29,149,0.32)]">
+                </button>
+              </div>
             </div>
 
             <!-- ==========================================
                  5. KARTU PPh FINAL UMKM 0,5% - GREEN TEA / PISTACHIO PASTEL
                  ========================================== -->
-            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#DCFCE7] via-[#F0FDF4] to-[#BBF7D0] p-5 sm:p-7 border border-green-200/90 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between group">
+            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#DCFCE7] via-[#F0FDF4] to-[#BBF7D0] p-5 sm:p-6 border border-green-200/90 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between h-full group">
               <!-- Ornamen Latar Belakang & Mesh Glow -->
               <div class="absolute inset-0 rounded-[28px] overflow-hidden pointer-events-none">
                 <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-green-300/30 blur-2xl"></div>
@@ -1071,49 +1095,55 @@
               <div class="absolute -left-3.5 top-14 w-10 h-10 rounded-full bg-white/45 backdrop-blur-md border border-white/80 shadow-[0_6px_16px_rgba(34,197,94,0.18)] pointer-events-none z-20"></div>
               <!-- Partikel Melayang (Koin Emas & Dokumen) -->
               <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute -top-3 left-6 w-6 h-6 object-contain pointer-events-none drop-shadow-md z-20">
-              <img src="assets/images/kpi/umkm-dokumen.png" alt="Floating Document" class="absolute top-20 sm:top-24 -right-2 sm:-right-3 w-9 sm:w-11 h-auto object-contain pointer-events-none drop-shadow-md z-20">
+              <img src="assets/images/kpi/umkm-dokumen.png" alt="Floating Document" class="absolute top-18 sm:top-20 -right-2 sm:-right-3 w-8 sm:w-10 h-auto object-contain pointer-events-none drop-shadow-md z-20">
 
               <div>
                 <!-- Header: 3D Illustration & 3D Badge Peraturan -->
-                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[90px] sm:min-h-[105px]">
-                  <div class="-mt-12 sm:-mt-14 -ml-2 sm:-ml-3 pointer-events-none">
-                    <img src="assets/images/kpi/umkm-hero.png" alt="PPh UMKM 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_12px_18px_rgba(5,150,105,0.18)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
+                <div class="flex justify-between items-start mb-2 relative z-10 h-[92px] sm:h-[105px]">
+                  <div class="-mt-11 sm:-mt-13 -ml-2 sm:-ml-3 pointer-events-none">
+                    <img src="assets/images/kpi/umkm-hero.png" alt="PPh UMKM 3D Illustration" class="h-28 sm:h-34 w-auto object-contain drop-shadow-[0_12px_18px_rgba(5,150,105,0.18)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
                   </div>
-                  <img src="assets/images/kpi/umkm-badge.png" alt="PP 55/2022 Insentif" class="h-10 sm:h-12 w-auto object-contain drop-shadow-sm shrink-0 -mt-1 sm:-mt-2 pointer-events-none">
+                  <div class="shrink-0 -mt-1 sm:-mt-1.5">
+                    <img src="assets/images/kpi/umkm-badge.png" alt="PP 55/2022 Insentif" class="h-9 sm:h-11 w-auto max-w-[140px] sm:max-w-[160px] object-contain drop-shadow-sm pointer-events-none">
+                  </div>
                 </div>
 
                 <!-- Judul & Deskripsi -->
-                <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-1.5 relative z-10 tracking-tight">PPh Final UMKM 0,5%</h3>
-                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4 sm:mb-5 relative z-10 font-medium">
-                  Skema pajak super ringan untuk pengusaha kecil dan UMKM. Lengkap dengan simulasi 12 bulan kumulatif Jan-Des.
-                </p>
+                <div class="mb-3.5 relative z-10 min-h-[74px] sm:min-h-[82px] flex flex-col justify-start">
+                  <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-1 tracking-tight leading-tight">PPh Final UMKM 0,5%</h3>
+                  <p class="text-xs sm:text-[13px] text-slate-700 leading-relaxed font-medium line-clamp-2">
+                    Skema pajak super ringan untuk pengusaha kecil dan UMKM. Lengkap dengan simulasi 12 bulan kumulatif Jan-Des.
+                  </p>
+                </div>
 
-                <!-- Grid Metrik Kunci (3D Cards Berdampingan) -->
-                <div class="grid grid-cols-2 gap-2 sm:gap-3 mb-4 sm:mb-5 relative z-10">
-                  <div class="hover:scale-[1.02] transition-transform duration-200">
-                    <img src="assets/images/kpi/umkm-metrik1.png" alt="Tarif Pajak 0,5% dari Omzet" class="w-full h-auto object-contain drop-shadow-sm">
+                <!-- Grid Metrik Kunci (3D Cards Berdampingan Sejajar Rapi) -->
+                <div class="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-3.5 relative z-10 h-[88px] sm:h-[98px] items-center">
+                  <div class="h-full flex items-center justify-center hover:scale-[1.02] transition-transform duration-200">
+                    <img src="assets/images/kpi/umkm-metrik1.png" alt="Tarif Pajak 0,5% dari Omzet" class="h-full max-h-[88px] sm:max-h-[98px] w-auto max-w-full object-contain drop-shadow-sm">
                   </div>
-                  <div class="hover:scale-[1.02] transition-transform duration-200">
-                    <img src="assets/images/kpi/umkm-metrik2.png" alt="Bebas Pajak OP s.d. Rp 500 Juta (Rp 0)" class="w-full h-auto object-contain drop-shadow-sm">
+                  <div class="h-full flex items-center justify-center hover:scale-[1.02] transition-transform duration-200">
+                    <img src="assets/images/kpi/umkm-metrik2.png" alt="Bebas Pajak OP s.d. Rp 500 Juta (Rp 0)" class="h-full max-h-[88px] sm:max-h-[98px] w-auto max-w-full object-contain drop-shadow-sm">
                   </div>
                 </div>
 
-                <!-- Info Tips Box (3D Card) -->
-                <div class="mb-5 sm:mb-6 relative z-10 hover:scale-[1.01] transition-transform duration-200">
-                  <img src="assets/images/kpi/umkm-tips.png" alt="Tips PPh UMKM" class="w-full h-auto object-contain drop-shadow-sm">
+                <!-- Info Tips Box (3D Card Proporsional) -->
+                <div class="h-[68px] sm:h-[76px] flex items-center justify-center mb-4 sm:mb-5 relative z-10 hover:scale-[1.01] transition-transform duration-200">
+                  <img src="assets/images/kpi/umkm-tips.png" alt="Tips PPh UMKM" class="h-full max-h-[68px] sm:max-h-[76px] w-auto max-w-[260px] sm:max-w-[290px] object-contain drop-shadow-sm">
                 </div>
               </div>
 
               <!-- Tombol CTA 3D -->
-              <button onclick="openTaxCalculator('umkm')" class="w-full block hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer relative z-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 rounded-full" aria-label="Buka Kalkulator UMKM">
-                <img src="assets/images/kpi/umkm-tombol.png" alt="Buka Kalkulator UMKM" class="w-full h-auto object-contain drop-shadow-[0_8px_16px_rgba(6,78,59,0.25)] hover:drop-shadow-[0_12px_22px_rgba(6,78,59,0.35)]">
-              </button>
+              <div class="mt-auto pt-1 w-full flex justify-center relative z-10">
+                <button onclick="openTaxCalculator('umkm')" class="w-full max-w-[255px] sm:max-w-[280px] block hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 cursor-pointer focus:outline-none rounded-full" aria-label="Buka Kalkulator UMKM">
+                  <img src="assets/images/kpi/umkm-tombol.png" alt="Buka Kalkulator UMKM" class="w-full h-auto max-h-[50px] sm:max-h-[56px] object-contain mx-auto drop-shadow-[0_8px_16px_rgba(6,78,59,0.22)] hover:drop-shadow-[0_12px_22px_rgba(6,78,59,0.32)]">
+                </button>
+              </div>
             </div>
 
             <!-- ==========================================
                  6. KARTU PPh FINAL 4(2) PROPERTI - CREAM / WARM ORANGE PASTEL
                  ========================================== -->
-            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#FEF3C7] via-[#FFFBEB] to-[#FED7AA] p-5 sm:p-7 border border-amber-200/90 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between group">
+            <div class="kpi-card-3d relative rounded-[28px] bg-gradient-to-br from-[#FEF3C7] via-[#FFFBEB] to-[#FED7AA] p-5 sm:p-6 border border-amber-200/90 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.06),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:scale-[1.01] hover:shadow-[0_20px_30px_-10px_rgba(0,0,0,0.12)] transition-all duration-300 flex flex-col justify-between h-full group">
               <!-- Ornamen Latar Belakang & Mesh Glow -->
               <div class="absolute inset-0 rounded-[28px] overflow-hidden pointer-events-none">
                 <div class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-amber-300/30 blur-2xl"></div>
@@ -1123,43 +1153,49 @@
               <div class="absolute -left-3.5 top-14 w-10 h-10 rounded-full bg-white/45 backdrop-blur-md border border-white/80 shadow-[0_6px_16px_rgba(245,158,11,0.18)] pointer-events-none z-20"></div>
               <!-- Partikel Melayang (Koin Emas & Dokumen) -->
               <img src="assets/images/kpi/kpi-gold-coin.png" alt="Gold Coin" class="absolute -top-3 left-6 w-6 h-6 object-contain pointer-events-none drop-shadow-md z-20">
-              <img src="assets/images/kpi/pph42-dokumen.png" alt="Floating Document" class="absolute top-20 sm:top-24 -right-2 sm:-right-3 w-9 sm:w-11 h-auto object-contain pointer-events-none drop-shadow-md z-20">
+              <img src="assets/images/kpi/pph42-dokumen.png" alt="Floating Document" class="absolute top-18 sm:top-20 -right-2 sm:-right-3 w-8 sm:w-10 h-auto object-contain pointer-events-none drop-shadow-md z-20">
 
               <div>
                 <!-- Header: 3D Illustration & 3D Badge Peraturan -->
-                <div class="flex justify-between items-start mb-2 sm:mb-3 relative z-10 min-h-[90px] sm:min-h-[105px]">
-                  <div class="-mt-12 sm:-mt-14 -ml-2 sm:-ml-3 pointer-events-none">
-                    <img src="assets/images/kpi/pph42-hero.png" alt="PPh Final 4(2) 3D Illustration" class="h-28 sm:h-36 w-auto object-contain drop-shadow-[0_12px_18px_rgba(180,83,9,0.18)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
+                <div class="flex justify-between items-start mb-2 relative z-10 h-[92px] sm:h-[105px]">
+                  <div class="-mt-11 sm:-mt-13 -ml-2 sm:-ml-3 pointer-events-none">
+                    <img src="assets/images/kpi/pph42-hero.png" alt="PPh Final 4(2) 3D Illustration" class="h-28 sm:h-34 w-auto object-contain drop-shadow-[0_12px_18px_rgba(180,83,9,0.18)] group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300">
                   </div>
-                  <img src="assets/images/kpi/pph42-badge.png" alt="Pasal 4 Ayat (2)" class="h-10 sm:h-12 w-auto object-contain drop-shadow-sm shrink-0 -mt-1 sm:-mt-2 pointer-events-none">
+                  <div class="shrink-0 -mt-1 sm:-mt-1.5">
+                    <img src="assets/images/kpi/pph42-badge.png" alt="Pasal 4 Ayat (2)" class="h-9 sm:h-11 w-auto max-w-[140px] sm:max-w-[160px] object-contain drop-shadow-sm pointer-events-none">
+                  </div>
                 </div>
 
                 <!-- Judul & Deskripsi -->
-                <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-1.5 relative z-10 tracking-tight">PPh Final 4(2) Properti</h3>
-                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4 sm:mb-5 relative z-10 font-medium">
-                  Pajak final yang lunas seketika atas sewa tanah/bangunan, jual-beli properti, jasa konstruksi (PP 9/2022), dan undian.
-                </p>
+                <div class="mb-3.5 relative z-10 min-h-[74px] sm:min-h-[82px] flex flex-col justify-start">
+                  <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-1 tracking-tight leading-tight">PPh Final 4(2) Properti</h3>
+                  <p class="text-xs sm:text-[13px] text-slate-700 leading-relaxed font-medium line-clamp-2">
+                    Pajak final yang lunas seketika atas sewa tanah/bangunan, jual-beli properti, jasa konstruksi (PP 9/2022), dan undian.
+                  </p>
+                </div>
 
-                <!-- Grid Metrik Kunci (3D Cards Berdampingan) -->
-                <div class="grid grid-cols-2 gap-2 sm:gap-3 mb-4 sm:mb-5 relative z-10">
-                  <div class="hover:scale-[1.02] transition-transform duration-200">
-                    <img src="assets/images/kpi/pph42-metrik1.png" alt="Sewa Properti 10% dari Nilai Sewa" class="w-full h-auto object-contain drop-shadow-sm">
+                <!-- Grid Metrik Kunci (3D Cards Berdampingan Sejajar Rapi) -->
+                <div class="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-3.5 relative z-10 h-[88px] sm:h-[98px] items-center">
+                  <div class="h-full flex items-center justify-center hover:scale-[1.02] transition-transform duration-200">
+                    <img src="assets/images/kpi/pph42-metrik1.png" alt="Sewa Properti 10% dari Nilai Sewa" class="h-full max-h-[88px] sm:max-h-[98px] w-auto max-w-full object-contain drop-shadow-sm">
                   </div>
-                  <div class="hover:scale-[1.02] transition-transform duration-200">
-                    <img src="assets/images/kpi/pph42-metrik2.png" alt="Jual Beli Rumah 2,5% Transaksi/NJOP" class="w-full h-auto object-contain drop-shadow-sm">
+                  <div class="h-full flex items-center justify-center hover:scale-[1.02] transition-transform duration-200">
+                    <img src="assets/images/kpi/pph42-metrik2.png" alt="Jual Beli Rumah 2,5% Transaksi/NJOP" class="h-full max-h-[88px] sm:max-h-[98px] w-auto max-w-full object-contain drop-shadow-sm">
                   </div>
                 </div>
 
-                <!-- Info Tips Box (3D Card) -->
-                <div class="mb-5 sm:mb-6 relative z-10 hover:scale-[1.01] transition-transform duration-200">
-                  <img src="assets/images/kpi/pph42-tips.png" alt="Tips PPh Final 4(2)" class="w-full h-auto object-contain drop-shadow-sm">
+                <!-- Info Tips Box (3D Card Proporsional) -->
+                <div class="h-[68px] sm:h-[76px] flex items-center justify-center mb-4 sm:mb-5 relative z-10 hover:scale-[1.01] transition-transform duration-200">
+                  <img src="assets/images/kpi/pph42-tips.png" alt="Tips PPh Final 4(2)" class="h-full max-h-[68px] sm:max-h-[76px] w-auto max-w-[260px] sm:max-w-[290px] object-contain drop-shadow-sm">
                 </div>
               </div>
 
               <!-- Tombol CTA 3D -->
-              <button onclick="openTaxCalculator('pph-final')" class="w-full block hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer relative z-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 rounded-full" aria-label="Buka Kalkulator PPh Final 4(2)">
-                <img src="assets/images/kpi/pph42-tombol.png" alt="Buka Kalkulator PPh Final 4(2)" class="w-full h-auto object-contain drop-shadow-[0_8px_16px_rgba(120,53,15,0.25)] hover:drop-shadow-[0_12px_22px_rgba(120,53,15,0.35)]">
-              </button>
+              <div class="mt-auto pt-1 w-full flex justify-center relative z-10">
+                <button onclick="openTaxCalculator('pph-final')" class="w-full max-w-[255px] sm:max-w-[280px] block hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 cursor-pointer focus:outline-none rounded-full" aria-label="Buka Kalkulator PPh Final 4(2)">
+                  <img src="assets/images/kpi/pph42-tombol.png" alt="Buka Kalkulator PPh Final 4(2)" class="w-full h-auto max-h-[50px] sm:max-h-[56px] object-contain mx-auto drop-shadow-[0_8px_16px_rgba(120,53,15,0.22)] hover:drop-shadow-[0_12px_22px_rgba(120,53,15,0.32)]">
+                </button>
+              </div>
             </div>
 
           </div>
