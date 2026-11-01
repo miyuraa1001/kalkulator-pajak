@@ -4,7 +4,7 @@
  */
 
 window.PPh21Calculator = (function () {
-  // Nilai PTKP Tahunan
+  // Nilai PTKP Tahunan (PMK 101/PMK.010/2016)
   const PTKP_VALUES = {
     'TK0': 54000000,
     'TK1': 58500000,
@@ -15,6 +15,22 @@ window.PPh21Calculator = (function () {
     'K2': 67500000,
     'K3': 72000000
   };
+
+  // Keterangan Deskripsi Status PTKP (PMK 101/PMK.010/2016)
+  const PTKP_DESCRIPTIONS = {
+    'TK0': 'TK/0 - Tidak Kawin, Tanpa Tanggungan (Rp 54.000.000)',
+    'TK1': 'TK/1 - Tidak Kawin, 1 Tanggungan (Rp 58.500.000)',
+    'TK2': 'TK/2 - Tidak Kawin, 2 Tanggungan (Rp 63.000.000)',
+    'TK3': 'TK/3 - Tidak Kawin, 3 Tanggungan (Rp 67.500.000)',
+    'K0': 'K/0 - Kawin, Tanpa Tanggungan (Rp 58.500.000)',
+    'K1': 'K/1 - Kawin, 1 Tanggungan (Rp 63.000.000)',
+    'K2': 'K/2 - Kawin, 2 Tanggungan (Rp 67.500.000)',
+    'K3': 'K/3 - Kawin, 3 Tanggungan (Rp 72.000.000)'
+  };
+
+  function getPTKPLabel(ptkp) {
+    return PTKP_DESCRIPTIONS[ptkp] || 'TK/0 - Tanpa Tanggungan';
+  }
 
   // Tarif Progresif Pasal 17 ayat (1) huruf a UU HPP
   const TAX_BRACKETS_PASAL_17 = [
@@ -196,7 +212,7 @@ window.PPh21Calculator = (function () {
   }
 
   /**
-   * Hitung PPh 21 Masa (Metode TER PP 58/2023)
+   * Hitung PPh 21 Masa (Metode TER PP 58/2023 & PMK 168/2023)
    */
   function calculateMasa(params) {
     const {
@@ -221,54 +237,103 @@ window.PPh21Calculator = (function () {
     let pkp = 0;
     const steps = [];
 
+    // Bagian I: Rincian Penghasilan Bruto Sebulan
+    steps.push({ isHeader: true, title: 'I. Rincian Komponen Penghasilan Bruto Sebulan' });
+    steps.push({ label: 'Gaji Pokok / Upah Sebulan', value: gajiPokok });
+    if (tunjangan > 0) steps.push({ label: 'Tunjangan Tetap & Variabel', value: tunjangan });
+    if (bonus > 0) steps.push({ label: 'Bonus / THR / Insentif Bulan Ini', value: bonus });
+    if (lembur > 0) steps.push({ label: 'Uang Lembur & Premi Asuransi (JKK/JKM)', value: lembur });
+    if (natura > 0) steps.push({ label: 'Natura / Fasilitas Kenikmatan (PMK 66/2023)', value: natura });
+    steps.push({ isTotal: true, label: 'Total Penghasilan Bruto Sebulan', value: bruto });
+
     if (jenisPegawai === 'tetap') {
       terKategori = getTERCategory(statusPTKP);
       terTarif = getTERRate(terKategori, bruto);
       pphNormal = Math.round(bruto * (terTarif / 100));
 
-      steps.push({ label: 'Penghasilan Bruto Sebulan', value: bruto });
-      steps.push({ label: `Kategori TER (${statusPTKP})`, value: `TER ${terKategori}` });
-      steps.push({ label: 'Tarif Efektif Rata-Rata (TER)', value: `${terTarif}%` });
-      steps.push({ label: 'Rumus PPh 21', value: `Rp ${bruto.toLocaleString('id-ID')} × ${terTarif}%` });
+      steps.push({ isHeader: true, title: 'II. Penentuan Tarif Efektif Rata-Rata (PP 58/2023)' });
+      steps.push({ label: `Status PTKP Wajib Pajak`, value: statusPTKP, subtext: getPTKPLabel(statusPTKP) });
+      steps.push({ label: 'Kategori TER Bulanan', value: `Kategori TER ${terKategori}` });
+      steps.push({ label: 'Tarif Efektif yang Berlaku (TER)', value: `${terTarif}%`, badge: 'PP 58/2023' });
+      steps.push({
+        isTotal: true,
+        label: 'PPh 21 Terutang Pokok Sebulan',
+        value: pphNormal,
+        subtext: `Perhitungan: ${terTarif}% × Rp ${bruto.toLocaleString('id-ID')}`
+      });
     } else if (jenisPegawai === 'bukan-pegawai-berkesinambungan') {
-      // DPP = 50% x Bruto
+      // DPP = 50% x Bruto (PMK 168/2023 Pasal 10 & 11)
       dpp = Math.round(bruto * 0.5);
       const ptkpSebulan = Math.round((PTKP_VALUES[statusPTKP] || 54000000) / 12);
       pkp = Math.max(0, Math.floor((dpp - ptkpSebulan) / 1000) * 1000);
       const p17 = calculatePasal17(pkp);
       pphNormal = Math.round(p17.total);
 
-      steps.push({ label: 'Penghasilan Bruto', value: bruto });
-      steps.push({ label: 'Dasar Pengenaan Pajak (DPP = 50% Bruto)', value: dpp });
-      steps.push({ label: `PTKP Sebulan (${statusPTKP})`, value: ptkpSebulan });
-      steps.push({ label: 'Penghasilan Kena Pajak (PKP)', value: pkp });
-      p17.details.forEach(d => {
-        steps.push({ label: `Tarif Lapis ${d.lapis} (${d.rate}%)`, value: d.pajak });
-      });
+      steps.push({ isHeader: true, title: 'II. Dasar Pengenaan Pajak & PTKP (PMK 168/2023)' });
+      steps.push({ label: 'Dasar Pengenaan Pajak (DPP = 50% × Bruto)', value: dpp, badge: '50% Bruto' });
+      steps.push({ label: `Pengurangan PTKP Sebulan (${statusPTKP})`, value: ptkpSebulan, badge: 'PTKP/12' });
+      steps.push({ isTotal: true, label: 'Penghasilan Kena Pajak (PKP Dibulatkan)', value: pkp });
+
+      steps.push({ isHeader: true, title: 'III. Perhitungan Tarif Progresif (Pasal 17 UU HPP)' });
+      if (pkp === 0) {
+        steps.push({ label: 'PKP Kurang dari atau Sama dengan Rp 0', value: 'Nihil (Bebas Potongan)' });
+      } else {
+        p17.details.forEach(d => {
+          steps.push({ label: `Lapis ${d.lapis} Tarif ${d.rate}% (Rp ${d.nominal.toLocaleString('id-ID')})`, value: d.pajak, badge: `${d.rate}%` });
+        });
+      }
+      steps.push({ isTotal: true, label: 'PPh 21 Terutang Pokok', value: pphNormal });
     } else {
-      // Bukan Pegawai Tidak Berkesinambungan: DPP = 50% x Bruto, Tanpa PTKP
+      // Bukan Pegawai Tidak Berkesinambungan (Freelance Lepas): DPP = 50% x Bruto, Tanpa PTKP
       dpp = Math.round(bruto * 0.5);
       pkp = Math.floor(dpp / 1000) * 1000;
       const p17 = calculatePasal17(pkp);
       pphNormal = Math.round(p17.total);
 
-      steps.push({ label: 'Penghasilan Bruto', value: bruto });
-      steps.push({ label: 'Dasar Pengenaan Pajak (50% Bruto)', value: dpp });
-      steps.push({ label: 'PKP (Tanpa PTKP)', value: pkp });
+      steps.push({ isHeader: true, title: 'II. Dasar Pengenaan Pajak (PMK 168/2023)' });
+      steps.push({ label: 'Dasar Pengenaan Pajak (DPP = 50% × Bruto)', value: dpp, badge: '50% Bruto' });
+      steps.push({ isTotal: true, label: 'PKP Kumulatif (Tanpa PTKP)', value: pkp });
+
+      steps.push({ isHeader: true, title: 'III. Perhitungan Tarif Progresif (Pasal 17 UU HPP)' });
       p17.details.forEach(d => {
-        steps.push({ label: `Tarif Lapis ${d.lapis} (${d.rate}%)`, value: d.pajak });
+        steps.push({ label: `Lapis ${d.lapis} Tarif ${d.rate}% (Rp ${d.nominal.toLocaleString('id-ID')})`, value: d.pajak, badge: `${d.rate}%` });
       });
+      steps.push({ isTotal: true, label: 'PPh 21 Terutang Pokok', value: pphNormal });
     }
 
-    // Sanksi Non-NPWP (+20%)
+    // Bagian Penalti NPWP & Rekapitulasi Akhir
+    steps.push({ isHeader: true, title: 'IV. Rekapitulasi Pemotongan & Gaji Bersih (Take Home Pay)' });
     let sanksiNPWP = 0;
     if (statusNPWP === 'tidak-ada') {
       sanksiNPWP = Math.round(pphNormal * 0.2);
       pphFinal = pphNormal + sanksiNPWP;
-      steps.push({ label: 'Sanksi Tidak Memiliki NPWP (+20%)', value: sanksiNPWP });
+      steps.push({
+        label: 'Sanksi Tidak Memiliki NPWP (+20%)',
+        value: sanksiNPWP,
+        badge: 'Pasal 21 (5a)',
+        subtext: `Tambahan penalti 20% × Rp ${pphNormal.toLocaleString('id-ID')}`
+      });
     } else {
       pphFinal = pphNormal;
+      steps.push({ label: 'Status Kepemilikan NPWP', value: 'Memiliki NPWP / NIK Valid (Tarif Standar)' });
     }
+
+    steps.push({
+      isHighlight: true,
+      label: 'Total PPh 21 Dipotong Perusahaan (Bulan Ini)',
+      value: pphFinal,
+      badge: pphFinal > 0 ? 'Dipotong dari Gaji' : 'Nihil'
+    });
+
+    const takeHomePay = Math.max(0, bruto - pphFinal);
+    steps.push({
+      isHighlight: true,
+      isNeto: true,
+      label: 'Take Home Pay (Gaji Bersih Diterima Pegawai)',
+      value: takeHomePay,
+      badge: 'Gaji Bersih',
+      subtext: 'Penghasilan kotor sebulan setelah dipotong PPh 21'
+    });
 
     return {
       bruto,
@@ -279,12 +344,14 @@ window.PPh21Calculator = (function () {
       pphNormal,
       sanksiNPWP,
       pphFinal,
+      takeHomePay,
       steps
     };
   }
 
   /**
    * Hitung PPh 21 Masa Pajak Terakhir (Desember / Berhenti Bekerja)
+   * Sesuai Ketentuan Pasal 17 ayat (1) huruf a UU HPP & PMK 168/2023
    */
   function calculateTahunan(params) {
     const {
@@ -308,48 +375,122 @@ window.PPh21Calculator = (function () {
     let pkp = 0;
     const steps = [];
 
+    // Bagian I: Bruto Setahun Penuh
+    steps.push({ isHeader: true, title: 'I. Rincian Penghasilan Bruto Setahun Penuh (12 Bulan)' });
+    steps.push({ label: 'Gaji Pokok Setahun (12 Bulan)', value: gajiSetahun });
+    if (tunjanganSetahun > 0) steps.push({ label: 'Tunjangan Setahun (12 Bulan)', value: tunjanganSetahun });
+    if (bonusSetahun > 0) steps.push({ label: 'Bonus, THR & Insentif Total Setahun', value: bonusSetahun });
+    if (naturaSetahun > 0) steps.push({ label: 'Natura / Kenikmatan Setahun', value: naturaSetahun });
+    steps.push({ isTotal: true, label: 'Total Penghasilan Bruto Setahun Penuh', value: brutoSetahun });
+
+    // Bagian II: Pengurang Penghasilan Bruto Sah (Pasal 21 ayat 3 UU PPh)
+    steps.push({ isHeader: true, title: 'II. Pengurang Penghasilan Bruto Sah (UU PPh Pasal 21 ayat 3)' });
     if (jenisPegawai === 'tetap') {
-      // Biaya Jabatan 5% maks 6.000.000 / tahun
+      // Biaya Jabatan: 5% dari Bruto, maksimal Rp 500.000/bln atau Rp 6.000.000/thn
       biayaJabatan = Math.min(Math.round(brutoSetahun * 0.05), 6000000);
       totalPengurang = biayaJabatan + iuranPensiunSetahun + zakatSetahun;
       penghasilanNeto = Math.max(0, brutoSetahun - totalPengurang);
       pkp = Math.max(0, Math.floor((penghasilanNeto - ptkp) / 1000) * 1000);
+
+      steps.push({
+        label: 'Biaya Jabatan (5% dari Bruto, Maks. Rp 6.000.000/Tahun)',
+        value: biayaJabatan,
+        badge: 'Maks. 6 Jt'
+      });
+      if (iuranPensiunSetahun > 0) {
+        steps.push({ label: 'Iuran Pensiun / JHT / THT Setahun', value: iuranPensiunSetahun });
+      }
+      if (zakatSetahun > 0) {
+        steps.push({ label: 'Zakat / Sumbangan Keagamaan Wajib Setahun (Badan Resmi)', value: zakatSetahun });
+      }
+      steps.push({ isTotal: true, label: 'Total Pengurang Penghasilan Sah Setahun', value: totalPengurang });
     } else if (jenisPegawai === 'bukan-pegawai-berkesinambungan') {
       penghasilanNeto = Math.round(brutoSetahun * 0.5);
       pkp = Math.max(0, Math.floor((penghasilanNeto - ptkp) / 1000) * 1000);
+      steps.push({ label: 'Dasar Pengenaan Pajak (50% dari Bruto Setahun)', value: penghasilanNeto, badge: '50% Bruto' });
     } else {
-      // Tidak Berkesinambungan
       penghasilanNeto = Math.round(brutoSetahun * 0.5);
       pkp = Math.floor(penghasilanNeto / 1000) * 1000;
+      steps.push({ label: 'Dasar Pengenaan Pajak (50% dari Bruto Setahun)', value: penghasilanNeto, badge: '50% Bruto' });
     }
 
+    // Bagian III: Penghasilan Bersih & Penghasilan Kena Pajak (PKP)
+    steps.push({ isHeader: true, title: 'III. Penghasilan Bersih & Penghasilan Kena Pajak (PKP)' });
+    steps.push({ label: 'Penghasilan Bersih / Neto Setahun', value: penghasilanNeto });
+    steps.push({
+      label: `Penghasilan Tidak Kena Pajak (PTKP ${statusPTKP})`,
+      value: ptkp,
+      badge: 'PMK 101/2016',
+      subtext: getPTKPLabel(statusPTKP)
+    });
+    steps.push({
+      isTotal: true,
+      label: 'Penghasilan Kena Pajak (PKP Dibulatkan)',
+      value: pkp,
+      subtext: 'Dibulatkan ke bawah ke ribuan penuh sesuai Pasal 17 UU HPP'
+    });
+
+    // Bagian IV: Perhitungan Tarif Progresif Pasal 17
+    steps.push({ isHeader: true, title: 'IV. Perhitungan Pajak Progresif (UU HPP No. 7/2021 Pasal 17)' });
     const p17 = calculatePasal17(pkp);
     let pphSetahunNormal = Math.round(p17.total);
     let sanksiNPWP = 0;
     let pphSetahunFinal = pphSetahunNormal;
 
+    if (pkp === 0) {
+      steps.push({ label: 'Penghasilan Kena Pajak (PKP) = Rp 0', value: 'Nihil (Bebas Pajak)', badge: 'Bebas Pajak' });
+    } else {
+      p17.details.forEach(d => {
+        steps.push({
+          label: `Lapis ${d.lapis} Tarif ${d.rate}% (Nominal Kena: Rp ${d.nominal.toLocaleString('id-ID')})`,
+          value: d.pajak,
+          badge: `${d.rate}%`
+        });
+      });
+    }
+
     if (statusNPWP === 'tidak-ada') {
       sanksiNPWP = Math.round(pphSetahunNormal * 0.2);
       pphSetahunFinal = pphSetahunNormal + sanksiNPWP;
+      steps.push({
+        label: 'Sanksi Tidak Memiliki NPWP (+20%)',
+        value: sanksiNPWP,
+        badge: 'Pasal 21 (5a)',
+        subtext: `Tambahan penalti 20% × Rp ${pphSetahunNormal.toLocaleString('id-ID')}`
+      });
     }
 
-    const selisihDesember = pphSetahunFinal - pph21TelahDipotong;
-
-    steps.push({ label: 'Penghasilan Bruto Setahun', value: brutoSetahun });
-    if (biayaJabatan > 0) steps.push({ label: 'Biaya Jabatan (Maks. Rp 6.000.000)', value: biayaJabatan });
-    if (totalPengurang > 0) steps.push({ label: 'Total Pengurang', value: totalPengurang });
-    steps.push({ label: 'Penghasilan Neto Setahun', value: penghasilanNeto });
-    steps.push({ label: `PTKP Setahun (${statusPTKP})`, value: ptkp });
-    steps.push({ label: 'Penghasilan Kena Pajak (PKP)', value: pkp });
-    p17.details.forEach(d => {
-      steps.push({ label: `Pasal 17 Lapis ${d.lapis} (${d.rate}%)`, value: d.pajak });
-    });
-    steps.push({ label: 'PPh 21 Terutang Setahun', value: pphSetahunFinal });
-    steps.push({ label: 'PPh 21 Telah Dipotong (Jan-Nov)', value: pph21TelahDipotong });
     steps.push({
-      label: selisihDesember >= 0 ? 'PPh 21 Kurang Bayar (Desember)' : 'PPh 21 Lebih Bayar (Desember)',
-      value: Math.abs(selisihDesember)
+      isTotal: true,
+      label: 'Total PPh 21 Terutang Setahun Penuh',
+      value: pphSetahunFinal,
+      subtext: 'Kewajiban pajak riil selama 1 tahun pajak (Januari – Desember)'
     });
+
+    // Bagian V: True-Up & Rekonsiliasi Masa Desember
+    steps.push({ isHeader: true, title: 'V. True-Up & Rekonsiliasi Masa Terakhir (Desember)' });
+    steps.push({ label: 'Total PPh 21 Riil Setahun Penuh', value: pphSetahunFinal });
+    steps.push({ label: 'Kredit PPh 21 Telah Dipotong (Januari – November / TER)', value: pph21TelahDipotong });
+
+    const selisihDesember = pphSetahunFinal - pph21TelahDipotong;
+    if (selisihDesember >= 0) {
+      steps.push({
+        isHighlight: true,
+        label: 'PPh 21 Kurang Bayar Masa Desember (Wajib Dipotong)',
+        value: selisihDesember,
+        badge: 'Kurang Bayar',
+        subtext: 'Dipungut pada slip gaji bulan Desember untuk melunasi pajak setahun'
+      });
+    } else {
+      steps.push({
+        isHighlight: true,
+        isNeto: true,
+        label: 'PPh 21 Lebih Bayar Masa Desember (Dapat Dikembalikan)',
+        value: Math.abs(selisihDesember),
+        badge: 'Lebih Bayar',
+        subtext: 'Pajak Jan–Nov lebih besar dari kewajiban riil setahun; dikembalikan ke karyawan'
+      });
+    }
 
     return {
       brutoSetahun,
@@ -367,6 +508,8 @@ window.PPh21Calculator = (function () {
 
   return {
     PTKP_VALUES,
+    PTKP_DESCRIPTIONS,
+    getPTKPLabel,
     getTERCategory,
     getTERRate,
     calculatePasal17,

@@ -1417,62 +1417,60 @@
         <!-- ============================================================== -->
         <div id="kalkulator-workspace" class="hidden space-y-6">
 
-          <!-- Top Workspace Navigation Bar -->
-          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-slate-200">
-            <button onclick="backToTaxHub()" class="inline-flex items-center gap-2 px-4 py-2.5 bg-white hover:bg-slate-100 text-rose-950 font-bold rounded-xl text-xs border border-slate-200 shadow-sm cursor-pointer transition-all">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-              <span>&larr; Kembali ke Katalog Kalkulator Pajak</span>
+          <!-- Top Workspace Navigation: Dedicated Standalone Back Button -->
+          <div class="flex items-center justify-start pb-2">
+            <button onclick="backToTaxHub()" class="group inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white hover:bg-rose-50 text-slate-800 hover:text-rose-950 font-bold text-xs sm:text-sm border border-slate-200 hover:border-rose-200 shadow-xs hover:shadow-sm transition-all cursor-pointer">
+              <svg class="w-4 h-4 text-slate-500 group-hover:text-rose-800 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              <span>Kembali ke Katalog Pajak</span>
             </button>
-
-            <!-- Quick Jump Tab Bar -->
-            <div class="tax-tab-scroll">
-              <div class="inline-flex p-1 bg-slate-200/80 rounded-xl gap-1 max-w-full">
-                <button onclick="switchTaxTab('pph21')" data-tab="pph21" class="tax-tab-btn active text-xs py-2 px-3">
-                  <span>👤 PPh 21</span>
-                </button>
-                <button onclick="switchTaxTab('ppn')" data-tab="ppn" class="tax-tab-btn text-xs py-2 px-3">
-                  <span>🧾 PPN 11%</span>
-                </button>
-                <button onclick="switchTaxTab('pph23')" data-tab="pph23" class="tax-tab-btn text-xs py-2 px-3">
-                  <span>💼 PPh 23</span>
-                </button>
-                <button onclick="switchTaxTab('pph25')" data-tab="pph25" class="tax-tab-btn text-xs py-2 px-3">
-                  <span>🗓️ PPh 25</span>
-                </button>
-                <button onclick="switchTaxTab('umkm')" data-tab="umkm" class="tax-tab-btn text-xs py-2 px-3">
-                  <span>🏪 UMKM 0,5%</span>
-                </button>
-                <button onclick="switchTaxTab('pph-final')" data-tab="pph-final" class="tax-tab-btn text-xs py-2 px-3">
-                  <span>🏢 PPh Final</span>
-                </button>
-              </div>
-            </div>
           </div>
 
         <!-- Form Panels Container -->
-        <div class="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden p-6 sm:p-8 lg:p-10 transition-all">
+        <div class="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-xl overflow-hidden p-4 sm:p-6 lg:p-8 transition-all">
 
           <!-- -------------------------------------------------------- -->
           <!-- PANEL 1: PPh 21 (TER PP 58/2023 & Tahunan Pasal 17)       -->
           <!-- -------------------------------------------------------- -->
-          <div id="panel-pph21" class="tax-panel space-y-8">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-slate-200">
-              <div>
-                <h3 class="text-xl sm:text-2xl font-bold text-slate-900">Kalkulator PPh 21 Karyawan &amp; Bukan Pegawai</h3>
-                <p class="text-xs sm:text-sm text-slate-500 mt-1">Mendukung metode TER Bulanan (Kategori A, B, C) serta perhitungan true-up Pasal 17 di masa Desember.</p>
+          <div id="panel-pph21" class="tax-panel space-y-6 sm:space-y-8">
+            
+            <!-- Dedicated Hero Card Header -->
+            <div class="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-rose-50/90 via-white to-pink-50/50 border border-rose-200/80 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div class="flex items-center gap-3.5 sm:gap-5">
+                <img src="assets/images/kpi/pph21-hero.png" alt="PPh 21 3D Illustration" class="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md shrink-0">
+                <div>
+                  <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1">
+                    <span class="text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-rose-900 bg-rose-100/90 px-2.5 py-0.5 rounded-full border border-rose-200">
+                      Kalkulator PPh 21
+                    </span>
+                    <span id="pph21-badge-regulasi" class="text-[10px] sm:text-[11px] font-bold text-amber-900 bg-amber-100/90 px-2.5 py-0.5 rounded-full border border-amber-200">
+                      PP 58/2023 &amp; PMK 168/2023 (Metode TER)
+                    </span>
+                  </div>
+                  <h3 class="text-lg sm:text-2xl font-black text-slate-900 tracking-tight">Kalkulator PPh 21 Karyawan &amp; Bukan Pegawai</h3>
+                  <p class="text-xs sm:text-sm text-slate-600 mt-0.5 leading-relaxed">
+                    Mendukung perhitungan resmi metode TER Bulanan (Kategori A, B, C) serta rekonsiliasi Pasal 17 di masa Desember.
+                  </p>
+                </div>
               </div>
-              <span id="pph21-badge-regulasi" class="px-3 py-1 bg-amber-50 text-amber-800 border border-amber-200 rounded-full text-xs font-semibold">
-                PP 58/2023 &amp; PMK 168/2023 (Metode TER)
-              </span>
             </div>
 
-            <!-- Mode Selector: Masa (TER) vs Masa Terakhir (Desember) -->
-            <div class="bg-slate-100 p-1.5 rounded-2xl flex max-w-xl gap-1">
-              <button type="button" id="btn-mode-masa" onclick="switchPPh21Mode('masa')" class="flex-1 py-3 px-4 rounded-xl font-bold text-sm bg-rose-900 text-white shadow-sm transition-all cursor-pointer">
-                Masa Bulanan (Jan – Nov / TER)
+            <!-- Mode Selector: Masa (TER) vs Masa Terakhir (Desember) - Responsive Mobile-First Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 p-1.5 bg-slate-100/90 rounded-2xl max-w-2xl border border-slate-200/60">
+              <button type="button" id="btn-mode-masa" onclick="switchPPh21Mode('masa')" class="w-full p-3 sm:p-3.5 rounded-xl font-bold text-xs sm:text-sm bg-rose-900 text-white shadow-sm transition-all cursor-pointer flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center text-base shrink-0">📅</span>
+                <div class="text-left">
+                  <span class="block font-black text-xs sm:text-sm">Masa Bulanan (Jan – Nov)</span>
+                  <span class="block text-[11px] font-medium text-rose-200">Metode TER (PP 58/2023)</span>
+                </div>
               </button>
-              <button type="button" id="btn-mode-tahunan" onclick="switchPPh21Mode('tahunan')" class="flex-1 py-3 px-4 rounded-xl font-semibold text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all cursor-pointer">
-                Masa Terakhir (Desember / Pasal 17)
+              <button type="button" id="btn-mode-tahunan" onclick="switchPPh21Mode('tahunan')" class="w-full p-3 sm:p-3.5 rounded-xl font-bold text-xs sm:text-sm bg-transparent text-slate-600 hover:bg-slate-200/70 transition-all cursor-pointer flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-slate-200 text-slate-700 flex items-center justify-center text-base shrink-0">📊</span>
+                <div class="text-left">
+                  <span class="block font-black text-xs sm:text-sm">Masa Terakhir (Desember)</span>
+                  <span class="block text-[11px] font-medium text-slate-500">Tarif Pasal 17 UU HPP (True-Up)</span>
+                </div>
               </button>
             </div>
 
@@ -1670,14 +1668,25 @@
           <!-- PANEL 2: PPN 11% (UU HPP, Exclude, Include, WAPU)         -->
           <!-- -------------------------------------------------------- -->
           <div id="panel-ppn" class="tax-panel hidden space-y-8">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-slate-200">
-              <div>
-                <h3 class="text-xl sm:text-2xl font-bold text-slate-900">Kalkulator PPN (Pajak Pertambahan Nilai)</h3>
-                <p class="text-xs sm:text-sm text-slate-500 mt-1">Perhitungan PPN 11% sesuai UU HPP No. 7/2021, DPP Nilai Lain (PMK 71/2022), dan simulasi pemungut WAPU.</p>
+            <!-- Dedicated Hero Card Header PPN -->
+            <div class="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-emerald-50/90 via-white to-teal-50/50 border border-emerald-200/80 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div class="flex items-center gap-3.5 sm:gap-5">
+                <img src="assets/images/kpi/ppn11-hero.png" alt="PPN 11% 3D Illustration" class="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md shrink-0">
+                <div>
+                  <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1">
+                    <span class="text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-emerald-900 bg-emerald-100/90 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                      Kalkulator PPN
+                    </span>
+                    <span class="text-[10px] sm:text-[11px] font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/60">
+                      Tarif Berlaku: 11% (UU HPP No. 7/2021)
+                    </span>
+                  </div>
+                  <h3 class="text-lg sm:text-2xl font-black text-slate-900 tracking-tight">Kalkulator PPN (Pajak Pertambahan Nilai)</h3>
+                  <p class="text-xs sm:text-sm text-slate-600 mt-0.5 leading-relaxed">
+                    Perhitungan PPN resmi 11% (Exclude/Include), DPP Nilai Lain (PMK 71/2022), dan simulasi pemungut WAPU instansi/BUMN.
+                  </p>
+                </div>
               </div>
-              <span class="px-3 py-1 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-full text-xs font-semibold">
-                Tarif Berlaku: 11% (UU HPP)
-              </span>
             </div>
 
             <!-- DYNAMIC KPI & EDUKASI AWAM PPN -->
@@ -1783,14 +1792,25 @@
           <!-- PANEL 3: PPh 23 (Jasa, Sewa, Royalti, Dividen, Bunga)     -->
           <!-- -------------------------------------------------------- -->
           <div id="panel-pph23" class="tax-panel hidden space-y-8">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-slate-200">
-              <div>
-                <h3 class="text-xl sm:text-2xl font-bold text-slate-900">Kalkulator PPh Pasal 23 (Jasa, Sewa, Dividen, Bunga)</h3>
-                <p class="text-xs sm:text-sm text-slate-500 mt-1">Pemotongan PPh 23 atas imbalan jasa (PMK 141), sewa alat/kendaraan (2%), dividen/bunga/royalti (15%), dan ketentuan tanpa NPWP (+100%).</p>
+            <!-- Dedicated Hero Card Header PPh 23 -->
+            <div class="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-blue-50/90 via-white to-sky-50/50 border border-blue-200/80 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div class="flex items-center gap-3.5 sm:gap-5">
+                <img src="assets/images/kpi/pph23-hero.png" alt="PPh 23 3D Illustration" class="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md shrink-0">
+                <div>
+                  <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1">
+                    <span class="text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-blue-900 bg-blue-100/90 px-2.5 py-0.5 rounded-full border border-blue-200">
+                      Kalkulator PPh 23
+                    </span>
+                    <span class="text-[10px] sm:text-[11px] font-bold text-blue-800 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200/60">
+                      PMK 141/PMK.03/2015 &amp; UU PPh
+                    </span>
+                  </div>
+                  <h3 class="text-lg sm:text-2xl font-black text-slate-900 tracking-tight">Kalkulator PPh Pasal 23 (Jasa &amp; Sewa)</h3>
+                  <p class="text-xs sm:text-sm text-slate-600 mt-0.5 leading-relaxed">
+                    Pemotongan PPh 23 atas imbalan 62 jenis jasa (2%), sewa alat/kendaraan (2%), dividen/bunga/royalti (15%), dan tarif non-NPWP (+100%).
+                  </p>
+                </div>
               </div>
-              <span class="px-3 py-1 bg-blue-50 text-blue-800 border border-blue-200 rounded-full text-xs font-semibold">
-                PMK 141/PMK.03/2015
-              </span>
             </div>
 
             <!-- DYNAMIC KPI & EDUKASI AWAM PPh 23 -->
@@ -1899,14 +1919,25 @@
           <!-- PANEL 4: PPh 25 (Angsuran Pajak Bulanan Badan / OP)        -->
           <!-- -------------------------------------------------------- -->
           <div id="panel-pph25" class="tax-panel hidden space-y-8">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-slate-200">
-              <div>
-                <h3 class="text-xl sm:text-2xl font-bold text-slate-900">Kalkulator PPh Pasal 25 (Angsuran Pajak Bulanan)</h3>
-                <p class="text-xs sm:text-sm text-slate-500 mt-1">Hitung angsuran bulanan tahun berjalan bagi WP Badan, WP Orang Pribadi Usaha, dan Orang Pribadi Pengusaha Tertentu (OPPT).</p>
+            <!-- Dedicated Hero Card Header PPh 25 -->
+            <div class="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-purple-50/90 via-white to-fuchsia-50/50 border border-purple-200/80 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div class="flex items-center gap-3.5 sm:gap-5">
+                <img src="assets/images/kpi/pph25-hero.png" alt="PPh 25 3D Illustration" class="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md shrink-0">
+                <div>
+                  <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1">
+                    <span class="text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-purple-900 bg-purple-100/90 px-2.5 py-0.5 rounded-full border border-purple-200">
+                      Kalkulator PPh 25
+                    </span>
+                    <span class="text-[10px] sm:text-[11px] font-bold text-purple-800 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-200/60">
+                      Pasal 25 UU Pajak Penghasilan
+                    </span>
+                  </div>
+                  <h3 class="text-lg sm:text-2xl font-black text-slate-900 tracking-tight">Kalkulator PPh Pasal 25 (Angsuran Bulanan)</h3>
+                  <p class="text-xs sm:text-sm text-slate-600 mt-0.5 leading-relaxed">
+                    Hitung cicilan bulanan tahun berjalan bagi WP Badan, WP Orang Pribadi Usaha, dan Orang Pribadi Pengusaha Tertentu (OPPT).
+                  </p>
+                </div>
               </div>
-              <span class="px-3 py-1 bg-purple-50 text-purple-800 border border-purple-200 rounded-full text-xs font-semibold">
-                Pasal 25 UU PPh
-              </span>
             </div>
 
             <!-- DYNAMIC KPI & EDUKASI AWAM PPh 25 -->
@@ -2024,14 +2055,25 @@
           <!-- PANEL 5: PPh Final UMKM (PP 55/2022 0,5% + 500jt Bebas)   -->
           <!-- -------------------------------------------------------- -->
           <div id="panel-umkm" class="tax-panel hidden space-y-8">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-slate-200">
-              <div>
-                <h3 class="text-xl sm:text-2xl font-bold text-slate-900">Kalkulator PPh Final UMKM 0,5% (PP 55 Tahun 2022)</h3>
-                <p class="text-xs sm:text-sm text-slate-500 mt-1">Fasilitas bebas pajak s.d. Rp 500 Juta untuk Wajib Pajak Orang Pribadi serta simulasi 12 bulan kumulatif.</p>
+            <!-- Dedicated Hero Card Header UMKM -->
+            <div class="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-emerald-50/90 via-white to-green-50/50 border border-emerald-200/80 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div class="flex items-center gap-3.5 sm:gap-5">
+                <img src="assets/images/kpi/umkm-hero.png" alt="PPh Final UMKM 3D Illustration" class="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md shrink-0">
+                <div>
+                  <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1">
+                    <span class="text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-emerald-900 bg-emerald-100/90 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                      Kalkulator UMKM 0,5%
+                    </span>
+                    <span class="text-[10px] sm:text-[11px] font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/60">
+                      PP 55/2022 (Fasilitas Bebas Omzet 500 Jt)
+                    </span>
+                  </div>
+                  <h3 class="text-lg sm:text-2xl font-black text-slate-900 tracking-tight">Kalkulator PPh Final UMKM 0,5%</h3>
+                  <p class="text-xs sm:text-sm text-slate-600 mt-0.5 leading-relaxed">
+                    Skema pajak ringan pengusaha kecil &amp; UMKM, simulasi batas waktu pemanfaatan, serta tabel kumulatif 12 bulan Jan–Des.
+                  </p>
+                </div>
               </div>
-              <span class="px-3 py-1 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-full text-xs font-semibold">
-                PP 55/2022 &amp; UU HPP
-              </span>
             </div>
 
             <!-- DYNAMIC KPI & EDUKASI AWAM UMKM -->
@@ -2161,14 +2203,25 @@
           <!-- PANEL 6: PPh Final Pasal 4 Ayat (2)                       -->
           <!-- -------------------------------------------------------- -->
           <div id="panel-pph-final" class="tax-panel hidden space-y-8">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-slate-200">
-              <div>
-                <h3 class="text-xl sm:text-2xl font-bold text-slate-900">Kalkulator PPh Final Pasal 4 Ayat (2)</h3>
-                <p class="text-xs sm:text-sm text-slate-500 mt-1">Sewa tanah/bangunan (10%), jual beli properti (2,5%), jasa konstruksi (PP 9/2022), bunga deposito, dan hadiah undian.</p>
+            <!-- Dedicated Hero Card Header PPh Final 4(2) -->
+            <div class="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-amber-50/90 via-white to-orange-50/50 border border-amber-200/80 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div class="flex items-center gap-3.5 sm:gap-5">
+                <img src="assets/images/kpi/pph42-hero.png" alt="PPh Final 4(2) 3D Illustration" class="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-md shrink-0">
+                <div>
+                  <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1">
+                    <span class="text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-amber-900 bg-amber-100/90 px-2.5 py-0.5 rounded-full border border-amber-200">
+                      Kalkulator PPh Final 4(2)
+                    </span>
+                    <span class="text-[10px] sm:text-[11px] font-bold text-amber-800 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200/60">
+                      Pasal 4 Ayat (2) UU PPh &amp; PP 9/2022
+                    </span>
+                  </div>
+                  <h3 class="text-lg sm:text-2xl font-black text-slate-900 tracking-tight">Kalkulator PPh Final Pasal 4 Ayat (2)</h3>
+                  <p class="text-xs sm:text-sm text-slate-600 mt-0.5 leading-relaxed">
+                    Pajak final atas sewa tanah/bangunan (10%), jual beli properti (2,5%), jasa konstruksi, bunga deposito, dan hadiah undian.
+                  </p>
+                </div>
               </div>
-              <span class="px-3 py-1 bg-amber-50 text-amber-800 border border-amber-200 rounded-full text-xs font-semibold">
-                Pasal 4 Ayat (2) UU PPh
-              </span>
             </div>
 
             <!-- DYNAMIC KPI & EDUKASI AWAM PPh Final 4(2) -->
@@ -2287,6 +2340,13 @@
                 <span id="result-status-badge" class="px-3 py-1 bg-rose-200 text-rose-900 rounded-full text-xs font-bold uppercase tracking-wider inline-block mb-3">Status Terutang</span>
                 <div id="result-primary-label" class="text-sm font-semibold text-slate-600 uppercase tracking-wide">Pajak Terutang</div>
                 <div id="result-primary-value" class="text-3xl sm:text-5xl font-black text-rose-900 mt-2 tracking-tight">Rp 0</div>
+                <!-- Secondary Metric Banner (e.g. Take Home Pay / Gaji Bersih) -->
+                <div id="result-secondary-banner" class="hidden mt-4 pt-4 border-t border-rose-200/60 flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2.5 text-xs sm:text-sm font-bold text-emerald-950 bg-emerald-50/90 rounded-xl py-2.5 px-4 max-w-lg mx-auto border border-emerald-200/80 shadow-xs">
+                  <span id="result-secondary-label" class="flex items-center gap-1.5 text-slate-700">
+                    <span class="text-base">💵</span> Gaji Bersih (Take Home Pay):
+                  </span>
+                  <span id="result-secondary-value" class="text-base sm:text-xl font-black text-emerald-700">Rp 0</span>
+                </div>
               </div>
 
               <!-- Notice Box (If any) -->

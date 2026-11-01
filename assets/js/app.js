@@ -177,7 +177,13 @@
   window.switchTaxTab = function (tabName) {
     window.currentTaxState.activeTab = tabName;
 
-    // 1. Update tombol tab UI
+    // 1. Sync dropdown switcher jika ada
+    const quickSwitcher = document.getElementById('quick-tax-switcher');
+    if (quickSwitcher) {
+      quickSwitcher.value = tabName;
+    }
+
+    // Update tombol tab UI (jika masih ada)
     document.querySelectorAll('.tax-tab-btn').forEach(btn => {
       if (btn.dataset.tab === tabName) {
         btn.className = "tax-tab-btn active";
@@ -223,15 +229,42 @@
     const secTahunan = document.getElementById('pph21-sec-tahunan');
     const badgeRegulasi = document.getElementById('pph21-badge-regulasi');
 
+    const activeMasaClass = "w-full p-3 sm:p-3.5 rounded-xl font-bold text-xs sm:text-sm bg-rose-900 text-white shadow-sm transition-all cursor-pointer flex items-center gap-3";
+    const inactiveMasaClass = "w-full p-3 sm:p-3.5 rounded-xl font-bold text-xs sm:text-sm bg-transparent text-slate-600 hover:bg-slate-200/70 transition-all cursor-pointer flex items-center gap-3";
+
     if (mode === 'masa') {
-      if (btnMasa) btnMasa.className = "flex-1 py-3 px-4 rounded-xl font-bold text-sm bg-rose-900 text-white shadow-sm transition-all cursor-pointer";
-      if (btnTahunan) btnTahunan.className = "flex-1 py-3 px-4 rounded-xl font-semibold text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all cursor-pointer";
+      if (btnMasa) {
+        btnMasa.className = activeMasaClass;
+        const icon = btnMasa.querySelector('span:first-child');
+        if (icon) icon.className = "w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center text-base shrink-0";
+        const sub = btnMasa.querySelector('span:last-child');
+        if (sub) sub.className = "block text-[11px] font-medium text-rose-200";
+      }
+      if (btnTahunan) {
+        btnTahunan.className = inactiveMasaClass;
+        const icon = btnTahunan.querySelector('span:first-child');
+        if (icon) icon.className = "w-8 h-8 rounded-lg bg-slate-200 text-slate-700 flex items-center justify-center text-base shrink-0";
+        const sub = btnTahunan.querySelector('span:last-child');
+        if (sub) sub.className = "block text-[11px] font-medium text-slate-500";
+      }
       if (secMasa) secMasa.classList.remove('hidden');
       if (secTahunan) secTahunan.classList.add('hidden');
       if (badgeRegulasi) badgeRegulasi.textContent = "PP 58/2023 & PMK 168/2023 (Metode TER)";
     } else {
-      if (btnMasa) btnMasa.className = "flex-1 py-3 px-4 rounded-xl font-semibold text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all cursor-pointer";
-      if (btnTahunan) btnTahunan.className = "flex-1 py-3 px-4 rounded-xl font-bold text-sm bg-rose-900 text-white shadow-sm transition-all cursor-pointer";
+      if (btnMasa) {
+        btnMasa.className = inactiveMasaClass;
+        const icon = btnMasa.querySelector('span:first-child');
+        if (icon) icon.className = "w-8 h-8 rounded-lg bg-slate-200 text-slate-700 flex items-center justify-center text-base shrink-0";
+        const sub = btnMasa.querySelector('span:last-child');
+        if (sub) sub.className = "block text-[11px] font-medium text-slate-500";
+      }
+      if (btnTahunan) {
+        btnTahunan.className = activeMasaClass;
+        const icon = btnTahunan.querySelector('span:first-child');
+        if (icon) icon.className = "w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center text-base shrink-0";
+        const sub = btnTahunan.querySelector('span:last-child');
+        if (sub) sub.className = "block text-[11px] font-medium text-rose-200";
+      }
       if (secMasa) secMasa.classList.add('hidden');
       if (secTahunan) secTahunan.classList.remove('hidden');
       if (badgeRegulasi) badgeRegulasi.textContent = "Pasal 17 UU HPP (Masa Pajak Terakhir / True-up)";
@@ -324,15 +357,19 @@
 
       showCalculationResult({
         title: "Hasil Perhitungan PPh 21 Masa (Metode TER)",
-        primaryLabel: "PPh 21 Terutang Masa Ini",
+        primaryLabel: "PPh 21 Dipotong Masa Ini",
         primaryValue: result.pphFinal,
+        secondaryMetric: {
+          label: "Gaji Bersih (Take Home Pay):",
+          value: result.takeHomePay
+        },
         statusType: result.pphFinal > 0 ? "warning" : "success",
-        statusText: result.pphFinal > 0 ? "Kurang Bayar (Wajib Dipotong)" : "Nihil",
+        statusText: result.pphFinal > 0 ? "Wajib Dipotong Perusahaan" : "Nihil (Bebas Potongan)",
         kpis: [
           { label: "Total Bruto", value: formatCurrency(result.bruto) },
           { label: "Kategori TER", value: result.terKategori === '-' ? 'Pasal 17' : `TER ${result.terKategori}` },
-          { label: "Tarif Pajak", value: `${result.terTarif}%` },
-          { label: "Status NPWP", value: statusNPWP === 'ada' ? 'Memiliki NPWP' : 'Non-NPWP (+20%)' }
+          { label: "Tarif Efektif", value: `${result.terTarif}%` },
+          { label: "Take Home Pay", value: formatCurrency(result.takeHomePay) }
         ],
         steps: result.steps,
         onPrint: () => ExportModule.printPPh21(result)
@@ -699,6 +736,9 @@
     const primaryLabelEl = document.getElementById('result-primary-label');
     const primaryValueEl = document.getElementById('result-primary-value');
     const statusBadgeEl = document.getElementById('result-status-badge');
+    const secondaryBannerEl = document.getElementById('result-secondary-banner');
+    const secondaryLabelEl = document.getElementById('result-secondary-label');
+    const secondaryValueEl = document.getElementById('result-secondary-value');
     const kpiGridEl = document.getElementById('result-kpi-grid');
     const stepsListEl = document.getElementById('result-steps-list');
     const noticeBoxEl = document.getElementById('result-notice-box');
@@ -709,6 +749,17 @@
     if (titleEl) titleEl.textContent = config.title;
     if (primaryLabelEl) primaryLabelEl.textContent = config.primaryLabel;
     if (primaryValueEl) primaryValueEl.textContent = formatCurrency(config.primaryValue);
+
+    // Secondary Metric Banner (e.g. Take Home Pay)
+    if (secondaryBannerEl) {
+      if (config.secondaryMetric) {
+        if (secondaryLabelEl) secondaryLabelEl.innerHTML = `<span class="text-base">💵</span> ${config.secondaryMetric.label}`;
+        if (secondaryValueEl) secondaryValueEl.textContent = formatCurrency(config.secondaryMetric.value);
+        secondaryBannerEl.classList.remove('hidden');
+      } else {
+        secondaryBannerEl.classList.add('hidden');
+      }
+    }
 
     if (statusBadgeEl) {
       statusBadgeEl.textContent = config.statusText;
@@ -731,12 +782,56 @@
     }
 
     if (stepsListEl && config.steps) {
-      stepsListEl.innerHTML = config.steps.map(s => `
-        <div class="flex justify-between items-center py-2 border-b border-slate-100 text-xs sm:text-sm">
-          <span class="text-slate-600">${s.label}</span>
-          <span class="font-bold text-slate-900">${typeof s.value === 'number' ? formatCurrency(s.value) : s.value}</span>
-        </div>
-      `).join('');
+      stepsListEl.innerHTML = config.steps.map(s => {
+        if (s.isHeader) {
+          return `
+            <div class="pt-4 pb-1.5 border-b-2 border-slate-200/90 first:pt-0">
+              <span class="text-[11px] sm:text-xs font-black tracking-wider uppercase text-rose-950">${s.title}</span>
+            </div>
+          `;
+        }
+
+        let rowClass = "border-b border-slate-100 hover:bg-slate-100/60 transition-colors";
+        let labelClass = "text-slate-600 font-medium";
+        let valClass = "font-bold text-slate-900";
+
+        if (s.isHighlight) {
+          if (s.isNeto) {
+            rowClass = "bg-emerald-50/90 border border-emerald-200 rounded-xl p-3 sm:p-3.5 my-2 shadow-xs";
+            labelClass = "text-emerald-950 font-black text-xs sm:text-sm";
+            valClass = "font-black text-emerald-800 text-sm sm:text-lg";
+          } else {
+            rowClass = "bg-rose-50/90 border border-rose-200 rounded-xl p-3 sm:p-3.5 my-2 shadow-xs";
+            labelClass = "text-rose-950 font-black text-xs sm:text-sm";
+            valClass = "font-black text-rose-900 text-sm sm:text-lg";
+          }
+        } else if (s.isTotal) {
+          rowClass = "bg-slate-100/90 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 my-1.5 border border-slate-200/60 font-semibold";
+          labelClass = "text-slate-800 font-extrabold text-xs sm:text-sm";
+          valClass = "font-black text-slate-900 text-xs sm:text-base";
+        }
+
+        const badgeHtml = s.badge
+          ? `<span class="ml-2 inline-flex items-center px-2 py-0.5 text-[10px] font-bold rounded-md ${s.isNeto ? 'bg-emerald-200 text-emerald-900' : 'bg-rose-100 text-rose-900 border border-rose-200'}">${s.badge}</span>`
+          : '';
+        const subtextHtml = s.subtext
+          ? `<div class="text-[11px] text-slate-500 font-normal mt-0.5">${s.subtext}</div>`
+          : '';
+        const displayVal = typeof s.value === 'number' ? formatCurrency(s.value) : s.value;
+
+        return `
+          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 px-1 text-xs sm:text-sm ${rowClass} gap-1">
+            <div class="pr-2">
+              <span class="${labelClass}">${s.label}</span>
+              ${badgeHtml}
+              ${subtextHtml}
+            </div>
+            <div class="${valClass} text-left sm:text-right shrink-0">
+              ${displayVal}
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
     if (noticeBoxEl && noticeTextEl) {
