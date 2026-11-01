@@ -6,3 +6,4 @@ for ($y = 515; $y -le 555; $y += 2) {
     Write-Output "Y=$($y): R=$($c.R), G=$($c.G), B=$($c.B)"
 }
 $img.Dispose()
+

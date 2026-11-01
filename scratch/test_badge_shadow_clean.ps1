@@ -194,3 +194,4 @@ $dest = "scratch\pph42_rate_v2.png"
 
 [PPh42BadgeProcessorV2]::Process($src, $dest)
 Write-Output "Successfully processed PPh Final 4(2) badge V2!"
+

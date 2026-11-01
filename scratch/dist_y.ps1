@@ -15,3 +15,4 @@ for ($y = $h - 40; $y -lt $h; $y += 2) {
     Write-Output "Y=$y (orig $($y+145)): Count=$count"
 }
 $img.Dispose()
+

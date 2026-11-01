@@ -18,3 +18,4 @@ for ($y = $h - 40; $y -lt $h; $y += 5) {
     Write-Output "Y=$($y): Opaque=$opaque, NeutralGray=$dark"
 }
 $img.Dispose()
+

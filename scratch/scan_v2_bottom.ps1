@@ -21,3 +21,4 @@ for ($y = $h - 40; $y -lt $h; $y++) {
 }
 Write-Output "Total neutral pixels in bottom 40 rows: $neutralCount"
 $img.Dispose()
+

@@ -28,3 +28,4 @@ for ($x = 345; $x -le 395; $x += 10) {
 }
 
 $img.Dispose()
+

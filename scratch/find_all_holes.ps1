@@ -134,3 +134,4 @@ public class HoleFinder
 Add-Type -TypeDefinition $code -ReferencedAssemblies System.Drawing
 $src = "C:\Users\ASUS\.gemini\antigravity\brain\25d705b4-cebe-4143-a193-8bb1bc40357d\.user_uploaded\media_1793510244086_d7aa53bb.jpg"
 [HoleFinder]::Find($src)
+

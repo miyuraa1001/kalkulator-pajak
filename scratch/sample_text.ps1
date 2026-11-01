@@ -11,3 +11,4 @@ for ($y = 100; $y -le 145; $y++) {
 }
 Write-Output "Done sampling text region"
 $img.Dispose()
+

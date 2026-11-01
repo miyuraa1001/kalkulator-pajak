@@ -17,3 +17,4 @@ for ($y = 600; $y -lt 764; $y++) {
 
 Write-Output "Plaque bounds: X=$minX..$maxX, Y=$minY..$maxY"
 $img.Dispose()
+

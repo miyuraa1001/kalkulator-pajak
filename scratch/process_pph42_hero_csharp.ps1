@@ -175,3 +175,4 @@ $dest = "scratch\pph42_hero_clean.png"
 
 [PPh42Processor]::Process($src, $dest)
 Write-Output "Successfully processed PPh Final 4(2) hero image!"
+

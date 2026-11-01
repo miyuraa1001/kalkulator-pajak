@@ -8,3 +8,4 @@ $crop.Save('scratch/original_bottom.png', [System.Drawing.Imaging.ImageFormat]::
 $crop.Dispose()
 $img.Dispose()
 Write-Output "Saved scratch/original_bottom.png"
+

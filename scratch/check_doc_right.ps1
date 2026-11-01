@@ -7,3 +7,4 @@ for ($y = 500; $y -le 700; $y += 50) {
     }
 }
 $img.Dispose()
+

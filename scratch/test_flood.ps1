@@ -80,3 +80,4 @@ $unvisitedWhite | Group-Object { [Math]::Floor($_.X / 100) * 100 }, { [Math]::Fl
 }
 
 $img.Dispose()
+

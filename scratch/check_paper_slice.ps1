@@ -34,3 +34,4 @@ for ($y = 500; $y -le 560; $y += 2) {
 }
 
 $img.Dispose()
+

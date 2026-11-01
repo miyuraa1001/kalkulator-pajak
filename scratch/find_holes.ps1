@@ -23,3 +23,4 @@ if ($pts.Count -gt 0) {
 # Also check scaffolding between X: 400..600, Y: 450..660
 # Are there enclosed white regions or is scaffolding connected to the background?
 $img.Dispose()
+

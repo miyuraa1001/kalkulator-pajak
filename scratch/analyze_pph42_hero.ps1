@@ -66,3 +66,4 @@ for ($y = 200; $y -le 380; $y += 2) {
 Write-Output "Golden key bounds: X: $kMinX to $kMaxX, Y: $kMinY to $kMaxY"
 
 $img.Dispose()
+
