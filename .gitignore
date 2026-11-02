@@ -1,0 +1,26 @@
+# Environment Variables & Secrets (JANGAN PERNAH DI-COMMIT)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vercel Deployment & Build Artifacts
+.vercel
+node_modules/
+dist/
+build/
+
+# Scratch & Temporary Testing Scripts
+scratch/
+
+# IDE & Editor Configurations
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS System Files
+.DS_Store
+Thumbs.db
+desktop.ini

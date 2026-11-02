@@ -1,20 +1,12 @@
 /**
  * ACCUTAX - Auth & User Session Management
- * Sistem autentikasi berbasis browser (localStorage) dengan hak akses Admin & Pengguna
+ * Sistem autentikasi aman:
+ * - Kredensial Administrator diverifikasi melalui Serverless API Endpoint (/api/auth) pada Vercel.
+ * - Password admin TIDAK disimpan dalam kode sumber frontend sehingga tidak bocor ke publik.
+ * - Sesi pengguna tersimpan aman di browser (localStorage) dengan role admin / user.
  */
 
 window.AuthModule = (function () {
-  const ADMIN_LIST = [
-    { username: "syafira daniela nahuway", password: "23755099", name: "DEVELOPER Syafira", role: "admin" },
-    { username: "arinia amanda", password: "23755039", name: "Admin pajak Arinia", role: "admin" },
-    { username: "aghata syaliza", password: "23755070", name: "Admin pajak Aghata", role: "admin" },
-    { username: "aisyah firnanda", password: "23755071", name: "Admin pajak Aisyah", role: "admin" },
-    { username: "fatimah azzarah", password: "23755081", name: "Admin pajak Fatimah", role: "admin" },
-    { username: "fatima azzahra", password: "23755081", name: "Admin pajak Fatima", role: "admin" },
-    { username: "admin", password: "admin", name: "Administrator", role: "admin" },
-    { username: "admin", password: "admin123", name: "Administrator", role: "admin" }
-  ];
-
   function getSession() {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     const activeName = localStorage.getItem('activeName') || '';
@@ -22,7 +14,7 @@ window.AuthModule = (function () {
     return { isLoggedIn, name: activeName, role: activeRole };
   }
 
-  function login(usernameOrEmail, password) {
+  async function login(usernameOrEmail, password) {
     const userVal = (usernameOrEmail || '').trim().toLowerCase();
     const passVal = (password || '').trim();
 
@@ -30,16 +22,28 @@ window.AuthModule = (function () {
       return { success: false, message: 'Username/Email dan Password wajib diisi.' };
     }
 
-    // 1. Cek Admin
-    const foundAdmin = ADMIN_LIST.find(
-      a => (a.username.toLowerCase() === userVal || (a.email && a.email.toLowerCase() === userVal)) && a.password === passVal
-    );
-    if (foundAdmin) {
-      setSession(foundAdmin.name, foundAdmin.role);
-      return { success: true, user: foundAdmin };
+    // 1. Coba verifikasi ke Serverless Endpoint Vercel (/api/auth) jika tersedia
+    if (window.location.protocol.startsWith('http')) {
+      try {
+        const response = await fetch('/api/auth', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: userVal, password: passVal })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data && data.success && data.user) {
+            setSession(data.user.name, data.user.role || 'admin');
+            return { success: true, user: data.user };
+          }
+        }
+      } catch (err) {
+        console.warn('[ACCUTAX] Backend /api/auth offline atau running pada mode statis.');
+      }
     }
 
-    // 2. Cek Pengguna Terdaftar
+    // 2. Cek Pengguna Terdaftar Lokal (localStorage)
     let userDB = [];
     try {
       userDB = JSON.parse(localStorage.getItem('registeredUsers')) || [];
@@ -53,7 +57,7 @@ window.AuthModule = (function () {
     );
 
     if (foundUser) {
-      setSession(foundUser.name, 'user');
+      setSession(foundUser.name, foundUser.role || 'user');
       return { success: true, user: foundUser };
     }
 
@@ -200,26 +204,45 @@ window.AuthModule = (function () {
     }
   }
 
-  function handleLogin(e) {
+  async function handleLogin(e) {
     if (e && e.preventDefault) e.preventDefault();
     const userInput = document.getElementById('auth-user');
     const passInput = document.getElementById('auth-pass');
     const errorEl = document.getElementById('login-error');
+    const submitBtn = document.querySelector('#form-login button[type="submit"]');
+
     if (errorEl) errorEl.classList.add('hidden');
 
     const username = userInput ? userInput.value : '';
     const password = passInput ? passInput.value : '';
 
-    const res = login(username, password);
-    if (res.success) {
-      if (passInput) passInput.value = '';
-      closeAuthModal();
-    } else {
-      if (errorEl) {
-        errorEl.textContent = res.message || 'Username/Email atau Password salah.';
-        errorEl.classList.remove('hidden');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Memverifikasi...</span>';
+    }
+
+    try {
+      const res = await login(username, password);
+      if (res.success) {
+        if (passInput) passInput.value = '';
+        closeAuthModal();
       } else {
-        alert(res.message);
+        if (errorEl) {
+          errorEl.textContent = res.message || 'Username/Email atau Password salah.';
+          errorEl.classList.remove('hidden');
+        } else {
+          alert(res.message);
+        }
+      }
+    } catch (err) {
+      if (errorEl) {
+        errorEl.textContent = 'Terjadi kesalahan sistem saat proses masuk.';
+        errorEl.classList.remove('hidden');
+      }
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>Masuk ke Akun</span>';
       }
     }
     return false;
