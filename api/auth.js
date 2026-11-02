@@ -81,3 +81,4 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ success: false, message: 'Terjadi kendala pada server autentikasi.' });
   }
 };
+

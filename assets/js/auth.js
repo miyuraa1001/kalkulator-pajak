@@ -64,7 +64,7 @@ window.AuthModule = (function () {
     return { success: false, message: 'Username/Email atau Password salah.' };
   }
 
-  function register(name, email, password) {
+  async function register(name, email, password) {
     const nameVal = (name || '').trim();
     const emailVal = (email || '').trim().toLowerCase();
     const passVal = (password || '').trim();
@@ -77,6 +77,26 @@ window.AuthModule = (function () {
       return { success: false, message: 'Password minimal 6 karakter.' };
     }
 
+    // 1. Simpan ke Database Google Spreadsheet melalui Endpoint Vercel (/api/register) jika online
+    let serverMessage = '';
+    if (window.location.protocol.startsWith('http')) {
+      try {
+        const response = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: nameVal, email: emailVal, password: passVal })
+        });
+
+        const data = await response.json();
+        if (data && data.success) {
+          serverMessage = data.message;
+        }
+      } catch (err) {
+        console.warn('[ACCUTAX] Pendaftaran online gagal atau mode statis, menyimpan lokal.');
+      }
+    }
+
+    // 2. Sinkronkan juga ke browser lokal (localStorage)
     let userDB = [];
     try {
       userDB = JSON.parse(localStorage.getItem('registeredUsers')) || [];
@@ -85,14 +105,15 @@ window.AuthModule = (function () {
       userDB = [];
     }
 
-    if (userDB.some(u => u.email && u.email.toLowerCase() === emailVal)) {
-      return { success: false, message: 'Email sudah terdaftar. Silakan masuk.' };
+    if (!userDB.some(u => u.email && u.email.toLowerCase() === emailVal)) {
+      userDB.push({ name: nameVal, email: emailVal, password: passVal, role: 'user' });
+      localStorage.setItem('registeredUsers', JSON.stringify(userDB));
     }
 
-    userDB.push({ name: nameVal, email: emailVal, password: passVal, role: 'user' });
-    localStorage.setItem('registeredUsers', JSON.stringify(userDB));
-
-    return { success: true, message: 'Pendaftaran berhasil! Silakan masuk.' };
+    return {
+      success: true,
+      message: serverMessage || 'Pendaftaran akun berhasil! Silakan masuk.'
+    };
   }
 
   function setSession(name, role) {
@@ -248,13 +269,14 @@ window.AuthModule = (function () {
     return false;
   }
 
-  function handleRegister(e) {
+  async function handleRegister(e) {
     if (e && e.preventDefault) e.preventDefault();
     const nameInput = document.getElementById('reg-name');
     const emailInput = document.getElementById('reg-email');
     const passInput = document.getElementById('reg-pass');
     const errorEl = document.getElementById('reg-error');
     const successEl = document.getElementById('reg-success');
+    const submitBtn = document.querySelector('#form-register button[type="submit"]');
 
     if (errorEl) errorEl.classList.add('hidden');
     if (successEl) successEl.classList.add('hidden');
@@ -263,26 +285,43 @@ window.AuthModule = (function () {
     const email = emailInput ? emailInput.value : '';
     const pass = passInput ? passInput.value : '';
 
-    const res = register(name, email, pass);
-    if (res.success) {
-      if (passInput) passInput.value = '';
-      if (successEl) {
-        successEl.textContent = res.message;
-        successEl.classList.remove('hidden');
-        setTimeout(() => {
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Menyimpan ke Database...</span>';
+    }
+
+    try {
+      const res = await register(name, email, pass);
+      if (res.success) {
+        if (passInput) passInput.value = '';
+        if (successEl) {
+          successEl.textContent = res.message;
+          successEl.classList.remove('hidden');
+          setTimeout(() => {
+            switchAuthTab('login');
+            if (successEl) successEl.classList.add('hidden');
+          }, 1400);
+        } else {
+          alert(res.message);
           switchAuthTab('login');
-          if (successEl) successEl.classList.add('hidden');
-        }, 1200);
+        }
       } else {
-        alert(res.message);
-        switchAuthTab('login');
+        if (errorEl) {
+          errorEl.textContent = res.message;
+          errorEl.classList.remove('hidden');
+        } else {
+          alert(res.message);
+        }
       }
-    } else {
+    } catch (err) {
       if (errorEl) {
-        errorEl.textContent = res.message;
+        errorEl.textContent = 'Terjadi kesalahan sistem saat proses pendaftaran.';
         errorEl.classList.remove('hidden');
-      } else {
-        alert(res.message);
+      }
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>Daftar Akun Baru</span>';
       }
     }
     return false;
